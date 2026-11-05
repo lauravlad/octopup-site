@@ -1,14 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Octopup Studio">
-  <!-- A simplified Octopup: round head with two floppy ears, resting on three tentacle arcs -->
+  <!-- Octopup as a logic mark:
+       the face (two eyes over a nose) is the "because" sign ∵,
+       and the three tentacle tips (one high, two low) form the "therefore" sign ∴. -->
   <g fill="none" stroke="#1C2B4A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="60" cy="52" r="26"/>
-    <path d="M42 76 C40 90 30 94 28 104"/>
-    <path d="M60 80 C60 92 56 98 60 108"/>
-    <path d="M78 76 C80 90 90 94 92 104"/>
+    <circle cx="60" cy="48" r="25"/>
+    <path d="M44 70 C42 84 34 92 30 102"/>
+    <path d="M60 73 L60 88"/>
+    <path d="M76 70 C78 84 86 92 90 102"/>
   </g>
-  <path d="M40 34 C24 34 18 58 26 70 C32 78 42 70 42 58 Z" fill="#1C2B4A"/>
-  <path d="M80 34 C96 34 102 58 94 70 C88 78 78 70 78 58 Z" fill="#1C2B4A"/>
-  <circle cx="51" cy="50" r="3.6" fill="#1C2B4A"/>
-  <circle cx="69" cy="50" r="3.6" fill="#1C2B4A"/>
-  <path d="M56 60 Q60 57 64 60 Q62 64 60 64 Q58 64 56 60 Z" fill="#C8553D"/>
+  <!-- floppy ears -->
+  <path d="M41 30 C25 30 19 54 27 66 C33 74 43 66 43 54 Z" fill="#1C2B4A"/>
+  <path d="M79 30 C95 30 101 54 93 66 C87 74 77 66 77 54 Z" fill="#1C2B4A"/>
+  <!-- face = ∵ -->
+  <circle cx="51" cy="44" r="3.8" fill="#1C2B4A"/>
+  <circle cx="69" cy="44" r="3.8" fill="#1C2B4A"/>
+  <circle cx="60" cy="56" r="3.8" fill="#C8553D"/>
+  <!-- tentacle tips = ∴ -->
+  <circle cx="60" cy="93" r="5.5" fill="#C8553D"/>
+  <circle cx="29" cy="106" r="5.5" fill="#C8553D"/>
+  <circle cx="91" cy="106" r="5.5" fill="#C8553D"/>
 </svg>
