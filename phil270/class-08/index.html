@@ -302,6 +302,9 @@ table.proof .gap{color:var(--bad)}
 .next .prev{margin-right:auto}
 .next .btn:last-child{margin-left:auto}
 table.proof tr.new .bars i:last-child{height:1.25em;margin-top:.35em;vertical-align:bottom}
+.choice.peekable{cursor:pointer}
+.why.peek{color:var(--muted);font-style:italic;opacity:.9}
+.choice.peekable:hover .why.peek{color:var(--accent)}
 </style>
 <style id="theme">:root{--paper:hsl(92 40% 97%);--surface:#FFFFFF;--ink:hsl(92 45% 13%);--muted:hsl(92 15% 37%);--line:hsl(92 32% 87%);--soft:hsl(92 40% 94%);
 --accent:hsl(92 62% 31%);--accent-ink:#FFFFFF;--mast:hsl(92 50% 25%);--mast-ink:#FFFFFF;--candy:hsl(92 52% 37%);--candy-ink:#FFFFFF;--candy-2:hsl(92 50% 92%);
@@ -631,7 +634,9 @@ function mcBody(it){
   const btns=e.opt.map((oi,pos)=>{ let c='choice'; const after=e.pickd!==null;
     if(after){ if(oi===it.a) c+=' right'; else if(oi===e.pickd) c+=' wrong'; }
     let why='';
-    if(after){
+    const showWrong = after && oi!==it.a && (oi===e.pickd || (e.open && e.open[oi]));
+    if(after && oi!==it.a && !showWrong) why=`<span class="why peek">Tap to see why it’s wrong</span>`;
+    if(after && (oi===it.a || showWrong)){
       const meanOf = i => (it.m && it.m[i]) || (it.sl && onlyFormula(it.o[i]) ? slEnglish(onlyFormula(it.o[i]), it.sl) : null);
       const mean = meanOf(oi);
       if(mean) why+=`<span class="why means">${oi===it.a?'✓':'✗'} Means: ${fmt(mean)}</span>`;
@@ -642,7 +647,8 @@ function mcBody(it){
         if(wy) why+=`<span class="why wrongwhy">${mean?'':'✗ '}Why it’s wrong: ${fmt(wy)}</span>`;
       }
     }
-    return `<button class="${c}" data-mc="${oi}" ${after?'disabled':''}><b>${L[pos]}</b>${fmt(it.o[oi])}${why}</button>`; }).join('');
+    const peek = after && oi!==it.a;
+    return `<button class="${c}${peek?' peekable':''}" data-mc="${oi}" ${after&&!peek?'disabled':''} ${peek?`aria-expanded="${showWrong?'true':'false'}"`:''}><b>${L[pos]}</b>${fmt(it.o[oi])}${why}</button>`; }).join('');
   const ok=e.pickd===it.a;
   return `<p class="prop">${fmt(it.q).replace(/\n/g,'<br>')}</p>${it.proof?proofHTML(it.proof):''}${keyHTML(it.key)}
   <section class="step"><div class="choices one">${btns}</div>
@@ -833,6 +839,7 @@ app.addEventListener('click', ev=>{
   let v;
   if(act==='reveal'){ cur.shown=true; markDone(cur.id,cur.k); render(); return; }
   if((v=d('mc'))!==undefined && cur.pickd===null){ cur.pickd=+v; tally(cur.pickd===it.a); render(); return; }
+  if((v=d('mc'))!==undefined && cur.pickd!==null && +v!==it.a && +v!==cur.pickd){ cur.open=cur.open||{}; cur.open[+v]=!cur.open[+v]; const y=window.scrollY; render(); window.scrollTo(0,y); return; }
   if((v=d('tf'))!==undefined && cur.pickd===null){ cur.pickd = v==='true'; tally(cur.pickd===it.ans); render(); return; }
   if((v=d('move'))!==undefined && cur.pickd===null){ cur.pickd=v; tally(v===it.ans); render(); return; }
   if((v=d('tv'))!==undefined && !cur.checked){ const x=cur.tv[v]; cur.tv[v]= x==='T'?'F':'T'; render(); return; }
