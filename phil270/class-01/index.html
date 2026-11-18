@@ -643,7 +643,7 @@ VIEWS.home = () => {
     <ol>${PARTS.map(p=>`<li><b>${p.title}</b> · about ${p.min} min</li>`).join('')}<li><b>Test your knowledge</b> · about 10 min</li></ol>
   </section>
   <ol class="levels">${PARTS.map(part).join('')}</ol>
-  <p class="reset-row"><button class="reset" data-act="reset">Start over</button></p>`;
+  <p class="reset-row">${typeof SHEET!=='undefined'?`<a class="reset" href="${SHEET}" target="_blank" rel="noopener">Printable practice sheet (PDF)</a> · `:''}<button class="reset" data-act="reset">Start over</button></p>`;
 };
 
 // ===== Activity views =====
