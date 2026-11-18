@@ -798,6 +798,20 @@ const TEST=[
   {tag:'rel2', q:'No animal is heavier than every animal.', key:K.play, o:['{~ (∃x)(∀y)Hxy}','{(∀x)(∀y) ~ Hxy}','{~ (∃x)Hxx}','{(∃x) ~ (∀y)Hxy}'], a:0, e:'It is not the case that there is an x heavier than each y. (Nothing is heavier than itself, so this is true.)'},
   {tag:'nums', q:'Every positive integer is less than some prime.', key:K.ints, o:['{(∀x)(∃y)(Py & Lxy)}','{(∃y)[Py & (∀x)Lxy]}','{(∀x)(∃y)(Py ⊃ Lxy)}','{(∀x)[Px ⊃ (∃y)Lxy]}'], a:0, e:'Each x is such that there is a y that is prime and x is less than y.'},
 ];
+// ===== A specific reason for every wrong choice =====
+const SETW=(arr,qStart,w)=>{ const it=arr.find(x=>x.q.startsWith(qStart)); if(!it) throw new Error('not found: '+qStart); it.w=w; };
+SETW(AEIO,'Which kind of sentence is “Some dogs are asleep”?',['An A-sentence says ALL dogs are asleep. This only says some are.','An E-sentence says NO dog is asleep. This says some are.','','An O-sentence says some dogs are NOT asleep.']);
+SETW(AEIO,'Which kind of sentence is “No cats bark”?',['An A-sentence would say all cats bark: the opposite.','','An I-sentence would say some cat barks: the opposite.','An O-sentence says only that some cat does not bark, which is weaker than “no cat barks.”']);
+TEST[0].w=['','Both places are reversed: Cara respects Ben, and Ben does not like Cara.','“But” is &, not ⊃: this only says IF Ben respects Cara, Cara does not like Ben.','The second half says Ben does not like himself.'];
+TEST[1].w=['','That says everyone is friendly.','That says no one is friendly.','Cara is left out.'];
+TEST[2].w=['','That says Cara respects everyone.','That says only that someone respects Cara.','That says Cara respects herself.'];
+TEST[3].w=['','That says “if everyone likes Ben, Ana does,” which is trivially true because Ana is one of everyone.','∃ with ⊃ is true as soon as one person does not like Ben.','That claims someone likes Ben and Ana does: it says it actually happens.'];
+TEST[4].w=['','∃ with ⊃ is true as soon as one animal is not a cat.','That says every cat is asleep.','That says every animal is a sleeping cat.'];
+TEST[5].w=['','That is the A-sentence “all dogs bark.” It can be false at the same time as “no dog barks.”','That is the O-sentence “some dog does not bark.” It can be true at the same time as “no dog barks.”','That is equivalent to “no dog barks” itself, not its contradictory.'];
+TEST[6].w=['','That says everyone likes someone, maybe different people.','That says someone likes everyone.','That says everyone is liked by someone, maybe different people.'];
+TEST[7].w=['','That says there is one dog that every cat plays with: stronger.','∃ with ⊃ inside is true as soon as something is not a dog.','That says every cat plays with every dog.'];
+TEST[8].w=['','That says no animal is heavier than any animal.','That says only that no animal is heavier than itself.','That says some animal is not heavier than every animal: much weaker.'];
+TEST[9].w=['','That says one prime is larger than every integer: false, and too strong.','∃ with ⊃ is true as soon as something is not prime.','That is only about primes: every prime is less than something.'];
 
 const PROP_N=['Reflexive','Symmetric','Transitive'];
 const PROP_F=['(∀x)Axx','(∀x)(∀y)(Axy ⊃ Ayx)','(∀x)(∀y)(∀z)[(Axy & Ayz) ⊃ Axz]'];
@@ -876,9 +890,15 @@ function mcBody(it){
     if(after){ if(oi===it.a) c+=' right'; else if(oi===e.pickd) c+=' wrong'; }
     let why='';
     if(after){
-      const mean = (it.m && it.m[oi]) || (it.sl && onlyFormula(it.o[oi]) ? slEnglish(onlyFormula(it.o[oi]), it.sl) : null);
+      const meanOf = i => (it.m && it.m[i]) || (it.sl && onlyFormula(it.o[i]) ? slEnglish(onlyFormula(it.o[i]), it.sl) : null);
+      const mean = meanOf(oi);
       if(mean) why+=`<span class="why means">${oi===it.a?'✓':'✗'} Means: ${fmt(mean)}</span>`;
-      if(oi!==it.a && it.w && it.w[oi]) why+=`<span class="why wrongwhy">${mean?'':'✗ '}Why it’s wrong: ${fmt(it.w[oi])}</span>`;
+      if(oi!==it.a){
+        // every wrong choice explains itself, whichever choice was picked
+        let wy = it.w && it.w[oi];
+        if(!wy){ const right=meanOf(it.a); wy = (mean && right) ? `It says something different. The correct choice says: ${right}` : (it.e || ''); }
+        if(wy) why+=`<span class="why wrongwhy">${mean?'':'✗ '}Why it’s wrong: ${fmt(wy)}</span>`;
+      }
     }
     return `<button class="${c}" data-mc="${oi}" ${after?'disabled':''}><b>${L[pos]}</b>${fmt(it.o[oi])}${why}</button>`; }).join('');
   const ok=e.pickd===it.a;

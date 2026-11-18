@@ -817,6 +817,8 @@ M(TEST,[
   ['No friend of Ana likes Ben.','Some friend of Ana does not like Ben.','Everyone who is not Ana’s friend likes Ben.','Not every friend of Ana likes Ben.'],
 ]);
 
+// ===== A specific reason for every wrong choice =====
+TEST[2].w=['','A glass bottle is made of glass and is a bottle, so it splits.','An Italian car is Italian and is a car, so it splits.','A round table is round and is a table, so it splits.'];
 
 
 K.basket=[['UD','things in a fruit basket'],['Ax','x is an apple'],['Px','x is a pear'],['Rx','x is rotten']];
@@ -894,9 +896,15 @@ function mcBody(it){
     if(after){ if(oi===it.a) c+=' right'; else if(oi===e.pickd) c+=' wrong'; }
     let why='';
     if(after){
-      const mean = (it.m && it.m[oi]) || (it.sl && onlyFormula(it.o[oi]) ? slEnglish(onlyFormula(it.o[oi]), it.sl) : null);
+      const meanOf = i => (it.m && it.m[i]) || (it.sl && onlyFormula(it.o[i]) ? slEnglish(onlyFormula(it.o[i]), it.sl) : null);
+      const mean = meanOf(oi);
       if(mean) why+=`<span class="why means">${oi===it.a?'✓':'✗'} Means: ${fmt(mean)}</span>`;
-      if(oi!==it.a && it.w && it.w[oi]) why+=`<span class="why wrongwhy">${mean?'':'✗ '}Why it’s wrong: ${fmt(it.w[oi])}</span>`;
+      if(oi!==it.a){
+        // every wrong choice explains itself, whichever choice was picked
+        let wy = it.w && it.w[oi];
+        if(!wy){ const right=meanOf(it.a); wy = (mean && right) ? `It says something different. The correct choice says: ${right}` : (it.e || ''); }
+        if(wy) why+=`<span class="why wrongwhy">${mean?'':'✗ '}Why it’s wrong: ${fmt(wy)}</span>`;
+      }
     }
     return `<button class="${c}" data-mc="${oi}" ${after?'disabled':''}><b>${L[pos]}</b>${fmt(it.o[oi])}${why}</button>`; }).join('');
   const ok=e.pickd===it.a;

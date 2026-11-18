@@ -819,6 +819,8 @@ const C11=(()=>{
     ['No friend of Ana likes Ben.','Some friend of Ana does not like Ben.','Everyone who is not Ana’s friend likes Ben.','Not every friend of Ana likes Ben.'],
   ]);
   
+  // ===== A specific reason for every wrong choice =====
+  TEST[2].w=['','A glass bottle is made of glass and is a bottle, so it splits.','An Italian car is Italian and is a car, so it splits.','A round table is round and is a table, so it splits.'];
   
 return {ACTS,ADJ,DEFS1,EQ,IKEY,IMAG,K,LOOK,M,MKEY,MOVE,MX,ORDER,ORDER2,PARA,PARTS,PEOPLE,PROP_F,PROP_N,QENG,QTRUTH,RS,TEST,TK,VERBS,WKEY,WTXT,evalRel,ordStr,relCounter};
 })();
@@ -1089,8 +1091,20 @@ const C12=(()=>{
     {tag:'world', q:'A basket holds one apple and two pears. Is {(∃x)(∃y)[(Ax & Ay) & ~ x = y]} true or false?', o:['True','False'], a:1, fixed:true, e:'It says there are at least two apples. There is only one.'},
     {tag:'term', q:'What kind of term is {f(y)}?', o:['Simple and closed','Simple and open','Complex and closed','Complex and open'], a:3, fixed:true, e:'It is built from a functor, so it is complex. It contains the variable y, so it is open.'},
   ];
+  // ===== A specific reason for every wrong choice =====
+  const SETW=(arr,qStart,w)=>{ const it=arr.find(x=>x.q.startsWith(qStart)); if(!it) throw new Error('not found: '+qStart); it.w=w; };
+  SETW(DESC,'Kim has two daughters.',['Uniqueness fails: Kim has two daughters, so “Kim’s only daughter” fits no one. Whether one is a pilot does not matter.','','It is a meaningful sentence. It makes a claim, and the claim is false.','Every sentence here gets a truth-value. This one is false.']);
+  SETW(DESC,'Kim has no daughters.',['Existence fails: there is no daughter, so the claim is false.','','It is meaningful. It just makes a false claim.','It still gets a truth-value: false.']);
+  SETW(FUNC,'What does {(∀x)Es(x,x)} say',['','{Es(x,x)} is about the sum s(x,x), not about x itself.','x + x is always even, so it is true, not false.','It says every such sum is even, not just some.']);
+  SETW(TEST,'Suppose there are two winners.',['With two winners, “the winner” fits no one, so the sentence is false whoever is happy.','','It is meaningful. It makes a false claim.','It gets a truth-value: false.']);
+  // kinds of terms: say exactly which half of the choice is wrong
+  const TERMW=it=>{ const cx=it.a>=2, cl=it.a%2===0; it.w=it.o.map((_,i)=>{ if(i===it.a) return ''; const r=[]; const icx=i>=2, icl=i%2===0;
+    if(icx!==cx) r.push(cx?'It is built with a functor, so it is complex, not simple.':'It has no functor, so it is simple, not complex.');
+    if(icl!==cl) r.push(cl?'It has no variable, so it is closed, not open.':'It contains a variable, so it is open, not closed.');
+    return r.join(' '); }); };
+  TERM.forEach(TERMW); TEST.filter(t=>t.q.startsWith('What kind of term')).forEach(TERMW);
   
-return {ACTS,COUNT,DEFS1,DESC,EXC,FUNC,K,ORDER,PARTS,PEOPLE,PROP_F,PROP_N,READ,REL,TERM,TERMS,TEST,VERBS,WORLD,evalRel,ordStr,relCounter};
+return {ACTS,COUNT,DEFS1,DESC,EXC,FUNC,K,ORDER,PARTS,PEOPLE,PROP_F,PROP_N,READ,REL,SETW,TERM,TERMS,TERMW,TEST,VERBS,WORLD,evalRel,ordStr,relCounter};
 })();
 const K=Object.assign({}, C12.K);
 
@@ -1209,6 +1223,9 @@ const TEST=[
   tg(C12.TEST[1],'ident'), tg(C12.TEST[2],'ident'), tg(C12.TEST[4],'ident'),
   tg(C12.TEST[6],'rel'), tg(C12.TEST[7],'relf'), tg(C12.TEST[8],'world'),
 ];
+// ===== A specific reason for every wrong choice =====
+{ const it=MIX.find(x=>x.q.startsWith('Kim has no daughters.')); if(it) it.w=['Existence fails: Kim has no daughter, so the claim is false.','','It is meaningful. It just makes a false claim.','It still gets a truth-value: false.']; }
+{ const it=MIX.find(x=>x.q.startsWith('What kind of term is')); if(it) it.w=['It is built with a functor, so it is complex. It contains x, so it is open.','It is built with a functor, so it is complex, not simple.','It contains the variable x, so it is open, not closed.','']; }
 
 const PROP_N=['Reflexive','Symmetric','Transitive'];
 const PROP_F=['(∀x)Axx','(∀x)(∀y)(Axy ⊃ Ayx)','(∀x)(∀y)(∀z)[(Axy & Ayz) ⊃ Axz]'];
@@ -1304,9 +1321,15 @@ function mcBody(it){
     if(after){ if(oi===it.a) c+=' right'; else if(oi===e.pickd) c+=' wrong'; }
     let why='';
     if(after){
-      const mean = (it.m && it.m[oi]) || (it.sl && onlyFormula(it.o[oi]) ? slEnglish(onlyFormula(it.o[oi]), it.sl) : null);
+      const meanOf = i => (it.m && it.m[i]) || (it.sl && onlyFormula(it.o[i]) ? slEnglish(onlyFormula(it.o[i]), it.sl) : null);
+      const mean = meanOf(oi);
       if(mean) why+=`<span class="why means">${oi===it.a?'✓':'✗'} Means: ${fmt(mean)}</span>`;
-      if(oi!==it.a && it.w && it.w[oi]) why+=`<span class="why wrongwhy">${mean?'':'✗ '}Why it’s wrong: ${fmt(it.w[oi])}</span>`;
+      if(oi!==it.a){
+        // every wrong choice explains itself, whichever choice was picked
+        let wy = it.w && it.w[oi];
+        if(!wy){ const right=meanOf(it.a); wy = (mean && right) ? `It says something different. The correct choice says: ${right}` : (it.e || ''); }
+        if(wy) why+=`<span class="why wrongwhy">${mean?'':'✗ '}Why it’s wrong: ${fmt(wy)}</span>`;
+      }
     }
     return `<button class="${c}" data-mc="${oi}" ${after?'disabled':''}><b>${L[pos]}</b>${fmt(it.o[oi])}${why}</button>`; }).join('');
   const ok=e.pickd===it.a;
