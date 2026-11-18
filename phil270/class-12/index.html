@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Class 12</title>
+<!-- Home-screen icon and full-screen mode (iPhone "Add to Home Screen", Android "Install") -->
+<link rel="icon" href="../icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Class 12">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F5FAF6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,400;7..72,600&family=STIX+Two+Text:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Same visual system as Therefore: one narrow column, levels list on home, stepwise exercises. */
+:root{--g1:#1F7A4A;--g2:#2E8B57;--g3:#3BAFA0;--mast-shadow:rgba(31,122,74,.6);--acc2:#3BA776;--acc2-soft:#E2F4EA;
+  --paper:#F5FAF6; --surface:#FFFFFF; --ink:#14301F; --muted:#4F6B5A; --line:#D5E8DA;
+  --accent:#1F7A4A; --accent-ink:#FFFFFF;
+  --good:#1D7550; --good-tint:#E3F3EB; --bad:#B42318; --bad-bg:#FBE9E7;
+  --soft:#EAF5EE;
+  --blob1:#CDEFD8; --blob2:#E2F4C9; --blob3:#CFF0E6; --blob4:#F0F7D4; --lock-line:#CBE6D3; --lock-ring:rgba(76,175,110,.25); --lock-glow:rgba(31,122,74,.45); --lock-field:#F6FCF8;
+  --mast:#1E5A3A; --mast-ink:#FFFFFF; --mast-sym:rgba(255,255,255,.09); --mast-muted:rgba(255,255,255,.78);
+  --candy:#2E8B57; --candy-ink:#FFFFFF; --candy-2:#DDF1E4;
+  --p1:#0D7F73; --p1-soft:#DCF2EE; --p2:#5A7D1A; --p2-soft:#EAF2D6; --p3:#2E8B57; --p3-soft:#DDF1E4; --p4:#1F6B4F; --p4-soft:#DCEDE5;
+  --page-sym:rgba(31,122,74,.07);
+  --serif:'Literata', Georgia, 'Times New Roman', serif;
+  --sans:'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --logic:'STIX Two Text', 'Cambria Math', 'Times New Roman', serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1E16; --surface:#172A20; --ink:#E4F2E9; --muted:#9FBFAC; --line:#2C4636;
+    --accent:#6FD39C; --accent-ink:#0F1E16;
+    --good:#5FCB9C; --good-tint:#16352B; --bad:#FF8F84; --bad-bg:#3A1E22;
+    --soft:#1F3529; color-scheme: dark;
+    --blob1:rgba(80,200,130,.18); --blob2:rgba(160,210,90,.16); --blob3:rgba(86,211,195,.14); --blob4:rgba(200,230,120,.10); --lock-line:#2F4A3A; --lock-ring:rgba(80,200,130,.12); --lock-glow:rgba(80,200,130,.45); --lock-field:#142319;
+    --mast:#1F5A3C; --mast-ink:#FFFFFF; --mast-sym:rgba(255,255,255,.08); --mast-muted:rgba(255,255,255,.75);
+    --candy:#5FCB8F; --candy-ink:#0A1A10; --candy-2:#1E3A2A;
+    --p1:#56D3C3; --p1-soft:#14322E; --p2:#B5D46A; --p2-soft:#2B3514; --p3:#6FD39C; --p3-soft:#183A28; --p4:#4FBF95; --p4-soft:#163329;
+    --page-sym:rgba(111,211,156,.07);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1E16; --surface:#172A20; --ink:#E4F2E9; --muted:#9FBFAC; --line:#2C4636;
+  --accent:#6FD39C; --accent-ink:#0F1E16;
+  --good:#5FCB9C; --good-tint:#16352B; --bad:#FF8F84; --bad-bg:#3A1E22;
+  --soft:#1F3529; color-scheme: dark;
+    --blob1:rgba(80,200,130,.18); --blob2:rgba(160,210,90,.16); --blob3:rgba(86,211,195,.14); --blob4:rgba(200,230,120,.10); --lock-line:#2F4A3A; --lock-ring:rgba(80,200,130,.12); --lock-glow:rgba(80,200,130,.45); --lock-field:#142319;
+    --mast:#1F5A3C; --mast-ink:#FFFFFF; --mast-sym:rgba(255,255,255,.08); --mast-muted:rgba(255,255,255,.75);
+    --candy:#5FCB8F; --candy-ink:#0A1A10; --candy-2:#1E3A2A;
+    --p1:#56D3C3; --p1-soft:#14322E; --p2:#B5D46A; --p2-soft:#2B3514; --p3:#6FD39C; --p3-soft:#183A28; --p4:#4FBF95; --p4-soft:#163329;
+    --page-sym:rgba(111,211,156,.07);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+main{max-width:640px;margin:0 auto;padding-block:20px 64px;padding-left:max(18px, env(safe-area-inset-left,0px));padding-right:max(18px, env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.2;margin:0;text-wrap:balance}
+h1{font-size:2.4rem;letter-spacing:-.01em}
+h2{font-size:1.55rem}
+h3{font-size:1.1rem}
+p{margin:.4em 0}
+.muted{color:var(--muted)}
+.f{font-family:var(--logic);white-space:nowrap;font-size:1.06em}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,select:focus-visible,a:focus-visible,label:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+.back{background:none;border:0;padding:6px 0;color:var(--accent);font-weight:700;margin-bottom:10px}
+
+/* Home */
+.hero{display:flex;align-items:center;gap:16px;margin:8px 0 6px}
+.hero svg{width:84px;height:auto;flex:none}
+.tagline{font-size:1.05rem;color:var(--muted);max-width:34ch}
+.levels{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--line)}
+.level{border-bottom:1px solid var(--line);padding:16px 0}
+.level-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.level-num{font-family:var(--serif);color:var(--muted);font-size:.95rem;white-space:nowrap}
+.topics{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-direction:column;gap:8px}
+.topic{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;border:1px solid var(--accent);background:var(--surface);border-radius:12px;padding:12px 14px}
+.topic:hover{background:var(--soft)}
+.topic small{display:block;color:var(--muted);font-size:.88rem}
+.go{color:var(--accent);font-weight:700;white-space:nowrap}
+
+/* Exercise */
+.ex-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
+.score{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.prop{font-family:var(--serif);font-size:1.4rem;line-height:1.35;margin:14px 0 6px}
+.prop mark{background:var(--soft);color:var(--ink);border-bottom:2px solid var(--accent);padding:0 2px}
+.formula{font-family:var(--logic);font-size:1.6rem;line-height:1.6;margin:12px 0 4px;display:flex;flex-wrap:wrap;align-items:baseline;row-gap:4px}
+.formula .sp{width:.3em}
+.tok{border:0;background:transparent;padding:0 2px;border-radius:5px;font-family:var(--logic);font-size:inherit;line-height:inherit}
+.tok.tap{border-bottom:2px dashed var(--muted);margin:0 1px}
+.tok.tap:hover{background:var(--soft)}
+.tok.sel{background:var(--soft);border-bottom:2px solid var(--accent)}
+.tok.right{background:var(--good-tint);border-bottom:2px solid var(--good)}
+.tok.wrong{background:var(--bad-bg);border-bottom:2px solid var(--bad)}
+.key{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.92rem;color:var(--muted);margin:6px 0 0}
+.key b{color:var(--ink);font-family:var(--logic);font-weight:600}
+.step{margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
+.step h3{margin-bottom:4px}
+.step .hint{font-size:.92rem;color:var(--muted)}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.choices.one{grid-template-columns:1fr}
+.choices.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.choice{border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;text-align:left;min-width:0;overflow-wrap:anywhere}
+.choice b{font-family:var(--serif);margin-right:6px}
+.choice.picked{border-color:var(--accent);background:var(--soft)}
+.choice.right{border-color:var(--good);background:var(--good-tint)}
+.choice.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.choice .why{display:block;font-size:.88rem;color:var(--muted);margin-top:4px;font-family:var(--sans)}
+.check{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.check input{margin-top:6px;accent-color:var(--accent);width:18px;height:18px;flex:none}
+.builder{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:12px;font-family:var(--logic);font-size:1.3rem}
+.builder select{font-family:var(--logic);font-size:1.15rem;padding:6px 6px;min-width:0}
+select{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink)}
+.preview{margin-top:10px;font-size:.92rem;color:var(--muted)}
+.preview .f{color:var(--ink);font-size:1.25rem}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btn{border:0;border-radius:10px;padding:11px 18px;font-weight:700;background:var(--accent);color:var(--accent-ink)}
+.btn[disabled]{opacity:.45;cursor:default}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.fb{margin-top:12px;padding:12px 14px;border-radius:10px;font-size:.97rem}
+.fb.good{background:var(--good-tint);color:var(--ink);border-left:4px solid var(--good)}
+.fb.bad{background:var(--bad-bg);color:var(--ink);border-left:4px solid var(--bad)}
+.fb strong{display:block;margin-bottom:2px}
+.fb ul{margin:6px 0 0;padding-left:1.2em}
+.fb li{margin:3px 0}
+.next{margin-top:30px;display:flex;justify-content:flex-end}
+/* Front screens */
+.syms{position:absolute;inset:0;overflow:hidden;pointer-events:none;font-family:var(--logic);user-select:none}
+.syms span{position:absolute;line-height:1;transform:rotate(var(--r))}
+.page-syms{position:fixed;z-index:0;color:var(--page-sym)}
+.lock{position:relative;z-index:1;max-width:400px;margin:9vh auto 0;text-align:center;display:grid;gap:10px;justify-items:center;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:30px 24px 26px;box-shadow:0 18px 50px -24px rgba(20,48,31,.35)}
+.lock .tile{width:76px;height:76px;margin-top:-68px;border-radius:20px;background:var(--mast);color:var(--mast-ink);display:grid;place-items:center;font-family:var(--logic);font-size:34px;box-shadow:0 10px 24px -10px rgba(30,90,58,.6)}
+.lock h1{font-size:2.5rem;margin-top:6px}
+.lock .sub{color:var(--muted);margin:0}
+.lock .code-form{margin-top:10px;text-align:center}
+.t-ico.small{font-size:.95rem}
+.lock input[type=text]{text-align:center;font-size:1.3rem;letter-spacing:.18em;padding:14px 12px;font-family:var(--logic)}
+.lock .chip{display:inline-flex;gap:6px;align-items:center;font-size:.85rem;color:var(--candy);background:var(--candy-2);border-radius:999px;padding:4px 12px;font-weight:700}
+.mast{position:relative;overflow:hidden;background:var(--mast);color:var(--mast-ink);border-radius:24px;padding:30px 24px 24px;margin-top:4px}
+.mast .syms{color:var(--mast-sym)}
+.mast > *:not(.syms){position:relative}
+.kicker{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mast-muted);margin:0;font-weight:700}
+.mast h1{font-size:clamp(2.6rem,9vw,3.6rem);letter-spacing:-.02em;margin-top:6px;color:var(--mast-ink)}
+.mast h1 .f{font-size:.8em;opacity:.55;margin-left:.15em}
+.mast-tag{color:var(--mast-muted);font-size:1.08rem;margin:.3em 0 0;max-width:34ch}
+.mast .candy-cta{margin-top:22px}
+.part-head{display:flex;align-items:center;gap:12px}
+.part-badge{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--pc);color:var(--surface);font-family:var(--serif);font-weight:600;font-size:1rem}
+.part-head h2{font-size:1.3rem}
+.part-head .level-num{margin-left:auto}
+.level{--pc:var(--p4);--pcs:var(--p4-soft)}
+.level.part-1{--pc:var(--p1);--pcs:var(--p1-soft)}
+.level.part-2{--pc:var(--p2);--pcs:var(--p2-soft)}
+.level.part-3{--pc:var(--p3);--pcs:var(--p3-soft)}
+.level.part-4{--pc:var(--p4);--pcs:var(--p4-soft)}
+.level.part-5{--pc:var(--p2);--pcs:var(--p2-soft)}
+.levels .topic{border-color:var(--line);display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;padding:12px 14px 12px 12px;transition:border-color .15s, transform .15s}
+.levels .topic:hover{border-color:var(--pc);background:var(--surface);transform:translateY(-1px)}
+.t-ico{width:44px;height:44px;border-radius:12px;background:var(--pcs);color:var(--pc);display:grid;place-items:center;font-family:var(--logic);font-size:1.25rem;font-weight:600}
+.levels .go{color:var(--pc)}
+@media (prefers-reduced-motion:reduce){ .levels .topic{transition:none} .levels .topic:hover{transform:none} }
+.code-form{display:grid;gap:8px;width:100%;margin-top:8px;text-align:left}
+.code-form .btn{justify-self:stretch}
+.code-err{color:var(--bad);font-size:.95rem;margin:0}
+input[aria-invalid="true"]{border-color:var(--bad)}
+/* Candy Challenge */
+.candy-cta{position:relative;overflow:hidden;display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:var(--candy);color:var(--candy-ink);border:0;border-radius:16px;padding:18px 16px 16px;margin-top:22px;box-shadow:0 10px 24px -12px rgba(0,0,0,.45)}
+.candy-cta::before{content:"";position:absolute;inset:0 0 auto;height:6px;background:repeating-linear-gradient(-45deg,rgba(255,255,255,.85) 0 8px,transparent 8px 16px)}
+.candy-cta:hover{filter:brightness(1.06)}
+.candy-cta .go-light{background:var(--candy-ink);color:var(--candy);border-radius:999px;padding:6px 14px}
+.candy-cta b{font-family:var(--serif);font-size:1.25rem;display:block}
+.candy-cta small{display:block;opacity:.88;font-size:.9rem}
+.candy-ico{font-size:2.2rem;line-height:1}
+.go-light{font-weight:700;white-space:nowrap;margin-left:auto}
+.game-hero{text-align:center;display:grid;gap:6px;justify-items:center;margin-top:6px}
+.game-hero p{max-width:40ch}
+.big-candy{font-size:64px;line-height:1}
+input[type=text]{font:inherit;padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);width:100%;margin-top:8px}
+input[type=text]:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn.big{font-size:1.1rem;padding:14px 24px}
+.gbar{display:grid;gap:6px;margin-bottom:14px}
+.gbar-row{display:flex;justify-content:space-between;font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.dots{display:flex;gap:4px}
+.dots i{flex:1;height:7px;border-radius:4px;background:var(--line)}
+.dots i.hit{background:var(--good)} .dots i.miss{background:var(--bad)} .dots i.now{background:var(--accent)}
+.cheer{color:var(--good);font-weight:700;white-space:nowrap}
+.win{text-align:center;background:var(--surface);border:2px solid var(--accent);border-radius:18px;padding:30px 18px;display:grid;gap:6px;justify-items:center;position:relative;z-index:6;margin-top:10px}
+.win.lose{border-color:var(--line)}
+.win h1{font-size:2.2rem}
+.eyebrow{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0}
+.cheer-big{font-family:var(--serif);font-size:1.4rem;color:var(--good);margin:0}
+.final{font-size:1.25rem;font-weight:700;font-variant-numeric:tabular-nums}
+.stamp{font-size:.9rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;margin-top:6px}
+.actions.center{justify-content:center;margin-top:18px}
+.rain{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:5}
+.rain span{position:absolute;top:-60px;animation-name:fall;animation-timing-function:linear;animation-iteration-count:3}
+@keyframes fall{to{transform:translateY(115vh) rotate(380deg)}}
+/* Win: sparkle explosions */
+.boom{position:fixed;inset:0;pointer-events:none;z-index:6;overflow:hidden}
+.boom i{position:absolute;left:var(--x);top:var(--y);font-style:normal;line-height:1;transform:translate(-50%,-50%) scale(.2);opacity:0;animation:burst var(--t) cubic-bezier(.15,.8,.3,1) var(--w) forwards}
+.boom i.dot{width:var(--s);height:var(--s);border-radius:50%;background:var(--c);box-shadow:0 0 10px var(--c)}
+@keyframes burst{
+  0%{transform:translate(-50%,-50%) scale(.2);opacity:1}
+  70%{opacity:1}
+  100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1) rotate(var(--rot));opacity:0}}
+.boom .flash{position:absolute;left:var(--x);top:var(--y);width:24px;height:24px;border-radius:50%;background:radial-gradient(circle,#fff,rgba(255,215,90,.8) 40%,transparent 70%);transform:translate(-50%,-50%) scale(0);animation:flash .6s ease-out var(--w) forwards}
+@keyframes flash{0%{transform:translate(-50%,-50%) scale(0);opacity:1}100%{transform:translate(-50%,-50%) scale(9);opacity:0}}
+
+.bounce{animation:bounce 1s ease-in-out infinite alternate}
+@keyframes bounce{from{transform:translateY(0) rotate(-6deg)}to{transform:translateY(-12px) rotate(6deg)}}
+@media (prefers-reduced-motion:reduce){ .rain{display:none} .bounce{animation:none} }
+@media (max-width:420px){ h1{font-size:2rem} .prop{font-size:1.25rem} .formula{font-size:1.35rem} .choices{grid-template-columns:1fr} .choices.three{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (prefers-reduced-motion:no-preference){ .fb{animation:pop .18s ease-out} @keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}} }
+.gclock{font-variant-numeric:tabular-nums;font-weight:700}
+.gclock.low{color:var(--bad, #c0392b)}
+.exnum{margin:-.4rem 0 .8rem;font-weight:600}
+
+
+/* Cute home header */
+.mast{background:linear-gradient(135deg,var(--g1) 0%,var(--g2) 55%,var(--g3) 100%);box-shadow:0 20px 44px -24px var(--mast-shadow)}
+.mast .syms{color:rgba(255,255,255,.14)}
+.mast h1 .f{opacity:.7}
+.mast .candy-cta{background:var(--surface);color:var(--ink);box-shadow:0 12px 26px -14px rgba(20,60,40,.55)}
+.mast .candy-cta::before{background:repeating-linear-gradient(-45deg,var(--candy) 0 8px,transparent 8px 16px);opacity:.85}
+.mast .candy-cta small{color:var(--muted);opacity:1}
+.mast .candy-cta b{color:var(--candy)}
+.mast .candy-cta .go-light{background:linear-gradient(90deg,var(--candy),var(--acc2));color:#fff}
+.levels,.mast{position:relative;z-index:1}
+
+/* Progress: what's been done */
+.prog{margin-top:18px;background:rgba(255,255,255,.18);border-radius:14px;padding:10px 14px}
+.prog-row{display:flex;justify-content:space-between;gap:10px;font-weight:700;font-size:.95rem}
+.prog-bar{height:10px;border-radius:999px;background:rgba(255,255,255,.3);margin-top:7px;overflow:hidden}
+.prog-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#FFE27A,#FFFFFF)}
+.tbar{height:6px;border-radius:999px;background:var(--soft);margin-top:7px;overflow:hidden;max-width:220px}
+.tbar i{display:block;height:100%;border-radius:999px;background:var(--pc)}
+.levels .topic.is-done{border-color:var(--good);background:var(--good-tint)}
+.levels .topic.is-done .t-ico{background:var(--good);color:#fff;font-family:var(--sans)}
+.levels .topic.is-done .go{color:var(--good)}
+.part-done{margin-left:auto;font-weight:700;font-size:.85rem;color:#fff;background:var(--good);border-radius:999px;padding:3px 10px;white-space:nowrap}
+.reset-row{text-align:center;margin:26px 0 8px}
+.reset{background:none;border:0;color:var(--muted);text-decoration:underline;font-size:.9rem;padding:6px}
+/* ===== Cute front screen ===== */
+.cute-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:
+  radial-gradient(40vmax 40vmax at 8% 12%, var(--blob1), transparent 60%),
+  radial-gradient(38vmax 38vmax at 92% 18%, var(--blob2), transparent 60%),
+  radial-gradient(44vmax 44vmax at 80% 95%, var(--blob3), transparent 60%),
+  radial-gradient(36vmax 36vmax at 10% 90%, var(--blob4), transparent 60%),
+  var(--paper)}
+.cute-bg span{position:absolute;line-height:1;font-family:var(--logic);font-weight:700;opacity:.85;transform:rotate(var(--r))}
+.cute-bg .em{font-family:system-ui,'Apple Color Emoji','Segoe UI Emoji',sans-serif;opacity:1;filter:drop-shadow(0 4px 6px rgba(30,90,58,.18))}
+@media (prefers-reduced-motion:no-preference){
+  .cute-bg span{animation:bob var(--d) ease-in-out infinite alternate}
+  @keyframes bob{from{transform:translateY(0) rotate(var(--r))}to{transform:translateY(-14px) rotate(calc(var(--r) + 8deg))}}
+  .lock .tile{animation:wiggle 3.2s ease-in-out infinite}
+  @keyframes wiggle{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg) scale(1.04)}}
+}
+.lock{border:2px solid var(--lock-line);border-radius:28px;box-shadow:0 22px 60px -26px var(--lock-glow),0 0 0 8px var(--lock-ring)}
+.lock .tile{background:linear-gradient(135deg,var(--candy),var(--acc2));color:#fff;border-radius:24px;box-shadow:0 12px 26px -10px var(--lock-glow);position:relative}
+.lock .tile::after{content:'✦';position:absolute;top:-8px;right:-10px;font-size:20px;color:#FFC93C;text-shadow:0 1px 0 rgba(0,0,0,.08)}
+.lock h1{background:linear-gradient(90deg,var(--candy),var(--acc2) 55%,var(--p1));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lock h1 .wave{-webkit-text-fill-color:initial;color:initial;margin-left:6px;font-size:.8em}
+.lock input[type=text]{border:2px solid var(--lock-line);border-radius:16px;background:var(--lock-field)}
+.lock input[type=text]:focus{border-color:var(--candy);outline:3px solid var(--lock-ring);outline-offset:0}
+.lock .btn.big{border-radius:16px;background:linear-gradient(90deg,var(--candy),var(--acc2));color:#fff;box-shadow:0 10px 20px -10px var(--lock-glow)}
+.lock .chip{font-size:.9rem;padding:6px 14px;box-shadow:inset 0 0 0 1.5px var(--lock-line)}
+.lock .hello{margin:0;font-weight:700;color:var(--candy);letter-spacing:.02em}
+.op{font-size:1.42em;line-height:1;vertical-align:-.08em;font-weight:600;padding:0 .04em}
+.why.means{color:var(--ink);opacity:.85}
+.means-list{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px}
+.means-list li{background:var(--soft);border-radius:10px;padding:8px 10px;line-height:1.45}
+.means-list li.ok{background:var(--good-tint)}
+.means-h{margin-top:14px}
+.why.means{color:var(--ink);opacity:.88}
+.why.wrongwhy{color:var(--bad);opacity:.95}
+.ttwrap{overflow-x:auto;margin:6px 0 4px}
+table.tt{border-collapse:collapse;font-family:var(--logic);font-size:1.15rem;margin:0 auto}
+table.tt th,table.tt td{padding:4px 8px;text-align:center;border-bottom:1px solid var(--line)}
+table.tt th.fc{font-weight:600;white-space:nowrap}
+table.tt th small{display:block;font-family:var(--sans);font-size:.7rem;color:var(--muted);font-weight:400}
+table.tt .sep{border-left:2px solid var(--ink);padding:0}
+table.tt .cell{min-width:44px;min-height:38px;border-radius:9px;border:1.5px solid var(--line);background:var(--surface);font-family:var(--logic);font-size:1.05rem;font-weight:700;cursor:pointer;color:var(--ink)}
+table.tt .cell.right{background:var(--good-tint);border-color:var(--good)}
+table.tt .cell.wrong{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+table.proof{border-collapse:collapse;font-size:1.12rem;margin:8px 0 12px}
+table.proof td{padding:2px 6px;vertical-align:middle}
+table.proof .ln{color:var(--muted);text-align:right;font-family:var(--sans);font-size:.9rem}
+table.proof .bars i{display:inline-block;width:12px;height:1.6em;border-left:2px solid var(--ink);vertical-align:middle}
+table.proof .asm{border-bottom:2px solid var(--ink);padding-bottom:1px}
+table.proof .ju{color:var(--muted);font-family:var(--sans);font-size:.92rem;padding-left:14px;white-space:nowrap}
+table.proof .gap{color:var(--bad)}
+.next{display:flex;justify-content:space-between;gap:10px}
+.next .prev{margin-right:auto}
+.next .btn:last-child{margin-left:auto}
+table.proof tr.new .bars i:last-child{height:1.25em;margin-top:.35em;vertical-align:bottom}
+</style>
+<style id="theme">:root{--paper:hsl(286 40% 97%);--surface:#FFFFFF;--ink:hsl(286 45% 13%);--muted:hsl(286 15% 37%);--line:hsl(286 32% 87%);--soft:hsl(286 40% 94%);
+--accent:hsl(286 62% 31%);--accent-ink:#FFFFFF;--mast:hsl(286 50% 25%);--mast-ink:#FFFFFF;--candy:hsl(286 52% 37%);--candy-ink:#FFFFFF;--candy-2:hsl(286 50% 92%);
+--acc2:hsl(300 48% 46%);--acc2-soft:hsl(286 52% 93%);--g1:hsl(286 62% 29%);--g2:hsl(298 52% 39%);--g3:hsl(324 50% 44%);--mast-shadow:hsl(286 60% 30% / .55);
+--p1:hsl(326 70% 28%);--p1-soft:hsl(326 55% 92%);--p2:hsl(246 62% 30%);--p2-soft:hsl(246 55% 92%);--p3:hsl(286 55% 34%);--p3-soft:hsl(286 50% 92%);--p4:hsl(6 45% 31%);--p4-soft:hsl(6 45% 92%);
+--blob1:hsl(286 60% 88%);--blob2:hsl(316 55% 90%);--blob3:hsl(256 55% 90%);--blob4:hsl(346 60% 92%);--lock-line:hsl(286 40% 85%);--lock-ring:hsl(286 50% 50% / .22);--lock-glow:hsl(286 60% 35% / .45);--lock-field:hsl(286 50% 98%);--page-sym:hsl(286 60% 30% / .07);}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:hsl(286 35% 9%);--surface:hsl(286 30% 13%);--ink:hsl(286 40% 92%);--muted:hsl(286 18% 68%);--line:hsl(286 25% 23%);--soft:hsl(286 28% 17%);
+--accent:hsl(286 58% 66%);--accent-ink:hsl(286 35% 9%);--mast:hsl(286 45% 24%);--candy:hsl(286 52% 62%);--candy-ink:hsl(286 35% 8%);--candy-2:hsl(286 30% 18%);
+--acc2:hsl(300 48% 58%);--acc2-soft:hsl(286 30% 18%);--g1:hsl(286 50% 25%);--g2:hsl(298 45% 31%);--g3:hsl(324 45% 35%);--mast-shadow:hsl(286 50% 20% / .6);
+--p1:hsl(326 55% 64%);--p1-soft:hsl(326 30% 17%);--p2:hsl(246 55% 64%);--p2-soft:hsl(246 30% 17%);--p3:hsl(286 50% 66%);--p3-soft:hsl(286 30% 17%);--p4:hsl(6 45% 62%);--p4-soft:hsl(6 28% 17%);
+--blob1:hsl(286 60% 50% / .16);--blob2:hsl(316 55% 50% / .14);--blob3:hsl(256 55% 50% / .12);--blob4:hsl(346 60% 50% / .10);--lock-line:hsl(286 25% 26%);--lock-ring:hsl(286 50% 55% / .12);--lock-glow:hsl(286 55% 55% / .45);--lock-field:hsl(286 30% 12%);--page-sym:hsl(286 55% 70% / .07);}}
+:root[data-theme="dark"]{--paper:hsl(286 35% 9%);--surface:hsl(286 30% 13%);--ink:hsl(286 40% 92%);--muted:hsl(286 18% 68%);--line:hsl(286 25% 23%);--soft:hsl(286 28% 17%);
+--accent:hsl(286 58% 66%);--accent-ink:hsl(286 35% 9%);--mast:hsl(286 45% 24%);--candy:hsl(286 52% 62%);--candy-ink:hsl(286 35% 8%);--candy-2:hsl(286 30% 18%);
+--acc2:hsl(300 48% 58%);--acc2-soft:hsl(286 30% 18%);--g1:hsl(286 50% 25%);--g2:hsl(298 45% 31%);--g3:hsl(324 45% 35%);--mast-shadow:hsl(286 50% 20% / .6);
+--p1:hsl(326 55% 64%);--p1-soft:hsl(326 30% 17%);--p2:hsl(246 55% 64%);--p2-soft:hsl(246 30% 17%);--p3:hsl(286 50% 66%);--p3-soft:hsl(286 30% 17%);--p4:hsl(6 45% 62%);--p4-soft:hsl(6 28% 17%);
+--blob1:hsl(286 60% 50% / .16);--blob2:hsl(316 55% 50% / .14);--blob3:hsl(256 55% 50% / .12);--blob4:hsl(346 60% 50% / .10);--lock-line:hsl(286 25% 26%);--lock-ring:hsl(286 50% 55% / .12);--lock-glow:hsl(286 55% 55% / .45);--lock-field:hsl(286 30% 12%);--page-sym:hsl(286 55% 70% / .07);}</style>
+</head>
+<body>
+<style>
+/* Additions for this class */
+.choice .f{white-space:normal;overflow-wrap:anywhere}
+.prop .f{white-space:normal}
+.formula.wrap{font-size:1.35rem;display:block;overflow-wrap:anywhere}
+.plan{position:relative;z-index:1;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.plan h2{font-size:1.15rem}
+.plan ol{margin:8px 0 0;padding-left:1.2em;color:var(--muted);font-size:.95rem}
+.plan li{margin:2px 0}
+.plan b{color:var(--ink)}
+.level.part-0{--pc:var(--acc2);--pcs:var(--acc2-soft)}
+.fcard{margin-top:16px;background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:22px 20px;min-height:200px;display:grid;gap:10px;align-content:start}
+.fcard .deck{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0}
+.fcard h3{font-size:1.6rem;color:var(--accent)}
+.fcard .def{font-size:1.08rem}
+.fcard .ex{font-family:var(--logic);font-size:1.3rem;background:var(--soft);border-radius:12px;padding:10px 14px;overflow-wrap:anywhere}
+.fcard .ex .f{white-space:normal;display:inline-block;margin-right:.6em}
+.fcard .def br{content:"";display:block;margin-top:.55em}
+.fcard .ex small{display:block;font-family:var(--sans);font-size:.88rem;color:var(--muted)}
+.fcard.hidden-def{border-style:dashed;place-items:center;text-align:center}
+.basket{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px;padding:14px;background:var(--soft);border-radius:16px}
+.fruit{position:relative;font-size:2.4rem;line-height:1;width:58px;height:58px;display:grid;place-items:center;background:var(--surface);border-radius:14px;border:1px solid var(--line)}
+.fruit .worm{position:absolute;right:-6px;bottom:-6px;font-size:1.2rem}
+.legend{font-size:.9rem;color:var(--muted)}
+.props{display:grid;gap:10px;margin-top:10px}
+.prop-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface)}
+.prop-row .yn{display:flex;gap:6px}
+.prop-row .choice{padding:8px 14px}
+.prop-row .test{display:block;font-family:var(--logic);font-size:.95rem;color:var(--muted)}
+.mast .candy-cta::before{display:none}
+.results{margin:8px 0 0;padding-left:1.4em;display:grid;gap:8px}
+.results li{font-size:.97rem}
+.results li.ok > span:first-child{color:var(--good);font-weight:700}
+.results li.no > span:first-child{color:var(--bad);font-weight:700}
+.results .why{display:block;color:var(--muted);font-size:.9rem}
+.test-ico{font-family:var(--serif);font-weight:700;color:var(--candy)}
+.test-big{font-family:var(--serif);color:var(--accent)}
+.key{background:var(--soft);border-radius:12px;padding:8px 12px;margin-top:10px}
+</style>
+<main id="app"></main>
+<script>
+// ===== Helpers =====
+// Seeded randomness: every student sees the exact same exercises, in the same order.
+let R=Math.random;
+function seeded(key){ let h=2166136261; for(const c of key){ h^=c.charCodeAt(0); h=Math.imul(h,16777619); } let x=h>>>0; return ()=>{ x=(x+0x6D2B79F5)|0; let t=Math.imul(x^x>>>15,1|x); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function withSeed(key,fn){ const old=R; R=seeded(key); try{ return fn(); } finally{ R=old; } }
+const pick = a => a[Math.floor(R()*a.length)];
+const shuffle = a => { a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(R()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; };
+const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const OPS = h => h.replace(/(&amp;|[⊃≡∨~∀∃])/g,'<span class="op">$1</span>');
+const F = s => `<span class="f">${OPS(esc(s))}</span>`;
+const fmt = t => esc(t).replace(/\\\{/g,'\u0001').replace(/\\\}/g,'\u0002').replace(/\{([^}]*)\}/g,(_,f)=>`<span class="f">${OPS(f)}</span>`).replace(/\u0001/g,'{').replace(/\u0002/g,'}');
+
+// ===== Saved progress (this browser only) =====
+const KEY='phil270-class12-v1';
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY))||{}; }catch(e){ return {}; } }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(progress)); }catch(e){} }
+const progress = load();
+const doneMap = id => (progress.sets||(progress.sets={}))[id]||(progress.sets[id]={});
+function markDone(id,k){ doneMap(id)[k]=1; save(); }
+function tally(ok){
+  if(game){ gameRecord(ok); return; }
+  const p=progress[cur.id]||(progress[cur.id]={done:0,right:0}); p.done++; if(ok) p.right++; markDone(cur.id,cur.k);
+}
+const sc = id => { const p=progress[id]; return p?`${p.right}/${p.done}`:'0/0'; };
+
+// ===== Sentential logic helpers (truth tables, English readings) =====
+function slParse(src){ const s=String(src).replace(/\s+/g,''); let i=0;
+  function un(){ const c=s[i];
+    if(c==='~'){ i++; return {op:'~',a:un()}; }
+    if(c==='('||c==='['||c==='{'){ i++; const e=bin(); i++; return e; }
+    if(/[A-Z]/.test(c||'')){ i++; let sub=''; while(/[0-9]/.test(s[i]||'')) sub+=s[i++]; return {at:c+sub}; }
+    throw new Error('Cannot read '+src); }
+  function bin(){ const l=un(); const c=s[i]; if(c && '&∨⊃≡'.includes(c)){ i++; return {op:c,a:l,b:un()}; } return l; }
+  const t=bin(); if(i!==s.length) throw new Error('Cannot read '+src); return t; }
+function slEval(t,v){ if(t.at) return !!v[t.at]; const a=slEval(t.a,v);
+  if(t.op==='~') return !a; const b=slEval(t.b,v);
+  return t.op==='&'?a&&b : t.op==='∨'?a||b : t.op==='⊃'?(!a||b) : a===b; }
+function slAtoms(t,out=new Set()){ if(t.at) out.add(t.at); else { slAtoms(t.a,out); if(t.b) slAtoms(t.b,out); } return [...out].sort(); }
+function slEnglishT(t,k){
+  if(t.at) return k[t.at]||t.at;
+  if(t.op==='~'){ const a=t.a;
+    if(a.op==='&') return `not both ${slEnglishT(a.a,k)} and ${slEnglishT(a.b,k)}`;
+    if(a.op==='∨') return `neither ${slEnglishT(a.a,k)} nor ${slEnglishT(a.b,k)}`;
+    return `it is not the case that ${slEnglishT(a,k)}`; }
+  const A=slEnglishT(t.a,k), B=slEnglishT(t.b,k), cx=(t.a.op&&t.a.op!=='~')||(t.b.op&&t.b.op!=='~');
+  if(t.op==='&') return cx?`both ${A}, and ${B}`:`${A} and ${B}`;
+  if(t.op==='∨') return `either ${A} or ${B}`;
+  if(t.op==='⊃') return `if ${A}, then ${B}`;
+  return `${A} if and only if ${B}`; }
+function slEnglish(f,k){ try{ const s=slEnglishT(slParse(f),k); return s[0].toUpperCase()+s.slice(1)+'.'; }catch(e){ return null; } }
+const onlyFormula = o => { const m=/^\{([^}]*)\}$/.exec(o.trim()); return m?m[1]:null; };
+function slStr(t,top=true){ if(t.at) return t.at; if(t.op==='~') return '~ '+slStr(t.a,false); const s=slStr(t.a,false)+' '+t.op+' '+slStr(t.b,false); return top?s:'('+s+')'; }
+const SLNAME={'~':'negation','&':'conjunction','∨':'disjunction','⊃':'conditional','≡':'biconditional'};
+function slWhy(t,v){ const TF=b=>b?'T':'F', val=slEval(t,v);
+  if(t.at) return `${t.at} is ${TF(val)}.`;
+  if(t.op==='~') return `${slStr(t.a)} is ${TF(slEval(t.a,v))}, so its negation is ${TF(val)}.`;
+  const a=slEval(t.a,v), b=slEval(t.b,v);
+  const rule = t.op==='&'?(val?'both parts are T':'a conjunction needs both parts T') : t.op==='∨'?(val?'at least one part is T':'both parts are F') : t.op==='⊃'?(val?(a?'the consequent is T':'the antecedent is F'):'T antecedent with F consequent is the only false case') : (val?'both sides match':'the two sides differ');
+  return `${slStr(t.a)} is ${TF(a)} and ${slStr(t.b)} is ${TF(b)}, so the ${SLNAME[t.op]} is ${TF(val)} (${rule}).`; }
+function proofHTML(p){
+  return `<table class="proof">${p.map(([n,d,s,j,as])=>`<tr class="${as&&d>0?'new':''}"><td class="ln">${n}</td><td class="ps"><span class="bars">${'<i></i>'.repeat(d+1)}</span><span class="${as?'asm':''}">${s?F(s):'<b class="gap">?</b>'}</span></td><td class="ju">${esc(j||'')}</td></tr>`).join('')}</table>`;
+}
+// ===== Symbolization keys =====
+const K = {
+  basket:[['UD','things in a fruit basket'],['Ax','x is an apple'],['Px','x is a pear'],['Rx','x is rotten']],
+  family:[['UD','people'],['Dxy','x is a daughter of y'],['Mxy','x is married to y'],['Px','x is a pilot'],['k','Kim'],['r','Ray']],
+  nums:[['UD','positive integers'],['Ex','x is even'],['Ox','x is odd'],['f(x)','the successor of x'],['s(x,y)','the sum of x and y'],['a','1'],['b','2']],
+};
+
+// ===== Definitions (intro flashcards) =====
+const DEFS1=[
+  {t:'Identity predicate', d:'“=” is a two-place predicate with a fixed meaning: a = b says a and b are one and the same thing.\nWhy we need it: without identity we cannot count, say “someone else,” or say “the only one.”\nWhat to do: use it like any predicate, but never put it in the symbolization key. Its meaning never changes.', x:'{a = b}     {~ a = b}', xs:'a: Mark Twain, b: Samuel Clemens. a = b is true: two names, one person. ~ a = b says they are different people.'},
+  {t:'At least two', d:'Two different variables do not promise two different things: in (∃x)(∃y)(Ax & Ay), x and y can both be the same apple.\nWhat to do: add “x is not y.”', x:'{(∃x)(∃y)[(Ax & Ay) & ~ x = y]}', xs:'Ax: x is an apple. There are at least two apples. Wrong: (∃x)(∃y)(Ax & Ay), which is true with just one apple.'},
+  {t:'Exactly one', d:'“Exactly one” = “at least one” + “no others.”\nWhat to do: say there is an apple x, and that any apple y is that very x.', x:'{(∃x)[Ax & (∀y)(Ay ⊃ y = x)]}', xs:'There is exactly one apple. Wrong: (∃x)Ax, which is still true with five apples.'},
+  {t:'At most one', d:'“At most one” says: any two of them are the same thing.\nWhy it is different from “exactly one”: it makes no claim that there is one. With no apples, it is true.', x:'{(∀x)(∀y)[(Ax & Ay) ⊃ x = y]}', xs:'There is at most one apple. True in a basket with one apple, and true in an empty basket.'},
+  {t:'Exactly two', d:'“Exactly two” = “at least two different ones” + “anything else of that kind is one of those two.”\nTest: if a third apple turns up, the last part fails.', x:'{(∃x)(∃y)([(Ax & Ay) & ~ x = y] & (∀z)[Az ⊃ (z = x ∨ z = y)])}', xs:'There are exactly two apples. Wrong: using (z = x & z = y), which no apple can satisfy when x and y differ.'},
+  {t:'Except', d:'“Everyone except Sam…” says two things: Sam does not, and everyone who is not Sam does.\nWhy both parts: without the first part, Sam might have read it too.', x:'{~ As & (∀y)(~ y = s ⊃ Ay)}', xs:'Ax: x has read it, s: Sam. Everyone except Sam has read it. Wrong: (∀y)(~ y = s ⊃ Ay) alone, which leaves Sam open.'},
+  {t:'The only one', d:'“Kim is the only pilot” says two things: Kim is a pilot, and any pilot is Kim.\nWhy both parts: (∀x)(Px ⊃ x = k) alone is true when there are no pilots at all.', x:'{Pk & (∀x)(Px ⊃ x = k)}', xs:'Px: x is a pilot, k: Kim. Kim is the only pilot.'},
+  {t:'Definite description', d:'“The F is G” claims three things: there is an F, there is only one F, and it is G.\nWhy not a constant: a constant hides the claim that exactly one thing fits, so an argument that depends on it can look invalid.\nIf nothing is F, or several things are, the sentence is false, not meaningless.', x:'{(∃x)[(Fx & (∀y)(Fy ⊃ y = x)) & Gx]}', xs:'Wx: x won, Hx: x is happy. The winner is happy. With two winners, this is false.'},
+  {t:'Reflexive relation', d:'Everything bears the relation to itself.\nTest: is “a R a” true for every single thing in the UD? One exception makes it not reflexive.', x:'{(∀x)Axx}', xs:'UD: people. “x is the same age as y” is reflexive. “x is taller than y” is not: no one is taller than themself.'},
+  {t:'Symmetric relation', d:'If x bears it to y, then y bears it to x.\nTest: look for one pair where it goes only one way.', x:'{(∀x)(∀y)(Axy ⊃ Ayx)}', xs:'“x is a sibling of y” is symmetric. “x is a parent of y” is not: a parent is not their child’s child.'},
+  {t:'Transitive relation', d:'If x bears it to y, and y bears it to z, then x bears it to z.\nTest: look for a chain of two steps that does not give one step.', x:'{(∀x)(∀y)(∀z)[(Axy & Ayz) ⊃ Axz]}', xs:'“x is taller than y” is transitive. “x lives next door to y” is not: next door to next door is two houses away.'},
+  {t:'Function and functor', d:'A function takes one or more arguments and returns exactly one value, and that value must be in the UD. A functor is the symbol for it, like f(x).\nWhy “in the UD”: in the positive integers, “x minus y” is not a function, because 2 − 5 is not a positive integer.', x:'{f(a) = b}', xs:'UD: positive integers. f(x): the successor of x, a: 2, b: 3. “The successor of 2 is 3.”'},
+  {t:'Complex, open, and closed terms', d:'A functor applied to terms makes a complex term, like f(a) or s(x,b).\nA term with no variable is closed: it names something. A term with a variable is open: it names nothing until x is fixed.\nWhy it matters: only closed terms can replace a variable in a substitution instance.', x:'closed: {a} {f(a)}     open: {x} {f(x)}'},
+  {t:'Substitution instance', d:'Drop the first quantifier and replace its variable everywhere with the same closed term.\nA closed complex term like f(a) works too. A variable does not, and replacing the variable two different ways does not.', x:'{(∀x)Ef(x)}  →  {Ef(a)}', xs:'Ex: x is even, f(x): the successor of x, a: 1. “Every number’s successor is even” → “The successor of 1 is even.” Wrong: Ef(y), with a variable.'},
+];
+
+// ===== Practice =====
+const COUNT=[
+  {q:'There are at least two pears.', key:K.basket,
+   o:['{(∃x)(∃y)(Px & Py)}','{(∃x)(∃y)[(Px & Py) & ~ x = y]}','{(∀x)(∀y)[(Px & Py) ⊃ ~ x = y]}','{(∃x)(∃y)[(Px & Py) & x = y]}'], a:1,
+   m:['There is at least one pear (x and y can be the same pear).','There are at least two different pears.','No pear is identical to any pear, not even itself. False whenever there is a pear.','There is at least one pear.'],
+   e:'Two variables do not guarantee two things. The clause {~ x = y} does.'},
+  {q:'There is exactly one rotten apple.', key:K.basket,
+   o:['{(∃x)(Ax & Rx)}','{(∀x)(∀y)[((Ax & Rx) & (Ay & Ry)) ⊃ x = y]}','{(∃x)[(Ax & Rx) & (∀y)((Ay & Ry) ⊃ y = x)]}','{(∃x)[(Ax & Rx) & (∀y)(Ay ⊃ y = x)]}'], a:2,
+   m:['There is at least one rotten apple.','There is at most one rotten apple.','There is exactly one rotten apple.','There is a rotten apple, and it is the only apple of any kind.'],
+   e:'There is a rotten apple, and every rotten apple is that very one.'},
+  {q:'There is at most one pear.', key:K.basket,
+   o:['{(∃x)[Px & (∀y)(Py ⊃ y = x)]}','{(∀x)(∀y)[(Px & Py) ⊃ x = y]}','{~ (∃x)(∃y)(Px & Py)}','{(∀x)(Px ⊃ ~ Px)}'], a:1,
+   m:['There is exactly one pear. False if there are none.','There is at most one pear, maybe none.','There are no pears at all.','There are no pears at all.'],
+   e:'“At most one” does not claim that a pear exists. Any two pears you pick are the same pear.'},
+  {q:'Apple a is the only apple that is not rotten.', key:[...K.basket,['a','one particular apple']],
+   o:['{~ Ra & (∀x)(Ax ⊃ Rx)}','{(Aa & ~ Ra) & (∀x)[(Ax & ~ x = a) ⊃ Rx]}','{(Aa & ~ Ra) & (∀x)(Rx ⊃ ~ x = a)}','{(∀x)[(Ax & ~ x = a) ⊃ ~ Rx]}'], a:1,
+   m:['a is not rotten, and every apple is rotten. Impossible if a is an apple.','a is a fresh apple, and every other apple is rotten.','a is a fresh apple, and nothing rotten is a. Says nothing about the other apples.','Every apple other than a is fresh.'],
+   e:'a is a fresh apple, and every other apple is rotten.'},
+  {q:'There are exactly two apples.', key:K.basket,
+   o:['{(∃x)(∃y)[(Ax & Ay) & ~ x = y]}','{(∀x)(∀y)(∀z)[((Ax & Ay) & Az) ⊃ ((x = y ∨ x = z) ∨ y = z)]}','{(∃x)(∃y)([(Ax & Ay) & ~ x = y] & (∀z)[Az ⊃ (z = x ∨ z = y)])}','{(∃x)(∃y)([(Ax & Ay) & ~ x = y] & (∀z)[Az ⊃ (z = x & z = y)])}'], a:2,
+   m:['There are at least two apples.','There are at most two apples.','There are exactly two apples.','Impossible: no apple can be identical to two different apples.'],
+   e:'At least two different apples, and any apple is one of those two.'},
+  {q:'There are at least two rotten apples.', key:K.basket,
+   o:['{(∃x)(∃y)[((Ax & Rx) & (Ay & Ry)) & ~ x = y]}','{(∃x)(∃y)[(Ax & Rx) & (Ay & Ry)]}','{(∀x)(∀y)[((Ax & Rx) & (Ay & Ry)) ⊃ x = y]}','{(∃x)[(Ax & Rx) & (∀y)((Ay & Ry) ⊃ y = x)]}'], a:0,
+   m:['There are at least two rotten apples.','There is at least one rotten apple.','There is at most one rotten apple.','There is exactly one rotten apple.'],
+   e:'Two rotten apples, and {~ x = y} makes them different.'},
+  {q:'There is at most one rotten pear.', key:K.basket,
+   o:['{(∀x)(∀y)[((Px & Rx) & (Py & Ry)) ⊃ x = y]}','{(∃x)[(Px & Rx) & (∀y)((Py & Ry) ⊃ y = x)]}','{(∃x)(∃y)[((Px & Rx) & (Py & Ry)) & ~ x = y]}','{~ (∃x)(Px & Rx)}'], a:0,
+   m:['There is at most one rotten pear, maybe none.','There is exactly one rotten pear.','There are at least two rotten pears.','There are no rotten pears.'],
+   e:'Any two rotten pears you pick are the same pear. This is true even if there are none.'},
+];
+const WORLD=[
+  {b:['A','A','P'], f:'(∃x)[Ax & (∀y)(Ay ⊃ y = x)]', ans:false, eng:'There is exactly one apple.', e:'There are two apples, so it is false.'},
+  {b:['A','P'], f:'(∃x)(∃y)(Ax & Ay)', ans:true, eng:'There is at least one apple.', e:'x and y can both be the one apple. No ~ x = y clause, so one apple is enough.'},
+  {b:['P','P*'], f:'(∀x)(∀y)[(Ax & Ay) ⊃ x = y]', ans:true, eng:'There is at most one apple.', e:'There are no apples, so no two apples are different. “At most one” is true.'},
+  {b:['A','A*','P*'], f:'(∃x)[(Px & Rx) & (∀y)(Py ⊃ y = x)]', ans:true, eng:'The only pear is rotten.', e:'There is exactly one pear, and it is rotten.'},
+  {b:['A*','A*','A'], f:'(∃x)(∃y)(∃z)[((Ax & Ay) & Az) & ((~ x = y & ~ y = z) & ~ x = z)]', ans:true, eng:'There are at least three apples.', e:'There are three different apples. Rotten or not, they are apples.'},
+  {b:['A','P','P'], f:'(∃x)(∃y)[(Px & Py) & ~ x = y]', ans:true, eng:'There are at least two pears.', e:'There are two different pears.'},
+  {b:['A*','A*','P'], f:'(∀x)(Ax ⊃ Rx)', ans:true, eng:'Every apple is rotten.', e:'Both apples are rotten. The pear does not matter.'},
+  {b:['A','A*','P'], f:'(∃x)[(Ax & ~ Rx) & (∀y)((Ay & ~ Ry) ⊃ y = x)]', ans:true, eng:'There is exactly one fresh apple.', e:'One apple is fresh, and the other apple is rotten.'},
+  {b:['P','P','P'], f:'(∀x)(∀y)[(Px & Py) ⊃ x = y]', ans:false, eng:'There is at most one pear.', e:'There are three different pears.'},
+  {b:['A','P*'], f:'(∃x)[(Px & (∀y)(Py ⊃ y = x)) & ~ Rx]', ans:false, eng:'The only pear is not rotten.', e:'There is exactly one pear, but it is rotten.'},
+];
+const EXC=[
+  {q:'Everyone except Ray is a pilot.', key:K.family,
+   o:['{~ Pr & (∀x)(~ x = r ⊃ Px)}','{(∀x)(~ x = r ⊃ Px)}','{~ Pr & (∀x)Px}','{(∀x)(Px ⊃ ~ x = r)}'], a:0,
+   m:['Ray is not a pilot, and everyone else is.','Everyone other than Ray is a pilot. Ray might be one too.','Ray is not a pilot, and everyone is a pilot. Impossible.','No pilot is Ray: Ray is not a pilot. Nothing about anyone else.'],
+   e:'Ray is not a pilot, and everyone who is not Ray is a pilot.'},
+  {q:'Kim is the only pilot.', key:K.family,
+   o:['{Pk & (∀x)(Px ⊃ x = k)}','{Pk}','{(∀x)(Px ⊃ x = k)}','{Pk & (∀x)(x = k ⊃ Px)}'], a:0,
+   m:['Kim is a pilot, and every pilot is Kim.','Kim is a pilot.','Every pilot is Kim, but there might be no pilots at all.','Kim is a pilot. The second half adds nothing.'],
+   e:'Kim is a pilot, and any pilot is Kim.'},
+  {q:'Only Kim and Ray are pilots.', key:K.family,
+   o:['{(Pk & Pr) & (∀x)[Px ⊃ (x = k ∨ x = r)]}','{(Pk & Pr) & (∀x)[Px ⊃ (x = k & x = r)]}','{Pk & Pr}','{(∀x)[(x = k ∨ x = r) ⊃ Px]}'], a:0,
+   m:['Kim and Ray are pilots, and every pilot is one of them.','Kim and Ray are pilots, and every pilot is both of them. Impossible unless Kim is Ray.','Kim and Ray are pilots. Nothing about anyone else.','Kim and Ray are pilots. Nothing about anyone else.'],
+   e:'Both are pilots, and any pilot is Kim or Ray.'},
+  {q:'No pilot other than Kim is married to Ray.', key:K.family,
+   o:['{~ (∃x)[(Px & ~ x = k) & Mxr]}','{~ (∃x)(Px & Mxr)}','{(∃x)[(Px & ~ x = k) & ~ Mxr]}','{~ Mkr & ~ (∃x)(Px & Mxr)}'], a:0,
+   m:['No pilot except possibly Kim is married to Ray.','No pilot at all is married to Ray.','Some pilot other than Kim is not married to Ray.','Kim is not married to Ray, and no pilot is.'],
+   e:'It is not the case that some pilot who is not Kim is married to Ray.'},
+  {q:'Kim is married to someone other than Ray.', key:K.family,
+   o:['{(∃x)(Mkx & ~ x = r)}','{Mkr}','{(∃x)Mkx}','{~ (∃x)(Mkx & x = r)}'], a:0,
+   m:['Kim is married to someone who is not Ray.','Kim is married to Ray.','Kim is married to someone, maybe Ray.','Kim is not married to Ray.'],
+   e:'There is an x such that Kim is married to x and x is not Ray.'},
+];
+const DESC=[
+  {q:'Kim’s only daughter is a pilot.', key:K.family,
+   o:['{(∃x)(Dxk & Px)}','{(∃x)[(Dxk & (∀y)(Dyk ⊃ y = x)) & Px]}','{Pd}, where d: Kim’s only daughter','{(∀x)(Dxk ⊃ Px)}'], a:1,
+   m:['Some daughter of Kim is a pilot.','Kim has exactly one daughter, and she is a pilot.','A person named d is a pilot. It hides the claim that Kim has exactly one daughter.','Every daughter of Kim is a pilot. True if Kim has none.'],
+   e:'There is a daughter of Kim, she is Kim’s only daughter, and she is a pilot.'},
+  {q:'Ray is married to Kim’s only daughter.', key:K.family,
+   o:['{Mrk}','{(∃x)(Dxk & Mrx)}','{(∀x)[(Dxk & (∀y)(Dyk ⊃ y = x)) ⊃ Mrx]}','{(∃x)[(Dxk & (∀y)(Dyk ⊃ y = x)) & Mrx]}'], a:3,
+   m:['Ray is married to Kim.','Ray is married to some daughter of Kim.','If Kim has exactly one daughter, Ray is married to her. True if Kim has none.','Kim has exactly one daughter, and Ray is married to her.'],
+   e:'A definite description becomes a unique existence claim: exactly one daughter, and Ray is married to her.'},
+  {q:'Kim has two daughters. What is the truth value of “Kim’s only daughter is a pilot”?', o:['True, if one of them is a pilot','False','Meaningless','Neither true nor false'], a:1, fixed:true,
+   e:'The uniqueness part, {(∀y)(Dyk ⊃ y = x)}, fails. So the sentence is false, not meaningless.'},
+  {q:'France has no king. Which of these is TRUE?', key:[['Kx','x is a present king of France'],['Bx','x is bald']],
+   o:['{(∃x)[(Kx & (∀y)(Ky ⊃ y = x)) & Bx]}','{(∃x)[(Kx & (∀y)(Ky ⊃ y = x)) & ~ Bx]}','{~ (∃x)[(Kx & (∀y)(Ky ⊃ y = x)) & Bx]}','{(∃x)Kx}'], a:2,
+   m:['The king of France is bald. False: there is no king.','The king of France is not bald. Also false: there is no king.','It is not the case that the king of France is bald. True.','There is a king of France. False.'],
+   e:'This is Bertrand Russell’s famous example. Where the “not” goes changes the meaning.'},
+  {q:'Why symbolize “the inventor of the telephone” with identity instead of a constant t?', o:['Constants can’t name people','A constant hides that t invented the telephone, so a valid argument can look invalid','Identity sentences are shorter','Constants can’t appear in arguments'], a:1, fixed:true,
+   w:['Constants can name anyone in the UD.','','They are usually longer.','Constants appear in arguments all the time.'],
+   e:'With identity, the description’s inner structure is visible, so we can show the conclusion follows.'},
+  {q:'The person married to Kim is a pilot.', key:K.family,
+   o:['{(∃x)[(Mxk & (∀y)(Myk ⊃ y = x)) & Px]}','{(∃x)(Mxk & Px)}','{(∀x)(Mxk ⊃ Px)}','{Ps}, where s: Kim’s spouse'], a:0,
+   m:['Exactly one person is married to Kim, and that person is a pilot.','Someone married to Kim is a pilot.','Everyone married to Kim is a pilot. True if no one is.','A person named s is a pilot. It hides that exactly one person is married to Kim.'],
+   e:'A definite description: exactly one person is married to Kim, and that person is a pilot.'},
+  {q:'Kim has exactly one daughter.', key:K.family,
+   o:['{(∃x)[Dxk & (∀y)(Dyk ⊃ y = x)]}','{(∃x)Dxk}','{(∀x)(∀y)[(Dxk & Dyk) ⊃ x = y]}','{(∃x)(∃y)[(Dxk & Dyk) & ~ x = y]}'], a:0,
+   m:['Kim has exactly one daughter.','Kim has at least one daughter.','Kim has at most one daughter.','Kim has at least two daughters.'],
+   e:'Kim has a daughter, and every daughter of Kim is that one.'},
+  {q:'Kim has no daughters. What is the truth value of “Kim’s daughter is a pilot”?', o:['True','False','Meaningless','Neither true nor false'], a:1, fixed:true,
+   e:'The existence part, {(∃x)Dxk}, fails. So the sentence is false, not meaningless.'},
+];
+const REL=[
+  {r:'x is taller than y', ud:'people', ans:[0,0,1], e:['No one is taller than themselves.','If x is taller than y, y is not taller than x.','Taller than taller is taller.']},
+  {r:'x lives next door to y', ud:'people', ans:[0,1,0], e:['No one lives next door to themselves.','Next door goes both ways.','Next door to next door is two houses away, not next door.']},
+  {r:'x has the same birthday as y', ud:'people', ans:[1,1,1], e:['Everyone has the same birthday as themselves.','It goes both ways.','Same as same is the same. It is an equivalence relation.']},
+  {r:'x is at least as old as y', ud:'people', ans:[1,0,1], e:['Everyone is at least as old as themselves.','An older x is at least as old as y, but not the other way around.','It chains: if x ≥ y and y ≥ z in age, then x ≥ z.']},
+  {r:'x is a sibling of y', ud:'people', ans:[0,1,0], e:['No one is their own sibling.','If x is a sibling of y, y is a sibling of x.','Ana is Ben’s sibling and Ben is Ana’s, but Ana is not her own sibling.']},
+  {r:'x is less than or equal to y', ud:'positive integers', ans:[1,0,1], e:['Every number is less than or equal to itself.','2 ≤ 3, but 3 is not ≤ 2.','If x ≤ y and y ≤ z, then x ≤ z.']},
+  {r:'x is an ancestor of y', ud:'people', ans:[0,0,1], e:['No one is their own ancestor.','If x is an ancestor of y, y is not an ancestor of x.','An ancestor of an ancestor is an ancestor.']},
+  {r:'x lives in the same city as y', ud:'people', ans:[1,1,1], e:['Everyone lives in the same city as themselves.','It goes both ways.','Same as same is the same.']},
+  {r:'x is a parent of y', ud:'people', ans:[0,0,0], e:['No one is their own parent.','If x is a parent of y, y is not a parent of x.','A parent of a parent is a grandparent, not a parent.']},
+];
+const PROP_N=['Reflexive','Symmetric','Transitive'];
+const PROP_F=['(∀x)Axx','(∀x)(∀y)(Axy ⊃ Ayx)','(∀x)(∀y)(∀z)[(Axy & Ayz) ⊃ Axz]'];
+const FUNC=[
+  {q:'The successor of every odd number is even.', key:K.nums,
+   o:['{(∀x)(Ef(x) ⊃ Ox)}','{(∀x)(Ox ⊃ Ef(x))}','{(∃x)(Ox & Ef(x))}','{(∀x)(Ox ⊃ f(Ex))}'], a:1,
+   m:['Every number whose successor is even is odd.','The successor of every odd number is even.','Some odd number has an even successor.','Not a sentence: a functor takes terms, not formulas.'],
+   e:'{f(x)} is a term, so it goes where a name would go: {Ef(x)} says “the successor of x is even.”'},
+  {q:'What does {(∀x)Es(x,x)} say, and is it true?', key:K.nums,
+   o:['The sum of any number with itself is even. True.','Every number is even. False.','The sum of any number with itself is even. False.','Some sum is even. True.'], a:0, fixed:true,
+   e:'{s(x,x)} is x + x, which is always even.'},
+  {q:'1 is not the successor of any positive integer.', key:K.nums,
+   o:['{~ a = f(a)}','{~ (∃x) a = f(x)}','{~ (∃x) f(a) = x}','{(∀x) ~ f(x) = f(a)}'], a:1,
+   m:['1 is not the successor of 1.','1 is not the successor of any number.','The successor of 1 is not any number. False.','No number has the same successor as 1, not even 1 itself.'],
+   e:'There is no x whose successor is 1. Equivalently {(∀x) ~ a = f(x)}.'},
+  {q:'Why can’t “x minus y” be a functor when the UD is the positive integers?', o:['Functors can’t take two arguments','Its value is not always in the UD: 2 minus 5 = −3','It gives two values for each pair','Minus is not a function at all'], a:1, fixed:true,
+   w:['Sum takes two arguments.','','Subtraction gives one value.','It is a function on all the integers.'],
+   e:'The value of a function must be a member of the UD. Subtraction works when the UD is all integers.'},
+  {q:'Which is a substitution instance of {(∀x)(Ex ⊃ Of(x))}?', key:K.nums,
+   o:['{Ey ⊃ Of(y)}','{Ef(a) ⊃ Of(a)}','{Ef(a) ⊃ Of(f(a))}','{(∀x)(Ef(a) ⊃ Of(f(a)))}'], a:2,
+   m:['Not a sentence: y is free.','If the successor of 1 is even, then 1 is odd. Not every x was replaced the same way.','If the successor of 1 is even, the successor of that number is odd.','Still has the quantifier, so it is not an instance.'],
+   e:'{f(a)} is a closed term, so it can replace every x.'},
+  {q:'The sum of 1 and 2 is odd.', key:K.nums,
+   o:['{Os(a,b)}','{s(Oa,Ob)}','{Oa & Ob}','{O(a,b)}'], a:0,
+   m:['The sum of 1 and 2 is odd.','Not a sentence: a functor takes terms, not formulas.','1 is odd, and 2 is odd.','Not a sentence: O takes one term.'],
+   e:'{s(a,b)} is a term for 1 + 2, so it goes where a name would go.'},
+  {q:'The successor of every even number is odd.', key:K.nums,
+   o:['{(∀x)(Ex ⊃ Of(x))}','{(∀x)(Of(x) ⊃ Ex)}','{(∃x)(Ex & Of(x))}','{(∀x)(Ex ⊃ f(Ox))}'], a:0,
+   m:['The successor of every even number is odd.','Every number whose successor is odd is even.','Some even number has an odd successor.','Not a sentence: a functor takes terms, not formulas.'],
+   e:'{Of(x)} says “the successor of x is odd.”'},
+  {q:'2 is the successor of 1.', key:K.nums,
+   o:['{b = f(a)}','{a = f(b)}','{f(a) = f(b)}','{Eb & f(a)}'], a:0,
+   m:['2 is the successor of 1.','1 is the successor of 2.','1 and 2 have the same successor.','Not a sentence: f(a) is a term, not a sentence.'],
+   e:'b is 2 and {f(a)} is the successor of 1, so {b = f(a)} says they are the same number.'},
+  {q:'Which is a substitution instance of {(∀x)Es(x,x)}?', key:K.nums,
+   o:['{Es(b,b)}','{Es(a,b)}','{Es(x,x)}','{(∀x)Es(b,b)}'], a:0,
+   m:['The sum of 2 and 2 is even.','The sum of 1 and 2 is even. Not an instance: x was replaced two different ways.','Not a sentence: x is free.','Still has the quantifier, so it is not an instance.'],
+   e:'Drop the quantifier and replace every x with the same closed term.'},
+];
+const TERMS=[['f(a)',1,1],['h(x,b)',1,0],['y',0,0],['g(f(a),c)',1,1],['s(x,a)',1,0]];
+const TERM=TERMS.map(([t,cx,cl])=>({q:`What kind of term is {${t}}?`, o:['Simple and closed','Simple and open','Complex and closed','Complex and open'], a:cx*2+(cl?0:1), fixed:true,
+  e:`${cx?'It is built from a functor, so it is complex.':'It has no functor, so it is simple.'} ${cl?'It has no variable, so it is closed.':'It contains a variable, so it is open.'}`}));
+const VERBS=[];
+const ORDER=[];
+const PEOPLE=[];
+function evalRel(){ return false; }
+function relCounter(){ return null; }
+const ordStr = () => '';
+
+// ===== Activities =====
+const ACTS={
+  learn1:{kind:'card', items:DEFS1, name:'Definitions: identity, descriptions, functions', sub:'Flashcards · tap to reveal', ico:'=', deck:'Identity, descriptions, functions'},
+  count:{kind:'mc', items:COUNT, name:'Counting with identity', sub:'At least, exactly, at most', ico:'#'},
+  world:{kind:'world', items:WORLD, name:'True in the basket?', sub:'Check identity sentences against a fruit basket', ico:'🍎'},
+  exc:{kind:'mc', items:EXC, name:'Except and only', sub:'Everyone else, nobody else, the only one', ico:'≠'},
+  desc:{kind:'mc', items:DESC, name:'Definite descriptions', sub:'“The F is G” as a unique existence claim', ico:'the'},
+  rel:{kind:'rel', items:REL, name:'Properties of relations', sub:'Reflexive, symmetric, transitive', ico:'↺'},
+  func:{kind:'mc', items:FUNC, name:'Functions', sub:'Functors, complex terms, substitution', ico:'f(x)'},
+  term:{kind:'mc', items:TERM, name:'Kinds of terms', sub:'Simple or complex, open or closed', ico:'t'},
+};
+const PARTS=[
+  {n:0, title:'Start here: definitions', ids:['learn1'], min:10},
+  {n:1, title:'Identity and counting', ids:['count','world'], min:14},
+  {n:2, title:'Except and only', ids:['exc'], min:7},
+  {n:3, title:'Definite descriptions', ids:['desc'], min:10},
+  {n:4, title:'Properties of relations', ids:['rel'], min:10},
+  {n:5, title:'Functions and terms', ids:['func','term'], min:14},
+];
+
+COUNT.push(
+  {q:'There is exactly one pear, and it is rotten.', key:K.basket,
+   o:['{(∃x)[(Px & (∀y)(Py ⊃ y = x)) & Rx]}','{(∃x)(Px & Rx)}','{(∃x)[(Px & Rx) & (∀y)((Py & Ry) ⊃ y = x)]}','{(∀x)(Px ⊃ Rx)}'], a:0,
+   m:['There is exactly one pear, and it is rotten.','Some pear is rotten.','There is exactly one rotten pear. There may be fresh pears too.','Every pear is rotten. True if there are none.'],
+   e:'There is a pear, every pear is that one, and it is rotten.'},
+  {q:'There are at least two things in the basket.', key:K.basket,
+   o:['{(∃x)(∃y) ~ x = y}','{(∃x)(∃y) x = y}','{(∀x)(∀y) ~ x = y}','{(∃x) ~ x = x}'], a:0,
+   m:['There are at least two different things.','There is at least one thing. Always true.','Nothing is identical to anything, not even itself. Always false.','Something is not itself. Always false.'],
+   e:'Identity alone can count things: two things that are not identical.'},
+);
+DESC.push(
+  {q:'The pilot is not married to Kim. (There is exactly one pilot.)', key:K.family,
+   o:['{(∃x)[(Px & (∀y)(Py ⊃ y = x)) & ~ Mxk]}','{~ (∃x)[(Px & (∀y)(Py ⊃ y = x)) & Mxk]}','{(∀x)(Px ⊃ ~ Mxk)}','{(∃x)(Px & ~ Mxk)}'], a:0,
+   m:['There is exactly one pilot, and that pilot is not married to Kim.','It is not the case that the one and only pilot is married to Kim. Also true if there is no pilot at all.','No pilot is married to Kim.','Some pilot is not married to Kim.'],
+   e:'The “not” goes inside: the pilot exists, and the pilot is not married to Kim.'},
+  {q:'Kim is Ray’s only daughter.', key:K.family,
+   o:['{Dkr & (∀x)(Dxr ⊃ x = k)}','{Dkr}','{(∀x)(Dxr ⊃ x = k)}','{Drk & (∀x)(Dxk ⊃ x = r)}'], a:0,
+   m:['Kim is a daughter of Ray, and every daughter of Ray is Kim.','Kim is a daughter of Ray.','Every daughter of Ray is Kim, but Ray may have none.','Ray is Kim’s only daughter.'],
+   e:'Kim is a daughter of Ray, and any daughter of Ray is Kim.'},
+);
+const READ=[
+  {q:'Which English sentence does {(∃x)(∃y)[(Px & Py) & ~ x = y]} say?', key:K.basket, o:['There are at least two pears.','There is exactly one pear.','There are at most two pears.','No two pears are the same.'], a:0,
+   w:['','That would need a uniqueness clause.','That would use ∀ and =.','That would be about all pairs of pears.'], e:'There are x and y, both pears, and x is not y.'},
+  {q:'Which English sentence does {(∀x)(∀y)[(Ax & Ay) ⊃ x = y]} say?', key:K.basket, o:['There is at most one apple.','There is exactly one apple.','Every apple is identical to every pear.','There are no apples.'], a:0,
+   w:['','It does not say there is an apple.','There are no pears in the formula.','It is true with one apple too.'], e:'Any two apples are the same apple.'},
+  {q:'Which English sentence does {Pk & (∀x)(Px ⊃ x = k)} say?', key:K.family, o:['Kim is the only pilot.','Every pilot is married to Kim.','Kim is a pilot, and so is everyone.','Everyone except Kim is a pilot.'], a:0,
+   w:['','There is no M in the formula.','It says every pilot is Kim, not that everyone is a pilot.','It says Kim is a pilot.'], e:'Kim is a pilot, and any pilot is Kim.'},
+  {q:'Which English sentence does {(∃x)[(Dxr & (∀y)(Dyr ⊃ y = x)) & Px]} say?', key:K.family, o:['Ray’s only daughter is a pilot.','Some daughter of Ray is a pilot.','Every daughter of Ray is a pilot.','Ray is the only pilot.'], a:0,
+   w:['','It also says she is his only daughter.','It says there is exactly one daughter.','Ray is not the pilot here.'], e:'Ray has exactly one daughter, and she is a pilot.'},
+  {q:'Which English sentence does {(∀x)(Ox ⊃ Ef(x))} say?', key:K.nums, o:['The successor of every odd number is even.','Every odd number is even.','Every number whose successor is even is odd.','Some odd number has an even successor.'], a:0,
+   w:['','{Ef(x)} is about the successor of x, not x.','That reverses the conditional.','That would use ∃.'], e:'Each x: if x is odd, the successor of x is even.'},
+  {q:'Which English sentence does {~ (∃x)(Mxk & ~ x = r)} say?', key:K.family, o:['No one other than Ray is married to Kim.','Ray is not married to Kim.','Kim is married to everyone except Ray.','Someone other than Ray is married to Kim.'], a:0,
+   w:['','It does not say anything about Ray himself.','It does not say Kim is married to anyone.','The negation in front rules that out.'], e:'It is not the case that someone who is not Ray is married to Kim.'},
+];
+ACTS.read={kind:'mc', items:READ, name:'Read it in English', sub:'From formulas back to English', ico:'Ab'};
+PARTS.length=0; PARTS.push(
+  {n:0, title:'Start here: definitions', ids:['learn1'], min:10},
+  {n:1, title:'Identity and counting', ids:['count','world'], min:13},
+  {n:2, title:'Except and only', ids:['exc'], min:6},
+  {n:3, title:'Definite descriptions', ids:['desc'], min:10},
+  {n:4, title:'Properties of relations', ids:['rel'], min:9},
+  {n:5, title:'Functions and terms', ids:['func','term'], min:12},
+  {n:6, title:'Read it in English', ids:['read'], min:5},
+);
+
+const TEST=[
+  {tag:'count', q:'With Dx: x is a dog, which says “There are at least two dogs”?', o:['{(∃x)(∃y)(Dx & Dy)}','{(∃x)(∃y)[(Dx & Dy) & ~ x = y]}','{(∀x)(∀y)[(Dx & Dy) ⊃ x = y]}','{(∃x)[Dx & (∀y)(Dy ⊃ y = x)]}'], a:1,
+   m:['There is at least one dog.','There are at least two dogs.','There is at most one dog.','There is exactly one dog.'], e:'You need {~ x = y} to make the two dogs different.'},
+  {tag:'count', q:'There are exactly two pears.', key:K.basket,
+   o:['{(∃x)(∃y)([(Px & Py) & ~ x = y] & (∀z)[Pz ⊃ (z = x ∨ z = y)])}','{(∃x)(∃y)[(Px & Py) & ~ x = y]}','{(∀x)(∀y)(∀z)[((Px & Py) & Pz) ⊃ ((x = y ∨ x = z) ∨ y = z)]}','{(∃x)(∃y)[(Px & Py) & (∀z)(Pz ⊃ z = x)]}'], a:0,
+   m:['There are exactly two pears.','There are at least two pears.','There are at most two pears.','There is exactly one pear (y has to be x).'], e:'At least two different pears, and any pear is one of those two.'},
+  {tag:'exc', q:'Everyone except Kim is a pilot.', key:K.family,
+   o:['{~ Pk & (∀x)(~ x = k ⊃ Px)}','{(∀x)(~ x = k ⊃ Px)}','{~ Pk & (∀x)Px}','{(∀x)(Px ⊃ ~ x = k)}'], a:0,
+   m:['Kim is not a pilot, and everyone else is.','Everyone other than Kim is a pilot. Kim might be one too.','Kim is not a pilot, and everyone is a pilot. Impossible.','Kim is not a pilot.'], e:'Kim is not a pilot, and everyone who is not Kim is.'},
+  {tag:'exc', q:'With Sx: x sings and n: Nora, which says “Nora is the only singer”?', o:['{Sn & (∀x)(Sx ⊃ x = n)}','{(∀x)(Sx ⊃ x = n)}','{Sn}','{Sn & (∃x)(Sx & x = n)}'], a:0,
+   m:['Nora sings, and every singer is Nora.','Every singer is Nora, but there might be no singers.','Nora sings.','Nora sings. The second half adds nothing.'], e:'Nora sings, and anyone who sings is Nora.'},
+  {tag:'desc', q:'The pilot is married to Ray.', key:K.family,
+   o:['{(∃x)[(Px & (∀y)(Py ⊃ y = x)) & Mrx]}','{(∃x)(Px & Mrx)}','{(∀x)(Px ⊃ Mrx)}','{Mrp}, where p: the pilot'], a:0,
+   m:['There is exactly one pilot, and Ray is married to that pilot.','Ray is married to some pilot.','Ray is married to every pilot. True if there are none.','Ray is married to a person named p. It hides that there is exactly one pilot.'], e:'Exactly one thing is a pilot, and Ray is married to it.'},
+  {tag:'desc', q:'Suppose there are two winners. What is the truth value of “The winner is happy”?', o:['True, if both are happy','False','Meaningless','Neither true nor false'], a:1, fixed:true, e:'“The winner” claims exactly one winner. With two, the sentence is false.'},
+  {tag:'rel', q:'Which relation (UD: people) is symmetric but not transitive?', o:['x is taller than y','x is a sibling of y','x is the same age as y','x is an ancestor of y'], a:1, fixed:true,
+   w:['Transitive, not symmetric.','','Reflexive, symmetric, and transitive.','Transitive, not symmetric.'], e:'Siblings go both ways, but x and y being siblings does not make x their own sibling.'},
+  {tag:'func', q:'The sum of any two odd numbers is even.', key:K.nums,
+   o:['{(∀x)(∀y)[(Ox & Oy) ⊃ Es(x,y)]}','{(∀x)(∀y)[(Ox & Oy) & Es(x,y)]}','{(∃x)(∃y)[(Ox & Oy) & Es(x,y)]}','{(∀x)(∀y)[Es(x,y) ⊃ (Ox & Oy)]}'], a:0,
+   m:['For any two odd numbers, their sum is even.','Every number is odd, and every sum is even.','Some two odd numbers have an even sum.','Any two numbers with an even sum are both odd.'], e:'Each x and y: if both are odd, their sum is even.'},
+  {tag:'world', q:'A basket holds one apple and two pears. Is {(∃x)(∃y)[(Ax & Ay) & ~ x = y]} true or false?', o:['True','False'], a:1, fixed:true, e:'It says there are at least two apples. There is only one.'},
+  {tag:'term', q:'What kind of term is {f(y)}?', o:['Simple and closed','Simple and open','Complex and closed','Complex and open'], a:3, fixed:true, e:'It is built from a functor, so it is complex. It contains the variable y, so it is open.'},
+];
+
+const RS = (q1,q2,ord,on=0,n2=0,n3=0)=>({on,q1,n2,q2,n3,ord});
+
+const ALL_IDS=PARTS.flatMap(p=>p.ids);
+const nOf = id => ACTS[id].items.length;
+const doneCount = id => { const m=(progress.sets||{})[id]||{}; return ACTS[id].items.filter((_,k)=>m[k]).length; };
+const firstUndone = id => { const m=(progress.sets||{})[id]||{}; const i=ACTS[id].items.findIndex((_,k)=>!m[k]); return i<0?0:i; };
+
+// ===== App state =====
+let view='home', cur=null;
+const app=document.getElementById('app');
+const VIEWS={};
+function render(){ app.innerHTML=VIEWS[view](); }
+function fresh(id,k,item){ return {id,k:+k||0,item:item||ACTS[id].items[+k||0], pickd:null, opt:null, shown:false, b:{on:0,q1:'',n2:0,q2:'',n3:0,ord:''}, result:null, counted:false, ans:[null,null,null], checked:false}; }
+function go(v,arg,k){ view=v; cur = v==='act' ? fresh(arg,k) : null; if(cur && ACTS[cur.id] && ACTS[cur.id].kind==='card' && doneMap(cur.id)[cur.k]) cur.shown=true; if(v==='done') cur={id:arg}; render(); window.scrollTo(0,0); }
+const backHome = { toString(){ return game ? `<button class="back" data-act="quit-game">‹ Quit test</button>` : `<button class="back" data-go="home">‹ All sections</button>`; } };
+const fb = (ok,title,body='') => `<div class="fb ${ok?'good':'bad'}" role="status"><strong>${title}</strong>${body}</div>`;
+const keyHTML = key => key ? `<div class="key">${key.map(([s,m])=>s==='UD'?`<span>UD: ${esc(m)}</span>`:`<span><b>${esc(s)}</b>: ${esc(m)}</span>`).join('')}</div>` : '';
+function head(){
+  if(game) return gameBar('Test your knowledge');
+  const A=ACTS[cur.id];
+  return `<div class="ex-head"><h2>${esc(A.name)}</h2>${A.kind==='card'?'':`<span class="score">${sc(cur.id)}</span>`}</div><p class="muted exnum">${A.kind==='card'?'Card':'Exercise'} ${cur.k+1} of ${nOf(cur.id)}</p>`;
+}
+const isLast = () => cur.k+1>=nOf(cur.id);
+const nextBtn = (label,ready=true) => `<div class="next">${!game&&cur.k>0?`<button class="btn ghost prev" data-act="prev">‹ Previous</button>`:''}<button class="btn" data-act="next" ${!game&&!ready?'disabled':''}>${game ? (game.answered ? (game.i+1<game.items.length?'Next question':'See my score') : 'Skip') : (isLast()?'Finish':label)}</button></div>`;
+
+// ===== Decorative symbol layer =====
+function symLayer(n, seed){
+  let x=seed; const rnd=()=>((x=(x*16807)%2147483647)/2147483647);
+  const G=['∀','∃','⊃','=','~','&','∨','x','y','f(x)','(∀x)','(∃y)'];
+  let out='';
+  for(let i=0;i<n;i++) out+=`<span style="left:${(rnd()*100).toFixed(1)}%;top:${(rnd()*100).toFixed(1)}%;font-size:${(18+rnd()*46).toFixed(0)}px;--r:${(rnd()*40-20).toFixed(0)}deg">${esc(G[Math.floor(rnd()*G.length)])}</span>`;
+  return `<div class="syms" aria-hidden="true">${out}</div>`;
+}
+
+// ===== Home =====
+VIEWS.home = () => {
+  const t=id=>{
+    const A=ACTS[id], n=nOf(id), d=doneCount(id), all=d===n, st=firstUndone(id);
+    const status = all ? '✓ Done' : d ? `${d} of ${n} done` : 'Start →';
+    const unit = A.kind==='card'?'cards':'exercises';
+    return `<li><button class="topic${all?' is-done':''}" data-go="act" data-arg="${id}" data-k="${st}"><span class="t-ico${!all&&A.ico.length>2?' small':''}" aria-hidden="true">${all?'✓':esc(A.ico)}</span><span>${esc(A.name)}<small>${n} ${unit} · ${esc(A.sub)}</small>${d&&!all?`<span class="tbar" aria-hidden="true"><i style="width:${Math.round(d/n*100)}%"></i></span>`:''}</span><span class="go">${status}</span></button></li>`;
+  };
+  const part=p=>{ const items=p.ids.map(t).join(''), tot=p.ids.length, dn=p.ids.filter(id=>doneCount(id)===nOf(id)).length, label=p.n?`Part ${p.n}`:'Intro';
+    return `<li class="level part-${p.n}"><div class="part-head"><span class="part-badge" aria-hidden="true">${dn===tot?'✓':(p.n||'★')}</span><h2>${p.title}</h2>${dn===tot?`<span class="part-done">${label} done</span>`:`<span class="level-num">≈ ${p.min} min</span>`}</div><ul class="topics">${items}</ul></li>`; };
+  const totN=ALL_IDS.reduce((a,id)=>a+nOf(id),0), totD=ALL_IDS.reduce((a,id)=>a+doneCount(id),0);
+  return `
+  ${cuteBg(0)}
+  <header class="mast">
+    ${symLayer(16, 7)}
+    <p class="kicker">PHIL 270 · Symbolic Logic</p>
+    <h1>Class 12<span class="f" aria-hidden="true">=</span></h1>
+    <p class="mast-tag">Identity and counting, except and only, definite descriptions, relations, and functions. Everyone gets the same exercises, so we can work through them together.</p>
+    <div class="prog"><div class="prog-row"><span>${totD===totN?'All done! 🎉':'Your progress'}</span><span>${totD} of ${totN}</span></div><div class="prog-bar" role="progressbar" aria-label="Cards and exercises done" aria-valuemin="0" aria-valuemax="${totN}" aria-valuenow="${totD}"><i style="width:${Math.round(totD/totN*100)}%"></i></div></div>
+    <button class="candy-cta" data-go="gameStart"><span class="candy-ico test-ico" aria-hidden="true">✓</span><span><b>Test your knowledge</b><small>10 questions on everything from today. Do it at the end.${progress.best!=null?` Your best so far: ${progress.best} of 10.`:''}</small></span><span class="go-light">Start</span></button>
+  </header>
+  <section class="plan" aria-label="Today’s plan">
+    <h2>Today’s plan · 1 hour 15 minutes</h2>
+    <ol>${PARTS.map(p=>`<li><b>${p.title}</b> · about ${p.min} min</li>`).join('')}<li><b>Test your knowledge</b> · about 10 min</li></ol>
+  </section>
+  <ol class="levels">${PARTS.map(part).join('')}</ol>
+  <p class="reset-row"><button class="reset" data-act="reset">Start over</button></p>`;
+};
+
+// ===== Activity views =====
+function mcBody(it){
+  const e=cur;
+  if(!e.opt) e.opt = it.fixed ? it.o.map((_,i)=>i) : withSeed('opt-'+it.q,()=>shuffle(it.o.map((_,i)=>i)));
+  const L='ABCD';
+  const btns=e.opt.map((oi,pos)=>{ let c='choice'; const after=e.pickd!==null;
+    if(after){ if(oi===it.a) c+=' right'; else if(oi===e.pickd) c+=' wrong'; }
+    let why='';
+    if(after){
+      const mean = (it.m && it.m[oi]) || (it.sl && onlyFormula(it.o[oi]) ? slEnglish(onlyFormula(it.o[oi]), it.sl) : null);
+      if(mean) why+=`<span class="why means">${oi===it.a?'✓':'✗'} Means: ${fmt(mean)}</span>`;
+      if(oi!==it.a && it.w && it.w[oi]) why+=`<span class="why wrongwhy">${mean?'':'✗ '}Why it’s wrong: ${fmt(it.w[oi])}</span>`;
+    }
+    return `<button class="${c}" data-mc="${oi}" ${after?'disabled':''}><b>${L[pos]}</b>${fmt(it.o[oi])}${why}</button>`; }).join('');
+  const ok=e.pickd===it.a;
+  return `<p class="prop">${fmt(it.q).replace(/\n/g,'<br>')}</p>${it.proof?proofHTML(it.proof):''}${keyHTML(it.key)}
+  <section class="step"><div class="choices one">${btns}</div>
+    ${e.pickd!==null?fb(ok, ok?'Correct.':`The answer is ${L[e.opt.indexOf(it.a)]}.`, ' '+fmt(it.e)):''}</section>`;
+}
+function ttBody(it){
+  const e=cur, fs=it.fs||[it.f], trees=fs.map(slParse);
+  const atoms=[...new Set(trees.flatMap(t=>slAtoms(t)))].sort(), n=atoms.length, R=1<<n;
+  const rows=[...Array(R).keys()].map(r=>Object.fromEntries(atoms.map((a,j)=>[a,!((r>>(n-1-j))&1)])));
+  const truth=trees.map(t=>rows.map(v=>slEval(t,v)));
+  if(!e.tv) e.tv={};
+  const TF=b=>b?'T':'F';
+  const head=`<tr>${atoms.map(a=>`<th>${a}</th>`).join('')}<th class="sep"></th>${fs.map((f,c)=>`<th class="fc">${F(f)}${it.labels?`<small>${esc(it.labels[c])}</small>`:''}</th>`).join('')}</tr>`;
+  const body=rows.map((v,r)=>`<tr>${atoms.map(a=>`<td>${TF(v[a])}</td>`).join('')}<td class="sep"></td>${fs.map((f,c)=>{ const k=c+':'+r, val=e.tv[k]; let cls='cell'; if(e.checked){ cls+= val===TF(truth[c][r])?' right':' wrong'; } return `<td><button class="${cls}" data-tv="${k}" ${e.checked?'disabled':''} aria-label="Row ${r+1}, ${esc(f)}">${e.checked&&val!==TF(truth[c][r])?`${val||'?'}→${TF(truth[c][r])}`:(val||'?')}</button></td>`; }).join('')}</tr>`).join('');
+  const ready=fs.every((_,c)=>rows.every((_,r)=>e.tv[c+':'+r]));
+  const rowTxt=v=>atoms.map(a=>`${a} = ${TF(v[a])}`).join(', ');
+  let sum='';
+  if(e.checked){
+    const mode=it.mode||'single', col=truth[0];
+    if(mode==='single') sum = col.every(x=>x)?'True on every row, so it is truth-functionally true.':col.every(x=>!x)?'False on every row, so it is truth-functionally false.':`True on some rows and false on others, so it is truth-functionally indeterminate. For example, it is true when ${rowTxt(rows[col.indexOf(true)])}, and false when ${rowTxt(rows[col.indexOf(false)])}.`;
+    if(mode==='equiv'){ const d=rows.findIndex((_,r)=>truth[0][r]!==truth[1][r]); sum = d<0?'The two columns match on every row, so the sentences are truth-functionally equivalent.':`They differ when ${rowTxt(rows[d])}: the first is ${TF(truth[0][d])} and the second is ${TF(truth[1][d])}. So they are not equivalent.`; }
+    if(mode==='set'){ const g=rows.findIndex((_,r)=>truth.every(c=>c[r])); sum = g>=0?`All of them are true when ${rowTxt(rows[g])}, so the set is truth-functionally consistent.`:'No row makes them all true, so the set is truth-functionally inconsistent.'; }
+    if(mode==='arg'){ const last=truth.length-1, g=rows.findIndex((_,r)=>truth.slice(0,last).every(c=>c[r]) && !truth[last][r]); sum = g<0?'No row makes every premise true and the conclusion false, so the argument is truth-functionally valid.':`When ${rowTxt(rows[g])}, every premise is true and the conclusion is false. So the argument is invalid.`; }
+  }
+  const ok=e.checked && fs.every((_,c)=>rows.every((_,r)=>e.tv[c+':'+r]===TF(truth[c][r])));
+  const wrongRows=[]; if(e.checked) fs.forEach((f,c)=>rows.forEach((v,r)=>{ if(e.tv[c+':'+r]!==TF(truth[c][r])) wrongRows.push(`<li><b>Row ${rowTxt(v)}${fs.length>1?` · ${esc(f)}`:''}:</b> ${esc(slWhy(trees[c],v))}</li>`); }));
+  const whyList = wrongRows.length?`<h3 class="means-h">Why those rows</h3><ul class="means-list">${wrongRows.join('')}</ul>`:'';
+  return `<p class="prop">${fmt(it.q||(fs.length>1?(it.mode==='arg'?'Fill in each column. Is there a row where every premise is T and the conclusion is F?':it.mode==='set'?'Fill in each column. Is there a row where every sentence is T?':'Fill in both columns. Do they ever differ?'):'Fill in the column under the main connective.'))}</p>${keyHTML(it.key)}${it.eng?`<p class="muted">In English: ${esc(it.eng)}</p>`:''}
+  <section class="step"><p class="hint">Tap each box to switch between T and F.</p>
+    <div class="ttwrap"><table class="tt">${head}${body}</table></div>
+    <div class="actions"><button class="btn" data-act="check-tt" ${!ready||e.checked?'disabled':''}>Check</button></div>
+    ${e.checked?fb(ok, ok?'Correct.':'Not quite. The corrections are shown in the table.', ' '+esc(sum)+(it.e?' '+fmt(it.e):'')):''}${whyList}</section>`;
+}
+const BODY={
+  card(it){
+    const A=ACTS[cur.id];
+    if(!cur.shown) return `<div class="fcard hidden-def"><p class="deck">${esc(A.deck)}</p><h3>${esc(it.t)}</h3><p class="muted">What does it mean? Say it in your own words, then reveal.</p><div class="actions"><button class="btn" data-act="reveal">Show the definition</button></div></div>`;
+    return `<div class="fcard"><p class="deck">${esc(A.deck)}</p><h3>${esc(it.t)}</h3><p class="def">${fmt(it.d).replace(/\n/g,'<br>')}</p>${it.x?`<div class="ex">${fmt(it.x)}${it.xs?`<small>${esc(it.xs)}</small>`:''}</div>`:''}</div>`;
+  },
+  mc: mcBody,
+  tt: ttBody,
+  world(it){
+    const e=cur, FR={A:'🍎',P:'🍐'};
+    const fruits=it.b.map(s=>`<span class="fruit" role="img" aria-label="${s[0]==='A'?'apple':'pear'}${s[1]?' (rotten)':''}">${FR[s[0]]}${s[1]?'<span class="worm">🪱</span>':''}</span>`).join('');
+    const btns=[[true,'True'],[false,'False']].map(([v,l])=>{ let c='choice'; if(e.pickd!==null){ if(v===it.ans) c+=' right'; else if(v===e.pickd) c+=' wrong'; } return `<button class="${c}" data-tf="${v}" ${e.pickd!==null?'disabled':''}>${l}</button>`; }).join('');
+    const ok=e.pickd===it.ans;
+    return `<p class="muted">Here is everything in the basket.</p><div class="basket">${fruits}</div><p class="legend">🍎 apple · 🍐 pear · 🪱 rotten</p>
+    ${keyHTML(K.basket.slice(1))}
+    <div class="formula wrap">${esc(it.f)}</div>
+    <section class="step"><h3>Is this sentence true in this basket?</h3><div class="choices">${btns}</div>
+    ${e.pickd!==null?fb(ok, ok?'Correct.':`It’s ${it.ans?'true':'false'}.`, ` In English: “${esc(it.eng)}” ${esc(it.e)}`):''}</section>`;
+  },
+  rel(it){
+    const e=cur;
+    const rows=PROP_N.map((p,i)=>{
+      const yn=[[1,'Yes'],[0,'No']].map(([v,l])=>{ let c='choice'; if(e.checked){ if(v===it.ans[i]) c+=' right'; else if(v===e.ans[i]) c+=' wrong'; } else if(e.ans[i]===v) c+=' picked'; return `<button class="${c}" data-rel="${i}:${v}" aria-pressed="${e.ans[i]===v}" ${e.checked?'disabled':''}>${l}</button>`; }).join('');
+      return `<div class="prop-row"><span><b>${p}?</b><span class="test">${esc(PROP_F[i])}</span>${e.checked?`<span class="why">${e.ans[i]===it.ans[i]?'✓ ':'✗ '}${esc(it.e[i])}</span>`:''}</span><span class="yn">${yn}</span></div>`;
+    }).join('');
+    const ready=e.ans.every(a=>a!==null), ok=e.checked&&e.ans.every((a,i)=>a===it.ans[i]);
+    return `<p class="prop">Axy: ${esc(it.r)}</p><div class="key"><span>UD: ${esc(it.ud)}</span></div>
+    <section class="step"><h3>Which properties does it have?</h3><div class="props">${rows}</div>
+      <div class="actions"><button class="btn" data-act="check-rel" ${!ready||e.checked?'disabled':''}>Check</button></div>
+      ${e.checked?fb(ok, ok?'Correct.':'Not quite.', ok?' All three are right.':' The reason for each property is shown above.'):''}</section>`;
+  },
+  order(it){
+    const e=cur, b=e.b, v=VERBS[it.v], L=v.L;
+    const sel=(name,opts)=>`<select id="ord-${name}" data-o="${name}" aria-label="${name}" ${e.result?.ok?'disabled':''}>${opts.map(([val,l])=>`<option value="${val}" ${String(val)===String(b[name])?'selected':''}>${l}</option>`).join('')}</select>`;
+    const neg=n=>sel(n,[[0,'–'],[1,'~']]);
+    const ready=b.q1&&b.q2&&b.ord;
+    let res='';
+    if(e.result){
+      if(e.result.ok) res=fb(true,'Correct.',' '+esc(it.e(v)));
+      else {
+        const m=e.result.counter, names=PEOPLE.slice(0,m.n);
+        const pairs=[]; for(let a=0;a<m.n;a++) for(let c=0;c<m.n;c++) if((m.R>>(a*m.n+c))&1) pairs.push(`${names[a]} ${v.vs} ${a===c?'themself':names[c]}`);
+        const ud = m.n===1?`just ${names[0]}`:names.slice(0,-1).join(', ')+' and '+names[m.n-1];
+        const rel = pairs.length?`the only facts are: ${pairs.join('; ')}`:`nobody ${v.vs} anybody`;
+        const eng = evalRel(it.st,m.n,m.R);
+        res=fb(false,'Not quite.',` Suppose the UD is ${ud}, and ${rel}. Then the English sentence is ${eng?'true':'false'}, but your formula is ${eng?'false':'true'}. Change the formula and check again.`);
+      }
+    }
+    return `<p class="prop">${esc(it.say(v))}</p>
+    <div class="key"><span>UD: people</span><span><b>${L}xy</b>: x ${v.vs} y</span></div>
+    <section class="step"><h3>Build the formula</h3><p class="hint">With mixed quantifiers, order matters. Decide which comes first and which variable goes in which place.</p>
+      <div class="builder">${neg('on')}<span>(</span>${sel('q1',[['','?'],['∀','∀'],['∃','∃']])}<span>x)</span>${neg('n2')}<span>(</span>${sel('q2',[['','?'],['∀','∀'],['∃','∃']])}<span>y)</span>${neg('n3')}<span>${L}</span>${sel('ord',[['','??'],['xy','xy'],['yx','yx']])}</div>
+      <p class="preview">Your formula: <span class="f">${esc(ordStr(b,L))}</span></p>
+      <div class="actions"><button class="btn" data-act="check-order" ${!ready||e.result?.ok?'disabled':''}>Check</button></div>${res}</section>`;
+  },
+  move(it){
+    const e=cur, done=e.pickd!==null;
+    const opts=[['∀','(∀x)'],['∃','(∃x)'],['none','It can’t be moved']].map(([v,l])=>{ let c='choice'; if(done){ if(v===it.ans) c+=' right'; else if(v===e.pickd) c+=' wrong'; } return `<button class="${c}" data-move="${v}" ${done?'disabled':''}>${v==='none'?l:F(l)}</button>`; }).join('');
+    const means = done && it.say ? `<ul class="means-list">${[['∀','(∀x)'],['∃','(∃x)'],['none','It can’t be moved']].map(([v,l])=>{ const r=it[v]; return `<li class="${v===it.ans?'ok':'no'}"><b>${v===it.ans?'✓':'✗'}</b> ${v==='none'?`<b>${esc(l)}:</b> ${esc(it.none)}`:`${F(r[0])}: ${esc(r[1])}`}</li>`; }).join('')}</ul>` : '';
+    return `${it.key?`<div class="key"><span>${esc(it.key)}</span></div>`:''}<div class="formula">${esc(it.s).replace(/ /g,'&nbsp;')}</div>
+    ${it.say?`<p class="muted">In English: “${esc(it.say)}”</p>`:''}
+    <section class="step"><h3>Extend the quantifier over the whole sentence</h3>
+      <p class="hint">Which quantifier does the equivalent sentence start with?</p>
+      <div class="choices three">${opts}</div>
+      ${done?fb(e.pickd===it.ans, e.pickd===it.ans?'Correct.':(it.ans==='none'?'It can’t be moved.':`It becomes ${F('('+it.ans+'x)')}.`), (it.res?` Equivalent sentence: ${F(it.res)}. `:' ')+esc(it.why)):''}
+      ${means?`<h3 class="means-h">What each choice would say</h3>${means}`:''}
+    </section>`;
+  },
+};
+VIEWS.act = () => {
+  const kind = game ? 'mc' : ACTS[cur.id].kind;
+  const ready = kind!=='card' || cur.shown;
+  return `${backHome}${head()}${BODY[kind](cur.item)}${nextBtn(kind==='card'?'Next card':'Next one', ready)}`;
+};
+VIEWS.done = () => {
+  const A=ACTS[cur.id], n=nOf(cur.id);
+  const pi=PARTS.findIndex(p=>p.ids.includes(cur.id)), p=PARTS[pi], j=p.ids.indexOf(cur.id);
+  const nextId = p.ids[j+1] || (PARTS[pi+1]&&PARTS[pi+1].ids[0]);
+  const nextBtnH = nextId ? `<button class="btn" data-go="act" data-arg="${nextId}" data-k="${firstUndone(nextId)}">Next: ${esc(ACTS[nextId].name)}</button>` : `<button class="btn" data-go="gameStart">On to: Test your knowledge</button>`;
+  return `${backHome}
+  <div class="game-hero"><div class="big-candy" aria-hidden="true">✓</div>
+    <h2>That’s all ${n}</h2>
+    <p>You finished <b>${esc(A.name)}</b>.</p></div>
+  <div class="actions center">${nextBtnH}<button class="btn ghost" data-go="home">Back to all sections</button></div>`;
+};
+
+// ===== Test your knowledge (10 questions at the end) =====
+
+let game=null, lastGame=null;
+function gameRecord(ok){
+  if(!game||game.answered) return;
+  game.answered=true; game.hist[game.i]=ok;
+  if(ok) game.right++;
+}
+function gameBar(title){
+  const g=game, n=g.items.length;
+  const dots=g.items.map((_,k)=>`<i class="${k<g.i||(k===g.i&&g.answered)?(g.hist[k]?'hit':'miss'):k===g.i?'now':''}"></i>`).join('');
+  return `<div class="gbar"><div class="gbar-row"><span>Question ${g.i+1} of ${n}</span><span>${g.right} correct</span></div><div class="dots" aria-hidden="true">${dots}</div></div>
+  <div class="ex-head"><h2>${title}</h2></div>`;
+}
+function startGame(){
+  game={items:TEST.map((_,i)=>i), i:-1, right:0, answered:false, hist:[]};
+  gameNext();
+}
+function gameNext(){
+  if(game.i>=0 && !game.answered) game.hist[game.i]=false;
+  game.i++; game.answered=false;
+  if(game.i>=game.items.length){ finishGame(); return; }
+  view='act'; cur=fresh('test',game.i,TEST[game.items[game.i]]);
+  render(); window.scrollTo(0,0);
+}
+function finishGame(){
+  lastGame=game; game=null;
+  progress.best=Math.max(progress.best??0, lastGame.right); save();
+  view='gameEnd'; cur=null; render(); window.scrollTo(0,0);
+}
+VIEWS.gameStart = () => `${backHome}
+  <div class="game-hero"><div class="big-candy test-big" aria-hidden="true">✓</div>
+    <h2>Test your knowledge</h2>
+    <p>Ten questions on everything from today: identity and counting, except and only, definite descriptions, relations, and functions.</p>
+  </div>
+  <section class="step">
+    <p class="hint">Only your first answer to each question counts. You can skip a question, but a skip counts as a miss. You’ll see an explanation after each answer and your score at the end.</p>
+    <div class="actions"><button class="btn big" data-act="start-game">Start the test</button></div>
+  </section>`;
+VIEWS.gameEnd = () => {
+  const g=lastGame, n=g.items.length, pct=Math.round(g.right/n*100);
+  const rows=g.items.map((ti,k)=>{ const q=TEST[ti]; return `<li class="${g.hist[k]?'ok':'no'}"><span aria-hidden="true">${g.hist[k]?'✓':'✗'}</span> ${fmt(q.q)}${g.hist[k]?'':`<span class="why">Answer: ${fmt(q.o[q.a])}</span>`}</li>`; }).join('');
+  const missed=[...new Set(g.items.filter((_,k)=>!g.hist[k]).map(i=>TEST[i].tag))];
+  const practice = missed.length ? `<section class="step"><h3>Practice these, then try again</h3><ul class="topics">${missed.map(id=>`<li><button class="topic" data-go="act" data-arg="${id}" data-k="0"><span>${esc(ACTS[id].name)}</span><span class="go">Practice</span></button></li>`).join('')}</ul></section>` : '';
+  const msg = g.right===n ? 'Perfect score!' : g.right>=8 ? 'Great work!' : g.right>=5 ? 'Good effort.' : 'Keep practicing.';
+  return `<div class="win${g.right>=8?'':' lose'}" role="status">
+      <p class="eyebrow">Test your knowledge</p>
+      <h1>${msg}</h1>
+      <p class="final">${g.right} of ${n} right · ${pct}%</p>
+    </div>
+    <section class="step"><h3>Your answers</h3><ol class="results">${rows}</ol></section>
+    <div class="actions center"><button class="btn" data-act="replay">Take it again</button><button class="btn ghost" data-go="home">Back to practice</button></div>
+    ${practice}`;
+};
+
+// ===== Events =====
+app.addEventListener('click', ev=>{
+  const t=ev.target;
+  const act=t.closest('[data-act]')?.dataset.act;
+  if(act==='start-game'){ startGame(); return; }
+  if(act==='replay'){ go('gameStart'); return; }
+  if(act==='quit-game'){ game=null; go('home'); return; }
+  if(act==='next' && game){ gameNext(); return; }
+  if(act==='reset'){ if(confirm('Start over? This clears which exercises you have done on this device.')){ for(const k of Object.keys(progress)) delete progress[k]; save(); render(); } return; }
+  const goEl=t.closest('[data-go]'); if(goEl){ go(goEl.dataset.go, goEl.dataset.arg, goEl.dataset.k); return; }
+  if(view!=='act') return;
+  const it=cur.item, d=k=>t.closest(`[data-${k}]`)?.dataset[k];
+  let v;
+  if(act==='reveal'){ cur.shown=true; markDone(cur.id,cur.k); render(); return; }
+  if((v=d('mc'))!==undefined && cur.pickd===null){ cur.pickd=+v; tally(cur.pickd===it.a); render(); return; }
+  if((v=d('tf'))!==undefined && cur.pickd===null){ cur.pickd = v==='true'; tally(cur.pickd===it.ans); render(); return; }
+  if((v=d('move'))!==undefined && cur.pickd===null){ cur.pickd=v; tally(v===it.ans); render(); return; }
+  if((v=d('tv'))!==undefined && !cur.checked){ const x=cur.tv[v]; cur.tv[v]= x==='T'?'F':'T'; render(); return; }
+  if(act==='check-tt' && !cur.checked){ cur.checked=true; const it2=cur.item, fs=it2.fs||[it2.f], tr=fs.map(slParse), at=[...new Set(tr.flatMap(t=>slAtoms(t)))].sort(), n=at.length; let ok=true; for(let r=0;r<(1<<n);r++){ const vv=Object.fromEntries(at.map((a,j)=>[a,!((r>>(n-1-j))&1)])); tr.forEach((t,c)=>{ if(cur.tv[c+':'+r]!==(slEval(t,vv)?'T':'F')) ok=false; }); } tally(ok); render(); return; }
+  if((v=d('rel'))!==undefined && !cur.checked){ const [i,val]=v.split(':').map(Number); cur.ans[i]=val; render(); return; }
+  if(act==='check-rel' && !cur.checked){ cur.checked=true; tally(cur.ans.every((a,i)=>a===it.ans[i])); render(); return; }
+  if(act==='check-order'){
+    const c=relCounter(it.st, cur.b); cur.result={ok:!c, counter:c};
+    if(!cur.counted){ cur.counted=true; tally(!c); }
+    render(); return;
+  }
+  if(act==='prev'){ if(cur.k>0) go('act',cur.id,cur.k-1); return; }
+  if(act==='next'){ if(cur.k+1<nOf(cur.id)) go('act',cur.id,cur.k+1); else go('done',cur.id); return; }
+});
+app.addEventListener('change', ev=>{
+  const t=ev.target;
+  if(view==='act' && t.dataset.o){ const k=t.dataset.o; cur.b[k]=['on','n2','n3'].includes(k)?+t.value:t.value; if(cur.result&&!cur.result.ok) cur.result=null; render(); document.getElementById('ord-'+k)?.focus(); }
+});
+// ===== Class code =====
+const CLASS_CODE='class12';
+const normCode = v => String(v||'').toLowerCase().replace(/\s+/g,'');
+let unlocked=false; try{ unlocked = localStorage.getItem('class12-unlocked')==='yes'; }catch(e){}
+let codeError=false;
+function cuteBg(n=22){
+  let x=29; const rnd=()=>((x=(x*16807)%2147483647)/2147483647);
+  const SY=['∀','∃','⊃','=','~','&','∨'], COL=['var(--candy)','var(--acc2)','var(--p1)','var(--p2)','var(--p4)'];
+  let out='';
+  for(let i=0;i<n;i++){
+    const l=(rnd()*96).toFixed(1), t=(rnd()*94).toFixed(1), r=(rnd()*40-20).toFixed(0), d=(2.6+rnd()*3).toFixed(1);
+    out+=`<span style="left:${l}%;top:${t}%;font-size:${(22+rnd()*30).toFixed(0)}px;color:${COL[Math.floor(rnd()*COL.length)]};opacity:.35;--r:${r}deg;--d:${d}s">${SY[Math.floor(rnd()*SY.length)]}</span>`;
+  }
+  return `<div class="cute-bg" aria-hidden="true">${out}</div>`;
+}
+VIEWS.lock = () => `
+  ${cuteBg()}
+  <div class="lock">
+    <div class="tile" aria-hidden="true">=</div>
+    <h1>Class 12</h1>
+    <p class="sub">Identity, Descriptions, and Functions.</p>
+    <form id="code-form" class="code-form" novalidate>
+      <label for="class-code" class="hint">Enter the class code your teacher gave you</label>
+      <input type="text" id="class-code" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="30" placeholder="• • • • • • •" ${codeError?'aria-invalid="true" aria-describedby="code-err"':''}>
+      ${codeError?`<p class="code-err" id="code-err" role="alert">That code isn’t right. Check with your teacher and try again.</p>`:''}
+      <button class="btn big" type="submit">Enter</button>
+    </form>
+  </div>`;
+app.addEventListener('submit', ev=>{
+  if(ev.target.id!=='code-form') return;
+  ev.preventDefault();
+  if(normCode(document.getElementById('class-code').value)===CLASS_CODE){
+    unlocked=true; codeError=false; try{ localStorage.setItem('class12-unlocked','yes'); }catch(e){}
+    go('home');
+  } else { codeError=true; render(); document.getElementById('class-code')?.focus(); }
+});
+if(!unlocked) view='lock';
+render();
+if(!unlocked) document.getElementById('class-code')?.focus();
+</script>
+</body>
+</html>

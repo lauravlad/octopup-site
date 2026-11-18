@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Class 5</title>
+<!-- Home-screen icon and full-screen mode (iPhone "Add to Home Screen", Android "Install") -->
+<link rel="icon" href="../icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Class 5">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F5FAF6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,400;7..72,600&family=STIX+Two+Text:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Same visual system as Therefore: one narrow column, levels list on home, stepwise exercises. */
+:root{--g1:#1F7A4A;--g2:#2E8B57;--g3:#3BAFA0;--mast-shadow:rgba(31,122,74,.6);--acc2:#3BA776;--acc2-soft:#E2F4EA;
+  --paper:#F5FAF6; --surface:#FFFFFF; --ink:#14301F; --muted:#4F6B5A; --line:#D5E8DA;
+  --accent:#1F7A4A; --accent-ink:#FFFFFF;
+  --good:#1D7550; --good-tint:#E3F3EB; --bad:#B42318; --bad-bg:#FBE9E7;
+  --soft:#EAF5EE;
+  --blob1:#CDEFD8; --blob2:#E2F4C9; --blob3:#CFF0E6; --blob4:#F0F7D4; --lock-line:#CBE6D3; --lock-ring:rgba(76,175,110,.25); --lock-glow:rgba(31,122,74,.45); --lock-field:#F6FCF8;
+  --mast:#1E5A3A; --mast-ink:#FFFFFF; --mast-sym:rgba(255,255,255,.09); --mast-muted:rgba(255,255,255,.78);
+  --candy:#2E8B57; --candy-ink:#FFFFFF; --candy-2:#DDF1E4;
+  --p1:#0D7F73; --p1-soft:#DCF2EE; --p2:#5A7D1A; --p2-soft:#EAF2D6; --p3:#2E8B57; --p3-soft:#DDF1E4; --p4:#1F6B4F; --p4-soft:#DCEDE5;
+  --page-sym:rgba(31,122,74,.07);
+  --serif:'Literata', Georgia, 'Times New Roman', serif;
+  --sans:'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --logic:'STIX Two Text', 'Cambria Math', 'Times New Roman', serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1E16; --surface:#172A20; --ink:#E4F2E9; --muted:#9FBFAC; --line:#2C4636;
+    --accent:#6FD39C; --accent-ink:#0F1E16;
+    --good:#5FCB9C; --good-tint:#16352B; --bad:#FF8F84; --bad-bg:#3A1E22;
+    --soft:#1F3529; color-scheme: dark;
+    --blob1:rgba(80,200,130,.18); --blob2:rgba(160,210,90,.16); --blob3:rgba(86,211,195,.14); --blob4:rgba(200,230,120,.10); --lock-line:#2F4A3A; --lock-ring:rgba(80,200,130,.12); --lock-glow:rgba(80,200,130,.45); --lock-field:#142319;
+    --mast:#1F5A3C; --mast-ink:#FFFFFF; --mast-sym:rgba(255,255,255,.08); --mast-muted:rgba(255,255,255,.75);
+    --candy:#5FCB8F; --candy-ink:#0A1A10; --candy-2:#1E3A2A;
+    --p1:#56D3C3; --p1-soft:#14322E; --p2:#B5D46A; --p2-soft:#2B3514; --p3:#6FD39C; --p3-soft:#183A28; --p4:#4FBF95; --p4-soft:#163329;
+    --page-sym:rgba(111,211,156,.07);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1E16; --surface:#172A20; --ink:#E4F2E9; --muted:#9FBFAC; --line:#2C4636;
+  --accent:#6FD39C; --accent-ink:#0F1E16;
+  --good:#5FCB9C; --good-tint:#16352B; --bad:#FF8F84; --bad-bg:#3A1E22;
+  --soft:#1F3529; color-scheme: dark;
+    --blob1:rgba(80,200,130,.18); --blob2:rgba(160,210,90,.16); --blob3:rgba(86,211,195,.14); --blob4:rgba(200,230,120,.10); --lock-line:#2F4A3A; --lock-ring:rgba(80,200,130,.12); --lock-glow:rgba(80,200,130,.45); --lock-field:#142319;
+    --mast:#1F5A3C; --mast-ink:#FFFFFF; --mast-sym:rgba(255,255,255,.08); --mast-muted:rgba(255,255,255,.75);
+    --candy:#5FCB8F; --candy-ink:#0A1A10; --candy-2:#1E3A2A;
+    --p1:#56D3C3; --p1-soft:#14322E; --p2:#B5D46A; --p2-soft:#2B3514; --p3:#6FD39C; --p3-soft:#183A28; --p4:#4FBF95; --p4-soft:#163329;
+    --page-sym:rgba(111,211,156,.07);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+main{max-width:640px;margin:0 auto;padding-block:20px 64px;padding-left:max(18px, env(safe-area-inset-left,0px));padding-right:max(18px, env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.2;margin:0;text-wrap:balance}
+h1{font-size:2.4rem;letter-spacing:-.01em}
+h2{font-size:1.55rem}
+h3{font-size:1.1rem}
+p{margin:.4em 0}
+.muted{color:var(--muted)}
+.f{font-family:var(--logic);white-space:nowrap;font-size:1.06em}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,select:focus-visible,a:focus-visible,label:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+.back{background:none;border:0;padding:6px 0;color:var(--accent);font-weight:700;margin-bottom:10px}
+
+/* Home */
+.hero{display:flex;align-items:center;gap:16px;margin:8px 0 6px}
+.hero svg{width:84px;height:auto;flex:none}
+.tagline{font-size:1.05rem;color:var(--muted);max-width:34ch}
+.levels{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--line)}
+.level{border-bottom:1px solid var(--line);padding:16px 0}
+.level-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.level-num{font-family:var(--serif);color:var(--muted);font-size:.95rem;white-space:nowrap}
+.topics{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-direction:column;gap:8px}
+.topic{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;border:1px solid var(--accent);background:var(--surface);border-radius:12px;padding:12px 14px}
+.topic:hover{background:var(--soft)}
+.topic small{display:block;color:var(--muted);font-size:.88rem}
+.go{color:var(--accent);font-weight:700;white-space:nowrap}
+
+/* Exercise */
+.ex-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
+.score{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.prop{font-family:var(--serif);font-size:1.4rem;line-height:1.35;margin:14px 0 6px}
+.prop mark{background:var(--soft);color:var(--ink);border-bottom:2px solid var(--accent);padding:0 2px}
+.formula{font-family:var(--logic);font-size:1.6rem;line-height:1.6;margin:12px 0 4px;display:flex;flex-wrap:wrap;align-items:baseline;row-gap:4px}
+.formula .sp{width:.3em}
+.tok{border:0;background:transparent;padding:0 2px;border-radius:5px;font-family:var(--logic);font-size:inherit;line-height:inherit}
+.tok.tap{border-bottom:2px dashed var(--muted);margin:0 1px}
+.tok.tap:hover{background:var(--soft)}
+.tok.sel{background:var(--soft);border-bottom:2px solid var(--accent)}
+.tok.right{background:var(--good-tint);border-bottom:2px solid var(--good)}
+.tok.wrong{background:var(--bad-bg);border-bottom:2px solid var(--bad)}
+.key{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.92rem;color:var(--muted);margin:6px 0 0}
+.key b{color:var(--ink);font-family:var(--logic);font-weight:600}
+.step{margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
+.step h3{margin-bottom:4px}
+.step .hint{font-size:.92rem;color:var(--muted)}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.choices.one{grid-template-columns:1fr}
+.choices.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.choice{border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;text-align:left;min-width:0;overflow-wrap:anywhere}
+.choice b{font-family:var(--serif);margin-right:6px}
+.choice.picked{border-color:var(--accent);background:var(--soft)}
+.choice.right{border-color:var(--good);background:var(--good-tint)}
+.choice.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.choice .why{display:block;font-size:.88rem;color:var(--muted);margin-top:4px;font-family:var(--sans)}
+.check{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.check input{margin-top:6px;accent-color:var(--accent);width:18px;height:18px;flex:none}
+.builder{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:12px;font-family:var(--logic);font-size:1.3rem}
+.builder select{font-family:var(--logic);font-size:1.15rem;padding:6px 6px;min-width:0}
+select{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink)}
+.preview{margin-top:10px;font-size:.92rem;color:var(--muted)}
+.preview .f{color:var(--ink);font-size:1.25rem}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btn{border:0;border-radius:10px;padding:11px 18px;font-weight:700;background:var(--accent);color:var(--accent-ink)}
+.btn[disabled]{opacity:.45;cursor:default}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.fb{margin-top:12px;padding:12px 14px;border-radius:10px;font-size:.97rem}
+.fb.good{background:var(--good-tint);color:var(--ink);border-left:4px solid var(--good)}
+.fb.bad{background:var(--bad-bg);color:var(--ink);border-left:4px solid var(--bad)}
+.fb strong{display:block;margin-bottom:2px}
+.fb ul{margin:6px 0 0;padding-left:1.2em}
+.fb li{margin:3px 0}
+.next{margin-top:30px;display:flex;justify-content:flex-end}
+/* Front screens */
+.syms{position:absolute;inset:0;overflow:hidden;pointer-events:none;font-family:var(--logic);user-select:none}
+.syms span{position:absolute;line-height:1;transform:rotate(var(--r))}
+.page-syms{position:fixed;z-index:0;color:var(--page-sym)}
+.lock{position:relative;z-index:1;max-width:400px;margin:9vh auto 0;text-align:center;display:grid;gap:10px;justify-items:center;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:30px 24px 26px;box-shadow:0 18px 50px -24px rgba(20,48,31,.35)}
+.lock .tile{width:76px;height:76px;margin-top:-68px;border-radius:20px;background:var(--mast);color:var(--mast-ink);display:grid;place-items:center;font-family:var(--logic);font-size:34px;box-shadow:0 10px 24px -10px rgba(30,90,58,.6)}
+.lock h1{font-size:2.5rem;margin-top:6px}
+.lock .sub{color:var(--muted);margin:0}
+.lock .code-form{margin-top:10px;text-align:center}
+.t-ico.small{font-size:.95rem}
+.lock input[type=text]{text-align:center;font-size:1.3rem;letter-spacing:.18em;padding:14px 12px;font-family:var(--logic)}
+.lock .chip{display:inline-flex;gap:6px;align-items:center;font-size:.85rem;color:var(--candy);background:var(--candy-2);border-radius:999px;padding:4px 12px;font-weight:700}
+.mast{position:relative;overflow:hidden;background:var(--mast);color:var(--mast-ink);border-radius:24px;padding:30px 24px 24px;margin-top:4px}
+.mast .syms{color:var(--mast-sym)}
+.mast > *:not(.syms){position:relative}
+.kicker{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mast-muted);margin:0;font-weight:700}
+.mast h1{font-size:clamp(2.6rem,9vw,3.6rem);letter-spacing:-.02em;margin-top:6px;color:var(--mast-ink)}
+.mast h1 .f{font-size:.8em;opacity:.55;margin-left:.15em}
+.mast-tag{color:var(--mast-muted);font-size:1.08rem;margin:.3em 0 0;max-width:34ch}
+.mast .candy-cta{margin-top:22px}
+.part-head{display:flex;align-items:center;gap:12px}
+.part-badge{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--pc);color:var(--surface);font-family:var(--serif);font-weight:600;font-size:1rem}
+.part-head h2{font-size:1.3rem}
+.part-head .level-num{margin-left:auto}
+.level{--pc:var(--p4);--pcs:var(--p4-soft)}
+.level.part-1{--pc:var(--p1);--pcs:var(--p1-soft)}
+.level.part-2{--pc:var(--p2);--pcs:var(--p2-soft)}
+.level.part-3{--pc:var(--p3);--pcs:var(--p3-soft)}
+.level.part-4{--pc:var(--p4);--pcs:var(--p4-soft)}
+.level.part-5{--pc:var(--p2);--pcs:var(--p2-soft)}
+.levels .topic{border-color:var(--line);display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;padding:12px 14px 12px 12px;transition:border-color .15s, transform .15s}
+.levels .topic:hover{border-color:var(--pc);background:var(--surface);transform:translateY(-1px)}
+.t-ico{width:44px;height:44px;border-radius:12px;background:var(--pcs);color:var(--pc);display:grid;place-items:center;font-family:var(--logic);font-size:1.25rem;font-weight:600}
+.levels .go{color:var(--pc)}
+@media (prefers-reduced-motion:reduce){ .levels .topic{transition:none} .levels .topic:hover{transform:none} }
+.code-form{display:grid;gap:8px;width:100%;margin-top:8px;text-align:left}
+.code-form .btn{justify-self:stretch}
+.code-err{color:var(--bad);font-size:.95rem;margin:0}
+input[aria-invalid="true"]{border-color:var(--bad)}
+/* Candy Challenge */
+.candy-cta{position:relative;overflow:hidden;display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:var(--candy);color:var(--candy-ink);border:0;border-radius:16px;padding:18px 16px 16px;margin-top:22px;box-shadow:0 10px 24px -12px rgba(0,0,0,.45)}
+.candy-cta::before{content:"";position:absolute;inset:0 0 auto;height:6px;background:repeating-linear-gradient(-45deg,rgba(255,255,255,.85) 0 8px,transparent 8px 16px)}
+.candy-cta:hover{filter:brightness(1.06)}
+.candy-cta .go-light{background:var(--candy-ink);color:var(--candy);border-radius:999px;padding:6px 14px}
+.candy-cta b{font-family:var(--serif);font-size:1.25rem;display:block}
+.candy-cta small{display:block;opacity:.88;font-size:.9rem}
+.candy-ico{font-size:2.2rem;line-height:1}
+.go-light{font-weight:700;white-space:nowrap;margin-left:auto}
+.game-hero{text-align:center;display:grid;gap:6px;justify-items:center;margin-top:6px}
+.game-hero p{max-width:40ch}
+.big-candy{font-size:64px;line-height:1}
+input[type=text]{font:inherit;padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);width:100%;margin-top:8px}
+input[type=text]:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn.big{font-size:1.1rem;padding:14px 24px}
+.gbar{display:grid;gap:6px;margin-bottom:14px}
+.gbar-row{display:flex;justify-content:space-between;font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.dots{display:flex;gap:4px}
+.dots i{flex:1;height:7px;border-radius:4px;background:var(--line)}
+.dots i.hit{background:var(--good)} .dots i.miss{background:var(--bad)} .dots i.now{background:var(--accent)}
+.cheer{color:var(--good);font-weight:700;white-space:nowrap}
+.win{text-align:center;background:var(--surface);border:2px solid var(--accent);border-radius:18px;padding:30px 18px;display:grid;gap:6px;justify-items:center;position:relative;z-index:6;margin-top:10px}
+.win.lose{border-color:var(--line)}
+.win h1{font-size:2.2rem}
+.eyebrow{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0}
+.cheer-big{font-family:var(--serif);font-size:1.4rem;color:var(--good);margin:0}
+.final{font-size:1.25rem;font-weight:700;font-variant-numeric:tabular-nums}
+.stamp{font-size:.9rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;margin-top:6px}
+.actions.center{justify-content:center;margin-top:18px}
+.rain{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:5}
+.rain span{position:absolute;top:-60px;animation-name:fall;animation-timing-function:linear;animation-iteration-count:3}
+@keyframes fall{to{transform:translateY(115vh) rotate(380deg)}}
+/* Win: sparkle explosions */
+.boom{position:fixed;inset:0;pointer-events:none;z-index:6;overflow:hidden}
+.boom i{position:absolute;left:var(--x);top:var(--y);font-style:normal;line-height:1;transform:translate(-50%,-50%) scale(.2);opacity:0;animation:burst var(--t) cubic-bezier(.15,.8,.3,1) var(--w) forwards}
+.boom i.dot{width:var(--s);height:var(--s);border-radius:50%;background:var(--c);box-shadow:0 0 10px var(--c)}
+@keyframes burst{
+  0%{transform:translate(-50%,-50%) scale(.2);opacity:1}
+  70%{opacity:1}
+  100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1) rotate(var(--rot));opacity:0}}
+.boom .flash{position:absolute;left:var(--x);top:var(--y);width:24px;height:24px;border-radius:50%;background:radial-gradient(circle,#fff,rgba(255,215,90,.8) 40%,transparent 70%);transform:translate(-50%,-50%) scale(0);animation:flash .6s ease-out var(--w) forwards}
+@keyframes flash{0%{transform:translate(-50%,-50%) scale(0);opacity:1}100%{transform:translate(-50%,-50%) scale(9);opacity:0}}
+
+.bounce{animation:bounce 1s ease-in-out infinite alternate}
+@keyframes bounce{from{transform:translateY(0) rotate(-6deg)}to{transform:translateY(-12px) rotate(6deg)}}
+@media (prefers-reduced-motion:reduce){ .rain{display:none} .bounce{animation:none} }
+@media (max-width:420px){ h1{font-size:2rem} .prop{font-size:1.25rem} .formula{font-size:1.35rem} .choices{grid-template-columns:1fr} .choices.three{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (prefers-reduced-motion:no-preference){ .fb{animation:pop .18s ease-out} @keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}} }
+.gclock{font-variant-numeric:tabular-nums;font-weight:700}
+.gclock.low{color:var(--bad, #c0392b)}
+.exnum{margin:-.4rem 0 .8rem;font-weight:600}
+
+
+/* Cute home header */
+.mast{background:linear-gradient(135deg,var(--g1) 0%,var(--g2) 55%,var(--g3) 100%);box-shadow:0 20px 44px -24px var(--mast-shadow)}
+.mast .syms{color:rgba(255,255,255,.14)}
+.mast h1 .f{opacity:.7}
+.mast .candy-cta{background:var(--surface);color:var(--ink);box-shadow:0 12px 26px -14px rgba(20,60,40,.55)}
+.mast .candy-cta::before{background:repeating-linear-gradient(-45deg,var(--candy) 0 8px,transparent 8px 16px);opacity:.85}
+.mast .candy-cta small{color:var(--muted);opacity:1}
+.mast .candy-cta b{color:var(--candy)}
+.mast .candy-cta .go-light{background:linear-gradient(90deg,var(--candy),var(--acc2));color:#fff}
+.levels,.mast{position:relative;z-index:1}
+
+/* Progress: what's been done */
+.prog{margin-top:18px;background:rgba(255,255,255,.18);border-radius:14px;padding:10px 14px}
+.prog-row{display:flex;justify-content:space-between;gap:10px;font-weight:700;font-size:.95rem}
+.prog-bar{height:10px;border-radius:999px;background:rgba(255,255,255,.3);margin-top:7px;overflow:hidden}
+.prog-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#FFE27A,#FFFFFF)}
+.tbar{height:6px;border-radius:999px;background:var(--soft);margin-top:7px;overflow:hidden;max-width:220px}
+.tbar i{display:block;height:100%;border-radius:999px;background:var(--pc)}
+.levels .topic.is-done{border-color:var(--good);background:var(--good-tint)}
+.levels .topic.is-done .t-ico{background:var(--good);color:#fff;font-family:var(--sans)}
+.levels .topic.is-done .go{color:var(--good)}
+.part-done{margin-left:auto;font-weight:700;font-size:.85rem;color:#fff;background:var(--good);border-radius:999px;padding:3px 10px;white-space:nowrap}
+.reset-row{text-align:center;margin:26px 0 8px}
+.reset{background:none;border:0;color:var(--muted);text-decoration:underline;font-size:.9rem;padding:6px}
+/* ===== Cute front screen ===== */
+.cute-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:
+  radial-gradient(40vmax 40vmax at 8% 12%, var(--blob1), transparent 60%),
+  radial-gradient(38vmax 38vmax at 92% 18%, var(--blob2), transparent 60%),
+  radial-gradient(44vmax 44vmax at 80% 95%, var(--blob3), transparent 60%),
+  radial-gradient(36vmax 36vmax at 10% 90%, var(--blob4), transparent 60%),
+  var(--paper)}
+.cute-bg span{position:absolute;line-height:1;font-family:var(--logic);font-weight:700;opacity:.85;transform:rotate(var(--r))}
+.cute-bg .em{font-family:system-ui,'Apple Color Emoji','Segoe UI Emoji',sans-serif;opacity:1;filter:drop-shadow(0 4px 6px rgba(30,90,58,.18))}
+@media (prefers-reduced-motion:no-preference){
+  .cute-bg span{animation:bob var(--d) ease-in-out infinite alternate}
+  @keyframes bob{from{transform:translateY(0) rotate(var(--r))}to{transform:translateY(-14px) rotate(calc(var(--r) + 8deg))}}
+  .lock .tile{animation:wiggle 3.2s ease-in-out infinite}
+  @keyframes wiggle{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg) scale(1.04)}}
+}
+.lock{border:2px solid var(--lock-line);border-radius:28px;box-shadow:0 22px 60px -26px var(--lock-glow),0 0 0 8px var(--lock-ring)}
+.lock .tile{background:linear-gradient(135deg,var(--candy),var(--acc2));color:#fff;border-radius:24px;box-shadow:0 12px 26px -10px var(--lock-glow);position:relative}
+.lock .tile::after{content:'✦';position:absolute;top:-8px;right:-10px;font-size:20px;color:#FFC93C;text-shadow:0 1px 0 rgba(0,0,0,.08)}
+.lock h1{background:linear-gradient(90deg,var(--candy),var(--acc2) 55%,var(--p1));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lock h1 .wave{-webkit-text-fill-color:initial;color:initial;margin-left:6px;font-size:.8em}
+.lock input[type=text]{border:2px solid var(--lock-line);border-radius:16px;background:var(--lock-field)}
+.lock input[type=text]:focus{border-color:var(--candy);outline:3px solid var(--lock-ring);outline-offset:0}
+.lock .btn.big{border-radius:16px;background:linear-gradient(90deg,var(--candy),var(--acc2));color:#fff;box-shadow:0 10px 20px -10px var(--lock-glow)}
+.lock .chip{font-size:.9rem;padding:6px 14px;box-shadow:inset 0 0 0 1.5px var(--lock-line)}
+.lock .hello{margin:0;font-weight:700;color:var(--candy);letter-spacing:.02em}
+.op{font-size:1.42em;line-height:1;vertical-align:-.08em;font-weight:600;padding:0 .04em}
+.why.means{color:var(--ink);opacity:.85}
+.means-list{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px}
+.means-list li{background:var(--soft);border-radius:10px;padding:8px 10px;line-height:1.45}
+.means-list li.ok{background:var(--good-tint)}
+.means-h{margin-top:14px}
+.why.means{color:var(--ink);opacity:.88}
+.why.wrongwhy{color:var(--bad);opacity:.95}
+.ttwrap{overflow-x:auto;margin:6px 0 4px}
+table.tt{border-collapse:collapse;font-family:var(--logic);font-size:1.15rem;margin:0 auto}
+table.tt th,table.tt td{padding:4px 8px;text-align:center;border-bottom:1px solid var(--line)}
+table.tt th.fc{font-weight:600;white-space:nowrap}
+table.tt th small{display:block;font-family:var(--sans);font-size:.7rem;color:var(--muted);font-weight:400}
+table.tt .sep{border-left:2px solid var(--ink);padding:0}
+table.tt .cell{min-width:44px;min-height:38px;border-radius:9px;border:1.5px solid var(--line);background:var(--surface);font-family:var(--logic);font-size:1.05rem;font-weight:700;cursor:pointer;color:var(--ink)}
+table.tt .cell.right{background:var(--good-tint);border-color:var(--good)}
+table.tt .cell.wrong{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+table.proof{border-collapse:collapse;font-size:1.12rem;margin:8px 0 12px}
+table.proof td{padding:2px 6px;vertical-align:middle}
+table.proof .ln{color:var(--muted);text-align:right;font-family:var(--sans);font-size:.9rem}
+table.proof .bars i{display:inline-block;width:12px;height:1.6em;border-left:2px solid var(--ink);vertical-align:middle}
+table.proof .asm{border-bottom:2px solid var(--ink);padding-bottom:1px}
+table.proof .ju{color:var(--muted);font-family:var(--sans);font-size:.92rem;padding-left:14px;white-space:nowrap}
+table.proof .gap{color:var(--bad)}
+.next{display:flex;justify-content:space-between;gap:10px}
+.next .prev{margin-right:auto}
+.next .btn:last-child{margin-left:auto}
+table.proof tr.new .bars i:last-child{height:1.25em;margin-top:.35em;vertical-align:bottom}
+</style>
+<style id="theme">:root{--paper:hsl(36 40% 97%);--surface:#FFFFFF;--ink:hsl(36 45% 13%);--muted:hsl(36 15% 37%);--line:hsl(36 32% 87%);--soft:hsl(36 40% 94%);
+--accent:hsl(36 62% 31%);--accent-ink:#FFFFFF;--mast:hsl(36 50% 25%);--mast-ink:#FFFFFF;--candy:hsl(36 52% 37%);--candy-ink:#FFFFFF;--candy-2:hsl(36 50% 92%);
+--acc2:hsl(50 48% 46%);--acc2-soft:hsl(36 52% 93%);--g1:hsl(36 62% 29%);--g2:hsl(48 52% 39%);--g3:hsl(74 50% 44%);--mast-shadow:hsl(36 60% 30% / .55);
+--p1:hsl(76 70% 28%);--p1-soft:hsl(76 55% 92%);--p2:hsl(356 62% 30%);--p2-soft:hsl(356 55% 92%);--p3:hsl(36 55% 34%);--p3-soft:hsl(36 50% 92%);--p4:hsl(116 45% 31%);--p4-soft:hsl(116 45% 92%);
+--blob1:hsl(36 60% 88%);--blob2:hsl(66 55% 90%);--blob3:hsl(6 55% 90%);--blob4:hsl(96 60% 92%);--lock-line:hsl(36 40% 85%);--lock-ring:hsl(36 50% 50% / .22);--lock-glow:hsl(36 60% 35% / .45);--lock-field:hsl(36 50% 98%);--page-sym:hsl(36 60% 30% / .07);}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:hsl(36 35% 9%);--surface:hsl(36 30% 13%);--ink:hsl(36 40% 92%);--muted:hsl(36 18% 68%);--line:hsl(36 25% 23%);--soft:hsl(36 28% 17%);
+--accent:hsl(36 58% 66%);--accent-ink:hsl(36 35% 9%);--mast:hsl(36 45% 24%);--candy:hsl(36 52% 62%);--candy-ink:hsl(36 35% 8%);--candy-2:hsl(36 30% 18%);
+--acc2:hsl(50 48% 58%);--acc2-soft:hsl(36 30% 18%);--g1:hsl(36 50% 25%);--g2:hsl(48 45% 31%);--g3:hsl(74 45% 35%);--mast-shadow:hsl(36 50% 20% / .6);
+--p1:hsl(76 55% 64%);--p1-soft:hsl(76 30% 17%);--p2:hsl(356 55% 64%);--p2-soft:hsl(356 30% 17%);--p3:hsl(36 50% 66%);--p3-soft:hsl(36 30% 17%);--p4:hsl(116 45% 62%);--p4-soft:hsl(116 28% 17%);
+--blob1:hsl(36 60% 50% / .16);--blob2:hsl(66 55% 50% / .14);--blob3:hsl(6 55% 50% / .12);--blob4:hsl(96 60% 50% / .10);--lock-line:hsl(36 25% 26%);--lock-ring:hsl(36 50% 55% / .12);--lock-glow:hsl(36 55% 55% / .45);--lock-field:hsl(36 30% 12%);--page-sym:hsl(36 55% 70% / .07);}}
+:root[data-theme="dark"]{--paper:hsl(36 35% 9%);--surface:hsl(36 30% 13%);--ink:hsl(36 40% 92%);--muted:hsl(36 18% 68%);--line:hsl(36 25% 23%);--soft:hsl(36 28% 17%);
+--accent:hsl(36 58% 66%);--accent-ink:hsl(36 35% 9%);--mast:hsl(36 45% 24%);--candy:hsl(36 52% 62%);--candy-ink:hsl(36 35% 8%);--candy-2:hsl(36 30% 18%);
+--acc2:hsl(50 48% 58%);--acc2-soft:hsl(36 30% 18%);--g1:hsl(36 50% 25%);--g2:hsl(48 45% 31%);--g3:hsl(74 45% 35%);--mast-shadow:hsl(36 50% 20% / .6);
+--p1:hsl(76 55% 64%);--p1-soft:hsl(76 30% 17%);--p2:hsl(356 55% 64%);--p2-soft:hsl(356 30% 17%);--p3:hsl(36 50% 66%);--p3-soft:hsl(36 30% 17%);--p4:hsl(116 45% 62%);--p4-soft:hsl(116 28% 17%);
+--blob1:hsl(36 60% 50% / .16);--blob2:hsl(66 55% 50% / .14);--blob3:hsl(6 55% 50% / .12);--blob4:hsl(96 60% 50% / .10);--lock-line:hsl(36 25% 26%);--lock-ring:hsl(36 50% 55% / .12);--lock-glow:hsl(36 55% 55% / .45);--lock-field:hsl(36 30% 12%);--page-sym:hsl(36 55% 70% / .07);}</style>
+</head>
+<body>
+<style>
+/* Additions for this class */
+.choice .f{white-space:normal;overflow-wrap:anywhere}
+.prop .f{white-space:normal}
+.formula.wrap{font-size:1.35rem;display:block;overflow-wrap:anywhere}
+.plan{position:relative;z-index:1;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.plan h2{font-size:1.15rem}
+.plan ol{margin:8px 0 0;padding-left:1.2em;color:var(--muted);font-size:.95rem}
+.plan li{margin:2px 0}
+.plan b{color:var(--ink)}
+.level.part-0{--pc:var(--acc2);--pcs:var(--acc2-soft)}
+.fcard{margin-top:16px;background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:22px 20px;min-height:200px;display:grid;gap:10px;align-content:start}
+.fcard .deck{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0}
+.fcard h3{font-size:1.6rem;color:var(--accent)}
+.fcard .def{font-size:1.08rem}
+.fcard .ex{font-family:var(--logic);font-size:1.3rem;background:var(--soft);border-radius:12px;padding:10px 14px;overflow-wrap:anywhere}
+.fcard .ex .f{white-space:normal;display:inline-block;margin-right:.6em}
+.fcard .def br{content:"";display:block;margin-top:.55em}
+.fcard .ex small{display:block;font-family:var(--sans);font-size:.88rem;color:var(--muted)}
+.fcard.hidden-def{border-style:dashed;place-items:center;text-align:center}
+.basket{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px;padding:14px;background:var(--soft);border-radius:16px}
+.fruit{position:relative;font-size:2.4rem;line-height:1;width:58px;height:58px;display:grid;place-items:center;background:var(--surface);border-radius:14px;border:1px solid var(--line)}
+.fruit .worm{position:absolute;right:-6px;bottom:-6px;font-size:1.2rem}
+.legend{font-size:.9rem;color:var(--muted)}
+.props{display:grid;gap:10px;margin-top:10px}
+.prop-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface)}
+.prop-row .yn{display:flex;gap:6px}
+.prop-row .choice{padding:8px 14px}
+.prop-row .test{display:block;font-family:var(--logic);font-size:.95rem;color:var(--muted)}
+.mast .candy-cta::before{display:none}
+.results{margin:8px 0 0;padding-left:1.4em;display:grid;gap:8px}
+.results li{font-size:.97rem}
+.results li.ok > span:first-child{color:var(--good);font-weight:700}
+.results li.no > span:first-child{color:var(--bad);font-weight:700}
+.results .why{display:block;color:var(--muted);font-size:.9rem}
+.test-ico{font-family:var(--serif);font-weight:700;color:var(--candy)}
+.test-big{font-family:var(--serif);color:var(--accent)}
+.key{background:var(--soft);border-radius:12px;padding:8px 12px;margin-top:10px}
+</style>
+<main id="app"></main>
+<script>
+// ===== Helpers =====
+// Seeded randomness: every student sees the exact same exercises, in the same order.
+let R=Math.random;
+function seeded(key){ let h=2166136261; for(const c of key){ h^=c.charCodeAt(0); h=Math.imul(h,16777619); } let x=h>>>0; return ()=>{ x=(x+0x6D2B79F5)|0; let t=Math.imul(x^x>>>15,1|x); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function withSeed(key,fn){ const old=R; R=seeded(key); try{ return fn(); } finally{ R=old; } }
+const pick = a => a[Math.floor(R()*a.length)];
+const shuffle = a => { a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(R()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; };
+const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const OPS = h => h.replace(/(&amp;|[⊃≡∨~∀∃])/g,'<span class="op">$1</span>');
+const F = s => `<span class="f">${OPS(esc(s))}</span>`;
+const fmt = t => esc(t).replace(/\\\{/g,'\u0001').replace(/\\\}/g,'\u0002').replace(/\{([^}]*)\}/g,(_,f)=>`<span class="f">${OPS(f)}</span>`).replace(/\u0001/g,'{').replace(/\u0002/g,'}');
+
+// ===== Saved progress (this browser only) =====
+const KEY='phil270-class5-v1';
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY))||{}; }catch(e){ return {}; } }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(progress)); }catch(e){} }
+const progress = load();
+const doneMap = id => (progress.sets||(progress.sets={}))[id]||(progress.sets[id]={});
+function markDone(id,k){ doneMap(id)[k]=1; save(); }
+function tally(ok){
+  if(game){ gameRecord(ok); return; }
+  const p=progress[cur.id]||(progress[cur.id]={done:0,right:0}); p.done++; if(ok) p.right++; markDone(cur.id,cur.k);
+}
+const sc = id => { const p=progress[id]; return p?`${p.right}/${p.done}`:'0/0'; };
+
+// ===== Sentential logic helpers (truth tables, English readings) =====
+function slParse(src){ const s=String(src).replace(/\s+/g,''); let i=0;
+  function un(){ const c=s[i];
+    if(c==='~'){ i++; return {op:'~',a:un()}; }
+    if(c==='('||c==='['||c==='{'){ i++; const e=bin(); i++; return e; }
+    if(/[A-Z]/.test(c||'')){ i++; let sub=''; while(/[0-9]/.test(s[i]||'')) sub+=s[i++]; return {at:c+sub}; }
+    throw new Error('Cannot read '+src); }
+  function bin(){ const l=un(); const c=s[i]; if(c && '&∨⊃≡'.includes(c)){ i++; return {op:c,a:l,b:un()}; } return l; }
+  const t=bin(); if(i!==s.length) throw new Error('Cannot read '+src); return t; }
+function slEval(t,v){ if(t.at) return !!v[t.at]; const a=slEval(t.a,v);
+  if(t.op==='~') return !a; const b=slEval(t.b,v);
+  return t.op==='&'?a&&b : t.op==='∨'?a||b : t.op==='⊃'?(!a||b) : a===b; }
+function slAtoms(t,out=new Set()){ if(t.at) out.add(t.at); else { slAtoms(t.a,out); if(t.b) slAtoms(t.b,out); } return [...out].sort(); }
+function slEnglishT(t,k){
+  if(t.at) return k[t.at]||t.at;
+  if(t.op==='~'){ const a=t.a;
+    if(a.op==='&') return `not both ${slEnglishT(a.a,k)} and ${slEnglishT(a.b,k)}`;
+    if(a.op==='∨') return `neither ${slEnglishT(a.a,k)} nor ${slEnglishT(a.b,k)}`;
+    return `it is not the case that ${slEnglishT(a,k)}`; }
+  const A=slEnglishT(t.a,k), B=slEnglishT(t.b,k), cx=(t.a.op&&t.a.op!=='~')||(t.b.op&&t.b.op!=='~');
+  if(t.op==='&') return cx?`both ${A}, and ${B}`:`${A} and ${B}`;
+  if(t.op==='∨') return `either ${A} or ${B}`;
+  if(t.op==='⊃') return `if ${A}, then ${B}`;
+  return `${A} if and only if ${B}`; }
+function slEnglish(f,k){ try{ const s=slEnglishT(slParse(f),k); return s[0].toUpperCase()+s.slice(1)+'.'; }catch(e){ return null; } }
+const onlyFormula = o => { const m=/^\{([^}]*)\}$/.exec(o.trim()); return m?m[1]:null; };
+function slStr(t,top=true){ if(t.at) return t.at; if(t.op==='~') return '~ '+slStr(t.a,false); const s=slStr(t.a,false)+' '+t.op+' '+slStr(t.b,false); return top?s:'('+s+')'; }
+const SLNAME={'~':'negation','&':'conjunction','∨':'disjunction','⊃':'conditional','≡':'biconditional'};
+function slWhy(t,v){ const TF=b=>b?'T':'F', val=slEval(t,v);
+  if(t.at) return `${t.at} is ${TF(val)}.`;
+  if(t.op==='~') return `${slStr(t.a)} is ${TF(slEval(t.a,v))}, so its negation is ${TF(val)}.`;
+  const a=slEval(t.a,v), b=slEval(t.b,v);
+  const rule = t.op==='&'?(val?'both parts are T':'a conjunction needs both parts T') : t.op==='∨'?(val?'at least one part is T':'both parts are F') : t.op==='⊃'?(val?(a?'the consequent is T':'the antecedent is F'):'T antecedent with F consequent is the only false case') : (val?'both sides match':'the two sides differ');
+  return `${slStr(t.a)} is ${TF(a)} and ${slStr(t.b)} is ${TF(b)}, so the ${SLNAME[t.op]} is ${TF(val)} (${rule}).`; }
+function proofHTML(p){
+  return `<table class="proof">${p.map(([n,d,s,j,as])=>`<tr class="${as&&d>0?'new':''}"><td class="ln">${n}</td><td class="ps"><span class="bars">${'<i></i>'.repeat(d+1)}</span><span class="${as?'asm':''}">${s?F(s):'<b class="gap">?</b>'}</span></td><td class="ju">${esc(j||'')}</td></tr>`).join('')}</table>`;
+}
+// ===== Class 5: truth-functional properties =====
+const K={};
+const DEFS1=[
+  {t:'Truth-functional equivalence', d:'P and Q are equivalent when no row of their truth table gives them different values.\nTo show equivalence: one table for both; the main columns must match on every row.\nTo show non-equivalence: one row where they differ is enough.', x:'{A ⊃ B}  and  {~ A ∨ B}', xs:'Same column (T F T T), so equivalent.'},
+  {t:'Equivalence: what can and cannot be equivalent', d:'All truth-functionally true sentences are equivalent to each other (all T columns), and all truth-functionally false ones are too.\nIndeterminate sentences are not all equivalent: A and B are both indeterminate, but they differ on the row A = T, B = F.', x:'{A ∨ ~ A}  and  {B ⊃ B}', xs:'Both are always T, so they are equivalent even with different letters.'},
+  {t:'Set of sentences', d:'A collection of zero or more sentences of SL, written in curly brackets: {A, B ⊃ C}. The empty set ∅ has no members.\nΓ (gamma) stands for any set.', x:'', xs:''},
+  {t:'Truth-functional consistency', d:'A set is consistent when at least one row makes every member true.\nTo show consistent: one row where all are T (a shortened table).\nTo show inconsistent: a full table where every row makes at least one member F.', x:'{A ∨ B}, {~ A}', xs:'Consistent: A = F, B = T makes both true.'},
+  {t:'Truth-functional entailment: Γ ⊨ P', d:'Γ entails P when no row makes every member of Γ true and P false.\nTest: look only at the rows where every member of Γ is T. Is P T on all of them? Then Γ ⊨ P.\nOne row with Γ all T and P F shows Γ does not entail P.', x:'{A ⊃ B}, {A}  ⊨  {B}', xs:'The only row with both premises T has B = T.'},
+  {t:'Argument and validity in SL', d:'An argument is valid when no row makes all the premises true and the conclusion false.\nIt is invalid when at least one row does. That row is the counterexample.\nAn argument is valid exactly when its premises entail its conclusion.', x:'', xs:'Invalid: A ⊃ B, B ∴ A. Counterexample row: A = F, B = T.'},
+  {t:'Corresponding material conditional', d:'Turn an argument into one sentence: (premise 1 & premise 2 & …) ⊃ conclusion.\nKey fact: the argument is valid exactly when this conditional is truth-functionally true.', x:'{((A ⊃ B) & A) ⊃ B}', xs:'For A ⊃ B, A ∴ B. It is T on every row, so the argument is valid.'},
+  {t:'Entailed by the empty set', d:'⊨ P (entailed by ∅) means no row makes P false. That is just: P is truth-functionally true.\nAnything entails a truth-functionally true sentence.', x:'⊨ {A ∨ ~ A}'},
+  {t:'Everything in terms of consistency', d:'Every property can be restated as a consistency question:\n• P is false ⇔ {P} is inconsistent.\n• P is true ⇔ {~ P} is inconsistent.\n• Γ ⊨ P ⇔ Γ ∪ {~ P} is inconsistent.\n• An argument is valid ⇔ premises plus the negated conclusion are inconsistent.', x:'', xs:'Why it matters: a single test for consistency then answers every question.'},
+  {t:'An inconsistent set entails everything', d:'If no row makes every member of Γ true, then no row makes Γ true and P false, for any P.\nSo an inconsistent set entails every sentence. This sounds odd, but it follows from the definition.', x:'{A}, {~ A}  ⊨  {B}', xs:'No row makes A and ~ A both true, so the test is passed trivially.'},
+];
+DEFS1.forEach(d=>{ if(!d.x) delete d.x; });
+const EQT=[
+  {fs:['A ⊃ B','~ A ∨ B'], mode:'equiv', e:'A conditional is equivalent to “not the antecedent, or the consequent.”'},
+  {fs:['~ (A & B)','~ A ∨ ~ B'], mode:'equiv', e:'De Morgan: “not both” = “one or the other is false.”'},
+  {fs:['~ (A ∨ B)','~ A ∨ ~ B'], mode:'equiv', e:'Not equivalent: “neither” is stronger than “not both.”'},
+  {fs:['A ⊃ B','B ⊃ A'], mode:'equiv', e:'A conditional is not equivalent to its converse.'},
+  {fs:['A ⊃ B','~ B ⊃ ~ A'], mode:'equiv', e:'A conditional is equivalent to its contrapositive.'},
+  {fs:['A ≡ B','(A ⊃ B) & (B ⊃ A)'], mode:'equiv', e:'A biconditional is two conditionals.'},
+];
+const SETT=[
+  {fs:['A ∨ B','~ A','~ B'], mode:'set', e:'If neither A nor B is true, A ∨ B cannot be true.'},
+  {fs:['A ⊃ B','B ⊃ C','A'], mode:'set'},
+  {fs:['A ≡ B','A','~ B'], mode:'set'},
+  {fs:['A ⊃ B','~ B','A ∨ B'], mode:'set'},
+];
+const ARGT=[
+  {fs:['A ⊃ B','A','B'], mode:'arg', labels:['premise','premise','conclusion'], e:'This form is called modus ponens.'},
+  {fs:['A ⊃ B','B','A'], mode:'arg', labels:['premise','premise','conclusion'], e:'This is the fallacy of affirming the consequent.'},
+  {fs:['A ∨ B','~ A','B'], mode:'arg', labels:['premise','premise','conclusion'], e:'Disjunctive syllogism.'},
+  {fs:['A ⊃ B','~ A','~ B'], mode:'arg', labels:['premise','premise','conclusion'], e:'The fallacy of denying the antecedent.'},
+  {fs:['A ⊃ B','B ⊃ C','A ⊃ C'], mode:'arg', labels:['premise','premise','conclusion'], e:'Hypothetical syllogism: conditionals chain.'},
+];
+const CONCEPT=[
+  {q:'To show two sentences are NOT equivalent, what do you need?', o:['One row where they have different values','A full table where they always differ','Two rows where both are T','A row where both are F'], a:0, w:['','Too much: one row is enough.','Agreeing rows show nothing.','Agreeing rows show nothing.'], e:'One differing row breaks equivalence.'},
+  {q:'To show a set is consistent, what do you need?', o:['One row where every member is T','A full table with every member T on every row','One row where some member is T','A row where every member is F'], a:0, w:['','Too much: one row is enough.','All members, not just some, must be T together.','That shows nothing about consistency.'], e:'One row with all of them true.'},
+  {q:'To show an argument is INVALID, what do you need?', o:['One row with all premises T and the conclusion F','One row with the conclusion F','A row where all premises are F','A full table where the conclusion is always F'], a:0, w:['','The premises must all be T on that row too.','Rows with false premises do not matter.','Too much, and not the right test.'], e:'That row is the counterexample.'},
+  {q:'An argument is valid exactly when…', o:['its corresponding material conditional is truth-functionally true','its conclusion is truth-functionally true','its premises are consistent','its premises are all true'], a:0, w:['','A valid argument can have an indeterminate conclusion.','Consistency of premises does not settle validity.','Validity does not depend on actual truth.'], e:'Valid ⇔ (premises conjoined) ⊃ conclusion is always T.'},
+  {q:'Γ ⊨ P exactly when…', o:['Γ ∪ {~ P} is inconsistent','Γ ∪ {P} is inconsistent','Γ is consistent','P is truth-functionally true'], a:0, w:['','That would mean P conflicts with Γ.','Consistency of Γ alone does not settle it.','That is only a special case.'], e:'If Γ plus ~ P can never all be true, P can never be false when Γ is true.'},
+  {q:'P is truth-functionally true exactly when…', o:['{~ P} is inconsistent','{P} is inconsistent','{P} is consistent','{~ P} is consistent'], a:0, w:['','That means P is truth-functionally false.','That only shows P can be true.','That shows P can be false.'], e:'If ~ P can never be true, P is always true.'},
+  {q:'Which set entails every sentence?', o:['{A, ~ A}','{A, B}','{A ∨ ~ A}','The empty set ∅'], a:0, w:['','{A, B} does not entail ~ A.','A truth-functionally true set does not entail B.','∅ only entails truth-functionally true sentences.'], e:'An inconsistent set has no row where all its members are true, so it entails anything.'},
+  {q:'Are all truth-functionally false sentences equivalent to each other?', o:['Yes','No'], a:0, fixed:true, w:['','Their columns are all F, so they never differ.'], e:'They all have an all-F column.'},
+  {q:'Are all truth-functionally indeterminate sentences equivalent to each other?', o:['No','Yes'], a:0, fixed:true, w:['','A and B are both indeterminate, but they differ when A = T, B = F.'], e:'Indeterminate sentences can have different columns.'},
+];
+const ACTS={
+  learn1:{kind:'card', items:DEFS1, name:'Definitions: truth-functional properties', sub:'Flashcards · tap to reveal', ico:'Aa', deck:'Truth-functional properties'},
+  eq:{kind:'tt', items:EQT, name:'Equivalent?', sub:'Fill both columns and compare', ico:'≡'},
+  set:{kind:'tt', items:SETT, name:'Consistent?', sub:'Is there a row where all are true?', ico:'{ }'},
+  arg:{kind:'tt', items:ARGT, name:'Valid?', sub:'Look for the counterexample row', ico:'⊨'},
+  concept:{kind:'mc', items:CONCEPT, name:'What do you need to show it?', sub:'One row or the full table', ico:'?'},
+};
+const PARTS=[
+  {n:0, title:'Start here: definitions', ids:['learn1'], min:10},
+  {n:1, title:'Equivalence', ids:['eq'], min:14},
+  {n:2, title:'Consistency', ids:['set'], min:12},
+  {n:3, title:'Entailment and validity', ids:['arg'], min:16},
+  {n:4, title:'The properties in general', ids:['concept'], min:13},
+];
+const TEST=[
+  {tag:'eq', q:'Are {A ⊃ B} and {B ⊃ A} equivalent?', o:['No','Yes'], a:0, fixed:true, w:['','They differ on A = T, B = F: A ⊃ B is F, B ⊃ A is T.'], e:'A conditional and its converse are not equivalent.'},
+  {tag:'eq', q:'Are {~ (A & B)} and {~ A ∨ ~ B} equivalent?', o:['Yes','No'], a:0, fixed:true, w:['','Their columns match on all four rows.'], e:'De Morgan.'},
+  {tag:'set', q:'Is {A ⊃ B, A, ~ B} consistent?', o:['No','Yes'], a:0, fixed:true, w:['','If A and A ⊃ B are T, B must be T, so ~ B is F.'], e:'No row makes all three true.'},
+  {tag:'set', q:'Is {A ∨ B, ~ A} consistent?', o:['Yes','No'], a:0, fixed:true, w:['','A = F, B = T makes both true.'], e:'One row is enough.'},
+  {tag:'arg', q:'Is A ⊃ B, B ∴ A valid?', o:['No','Yes'], a:0, fixed:true, w:['','Counterexample: A = F, B = T. Both premises T, conclusion F.'], e:'Affirming the consequent.'},
+  {tag:'arg', q:'Is A ∨ B, ~ A ∴ B valid?', o:['Yes','No'], a:0, fixed:true, w:['','The only row with both premises T has B = T.'], e:'Disjunctive syllogism.'},
+  {tag:'concept', q:'To show an argument is invalid, you need…', o:['one row with all premises T and the conclusion F','a full table','one row with the conclusion F','one row with all premises F'], a:0, w:['','One row is enough.','The premises must be T on that row.','False premises do not matter.'], e:'The counterexample row.'},
+  {tag:'concept', q:'Γ ⊨ P exactly when…', o:['Γ ∪ {~ P} is inconsistent','Γ ∪ {P} is consistent','P is consistent','Γ is inconsistent'], a:0, w:['','That only shows P fits with Γ.','Single sentences are not “consistent” in this sense.','That is only a special case.'], e:'No row makes Γ true and P false.'},
+  {tag:'concept', q:'The argument A ⊃ B, A ∴ B is valid. So {((A ⊃ B) & A) ⊃ B} is…', o:['truth-functionally true','truth-functionally false','truth-functionally indeterminate'], a:0, fixed:true, w:['','It is T on every row.','It is T on every row.'], e:'Valid ⇔ the corresponding conditional is always T.'},
+  {tag:'concept', q:'Which set entails {B}?', o:['{A, ~ A}','{A}','{A ∨ B}','{~ B ⊃ A}'], a:0, w:['','A = T, B = F makes A true and B false.','A = T, B = F.','A = T, B = F.'], e:'An inconsistent set entails everything.'},
+];
+// ===== More practice =====
+EQT.push(
+  {fs:['A & (B ∨ C)','(A & B) ∨ (A & C)'], mode:'equiv', e:'& distributes over ∨.'},
+  {fs:['A ⊃ (B ⊃ C)','(A & B) ⊃ C'], mode:'equiv', e:'Two nested conditionals = one conditional with a conjoined antecedent.'},
+);
+SETT.push(
+  {fs:['A ≡ B','B ≡ C','~ (A ≡ C)'], mode:'set', e:'If A matches B and B matches C, A matches C.'},
+);
+ARGT.push(
+  {fs:['A ∨ B','A ⊃ C','B ⊃ C','C'], mode:'arg', labels:['premise','premise','premise','conclusion'], e:'Constructive dilemma: either way, C.'},
+);
+CONCEPT.push(
+  {q:'If {P, ~ Q} is inconsistent, what follows?', o:['P entails Q','P and Q are equivalent','P is truth-functionally false','Q is truth-functionally true'], a:0, w:['','Equivalence needs entailment both ways.','P could still be true on some row.','Q could be false on some row where P is false.'], e:'No row makes P true and Q false.'},
+);
+
+const PROP_N=['Reflexive','Symmetric','Transitive'];
+const PROP_F=['(∀x)Axx','(∀x)(∀y)(Axy ⊃ Ayx)','(∀x)(∀y)(∀z)[(Axy & Ayz) ⊃ Axz]'];
+const VERBS=[{L:'L', vs:'likes', pp:'liked'}, {L:'T', vs:'trusts', pp:'trusted'}, {L:'A', vs:'admires', pp:'admired'}, {L:'K', vs:'knows', pp:'known'}];
+const RS = (q1,q2,ord,on=0,n2=0,n3=0)=>({on,q1,n2,q2,n3,ord});
+const ORDER=[];
+const PEOPLE=['Ana','Ben','Cy'];
+function evalRel(st,n,Rl){
+  const L=(a,b)=>!!((Rl>>(a*n+b))&1), D=[...Array(n).keys()];
+  const atom=(x,y)=>{ const v=st.ord==='xy'?L(x,y):L(y,x); return st.n3?!v:v; };
+  const inner=x=>{ const r=st.q2==='∀'?D.every(y=>atom(x,y)):D.some(y=>atom(x,y)); return st.n2?!r:r; };
+  const v=st.q1==='∀'?D.every(inner):D.some(inner);
+  return st.on?!v:v;
+}
+function relCounter(a,b){
+  for(let n=1;n<=3;n++){ let best=null;
+    for(let Rl=0;Rl<(1<<(n*n));Rl++){ if(evalRel(a,n,Rl)!==evalRel(b,n,Rl)){ const pc=Rl.toString(2).split('1').length-1; if(!best||pc<best.pc) best={n,R:Rl,pc}; } }
+    if(best) return best; }
+  return null;
+}
+const ordStr = (st,L) => `${st.on?'~':''}(${st.q1||'?'}x)${st.n2?'~':''}(${st.q2||'?'}y)${st.n3?'~':''}${L}${st.ord||'??'}`;
+K.basket=[['UD','things in a fruit basket'],['Ax','x is an apple'],['Px','x is a pear'],['Rx','x is rotten']];
+
+const ALL_IDS=PARTS.flatMap(p=>p.ids);
+const nOf = id => ACTS[id].items.length;
+const doneCount = id => { const m=(progress.sets||{})[id]||{}; return ACTS[id].items.filter((_,k)=>m[k]).length; };
+const firstUndone = id => { const m=(progress.sets||{})[id]||{}; const i=ACTS[id].items.findIndex((_,k)=>!m[k]); return i<0?0:i; };
+
+// ===== App state =====
+let view='home', cur=null;
+const app=document.getElementById('app');
+const VIEWS={};
+function render(){ app.innerHTML=VIEWS[view](); }
+function fresh(id,k,item){ return {id,k:+k||0,item:item||ACTS[id].items[+k||0], pickd:null, opt:null, shown:false, b:{on:0,q1:'',n2:0,q2:'',n3:0,ord:''}, result:null, counted:false, ans:[null,null,null], checked:false}; }
+function go(v,arg,k){ view=v; cur = v==='act' ? fresh(arg,k) : null; if(cur && ACTS[cur.id] && ACTS[cur.id].kind==='card' && doneMap(cur.id)[cur.k]) cur.shown=true; if(v==='done') cur={id:arg}; render(); window.scrollTo(0,0); }
+const backHome = { toString(){ return game ? `<button class="back" data-act="quit-game">‹ Quit test</button>` : `<button class="back" data-go="home">‹ All sections</button>`; } };
+const fb = (ok,title,body='') => `<div class="fb ${ok?'good':'bad'}" role="status"><strong>${title}</strong>${body}</div>`;
+const keyHTML = key => key ? `<div class="key">${key.map(([s,m])=>s==='UD'?`<span>UD: ${esc(m)}</span>`:`<span><b>${esc(s)}</b>: ${esc(m)}</span>`).join('')}</div>` : '';
+function head(){
+  if(game) return gameBar('Test your knowledge');
+  const A=ACTS[cur.id];
+  return `<div class="ex-head"><h2>${esc(A.name)}</h2>${A.kind==='card'?'':`<span class="score">${sc(cur.id)}</span>`}</div><p class="muted exnum">${A.kind==='card'?'Card':'Exercise'} ${cur.k+1} of ${nOf(cur.id)}</p>`;
+}
+const isLast = () => cur.k+1>=nOf(cur.id);
+const nextBtn = (label,ready=true) => `<div class="next">${!game&&cur.k>0?`<button class="btn ghost prev" data-act="prev">‹ Previous</button>`:''}<button class="btn" data-act="next" ${!game&&!ready?'disabled':''}>${game ? (game.answered ? (game.i+1<game.items.length?'Next question':'See my score') : 'Skip') : (isLast()?'Finish':label)}</button></div>`;
+
+// ===== Decorative symbol layer =====
+function symLayer(n, seed){
+  let x=seed; const rnd=()=>((x=(x*16807)%2147483647)/2147483647);
+  const G=['∀','∃','⊃','=','~','&','∨','x','y','f(x)','(∀x)','(∃y)'];
+  let out='';
+  for(let i=0;i<n;i++) out+=`<span style="left:${(rnd()*100).toFixed(1)}%;top:${(rnd()*100).toFixed(1)}%;font-size:${(18+rnd()*46).toFixed(0)}px;--r:${(rnd()*40-20).toFixed(0)}deg">${esc(G[Math.floor(rnd()*G.length)])}</span>`;
+  return `<div class="syms" aria-hidden="true">${out}</div>`;
+}
+
+// ===== Home =====
+VIEWS.home = () => {
+  const t=id=>{
+    const A=ACTS[id], n=nOf(id), d=doneCount(id), all=d===n, st=firstUndone(id);
+    const status = all ? '✓ Done' : d ? `${d} of ${n} done` : 'Start →';
+    const unit = A.kind==='card'?'cards':'exercises';
+    return `<li><button class="topic${all?' is-done':''}" data-go="act" data-arg="${id}" data-k="${st}"><span class="t-ico${!all&&A.ico.length>2?' small':''}" aria-hidden="true">${all?'✓':esc(A.ico)}</span><span>${esc(A.name)}<small>${n} ${unit} · ${esc(A.sub)}</small>${d&&!all?`<span class="tbar" aria-hidden="true"><i style="width:${Math.round(d/n*100)}%"></i></span>`:''}</span><span class="go">${status}</span></button></li>`;
+  };
+  const part=p=>{ const items=p.ids.map(t).join(''), tot=p.ids.length, dn=p.ids.filter(id=>doneCount(id)===nOf(id)).length, label=p.n?`Part ${p.n}`:'Intro';
+    return `<li class="level part-${p.n}"><div class="part-head"><span class="part-badge" aria-hidden="true">${dn===tot?'✓':(p.n||'★')}</span><h2>${p.title}</h2>${dn===tot?`<span class="part-done">${label} done</span>`:`<span class="level-num">≈ ${p.min} min</span>`}</div><ul class="topics">${items}</ul></li>`; };
+  const totN=ALL_IDS.reduce((a,id)=>a+nOf(id),0), totD=ALL_IDS.reduce((a,id)=>a+doneCount(id),0);
+  return `
+  ${cuteBg(0)}
+  <header class="mast">
+    ${symLayer(16, 7)}
+    <p class="kicker">PHIL 270 · Symbolic Logic</p>
+    <h1>Class 5<span class="f" aria-hidden="true">⊨</span></h1>
+    <p class="mast-tag">Equivalence, consistency, entailment, and validity with truth tables. Everyone gets the same exercises, so we can work through them together.</p>
+    <div class="prog"><div class="prog-row"><span>${totD===totN?'All done! 🎉':'Your progress'}</span><span>${totD} of ${totN}</span></div><div class="prog-bar" role="progressbar" aria-label="Cards and exercises done" aria-valuemin="0" aria-valuemax="${totN}" aria-valuenow="${totD}"><i style="width:${Math.round(totD/totN*100)}%"></i></div></div>
+    <button class="candy-cta" data-go="gameStart"><span class="candy-ico test-ico" aria-hidden="true">✓</span><span><b>Test your knowledge</b><small>10 questions on everything from today. Do it at the end.${progress.best!=null?` Your best so far: ${progress.best} of 10.`:''}</small></span><span class="go-light">Start</span></button>
+  </header>
+  <section class="plan" aria-label="Today’s plan">
+    <h2>Today’s plan · 1 hour 15 minutes</h2>
+    <ol>${PARTS.map(p=>`<li><b>${p.title}</b> · about ${p.min} min</li>`).join('')}<li><b>Test your knowledge</b> · about 10 min</li></ol>
+  </section>
+  <ol class="levels">${PARTS.map(part).join('')}</ol>
+  <p class="reset-row"><button class="reset" data-act="reset">Start over</button></p>`;
+};
+
+// ===== Activity views =====
+function mcBody(it){
+  const e=cur;
+  if(!e.opt) e.opt = it.fixed ? it.o.map((_,i)=>i) : withSeed('opt-'+it.q,()=>shuffle(it.o.map((_,i)=>i)));
+  const L='ABCD';
+  const btns=e.opt.map((oi,pos)=>{ let c='choice'; const after=e.pickd!==null;
+    if(after){ if(oi===it.a) c+=' right'; else if(oi===e.pickd) c+=' wrong'; }
+    let why='';
+    if(after){
+      const mean = (it.m && it.m[oi]) || (it.sl && onlyFormula(it.o[oi]) ? slEnglish(onlyFormula(it.o[oi]), it.sl) : null);
+      if(mean) why+=`<span class="why means">${oi===it.a?'✓':'✗'} Means: ${fmt(mean)}</span>`;
+      if(oi!==it.a && it.w && it.w[oi]) why+=`<span class="why wrongwhy">${mean?'':'✗ '}Why it’s wrong: ${fmt(it.w[oi])}</span>`;
+    }
+    return `<button class="${c}" data-mc="${oi}" ${after?'disabled':''}><b>${L[pos]}</b>${fmt(it.o[oi])}${why}</button>`; }).join('');
+  const ok=e.pickd===it.a;
+  return `<p class="prop">${fmt(it.q).replace(/\n/g,'<br>')}</p>${it.proof?proofHTML(it.proof):''}${keyHTML(it.key)}
+  <section class="step"><div class="choices one">${btns}</div>
+    ${e.pickd!==null?fb(ok, ok?'Correct.':`The answer is ${L[e.opt.indexOf(it.a)]}.`, ' '+fmt(it.e)):''}</section>`;
+}
+function ttBody(it){
+  const e=cur, fs=it.fs||[it.f], trees=fs.map(slParse);
+  const atoms=[...new Set(trees.flatMap(t=>slAtoms(t)))].sort(), n=atoms.length, R=1<<n;
+  const rows=[...Array(R).keys()].map(r=>Object.fromEntries(atoms.map((a,j)=>[a,!((r>>(n-1-j))&1)])));
+  const truth=trees.map(t=>rows.map(v=>slEval(t,v)));
+  if(!e.tv) e.tv={};
+  const TF=b=>b?'T':'F';
+  const head=`<tr>${atoms.map(a=>`<th>${a}</th>`).join('')}<th class="sep"></th>${fs.map((f,c)=>`<th class="fc">${F(f)}${it.labels?`<small>${esc(it.labels[c])}</small>`:''}</th>`).join('')}</tr>`;
+  const body=rows.map((v,r)=>`<tr>${atoms.map(a=>`<td>${TF(v[a])}</td>`).join('')}<td class="sep"></td>${fs.map((f,c)=>{ const k=c+':'+r, val=e.tv[k]; let cls='cell'; if(e.checked){ cls+= val===TF(truth[c][r])?' right':' wrong'; } return `<td><button class="${cls}" data-tv="${k}" ${e.checked?'disabled':''} aria-label="Row ${r+1}, ${esc(f)}">${e.checked&&val!==TF(truth[c][r])?`${val||'?'}→${TF(truth[c][r])}`:(val||'?')}</button></td>`; }).join('')}</tr>`).join('');
+  const ready=fs.every((_,c)=>rows.every((_,r)=>e.tv[c+':'+r]));
+  const rowTxt=v=>atoms.map(a=>`${a} = ${TF(v[a])}`).join(', ');
+  let sum='';
+  if(e.checked){
+    const mode=it.mode||'single', col=truth[0];
+    if(mode==='single') sum = col.every(x=>x)?'True on every row, so it is truth-functionally true.':col.every(x=>!x)?'False on every row, so it is truth-functionally false.':`True on some rows and false on others, so it is truth-functionally indeterminate. For example, it is true when ${rowTxt(rows[col.indexOf(true)])}, and false when ${rowTxt(rows[col.indexOf(false)])}.`;
+    if(mode==='equiv'){ const d=rows.findIndex((_,r)=>truth[0][r]!==truth[1][r]); sum = d<0?'The two columns match on every row, so the sentences are truth-functionally equivalent.':`They differ when ${rowTxt(rows[d])}: the first is ${TF(truth[0][d])} and the second is ${TF(truth[1][d])}. So they are not equivalent.`; }
+    if(mode==='set'){ const g=rows.findIndex((_,r)=>truth.every(c=>c[r])); sum = g>=0?`All of them are true when ${rowTxt(rows[g])}, so the set is truth-functionally consistent.`:'No row makes them all true, so the set is truth-functionally inconsistent.'; }
+    if(mode==='arg'){ const last=truth.length-1, g=rows.findIndex((_,r)=>truth.slice(0,last).every(c=>c[r]) && !truth[last][r]); sum = g<0?'No row makes every premise true and the conclusion false, so the argument is truth-functionally valid.':`When ${rowTxt(rows[g])}, every premise is true and the conclusion is false. So the argument is invalid.`; }
+  }
+  const ok=e.checked && fs.every((_,c)=>rows.every((_,r)=>e.tv[c+':'+r]===TF(truth[c][r])));
+  const wrongRows=[]; if(e.checked) fs.forEach((f,c)=>rows.forEach((v,r)=>{ if(e.tv[c+':'+r]!==TF(truth[c][r])) wrongRows.push(`<li><b>Row ${rowTxt(v)}${fs.length>1?` · ${esc(f)}`:''}:</b> ${esc(slWhy(trees[c],v))}</li>`); }));
+  const whyList = wrongRows.length?`<h3 class="means-h">Why those rows</h3><ul class="means-list">${wrongRows.join('')}</ul>`:'';
+  return `<p class="prop">${fmt(it.q||(fs.length>1?(it.mode==='arg'?'Fill in each column. Is there a row where every premise is T and the conclusion is F?':it.mode==='set'?'Fill in each column. Is there a row where every sentence is T?':'Fill in both columns. Do they ever differ?'):'Fill in the column under the main connective.'))}</p>${keyHTML(it.key)}${it.eng?`<p class="muted">In English: ${esc(it.eng)}</p>`:''}
+  <section class="step"><p class="hint">Tap each box to switch between T and F.</p>
+    <div class="ttwrap"><table class="tt">${head}${body}</table></div>
+    <div class="actions"><button class="btn" data-act="check-tt" ${!ready||e.checked?'disabled':''}>Check</button></div>
+    ${e.checked?fb(ok, ok?'Correct.':'Not quite. The corrections are shown in the table.', ' '+esc(sum)+(it.e?' '+fmt(it.e):'')):''}${whyList}</section>`;
+}
+const BODY={
+  card(it){
+    const A=ACTS[cur.id];
+    if(!cur.shown) return `<div class="fcard hidden-def"><p class="deck">${esc(A.deck)}</p><h3>${esc(it.t)}</h3><p class="muted">What does it mean? Say it in your own words, then reveal.</p><div class="actions"><button class="btn" data-act="reveal">Show the definition</button></div></div>`;
+    return `<div class="fcard"><p class="deck">${esc(A.deck)}</p><h3>${esc(it.t)}</h3><p class="def">${fmt(it.d).replace(/\n/g,'<br>')}</p>${it.x?`<div class="ex">${fmt(it.x)}${it.xs?`<small>${esc(it.xs)}</small>`:''}</div>`:''}</div>`;
+  },
+  mc: mcBody,
+  tt: ttBody,
+  world(it){
+    const e=cur, FR={A:'🍎',P:'🍐'};
+    const fruits=it.b.map(s=>`<span class="fruit" role="img" aria-label="${s[0]==='A'?'apple':'pear'}${s[1]?' (rotten)':''}">${FR[s[0]]}${s[1]?'<span class="worm">🪱</span>':''}</span>`).join('');
+    const btns=[[true,'True'],[false,'False']].map(([v,l])=>{ let c='choice'; if(e.pickd!==null){ if(v===it.ans) c+=' right'; else if(v===e.pickd) c+=' wrong'; } return `<button class="${c}" data-tf="${v}" ${e.pickd!==null?'disabled':''}>${l}</button>`; }).join('');
+    const ok=e.pickd===it.ans;
+    return `<p class="muted">Here is everything in the basket.</p><div class="basket">${fruits}</div><p class="legend">🍎 apple · 🍐 pear · 🪱 rotten</p>
+    ${keyHTML(K.basket.slice(1))}
+    <div class="formula wrap">${esc(it.f)}</div>
+    <section class="step"><h3>Is this sentence true in this basket?</h3><div class="choices">${btns}</div>
+    ${e.pickd!==null?fb(ok, ok?'Correct.':`It’s ${it.ans?'true':'false'}.`, ` In English: “${esc(it.eng)}” ${esc(it.e)}`):''}</section>`;
+  },
+  rel(it){
+    const e=cur;
+    const rows=PROP_N.map((p,i)=>{
+      const yn=[[1,'Yes'],[0,'No']].map(([v,l])=>{ let c='choice'; if(e.checked){ if(v===it.ans[i]) c+=' right'; else if(v===e.ans[i]) c+=' wrong'; } else if(e.ans[i]===v) c+=' picked'; return `<button class="${c}" data-rel="${i}:${v}" aria-pressed="${e.ans[i]===v}" ${e.checked?'disabled':''}>${l}</button>`; }).join('');
+      return `<div class="prop-row"><span><b>${p}?</b><span class="test">${esc(PROP_F[i])}</span>${e.checked?`<span class="why">${e.ans[i]===it.ans[i]?'✓ ':'✗ '}${esc(it.e[i])}</span>`:''}</span><span class="yn">${yn}</span></div>`;
+    }).join('');
+    const ready=e.ans.every(a=>a!==null), ok=e.checked&&e.ans.every((a,i)=>a===it.ans[i]);
+    return `<p class="prop">Axy: ${esc(it.r)}</p><div class="key"><span>UD: ${esc(it.ud)}</span></div>
+    <section class="step"><h3>Which properties does it have?</h3><div class="props">${rows}</div>
+      <div class="actions"><button class="btn" data-act="check-rel" ${!ready||e.checked?'disabled':''}>Check</button></div>
+      ${e.checked?fb(ok, ok?'Correct.':'Not quite.', ok?' All three are right.':' The reason for each property is shown above.'):''}</section>`;
+  },
+  order(it){
+    const e=cur, b=e.b, v=VERBS[it.v], L=v.L;
+    const sel=(name,opts)=>`<select id="ord-${name}" data-o="${name}" aria-label="${name}" ${e.result?.ok?'disabled':''}>${opts.map(([val,l])=>`<option value="${val}" ${String(val)===String(b[name])?'selected':''}>${l}</option>`).join('')}</select>`;
+    const neg=n=>sel(n,[[0,'–'],[1,'~']]);
+    const ready=b.q1&&b.q2&&b.ord;
+    let res='';
+    if(e.result){
+      if(e.result.ok) res=fb(true,'Correct.',' '+esc(it.e(v)));
+      else {
+        const m=e.result.counter, names=PEOPLE.slice(0,m.n);
+        const pairs=[]; for(let a=0;a<m.n;a++) for(let c=0;c<m.n;c++) if((m.R>>(a*m.n+c))&1) pairs.push(`${names[a]} ${v.vs} ${a===c?'themself':names[c]}`);
+        const ud = m.n===1?`just ${names[0]}`:names.slice(0,-1).join(', ')+' and '+names[m.n-1];
+        const rel = pairs.length?`the only facts are: ${pairs.join('; ')}`:`nobody ${v.vs} anybody`;
+        const eng = evalRel(it.st,m.n,m.R);
+        res=fb(false,'Not quite.',` Suppose the UD is ${ud}, and ${rel}. Then the English sentence is ${eng?'true':'false'}, but your formula is ${eng?'false':'true'}. Change the formula and check again.`);
+      }
+    }
+    return `<p class="prop">${esc(it.say(v))}</p>
+    <div class="key"><span>UD: people</span><span><b>${L}xy</b>: x ${v.vs} y</span></div>
+    <section class="step"><h3>Build the formula</h3><p class="hint">With mixed quantifiers, order matters. Decide which comes first and which variable goes in which place.</p>
+      <div class="builder">${neg('on')}<span>(</span>${sel('q1',[['','?'],['∀','∀'],['∃','∃']])}<span>x)</span>${neg('n2')}<span>(</span>${sel('q2',[['','?'],['∀','∀'],['∃','∃']])}<span>y)</span>${neg('n3')}<span>${L}</span>${sel('ord',[['','??'],['xy','xy'],['yx','yx']])}</div>
+      <p class="preview">Your formula: <span class="f">${esc(ordStr(b,L))}</span></p>
+      <div class="actions"><button class="btn" data-act="check-order" ${!ready||e.result?.ok?'disabled':''}>Check</button></div>${res}</section>`;
+  },
+  move(it){
+    const e=cur, done=e.pickd!==null;
+    const opts=[['∀','(∀x)'],['∃','(∃x)'],['none','It can’t be moved']].map(([v,l])=>{ let c='choice'; if(done){ if(v===it.ans) c+=' right'; else if(v===e.pickd) c+=' wrong'; } return `<button class="${c}" data-move="${v}" ${done?'disabled':''}>${v==='none'?l:F(l)}</button>`; }).join('');
+    const means = done && it.say ? `<ul class="means-list">${[['∀','(∀x)'],['∃','(∃x)'],['none','It can’t be moved']].map(([v,l])=>{ const r=it[v]; return `<li class="${v===it.ans?'ok':'no'}"><b>${v===it.ans?'✓':'✗'}</b> ${v==='none'?`<b>${esc(l)}:</b> ${esc(it.none)}`:`${F(r[0])}: ${esc(r[1])}`}</li>`; }).join('')}</ul>` : '';
+    return `${it.key?`<div class="key"><span>${esc(it.key)}</span></div>`:''}<div class="formula">${esc(it.s).replace(/ /g,'&nbsp;')}</div>
+    ${it.say?`<p class="muted">In English: “${esc(it.say)}”</p>`:''}
+    <section class="step"><h3>Extend the quantifier over the whole sentence</h3>
+      <p class="hint">Which quantifier does the equivalent sentence start with?</p>
+      <div class="choices three">${opts}</div>
+      ${done?fb(e.pickd===it.ans, e.pickd===it.ans?'Correct.':(it.ans==='none'?'It can’t be moved.':`It becomes ${F('('+it.ans+'x)')}.`), (it.res?` Equivalent sentence: ${F(it.res)}. `:' ')+esc(it.why)):''}
+      ${means?`<h3 class="means-h">What each choice would say</h3>${means}`:''}
+    </section>`;
+  },
+};
+VIEWS.act = () => {
+  const kind = game ? 'mc' : ACTS[cur.id].kind;
+  const ready = kind!=='card' || cur.shown;
+  return `${backHome}${head()}${BODY[kind](cur.item)}${nextBtn(kind==='card'?'Next card':'Next one', ready)}`;
+};
+VIEWS.done = () => {
+  const A=ACTS[cur.id], n=nOf(cur.id);
+  const pi=PARTS.findIndex(p=>p.ids.includes(cur.id)), p=PARTS[pi], j=p.ids.indexOf(cur.id);
+  const nextId = p.ids[j+1] || (PARTS[pi+1]&&PARTS[pi+1].ids[0]);
+  const nextBtnH = nextId ? `<button class="btn" data-go="act" data-arg="${nextId}" data-k="${firstUndone(nextId)}">Next: ${esc(ACTS[nextId].name)}</button>` : `<button class="btn" data-go="gameStart">On to: Test your knowledge</button>`;
+  return `${backHome}
+  <div class="game-hero"><div class="big-candy" aria-hidden="true">✓</div>
+    <h2>That’s all ${n}</h2>
+    <p>You finished <b>${esc(A.name)}</b>.</p></div>
+  <div class="actions center">${nextBtnH}<button class="btn ghost" data-go="home">Back to all sections</button></div>`;
+};
+
+// ===== Test your knowledge (10 questions at the end) =====
+
+let game=null, lastGame=null;
+function gameRecord(ok){
+  if(!game||game.answered) return;
+  game.answered=true; game.hist[game.i]=ok;
+  if(ok) game.right++;
+}
+function gameBar(title){
+  const g=game, n=g.items.length;
+  const dots=g.items.map((_,k)=>`<i class="${k<g.i||(k===g.i&&g.answered)?(g.hist[k]?'hit':'miss'):k===g.i?'now':''}"></i>`).join('');
+  return `<div class="gbar"><div class="gbar-row"><span>Question ${g.i+1} of ${n}</span><span>${g.right} correct</span></div><div class="dots" aria-hidden="true">${dots}</div></div>
+  <div class="ex-head"><h2>${title}</h2></div>`;
+}
+function startGame(){
+  game={items:TEST.map((_,i)=>i), i:-1, right:0, answered:false, hist:[]};
+  gameNext();
+}
+function gameNext(){
+  if(game.i>=0 && !game.answered) game.hist[game.i]=false;
+  game.i++; game.answered=false;
+  if(game.i>=game.items.length){ finishGame(); return; }
+  view='act'; cur=fresh('test',game.i,TEST[game.items[game.i]]);
+  render(); window.scrollTo(0,0);
+}
+function finishGame(){
+  lastGame=game; game=null;
+  progress.best=Math.max(progress.best??0, lastGame.right); save();
+  view='gameEnd'; cur=null; render(); window.scrollTo(0,0);
+}
+VIEWS.gameStart = () => `${backHome}
+  <div class="game-hero"><div class="big-candy test-big" aria-hidden="true">✓</div>
+    <h2>Test your knowledge</h2>
+    <p>Ten questions on everything from today: equivalence, consistency, entailment, and validity with truth tables.</p>
+  </div>
+  <section class="step">
+    <p class="hint">Only your first answer to each question counts. You can skip a question, but a skip counts as a miss. You’ll see an explanation after each answer and your score at the end.</p>
+    <div class="actions"><button class="btn big" data-act="start-game">Start the test</button></div>
+  </section>`;
+VIEWS.gameEnd = () => {
+  const g=lastGame, n=g.items.length, pct=Math.round(g.right/n*100);
+  const rows=g.items.map((ti,k)=>{ const q=TEST[ti]; return `<li class="${g.hist[k]?'ok':'no'}"><span aria-hidden="true">${g.hist[k]?'✓':'✗'}</span> ${fmt(q.q)}${g.hist[k]?'':`<span class="why">Answer: ${fmt(q.o[q.a])}</span>`}</li>`; }).join('');
+  const missed=[...new Set(g.items.filter((_,k)=>!g.hist[k]).map(i=>TEST[i].tag))];
+  const practice = missed.length ? `<section class="step"><h3>Practice these, then try again</h3><ul class="topics">${missed.map(id=>`<li><button class="topic" data-go="act" data-arg="${id}" data-k="0"><span>${esc(ACTS[id].name)}</span><span class="go">Practice</span></button></li>`).join('')}</ul></section>` : '';
+  const msg = g.right===n ? 'Perfect score!' : g.right>=8 ? 'Great work!' : g.right>=5 ? 'Good effort.' : 'Keep practicing.';
+  return `<div class="win${g.right>=8?'':' lose'}" role="status">
+      <p class="eyebrow">Test your knowledge</p>
+      <h1>${msg}</h1>
+      <p class="final">${g.right} of ${n} right · ${pct}%</p>
+    </div>
+    <section class="step"><h3>Your answers</h3><ol class="results">${rows}</ol></section>
+    <div class="actions center"><button class="btn" data-act="replay">Take it again</button><button class="btn ghost" data-go="home">Back to practice</button></div>
+    ${practice}`;
+};
+
+// ===== Events =====
+app.addEventListener('click', ev=>{
+  const t=ev.target;
+  const act=t.closest('[data-act]')?.dataset.act;
+  if(act==='start-game'){ startGame(); return; }
+  if(act==='replay'){ go('gameStart'); return; }
+  if(act==='quit-game'){ game=null; go('home'); return; }
+  if(act==='next' && game){ gameNext(); return; }
+  if(act==='reset'){ if(confirm('Start over? This clears which exercises you have done on this device.')){ for(const k of Object.keys(progress)) delete progress[k]; save(); render(); } return; }
+  const goEl=t.closest('[data-go]'); if(goEl){ go(goEl.dataset.go, goEl.dataset.arg, goEl.dataset.k); return; }
+  if(view!=='act') return;
+  const it=cur.item, d=k=>t.closest(`[data-${k}]`)?.dataset[k];
+  let v;
+  if(act==='reveal'){ cur.shown=true; markDone(cur.id,cur.k); render(); return; }
+  if((v=d('mc'))!==undefined && cur.pickd===null){ cur.pickd=+v; tally(cur.pickd===it.a); render(); return; }
+  if((v=d('tf'))!==undefined && cur.pickd===null){ cur.pickd = v==='true'; tally(cur.pickd===it.ans); render(); return; }
+  if((v=d('move'))!==undefined && cur.pickd===null){ cur.pickd=v; tally(v===it.ans); render(); return; }
+  if((v=d('tv'))!==undefined && !cur.checked){ const x=cur.tv[v]; cur.tv[v]= x==='T'?'F':'T'; render(); return; }
+  if(act==='check-tt' && !cur.checked){ cur.checked=true; const it2=cur.item, fs=it2.fs||[it2.f], tr=fs.map(slParse), at=[...new Set(tr.flatMap(t=>slAtoms(t)))].sort(), n=at.length; let ok=true; for(let r=0;r<(1<<n);r++){ const vv=Object.fromEntries(at.map((a,j)=>[a,!((r>>(n-1-j))&1)])); tr.forEach((t,c)=>{ if(cur.tv[c+':'+r]!==(slEval(t,vv)?'T':'F')) ok=false; }); } tally(ok); render(); return; }
+  if((v=d('rel'))!==undefined && !cur.checked){ const [i,val]=v.split(':').map(Number); cur.ans[i]=val; render(); return; }
+  if(act==='check-rel' && !cur.checked){ cur.checked=true; tally(cur.ans.every((a,i)=>a===it.ans[i])); render(); return; }
+  if(act==='check-order'){
+    const c=relCounter(it.st, cur.b); cur.result={ok:!c, counter:c};
+    if(!cur.counted){ cur.counted=true; tally(!c); }
+    render(); return;
+  }
+  if(act==='prev'){ if(cur.k>0) go('act',cur.id,cur.k-1); return; }
+  if(act==='next'){ if(cur.k+1<nOf(cur.id)) go('act',cur.id,cur.k+1); else go('done',cur.id); return; }
+});
+app.addEventListener('change', ev=>{
+  const t=ev.target;
+  if(view==='act' && t.dataset.o){ const k=t.dataset.o; cur.b[k]=['on','n2','n3'].includes(k)?+t.value:t.value; if(cur.result&&!cur.result.ok) cur.result=null; render(); document.getElementById('ord-'+k)?.focus(); }
+});
+// ===== Class code =====
+const CLASS_CODE='class5';
+const normCode = v => String(v||'').toLowerCase().replace(/\s+/g,'');
+let unlocked=false; try{ unlocked = localStorage.getItem('class5-unlocked')==='yes'; }catch(e){}
+let codeError=false;
+function cuteBg(n=22){
+  let x=29; const rnd=()=>((x=(x*16807)%2147483647)/2147483647);
+  const SY=['∀','∃','⊃','=','~','&','∨'], COL=['var(--candy)','var(--acc2)','var(--p1)','var(--p2)','var(--p4)'];
+  let out='';
+  for(let i=0;i<n;i++){
+    const l=(rnd()*96).toFixed(1), t=(rnd()*94).toFixed(1), r=(rnd()*40-20).toFixed(0), d=(2.6+rnd()*3).toFixed(1);
+    out+=`<span style="left:${l}%;top:${t}%;font-size:${(22+rnd()*30).toFixed(0)}px;color:${COL[Math.floor(rnd()*COL.length)]};opacity:.35;--r:${r}deg;--d:${d}s">${SY[Math.floor(rnd()*SY.length)]}</span>`;
+  }
+  return `<div class="cute-bg" aria-hidden="true">${out}</div>`;
+}
+VIEWS.lock = () => `
+  ${cuteBg()}
+  <div class="lock">
+    <div class="tile" aria-hidden="true">⊨</div>
+    <h1>Class 5</h1>
+    <p class="sub">Truth-Functional Properties.</p>
+    <form id="code-form" class="code-form" novalidate>
+      <label for="class-code" class="hint">Enter the class code your teacher gave you</label>
+      <input type="text" id="class-code" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="30" placeholder="• • • • • • •" ${codeError?'aria-invalid="true" aria-describedby="code-err"':''}>
+      ${codeError?`<p class="code-err" id="code-err" role="alert">That code isn’t right. Check with your teacher and try again.</p>`:''}
+      <button class="btn big" type="submit">Enter</button>
+    </form>
+  </div>`;
+app.addEventListener('submit', ev=>{
+  if(ev.target.id!=='code-form') return;
+  ev.preventDefault();
+  if(normCode(document.getElementById('class-code').value)===CLASS_CODE){
+    unlocked=true; codeError=false; try{ localStorage.setItem('class5-unlocked','yes'); }catch(e){}
+    go('home');
+  } else { codeError=true; render(); document.getElementById('class-code')?.focus(); }
+});
+if(!unlocked) view='lock';
+render();
+if(!unlocked) document.getElementById('class-code')?.focus();
+</script>
+</body>
+</html>

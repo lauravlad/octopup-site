@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Class 2</title>
+<!-- Home-screen icon and full-screen mode (iPhone "Add to Home Screen", Android "Install") -->
+<link rel="icon" href="../icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Class 2">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F5FAF6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,400;7..72,600&family=STIX+Two+Text:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Same visual system as Therefore: one narrow column, levels list on home, stepwise exercises. */
+:root{--g1:#1F7A4A;--g2:#2E8B57;--g3:#3BAFA0;--mast-shadow:rgba(31,122,74,.6);--acc2:#3BA776;--acc2-soft:#E2F4EA;
+  --paper:#F5FAF6; --surface:#FFFFFF; --ink:#14301F; --muted:#4F6B5A; --line:#D5E8DA;
+  --accent:#1F7A4A; --accent-ink:#FFFFFF;
+  --good:#1D7550; --good-tint:#E3F3EB; --bad:#B42318; --bad-bg:#FBE9E7;
+  --soft:#EAF5EE;
+  --blob1:#CDEFD8; --blob2:#E2F4C9; --blob3:#CFF0E6; --blob4:#F0F7D4; --lock-line:#CBE6D3; --lock-ring:rgba(76,175,110,.25); --lock-glow:rgba(31,122,74,.45); --lock-field:#F6FCF8;
+  --mast:#1E5A3A; --mast-ink:#FFFFFF; --mast-sym:rgba(255,255,255,.09); --mast-muted:rgba(255,255,255,.78);
+  --candy:#2E8B57; --candy-ink:#FFFFFF; --candy-2:#DDF1E4;
+  --p1:#0D7F73; --p1-soft:#DCF2EE; --p2:#5A7D1A; --p2-soft:#EAF2D6; --p3:#2E8B57; --p3-soft:#DDF1E4; --p4:#1F6B4F; --p4-soft:#DCEDE5;
+  --page-sym:rgba(31,122,74,.07);
+  --serif:'Literata', Georgia, 'Times New Roman', serif;
+  --sans:'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --logic:'STIX Two Text', 'Cambria Math', 'Times New Roman', serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1E16; --surface:#172A20; --ink:#E4F2E9; --muted:#9FBFAC; --line:#2C4636;
+    --accent:#6FD39C; --accent-ink:#0F1E16;
+    --good:#5FCB9C; --good-tint:#16352B; --bad:#FF8F84; --bad-bg:#3A1E22;
+    --soft:#1F3529; color-scheme: dark;
+    --blob1:rgba(80,200,130,.18); --blob2:rgba(160,210,90,.16); --blob3:rgba(86,211,195,.14); --blob4:rgba(200,230,120,.10); --lock-line:#2F4A3A; --lock-ring:rgba(80,200,130,.12); --lock-glow:rgba(80,200,130,.45); --lock-field:#142319;
+    --mast:#1F5A3C; --mast-ink:#FFFFFF; --mast-sym:rgba(255,255,255,.08); --mast-muted:rgba(255,255,255,.75);
+    --candy:#5FCB8F; --candy-ink:#0A1A10; --candy-2:#1E3A2A;
+    --p1:#56D3C3; --p1-soft:#14322E; --p2:#B5D46A; --p2-soft:#2B3514; --p3:#6FD39C; --p3-soft:#183A28; --p4:#4FBF95; --p4-soft:#163329;
+    --page-sym:rgba(111,211,156,.07);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1E16; --surface:#172A20; --ink:#E4F2E9; --muted:#9FBFAC; --line:#2C4636;
+  --accent:#6FD39C; --accent-ink:#0F1E16;
+  --good:#5FCB9C; --good-tint:#16352B; --bad:#FF8F84; --bad-bg:#3A1E22;
+  --soft:#1F3529; color-scheme: dark;
+    --blob1:rgba(80,200,130,.18); --blob2:rgba(160,210,90,.16); --blob3:rgba(86,211,195,.14); --blob4:rgba(200,230,120,.10); --lock-line:#2F4A3A; --lock-ring:rgba(80,200,130,.12); --lock-glow:rgba(80,200,130,.45); --lock-field:#142319;
+    --mast:#1F5A3C; --mast-ink:#FFFFFF; --mast-sym:rgba(255,255,255,.08); --mast-muted:rgba(255,255,255,.75);
+    --candy:#5FCB8F; --candy-ink:#0A1A10; --candy-2:#1E3A2A;
+    --p1:#56D3C3; --p1-soft:#14322E; --p2:#B5D46A; --p2-soft:#2B3514; --p3:#6FD39C; --p3-soft:#183A28; --p4:#4FBF95; --p4-soft:#163329;
+    --page-sym:rgba(111,211,156,.07);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+main{max-width:640px;margin:0 auto;padding-block:20px 64px;padding-left:max(18px, env(safe-area-inset-left,0px));padding-right:max(18px, env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.2;margin:0;text-wrap:balance}
+h1{font-size:2.4rem;letter-spacing:-.01em}
+h2{font-size:1.55rem}
+h3{font-size:1.1rem}
+p{margin:.4em 0}
+.muted{color:var(--muted)}
+.f{font-family:var(--logic);white-space:nowrap;font-size:1.06em}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,select:focus-visible,a:focus-visible,label:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+.back{background:none;border:0;padding:6px 0;color:var(--accent);font-weight:700;margin-bottom:10px}
+
+/* Home */
+.hero{display:flex;align-items:center;gap:16px;margin:8px 0 6px}
+.hero svg{width:84px;height:auto;flex:none}
+.tagline{font-size:1.05rem;color:var(--muted);max-width:34ch}
+.levels{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--line)}
+.level{border-bottom:1px solid var(--line);padding:16px 0}
+.level-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.level-num{font-family:var(--serif);color:var(--muted);font-size:.95rem;white-space:nowrap}
+.topics{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-direction:column;gap:8px}
+.topic{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;border:1px solid var(--accent);background:var(--surface);border-radius:12px;padding:12px 14px}
+.topic:hover{background:var(--soft)}
+.topic small{display:block;color:var(--muted);font-size:.88rem}
+.go{color:var(--accent);font-weight:700;white-space:nowrap}
+
+/* Exercise */
+.ex-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
+.score{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.prop{font-family:var(--serif);font-size:1.4rem;line-height:1.35;margin:14px 0 6px}
+.prop mark{background:var(--soft);color:var(--ink);border-bottom:2px solid var(--accent);padding:0 2px}
+.formula{font-family:var(--logic);font-size:1.6rem;line-height:1.6;margin:12px 0 4px;display:flex;flex-wrap:wrap;align-items:baseline;row-gap:4px}
+.formula .sp{width:.3em}
+.tok{border:0;background:transparent;padding:0 2px;border-radius:5px;font-family:var(--logic);font-size:inherit;line-height:inherit}
+.tok.tap{border-bottom:2px dashed var(--muted);margin:0 1px}
+.tok.tap:hover{background:var(--soft)}
+.tok.sel{background:var(--soft);border-bottom:2px solid var(--accent)}
+.tok.right{background:var(--good-tint);border-bottom:2px solid var(--good)}
+.tok.wrong{background:var(--bad-bg);border-bottom:2px solid var(--bad)}
+.key{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.92rem;color:var(--muted);margin:6px 0 0}
+.key b{color:var(--ink);font-family:var(--logic);font-weight:600}
+.step{margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
+.step h3{margin-bottom:4px}
+.step .hint{font-size:.92rem;color:var(--muted)}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.choices.one{grid-template-columns:1fr}
+.choices.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.choice{border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;text-align:left;min-width:0;overflow-wrap:anywhere}
+.choice b{font-family:var(--serif);margin-right:6px}
+.choice.picked{border-color:var(--accent);background:var(--soft)}
+.choice.right{border-color:var(--good);background:var(--good-tint)}
+.choice.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.choice .why{display:block;font-size:.88rem;color:var(--muted);margin-top:4px;font-family:var(--sans)}
+.check{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.check input{margin-top:6px;accent-color:var(--accent);width:18px;height:18px;flex:none}
+.builder{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:12px;font-family:var(--logic);font-size:1.3rem}
+.builder select{font-family:var(--logic);font-size:1.15rem;padding:6px 6px;min-width:0}
+select{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink)}
+.preview{margin-top:10px;font-size:.92rem;color:var(--muted)}
+.preview .f{color:var(--ink);font-size:1.25rem}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btn{border:0;border-radius:10px;padding:11px 18px;font-weight:700;background:var(--accent);color:var(--accent-ink)}
+.btn[disabled]{opacity:.45;cursor:default}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.fb{margin-top:12px;padding:12px 14px;border-radius:10px;font-size:.97rem}
+.fb.good{background:var(--good-tint);color:var(--ink);border-left:4px solid var(--good)}
+.fb.bad{background:var(--bad-bg);color:var(--ink);border-left:4px solid var(--bad)}
+.fb strong{display:block;margin-bottom:2px}
+.fb ul{margin:6px 0 0;padding-left:1.2em}
+.fb li{margin:3px 0}
+.next{margin-top:30px;display:flex;justify-content:flex-end}
+/* Front screens */
+.syms{position:absolute;inset:0;overflow:hidden;pointer-events:none;font-family:var(--logic);user-select:none}
+.syms span{position:absolute;line-height:1;transform:rotate(var(--r))}
+.page-syms{position:fixed;z-index:0;color:var(--page-sym)}
+.lock{position:relative;z-index:1;max-width:400px;margin:9vh auto 0;text-align:center;display:grid;gap:10px;justify-items:center;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:30px 24px 26px;box-shadow:0 18px 50px -24px rgba(20,48,31,.35)}
+.lock .tile{width:76px;height:76px;margin-top:-68px;border-radius:20px;background:var(--mast);color:var(--mast-ink);display:grid;place-items:center;font-family:var(--logic);font-size:34px;box-shadow:0 10px 24px -10px rgba(30,90,58,.6)}
+.lock h1{font-size:2.5rem;margin-top:6px}
+.lock .sub{color:var(--muted);margin:0}
+.lock .code-form{margin-top:10px;text-align:center}
+.t-ico.small{font-size:.95rem}
+.lock input[type=text]{text-align:center;font-size:1.3rem;letter-spacing:.18em;padding:14px 12px;font-family:var(--logic)}
+.lock .chip{display:inline-flex;gap:6px;align-items:center;font-size:.85rem;color:var(--candy);background:var(--candy-2);border-radius:999px;padding:4px 12px;font-weight:700}
+.mast{position:relative;overflow:hidden;background:var(--mast);color:var(--mast-ink);border-radius:24px;padding:30px 24px 24px;margin-top:4px}
+.mast .syms{color:var(--mast-sym)}
+.mast > *:not(.syms){position:relative}
+.kicker{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mast-muted);margin:0;font-weight:700}
+.mast h1{font-size:clamp(2.6rem,9vw,3.6rem);letter-spacing:-.02em;margin-top:6px;color:var(--mast-ink)}
+.mast h1 .f{font-size:.8em;opacity:.55;margin-left:.15em}
+.mast-tag{color:var(--mast-muted);font-size:1.08rem;margin:.3em 0 0;max-width:34ch}
+.mast .candy-cta{margin-top:22px}
+.part-head{display:flex;align-items:center;gap:12px}
+.part-badge{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--pc);color:var(--surface);font-family:var(--serif);font-weight:600;font-size:1rem}
+.part-head h2{font-size:1.3rem}
+.part-head .level-num{margin-left:auto}
+.level{--pc:var(--p4);--pcs:var(--p4-soft)}
+.level.part-1{--pc:var(--p1);--pcs:var(--p1-soft)}
+.level.part-2{--pc:var(--p2);--pcs:var(--p2-soft)}
+.level.part-3{--pc:var(--p3);--pcs:var(--p3-soft)}
+.level.part-4{--pc:var(--p4);--pcs:var(--p4-soft)}
+.level.part-5{--pc:var(--p2);--pcs:var(--p2-soft)}
+.levels .topic{border-color:var(--line);display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;padding:12px 14px 12px 12px;transition:border-color .15s, transform .15s}
+.levels .topic:hover{border-color:var(--pc);background:var(--surface);transform:translateY(-1px)}
+.t-ico{width:44px;height:44px;border-radius:12px;background:var(--pcs);color:var(--pc);display:grid;place-items:center;font-family:var(--logic);font-size:1.25rem;font-weight:600}
+.levels .go{color:var(--pc)}
+@media (prefers-reduced-motion:reduce){ .levels .topic{transition:none} .levels .topic:hover{transform:none} }
+.code-form{display:grid;gap:8px;width:100%;margin-top:8px;text-align:left}
+.code-form .btn{justify-self:stretch}
+.code-err{color:var(--bad);font-size:.95rem;margin:0}
+input[aria-invalid="true"]{border-color:var(--bad)}
+/* Candy Challenge */
+.candy-cta{position:relative;overflow:hidden;display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:var(--candy);color:var(--candy-ink);border:0;border-radius:16px;padding:18px 16px 16px;margin-top:22px;box-shadow:0 10px 24px -12px rgba(0,0,0,.45)}
+.candy-cta::before{content:"";position:absolute;inset:0 0 auto;height:6px;background:repeating-linear-gradient(-45deg,rgba(255,255,255,.85) 0 8px,transparent 8px 16px)}
+.candy-cta:hover{filter:brightness(1.06)}
+.candy-cta .go-light{background:var(--candy-ink);color:var(--candy);border-radius:999px;padding:6px 14px}
+.candy-cta b{font-family:var(--serif);font-size:1.25rem;display:block}
+.candy-cta small{display:block;opacity:.88;font-size:.9rem}
+.candy-ico{font-size:2.2rem;line-height:1}
+.go-light{font-weight:700;white-space:nowrap;margin-left:auto}
+.game-hero{text-align:center;display:grid;gap:6px;justify-items:center;margin-top:6px}
+.game-hero p{max-width:40ch}
+.big-candy{font-size:64px;line-height:1}
+input[type=text]{font:inherit;padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);width:100%;margin-top:8px}
+input[type=text]:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn.big{font-size:1.1rem;padding:14px 24px}
+.gbar{display:grid;gap:6px;margin-bottom:14px}
+.gbar-row{display:flex;justify-content:space-between;font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.dots{display:flex;gap:4px}
+.dots i{flex:1;height:7px;border-radius:4px;background:var(--line)}
+.dots i.hit{background:var(--good)} .dots i.miss{background:var(--bad)} .dots i.now{background:var(--accent)}
+.cheer{color:var(--good);font-weight:700;white-space:nowrap}
+.win{text-align:center;background:var(--surface);border:2px solid var(--accent);border-radius:18px;padding:30px 18px;display:grid;gap:6px;justify-items:center;position:relative;z-index:6;margin-top:10px}
+.win.lose{border-color:var(--line)}
+.win h1{font-size:2.2rem}
+.eyebrow{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0}
+.cheer-big{font-family:var(--serif);font-size:1.4rem;color:var(--good);margin:0}
+.final{font-size:1.25rem;font-weight:700;font-variant-numeric:tabular-nums}
+.stamp{font-size:.9rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;margin-top:6px}
+.actions.center{justify-content:center;margin-top:18px}
+.rain{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:5}
+.rain span{position:absolute;top:-60px;animation-name:fall;animation-timing-function:linear;animation-iteration-count:3}
+@keyframes fall{to{transform:translateY(115vh) rotate(380deg)}}
+/* Win: sparkle explosions */
+.boom{position:fixed;inset:0;pointer-events:none;z-index:6;overflow:hidden}
+.boom i{position:absolute;left:var(--x);top:var(--y);font-style:normal;line-height:1;transform:translate(-50%,-50%) scale(.2);opacity:0;animation:burst var(--t) cubic-bezier(.15,.8,.3,1) var(--w) forwards}
+.boom i.dot{width:var(--s);height:var(--s);border-radius:50%;background:var(--c);box-shadow:0 0 10px var(--c)}
+@keyframes burst{
+  0%{transform:translate(-50%,-50%) scale(.2);opacity:1}
+  70%{opacity:1}
+  100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1) rotate(var(--rot));opacity:0}}
+.boom .flash{position:absolute;left:var(--x);top:var(--y);width:24px;height:24px;border-radius:50%;background:radial-gradient(circle,#fff,rgba(255,215,90,.8) 40%,transparent 70%);transform:translate(-50%,-50%) scale(0);animation:flash .6s ease-out var(--w) forwards}
+@keyframes flash{0%{transform:translate(-50%,-50%) scale(0);opacity:1}100%{transform:translate(-50%,-50%) scale(9);opacity:0}}
+
+.bounce{animation:bounce 1s ease-in-out infinite alternate}
+@keyframes bounce{from{transform:translateY(0) rotate(-6deg)}to{transform:translateY(-12px) rotate(6deg)}}
+@media (prefers-reduced-motion:reduce){ .rain{display:none} .bounce{animation:none} }
+@media (max-width:420px){ h1{font-size:2rem} .prop{font-size:1.25rem} .formula{font-size:1.35rem} .choices{grid-template-columns:1fr} .choices.three{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (prefers-reduced-motion:no-preference){ .fb{animation:pop .18s ease-out} @keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}} }
+.gclock{font-variant-numeric:tabular-nums;font-weight:700}
+.gclock.low{color:var(--bad, #c0392b)}
+.exnum{margin:-.4rem 0 .8rem;font-weight:600}
+
+
+/* Cute home header */
+.mast{background:linear-gradient(135deg,var(--g1) 0%,var(--g2) 55%,var(--g3) 100%);box-shadow:0 20px 44px -24px var(--mast-shadow)}
+.mast .syms{color:rgba(255,255,255,.14)}
+.mast h1 .f{opacity:.7}
+.mast .candy-cta{background:var(--surface);color:var(--ink);box-shadow:0 12px 26px -14px rgba(20,60,40,.55)}
+.mast .candy-cta::before{background:repeating-linear-gradient(-45deg,var(--candy) 0 8px,transparent 8px 16px);opacity:.85}
+.mast .candy-cta small{color:var(--muted);opacity:1}
+.mast .candy-cta b{color:var(--candy)}
+.mast .candy-cta .go-light{background:linear-gradient(90deg,var(--candy),var(--acc2));color:#fff}
+.levels,.mast{position:relative;z-index:1}
+
+/* Progress: what's been done */
+.prog{margin-top:18px;background:rgba(255,255,255,.18);border-radius:14px;padding:10px 14px}
+.prog-row{display:flex;justify-content:space-between;gap:10px;font-weight:700;font-size:.95rem}
+.prog-bar{height:10px;border-radius:999px;background:rgba(255,255,255,.3);margin-top:7px;overflow:hidden}
+.prog-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#FFE27A,#FFFFFF)}
+.tbar{height:6px;border-radius:999px;background:var(--soft);margin-top:7px;overflow:hidden;max-width:220px}
+.tbar i{display:block;height:100%;border-radius:999px;background:var(--pc)}
+.levels .topic.is-done{border-color:var(--good);background:var(--good-tint)}
+.levels .topic.is-done .t-ico{background:var(--good);color:#fff;font-family:var(--sans)}
+.levels .topic.is-done .go{color:var(--good)}
+.part-done{margin-left:auto;font-weight:700;font-size:.85rem;color:#fff;background:var(--good);border-radius:999px;padding:3px 10px;white-space:nowrap}
+.reset-row{text-align:center;margin:26px 0 8px}
+.reset{background:none;border:0;color:var(--muted);text-decoration:underline;font-size:.9rem;padding:6px}
+/* ===== Cute front screen ===== */
+.cute-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:
+  radial-gradient(40vmax 40vmax at 8% 12%, var(--blob1), transparent 60%),
+  radial-gradient(38vmax 38vmax at 92% 18%, var(--blob2), transparent 60%),
+  radial-gradient(44vmax 44vmax at 80% 95%, var(--blob3), transparent 60%),
+  radial-gradient(36vmax 36vmax at 10% 90%, var(--blob4), transparent 60%),
+  var(--paper)}
+.cute-bg span{position:absolute;line-height:1;font-family:var(--logic);font-weight:700;opacity:.85;transform:rotate(var(--r))}
+.cute-bg .em{font-family:system-ui,'Apple Color Emoji','Segoe UI Emoji',sans-serif;opacity:1;filter:drop-shadow(0 4px 6px rgba(30,90,58,.18))}
+@media (prefers-reduced-motion:no-preference){
+  .cute-bg span{animation:bob var(--d) ease-in-out infinite alternate}
+  @keyframes bob{from{transform:translateY(0) rotate(var(--r))}to{transform:translateY(-14px) rotate(calc(var(--r) + 8deg))}}
+  .lock .tile{animation:wiggle 3.2s ease-in-out infinite}
+  @keyframes wiggle{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg) scale(1.04)}}
+}
+.lock{border:2px solid var(--lock-line);border-radius:28px;box-shadow:0 22px 60px -26px var(--lock-glow),0 0 0 8px var(--lock-ring)}
+.lock .tile{background:linear-gradient(135deg,var(--candy),var(--acc2));color:#fff;border-radius:24px;box-shadow:0 12px 26px -10px var(--lock-glow);position:relative}
+.lock .tile::after{content:'✦';position:absolute;top:-8px;right:-10px;font-size:20px;color:#FFC93C;text-shadow:0 1px 0 rgba(0,0,0,.08)}
+.lock h1{background:linear-gradient(90deg,var(--candy),var(--acc2) 55%,var(--p1));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lock h1 .wave{-webkit-text-fill-color:initial;color:initial;margin-left:6px;font-size:.8em}
+.lock input[type=text]{border:2px solid var(--lock-line);border-radius:16px;background:var(--lock-field)}
+.lock input[type=text]:focus{border-color:var(--candy);outline:3px solid var(--lock-ring);outline-offset:0}
+.lock .btn.big{border-radius:16px;background:linear-gradient(90deg,var(--candy),var(--acc2));color:#fff;box-shadow:0 10px 20px -10px var(--lock-glow)}
+.lock .chip{font-size:.9rem;padding:6px 14px;box-shadow:inset 0 0 0 1.5px var(--lock-line)}
+.lock .hello{margin:0;font-weight:700;color:var(--candy);letter-spacing:.02em}
+.op{font-size:1.42em;line-height:1;vertical-align:-.08em;font-weight:600;padding:0 .04em}
+.why.means{color:var(--ink);opacity:.85}
+.means-list{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px}
+.means-list li{background:var(--soft);border-radius:10px;padding:8px 10px;line-height:1.45}
+.means-list li.ok{background:var(--good-tint)}
+.means-h{margin-top:14px}
+.why.means{color:var(--ink);opacity:.88}
+.why.wrongwhy{color:var(--bad);opacity:.95}
+.ttwrap{overflow-x:auto;margin:6px 0 4px}
+table.tt{border-collapse:collapse;font-family:var(--logic);font-size:1.15rem;margin:0 auto}
+table.tt th,table.tt td{padding:4px 8px;text-align:center;border-bottom:1px solid var(--line)}
+table.tt th.fc{font-weight:600;white-space:nowrap}
+table.tt th small{display:block;font-family:var(--sans);font-size:.7rem;color:var(--muted);font-weight:400}
+table.tt .sep{border-left:2px solid var(--ink);padding:0}
+table.tt .cell{min-width:44px;min-height:38px;border-radius:9px;border:1.5px solid var(--line);background:var(--surface);font-family:var(--logic);font-size:1.05rem;font-weight:700;cursor:pointer;color:var(--ink)}
+table.tt .cell.right{background:var(--good-tint);border-color:var(--good)}
+table.tt .cell.wrong{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+table.proof{border-collapse:collapse;font-size:1.12rem;margin:8px 0 12px}
+table.proof td{padding:2px 6px;vertical-align:middle}
+table.proof .ln{color:var(--muted);text-align:right;font-family:var(--sans);font-size:.9rem}
+table.proof .bars i{display:inline-block;width:12px;height:1.6em;border-left:2px solid var(--ink);vertical-align:middle}
+table.proof .asm{border-bottom:2px solid var(--ink);padding-bottom:1px}
+table.proof .ju{color:var(--muted);font-family:var(--sans);font-size:.92rem;padding-left:14px;white-space:nowrap}
+table.proof .gap{color:var(--bad)}
+.next{display:flex;justify-content:space-between;gap:10px}
+.next .prev{margin-right:auto}
+.next .btn:last-child{margin-left:auto}
+table.proof tr.new .bars i:last-child{height:1.25em;margin-top:.35em;vertical-align:bottom}
+</style>
+<style id="theme">:root{--paper:hsl(262 40% 97%);--surface:#FFFFFF;--ink:hsl(262 45% 13%);--muted:hsl(262 15% 37%);--line:hsl(262 32% 87%);--soft:hsl(262 40% 94%);
+--accent:hsl(262 62% 31%);--accent-ink:#FFFFFF;--mast:hsl(262 50% 25%);--mast-ink:#FFFFFF;--candy:hsl(262 52% 37%);--candy-ink:#FFFFFF;--candy-2:hsl(262 50% 92%);
+--acc2:hsl(276 48% 46%);--acc2-soft:hsl(262 52% 93%);--g1:hsl(262 62% 29%);--g2:hsl(274 52% 39%);--g3:hsl(300 50% 44%);--mast-shadow:hsl(262 60% 30% / .55);
+--p1:hsl(302 70% 28%);--p1-soft:hsl(302 55% 92%);--p2:hsl(222 62% 30%);--p2-soft:hsl(222 55% 92%);--p3:hsl(262 55% 34%);--p3-soft:hsl(262 50% 92%);--p4:hsl(342 45% 31%);--p4-soft:hsl(342 45% 92%);
+--blob1:hsl(262 60% 88%);--blob2:hsl(292 55% 90%);--blob3:hsl(232 55% 90%);--blob4:hsl(322 60% 92%);--lock-line:hsl(262 40% 85%);--lock-ring:hsl(262 50% 50% / .22);--lock-glow:hsl(262 60% 35% / .45);--lock-field:hsl(262 50% 98%);--page-sym:hsl(262 60% 30% / .07);}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:hsl(262 35% 9%);--surface:hsl(262 30% 13%);--ink:hsl(262 40% 92%);--muted:hsl(262 18% 68%);--line:hsl(262 25% 23%);--soft:hsl(262 28% 17%);
+--accent:hsl(262 58% 66%);--accent-ink:hsl(262 35% 9%);--mast:hsl(262 45% 24%);--candy:hsl(262 52% 62%);--candy-ink:hsl(262 35% 8%);--candy-2:hsl(262 30% 18%);
+--acc2:hsl(276 48% 58%);--acc2-soft:hsl(262 30% 18%);--g1:hsl(262 50% 25%);--g2:hsl(274 45% 31%);--g3:hsl(300 45% 35%);--mast-shadow:hsl(262 50% 20% / .6);
+--p1:hsl(302 55% 64%);--p1-soft:hsl(302 30% 17%);--p2:hsl(222 55% 64%);--p2-soft:hsl(222 30% 17%);--p3:hsl(262 50% 66%);--p3-soft:hsl(262 30% 17%);--p4:hsl(342 45% 62%);--p4-soft:hsl(342 28% 17%);
+--blob1:hsl(262 60% 50% / .16);--blob2:hsl(292 55% 50% / .14);--blob3:hsl(232 55% 50% / .12);--blob4:hsl(322 60% 50% / .10);--lock-line:hsl(262 25% 26%);--lock-ring:hsl(262 50% 55% / .12);--lock-glow:hsl(262 55% 55% / .45);--lock-field:hsl(262 30% 12%);--page-sym:hsl(262 55% 70% / .07);}}
+:root[data-theme="dark"]{--paper:hsl(262 35% 9%);--surface:hsl(262 30% 13%);--ink:hsl(262 40% 92%);--muted:hsl(262 18% 68%);--line:hsl(262 25% 23%);--soft:hsl(262 28% 17%);
+--accent:hsl(262 58% 66%);--accent-ink:hsl(262 35% 9%);--mast:hsl(262 45% 24%);--candy:hsl(262 52% 62%);--candy-ink:hsl(262 35% 8%);--candy-2:hsl(262 30% 18%);
+--acc2:hsl(276 48% 58%);--acc2-soft:hsl(262 30% 18%);--g1:hsl(262 50% 25%);--g2:hsl(274 45% 31%);--g3:hsl(300 45% 35%);--mast-shadow:hsl(262 50% 20% / .6);
+--p1:hsl(302 55% 64%);--p1-soft:hsl(302 30% 17%);--p2:hsl(222 55% 64%);--p2-soft:hsl(222 30% 17%);--p3:hsl(262 50% 66%);--p3-soft:hsl(262 30% 17%);--p4:hsl(342 45% 62%);--p4-soft:hsl(342 28% 17%);
+--blob1:hsl(262 60% 50% / .16);--blob2:hsl(292 55% 50% / .14);--blob3:hsl(232 55% 50% / .12);--blob4:hsl(322 60% 50% / .10);--lock-line:hsl(262 25% 26%);--lock-ring:hsl(262 50% 55% / .12);--lock-glow:hsl(262 55% 55% / .45);--lock-field:hsl(262 30% 12%);--page-sym:hsl(262 55% 70% / .07);}</style>
+</head>
+<body>
+<style>
+/* Additions for this class */
+.choice .f{white-space:normal;overflow-wrap:anywhere}
+.prop .f{white-space:normal}
+.formula.wrap{font-size:1.35rem;display:block;overflow-wrap:anywhere}
+.plan{position:relative;z-index:1;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.plan h2{font-size:1.15rem}
+.plan ol{margin:8px 0 0;padding-left:1.2em;color:var(--muted);font-size:.95rem}
+.plan li{margin:2px 0}
+.plan b{color:var(--ink)}
+.level.part-0{--pc:var(--acc2);--pcs:var(--acc2-soft)}
+.fcard{margin-top:16px;background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:22px 20px;min-height:200px;display:grid;gap:10px;align-content:start}
+.fcard .deck{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0}
+.fcard h3{font-size:1.6rem;color:var(--accent)}
+.fcard .def{font-size:1.08rem}
+.fcard .ex{font-family:var(--logic);font-size:1.3rem;background:var(--soft);border-radius:12px;padding:10px 14px;overflow-wrap:anywhere}
+.fcard .ex .f{white-space:normal;display:inline-block;margin-right:.6em}
+.fcard .def br{content:"";display:block;margin-top:.55em}
+.fcard .ex small{display:block;font-family:var(--sans);font-size:.88rem;color:var(--muted)}
+.fcard.hidden-def{border-style:dashed;place-items:center;text-align:center}
+.basket{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px;padding:14px;background:var(--soft);border-radius:16px}
+.fruit{position:relative;font-size:2.4rem;line-height:1;width:58px;height:58px;display:grid;place-items:center;background:var(--surface);border-radius:14px;border:1px solid var(--line)}
+.fruit .worm{position:absolute;right:-6px;bottom:-6px;font-size:1.2rem}
+.legend{font-size:.9rem;color:var(--muted)}
+.props{display:grid;gap:10px;margin-top:10px}
+.prop-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface)}
+.prop-row .yn{display:flex;gap:6px}
+.prop-row .choice{padding:8px 14px}
+.prop-row .test{display:block;font-family:var(--logic);font-size:.95rem;color:var(--muted)}
+.mast .candy-cta::before{display:none}
+.results{margin:8px 0 0;padding-left:1.4em;display:grid;gap:8px}
+.results li{font-size:.97rem}
+.results li.ok > span:first-child{color:var(--good);font-weight:700}
+.results li.no > span:first-child{color:var(--bad);font-weight:700}
+.results .why{display:block;color:var(--muted);font-size:.9rem}
+.test-ico{font-family:var(--serif);font-weight:700;color:var(--candy)}
+.test-big{font-family:var(--serif);color:var(--accent)}
+.key{background:var(--soft);border-radius:12px;padding:8px 12px;margin-top:10px}
+</style>
+<main id="app"></main>
+<script>
+// ===== Helpers =====
+// Seeded randomness: every student sees the exact same exercises, in the same order.
+let R=Math.random;
+function seeded(key){ let h=2166136261; for(const c of key){ h^=c.charCodeAt(0); h=Math.imul(h,16777619); } let x=h>>>0; return ()=>{ x=(x+0x6D2B79F5)|0; let t=Math.imul(x^x>>>15,1|x); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function withSeed(key,fn){ const old=R; R=seeded(key); try{ return fn(); } finally{ R=old; } }
+const pick = a => a[Math.floor(R()*a.length)];
+const shuffle = a => { a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(R()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; };
+const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const OPS = h => h.replace(/(&amp;|[⊃≡∨~∀∃])/g,'<span class="op">$1</span>');
+const F = s => `<span class="f">${OPS(esc(s))}</span>`;
+const fmt = t => esc(t).replace(/\\\{/g,'\u0001').replace(/\\\}/g,'\u0002').replace(/\{([^}]*)\}/g,(_,f)=>`<span class="f">${OPS(f)}</span>`).replace(/\u0001/g,'{').replace(/\u0002/g,'}');
+
+// ===== Saved progress (this browser only) =====
+const KEY='phil270-class2-v1';
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY))||{}; }catch(e){ return {}; } }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(progress)); }catch(e){} }
+const progress = load();
+const doneMap = id => (progress.sets||(progress.sets={}))[id]||(progress.sets[id]={});
+function markDone(id,k){ doneMap(id)[k]=1; save(); }
+function tally(ok){
+  if(game){ gameRecord(ok); return; }
+  const p=progress[cur.id]||(progress[cur.id]={done:0,right:0}); p.done++; if(ok) p.right++; markDone(cur.id,cur.k);
+}
+const sc = id => { const p=progress[id]; return p?`${p.right}/${p.done}`:'0/0'; };
+
+// ===== Sentential logic helpers (truth tables, English readings) =====
+function slParse(src){ const s=String(src).replace(/\s+/g,''); let i=0;
+  function un(){ const c=s[i];
+    if(c==='~'){ i++; return {op:'~',a:un()}; }
+    if(c==='('||c==='['||c==='{'){ i++; const e=bin(); i++; return e; }
+    if(/[A-Z]/.test(c||'')){ i++; let sub=''; while(/[0-9]/.test(s[i]||'')) sub+=s[i++]; return {at:c+sub}; }
+    throw new Error('Cannot read '+src); }
+  function bin(){ const l=un(); const c=s[i]; if(c && '&∨⊃≡'.includes(c)){ i++; return {op:c,a:l,b:un()}; } return l; }
+  const t=bin(); if(i!==s.length) throw new Error('Cannot read '+src); return t; }
+function slEval(t,v){ if(t.at) return !!v[t.at]; const a=slEval(t.a,v);
+  if(t.op==='~') return !a; const b=slEval(t.b,v);
+  return t.op==='&'?a&&b : t.op==='∨'?a||b : t.op==='⊃'?(!a||b) : a===b; }
+function slAtoms(t,out=new Set()){ if(t.at) out.add(t.at); else { slAtoms(t.a,out); if(t.b) slAtoms(t.b,out); } return [...out].sort(); }
+function slEnglishT(t,k){
+  if(t.at) return k[t.at]||t.at;
+  if(t.op==='~'){ const a=t.a;
+    if(a.op==='&') return `not both ${slEnglishT(a.a,k)} and ${slEnglishT(a.b,k)}`;
+    if(a.op==='∨') return `neither ${slEnglishT(a.a,k)} nor ${slEnglishT(a.b,k)}`;
+    return `it is not the case that ${slEnglishT(a,k)}`; }
+  const A=slEnglishT(t.a,k), B=slEnglishT(t.b,k), cx=(t.a.op&&t.a.op!=='~')||(t.b.op&&t.b.op!=='~');
+  if(t.op==='&') return cx?`both ${A}, and ${B}`:`${A} and ${B}`;
+  if(t.op==='∨') return `either ${A} or ${B}`;
+  if(t.op==='⊃') return `if ${A}, then ${B}`;
+  return `${A} if and only if ${B}`; }
+function slEnglish(f,k){ try{ const s=slEnglishT(slParse(f),k); return s[0].toUpperCase()+s.slice(1)+'.'; }catch(e){ return null; } }
+const onlyFormula = o => { const m=/^\{([^}]*)\}$/.exec(o.trim()); return m?m[1]:null; };
+function slStr(t,top=true){ if(t.at) return t.at; if(t.op==='~') return '~ '+slStr(t.a,false); const s=slStr(t.a,false)+' '+t.op+' '+slStr(t.b,false); return top?s:'('+s+')'; }
+const SLNAME={'~':'negation','&':'conjunction','∨':'disjunction','⊃':'conditional','≡':'biconditional'};
+function slWhy(t,v){ const TF=b=>b?'T':'F', val=slEval(t,v);
+  if(t.at) return `${t.at} is ${TF(val)}.`;
+  if(t.op==='~') return `${slStr(t.a)} is ${TF(slEval(t.a,v))}, so its negation is ${TF(val)}.`;
+  const a=slEval(t.a,v), b=slEval(t.b,v);
+  const rule = t.op==='&'?(val?'both parts are T':'a conjunction needs both parts T') : t.op==='∨'?(val?'at least one part is T':'both parts are F') : t.op==='⊃'?(val?(a?'the consequent is T':'the antecedent is F'):'T antecedent with F consequent is the only false case') : (val?'both sides match':'the two sides differ');
+  return `${slStr(t.a)} is ${TF(a)} and ${slStr(t.b)} is ${TF(b)}, so the ${SLNAME[t.op]} is ${TF(val)} (${rule}).`; }
+function proofHTML(p){
+  return `<table class="proof">${p.map(([n,d,s,j,as])=>`<tr class="${as&&d>0?'new':''}"><td class="ln">${n}</td><td class="ps"><span class="bars">${'<i></i>'.repeat(d+1)}</span><span class="${as?'asm':''}">${s?F(s):'<b class="gap">?</b>'}</span></td><td class="ju">${esc(j||'')}</td></tr>`).join('')}</table>`;
+}
+// ===== Class 2: symbolizing in SL =====
+const K={};
+// one key for most exercises: shown as a key and used for automatic English readings
+const SLK={A:'Ana passes', B:'Ben passes', R:'it rains', G:'the game is played', C:'the café is open', S:'it is Sunday', T:'Tom drives', M:'the meeting is canceled'};
+const KY=(...ls)=>ls.map(l=>[l,SLK[l]]);
+const SY=(q,letters,o,a,w,e)=>({q, key:KY(...letters), sl:SLK, o:o.map(x=>`{${x}}`), a, w, e});
+const DEFS1=[
+  {t:'Sentence letters and atomic sentences', d:'A capital letter (A, B, C…) stands for one simple English sentence that is true or false.\nWhy: we only care about how sentences combine, so each simple sentence gets one letter.\nWhat to do: write a symbolization key that says which sentence each letter stands for.', x:'{A}   {B}', xs:'A: Ana passes. B: Ben passes.'},
+  {t:'Truth-functional connective', d:'A connective is truth-functional when the truth-value of the whole sentence depends only on the truth-values of its parts.\nSL has five: ~ & ∨ ⊃ ≡.\nTest: if you know whether each part is true or false, can you always tell whether the whole is? If yes, it is truth-functional.', x:'{~}  {&}  {∨}  {⊃}  {≡}'},
+  {t:'Negation: ~', d:'~P is true exactly when P is false.\nEnglish: not, it is not the case that, it is false that, and words like un-, in- when they simply deny.', x:'{~ A}', xs:'Ana does not pass. Wrong: using a new letter for “Ana fails” hides that it is the denial of A.'},
+  {t:'Conjunction: &', d:'P & Q is true exactly when both P and Q are true.\nEnglish: and, but, although, however, yet, also, while, even though. “But” adds contrast, not new truth conditions.', x:'{A & B}', xs:'Ana passes but Ben passes too. Ana passes although Ben passes.'},
+  {t:'Disjunction: ∨', d:'P ∨ Q is true when at least one of P and Q is true, including when both are (inclusive or).\nIf the English means “one or the other but not both,” add “and not both”.', x:'{A ∨ B}     {(A ∨ B) & ~ (A & B)}', xs:'Ana or Ben passes. Exclusive: Ana or Ben passes, but not both.'},
+  {t:'Conditional: ⊃', d:'P ⊃ Q is false only when P is true and Q is false.\nThe part after “if” is the antecedent and goes first, wherever it appears in the English.\nEnglish: if… then, provided that, assuming that, in case, given that.', x:'{R ⊃ ~ G}', xs:'If it rains, the game is not played. = The game is not played if it rains.'},
+  {t:'“Only if”', d:'“P only if Q” means “if P then Q”: the part before “only if” is the antecedent.\nWhy: “Ana passes only if she studies” says passing requires studying, so if she passes, she studied.\nWatch out: “P if Q” and “P only if Q” go in opposite directions.', x:'{A ⊃ S}', xs:'Ana passes only if it is Sunday → A ⊃ S. Ana passes if it is Sunday → S ⊃ A.'},
+  {t:'“Unless”', d:'“P unless Q” is symbolized P ∨ Q (or equivalently ~ Q ⊃ P).\nWhy: “the game is played unless it rains” rules out exactly one situation, no rain and no game.', x:'{G ∨ R}', xs:'The game is played unless it rains. Wrong: R ⊃ ~ G, which adds a claim (rain cancels it) that “unless” does not make.'},
+  {t:'Biconditional: ≡', d:'P ≡ Q is true when P and Q have the same truth-value.\nEnglish: if and only if, exactly when, just in case (in the logical sense).\nWhy: it is two conditionals at once: P ⊃ Q and Q ⊃ P.', x:'{G ≡ ~ R}', xs:'The game is played if and only if it does not rain.'},
+  {t:'“Neither… nor” and “not both”', d:'“Neither P nor Q” = not P and not Q: ~ P & ~ Q, or ~ (P ∨ Q).\n“Not both P and Q” = ~ (P & Q), which is true if just one of them is.\nWatch out: they are not the same. With Ana passing and Ben failing, “not both” is true but “neither” is false.', x:'{~ A & ~ B}     {~ (A & B)}', xs:'Neither Ana nor Ben passes. / Not both Ana and Ben pass.'},
+  {t:'Non-truth-functional connectives', d:'Some connectives are not truth-functional: because, before, after, believes that, knows that, it is possible that.\nTest: knowing the parts are true is not enough to know the whole is true. “Ana passed because it rained” can be false even if both parts are true.\nWhat to do: symbolize the whole sentence with a single letter.', x:'{P}', xs:'P: Ana passed because it rained. Wrong: A & R, which drops “because.”'},
+  {t:'Symbolization key', d:'A list that pairs each sentence letter with the English sentence it stands for.\nWhy: the same letter must always mean the same sentence, and negative sentences should use ~ with a positive letter.\nWhat to do: choose positive sentences (“Ana passes”), then build negations with ~.', x:'', xs:''},
+];
+DEFS1.forEach(d=>{ if(!d.x) delete d.x; });
+const CONN=[
+  {q:'Which connective does “but” express?', o:['&','∨','⊃','≡'].map(x=>`{${x}}`), a:0, w:['','“But” is not “or”: “Ana passes but Ben fails” claims both things.','“But” is not “if”: nothing is conditional.','“But” does not make a biconditional.'], e:'“But” is a conjunction with a hint of contrast. The truth conditions are those of &.'},
+  {q:'Which connective does “unless” express?', o:['∨','&','≡','~'].map(x=>`{${x}}`), a:0, w:['','“Unless” does not claim both things happen.','“Unless” is weaker than “if and only if.”','“Unless” joins two sentences; ~ only negates one.'], e:'“P unless Q” = P ∨ Q.'},
+  {q:'Which connective does “provided that” express?', o:['⊃','&','∨','≡'].map(x=>`{${x}}`), a:0, w:['','It does not claim both are true.','It is not “or.”','It is one-way, not “if and only if.”'], e:'“P provided that Q” = Q ⊃ P: the part after “provided that” is the antecedent.'},
+  {q:'Which connective does “if and only if” express?', o:['≡','⊃','&','∨'].map(x=>`{${x}}`), a:0, w:['','⊃ is only one direction: “if.”','& claims both are true.','∨ claims at least one is true.'], e:'≡ is true when both sides have the same truth-value.'},
+  {q:'Which connective does “although” express?', o:['&','⊃','∨','~'].map(x=>`{${x}}`), a:0, w:['','“Although” does not make a conditional.','“Although” does not mean “or.”','“Although” joins two claims.'], e:'“P although Q” asserts both P and Q.'},
+  {q:'Which connective does “it is not the case that” express?', o:['~','&','⊃','∨'].map(x=>`{${x}}`), a:0, w:['','& joins two sentences.','⊃ joins two sentences.','∨ joins two sentences.'], e:'~ flips the truth-value of one sentence.'},
+];
+const BASIC=[
+  SY('Ana passes and Ben does not pass.',['A','B'],['A & ~ B','~ (A & B)','A ∨ ~ B','A ⊃ ~ B'],0,['','Counterexample: Ana fails and Ben fails. This is true, but “Ana passes” is false.','Counterexample: Ana fails, Ben fails. This is true, but Ana did not pass.','Counterexample: Ana fails. This conditional is then true, but the sentence says Ana passes.'],'Both parts are claimed: Ana passes, and Ben does not.'),
+  SY('Ana passes but Ben passes too.',['A','B'],['A & B','A ∨ B','A ⊃ B','B ⊃ A'],0,['','Counterexample: only Ana passes. This is true, but the sentence says Ben passes too.','Counterexample: both fail. The conditional is true, but the sentence says both pass.','Counterexample: both fail. The conditional is true, but the sentence says both pass.'],'“But” is &.'),
+  SY('Either it rains or the game is played.',['R','G'],['R ∨ G','R & G','R ⊃ G','R ≡ G'],0,['','Counterexample: it rains and there is no game. The sentence is true; this is false.','Counterexample: it rains and the game is not played. The sentence is true (it rains), but this conditional is false.','Counterexample: it rains and the game is played. The sentence is true; this is false.'],'Inclusive “or”: at least one.'),
+  SY('If it rains, the game is not played.',['R','G'],['R ⊃ ~ G','~ G ⊃ R','~ (R ⊃ G)','R & ~ G'],0,['','This reverses the conditional. Counterexample: no rain and no game (canceled for snow). The sentence is true; this is false.','This says it rains and the game is not played, so it claims it actually rains. The sentence only says what happens if it rains.','This claims it actually rains. The sentence only says what happens IF it rains.'],'The part after “if” goes first.'),
+  SY('The game is played if it is Sunday.',['G','S'],['S ⊃ G','G ⊃ S','G & S','G ≡ S'],0,['','Reversed. Counterexample: the game is played on a Monday. The sentence is true; this is false.','This claims it actually is Sunday.','Counterexample: game played on Monday. The sentence is true; this says the game is played only on Sundays.'],'“G if S”: S is the antecedent, even though it comes second in English.'),
+  SY('The café is open, assuming it is not Sunday.',['C','S'],['~ S ⊃ C','C ⊃ ~ S','~ S & C','~ (S ⊃ C)'],0,['','Reversed. Counterexample: the café is open on Sunday. The sentence is true; this is false.','This claims it is actually not Sunday.','This says it is Sunday and the café is closed.'],'“Assuming” works like “if”: ~ S is the antecedent.'),
+  SY('Tom drives or the meeting is canceled, but not both.',['T','M'],['(T ∨ M) & ~ (T & M)','T ∨ M','~ (T & M)','T ≡ M'],0,['','Inclusive or. Counterexample: Tom drives AND the meeting is canceled. This is true, but the sentence rules that out.','Counterexample: neither happens. This is true, but the sentence says at least one does.','This says both happen or neither does: the opposite of what is meant.'],'Exclusive or = at least one, and not both.'),
+  SY('It is not the case that it rains and the game is played.',['R','G'],['~ (R & G)','~ R & G','~ R & ~ G','~ R ∨ G'],0,['','Counterexample: it rains and there is no game. The sentence is true; this claims it does not rain.','Counterexample: rain, no game. The sentence is true; this is false.','Counterexample: it rains and the game is played. The sentence is false, but this is true because G is true.'],'The “not” covers the whole conjunction.'),
+  SY('Ana passes if and only if Ben passes.',['A','B'],['A ≡ B','A ⊃ B','A & B','B ⊃ A'],0,['','Only one direction. Counterexample: Ben passes and Ana fails. This is true, but the sentence is false.','Counterexample: both fail. The sentence is true (same value), but this is false.','Only one direction. Counterexample: Ana passes and Ben fails.'],'Same truth-value both ways.'),
+  SY('If it is Sunday, the café is open and the game is played.',['S','C','G'],['S ⊃ (C & G)','(S ⊃ C) & G','(S & C) ⊃ G','S & (C ⊃ G)'],0,['','This claims the game is played no matter what day it is.','This says: if Sunday and café open, then game. It leaves the café out of the promise.','This claims it actually is Sunday.'],'Both things follow from “Sunday.”'),
+];
+const IFS=[
+  SY('Ana passes only if it is Sunday.',['A','S'],['A ⊃ S','S ⊃ A','A ≡ S','S & A'],0,['','That is “Ana passes IF it is Sunday.” Counterexample: Sunday and Ana fails. The sentence is true; this is false.','Too strong: it adds “if Sunday then Ana passes.”','This claims both actually happen.'],'“P only if Q” = P ⊃ Q.'),
+  SY('The game is played only if it does not rain.',['G','R'],['G ⊃ ~ R','~ R ⊃ G','G ∨ ~ R','~ G ⊃ R'],0,['','Reversed. Counterexample: no rain and no game. The sentence is true; this is false.','Counterexample: game played in the rain. This is true, but the sentence says that cannot happen.','Counterexample: no game and no rain. The sentence is true; this is false.'],'Before “only if” = antecedent.'),
+  SY('The game is played unless it rains.',['G','R'],['G ∨ R','R ⊃ ~ G','G ⊃ ~ R','G & ~ R'],0,['','Too strong: it says rain cancels the game. Counterexample: rain and the game is played anyway. The sentence is still true; this is false.','Counterexample: no rain and no game. The sentence is false then; this is true.','This claims it does not rain.'],'“P unless Q” = P ∨ Q.'),
+  SY('Unless Tom drives, the meeting is canceled.',['T','M'],['M ∨ T','T ⊃ M','M & T','~ M ⊃ ~ T'],0,['','Counterexample: Tom drives and the meeting is not canceled. The sentence is true; this is false.','This claims both happen.','Counterexample: meeting not canceled and Tom drives. The sentence is true; this is false.'],'“Unless Q, P” is still P ∨ Q.'),
+  SY('The café is open if it is not Sunday.',['C','S'],['~ S ⊃ C','C ⊃ ~ S','~ C ⊃ ~ S','C ∨ ~ S'],0,['','Reversed. Counterexample: café open on Sunday. The sentence is true; this is false.','Counterexample: Monday and closed. The sentence is false; this is true.','Counterexample: Monday, café closed. The sentence is false; this is true.'],'The “if” part, ~ S, is the antecedent.'),
+  SY('Ben passes provided that Ana passes.',['A','B'],['A ⊃ B','B ⊃ A','A & B','A ≡ B'],0,['','Reversed. Counterexample: Ben passes and Ana fails. The sentence is true; this is false.','This claims both actually pass.','Too strong: it adds “if Ben passes, Ana passes.”'],'“P provided that Q” = Q ⊃ P.'),
+  SY('Ana passes only if Ben passes, and Ben passes only if Ana passes.',['A','B'],['A ≡ B','(A ⊃ B) & (A ⊃ B)','A & B','(B ⊃ A) & (B ⊃ A)'],0,['','This says the same direction twice.','Counterexample: both fail. The sentence is true; this is false.','This says the same direction twice.'],'Two “only if”s in opposite directions make a biconditional.'),
+  SY('If it rains, the game is played only if it is Sunday.',['R','G','S'],['R ⊃ (G ⊃ S)','(R ⊃ G) ⊃ S','R ⊃ (S ⊃ G)','(R & S) ⊃ G'],0,['','Wrong grouping: the main connective is the first “if.”','Inside, “G only if S” is G ⊃ S, not S ⊃ G.','This turns “only if” into “if.”'],'Main structure: if R, then (G only if S).'),
+];
+const NEG=[
+  SY('Neither Ana nor Ben passes.',['A','B'],['~ A & ~ B','~ (A & B)','~ A ∨ ~ B','~ A & B'],0,['','“Not both.” Counterexample: Ana passes, Ben fails. This is true; the sentence is false.','Counterexample: Ana passes, Ben fails. This is true; the sentence is false.','This says Ben passes.'],'Not A and not B. ~ (A ∨ B) is also correct.'),
+  SY('Not both Ana and Ben pass.',['A','B'],['~ (A & B)','~ A & ~ B','~ A & B','A & ~ B'],0,['','“Neither.” Counterexample: Ana passes, Ben fails. The sentence is true; this is false.','This claims Ben passes.','This claims Ana passes.'],'At least one of them does not pass. ~ A ∨ ~ B is also correct.'),
+  SY('It is not the case that either it rains or the café is open.',['R','C'],['~ (R ∨ C)','~ R ∨ C','~ R ∨ ~ C','~ (R & C)'],0,['','The ~ only covers R. Counterexample: café open. This is true; the sentence is false.','Counterexample: it rains and the café is closed. This is true; the sentence is false.','Counterexample: it rains, café closed. This is true; the sentence is false.'],'Neither happens. ~ R & ~ C is also correct.'),
+  SY('Tom does not drive, and the meeting is not canceled.',['T','M'],['~ T & ~ M','~ (T & M)','~ (T ∨ M) ∨ M','~ T ⊃ ~ M'],0,['','Counterexample: Tom drives, meeting held. This is true; the sentence says Tom does not drive.','Counterexample: meeting canceled. This is true; the sentence is false.','This claims nothing outright: only a conditional.'],'Two negated claims, joined by &.'),
+  {q:'Which pair says the same thing?', o:['{~ (A ∨ B)} and {~ A & ~ B}','{~ (A & B)} and {~ A & ~ B}','{~ (A ∨ B)} and {~ A ∨ ~ B}','{~ A ⊃ B} and {A ⊃ ~ B}'], a:0,
+   w:['','Counterexample: A true, B false. ~ (A & B) is true; ~ A & ~ B is false.','Counterexample: A true, B false. ~ A ∨ ~ B is true; ~ (A ∨ B) is false.','Counterexample: A and B both true. ~ A ⊃ B is true; A ⊃ ~ B is false.'], e:'“Neither” two ways. This is one of De Morgan’s laws.'},
+  {q:'Ana passes and Ben fails. Which is TRUE?', key:KY('A','B'), sl:SLK, o:['{~ (A & B)}','{~ A & ~ B}','{~ (A ∨ B)}','{A ≡ B}'], a:0,
+   w:['','~ A is false, so the conjunction is false.','A ∨ B is true, so its negation is false.','A and B have different values, so ≡ is false.'], e:'Not both pass: true.'},
+];
+const TF=[
+  {q:'Is “because” truth-functional? “Ana passed because it rained.”', o:['No','Yes'], a:0, fixed:true, w:['','Both parts can be true while the whole is false: she passed and it rained, but not because of the rain.'], e:'Knowing the parts are true does not settle the whole, so symbolize it with one letter.'},
+  {q:'Is “and” truth-functional?', o:['Yes','No'], a:0, fixed:true, w:['','If you know whether both parts are true, you always know whether the whole is.'], e:'P & Q depends only on the values of P and Q.'},
+  {q:'How should you symbolize “Ben believes that it will rain”?', key:[['B','Ben believes that it will rain'],['R','it rains']], o:['{B}','{R}','{B & R}','{B ⊃ R}'], a:0,
+   w:['','That just says it rains, not what Ben believes.','That says Ben believes something and it rains.','Belief is not a conditional.'], e:'“Believes that” is not truth-functional, so the whole sentence gets one letter.'},
+  {q:'Is “before” truth-functional? “Tom left before Ana arrived.”', o:['No','Yes'], a:0, fixed:true, w:['','Both parts can be true in either order: Tom left and Ana arrived, but maybe she arrived first.'], e:'The truth-values of the parts do not fix the order of events.'},
+  {q:'Is “it is possible that” truth-functional?', o:['No','Yes'], a:0, fixed:true, w:['','A false sentence can be possible (“it rains tomorrow”) or impossible (“2 + 2 = 5”). The value of the part does not settle the whole.'], e:'Symbolize the whole sentence with one letter.'},
+  {q:'Which English word is truth-functional?', o:['unless','because','after','knows that'], a:0, w:['','The parts can be true without one causing the other.','The order of events is not fixed by truth-values.','Whether someone knows something is not fixed by the truth-value.'], e:'“Unless” = ∨.'},
+];
+const READ=[
+  {q:'Which English sentence does {R ⊃ ~ G} say?', key:KY('R','G'), o:['If it rains, the game is not played.','If the game is not played, it rains.','It rains and the game is not played.','The game is played unless it rains.'], a:0,
+   w:['','That would be ~ G ⊃ R.','That claims it actually rains.','That would be G ∨ R.'], e:'R is the antecedent.'},
+  {q:'Which English sentence does {~ (A ∨ B)} say?', key:KY('A','B'), o:['Neither Ana nor Ben passes.','Ana does not pass, or Ben passes.','Not both Ana and Ben pass.','Ana or Ben does not pass.'], a:0,
+   w:['','That would be ~ A ∨ B.','That would be ~ (A & B).','That would be ~ A ∨ ~ B.'], e:'Not (either passes) = neither passes.'},
+  {q:'Which English sentence does {C ≡ ~ S} say?', key:KY('C','S'), o:['The café is open if and only if it is not Sunday.','If the café is open, it is not Sunday.','The café is open unless it is Sunday.','The café is open and it is not Sunday.'], a:0,
+   w:['','That is only one direction.','That would be C ∨ S.','That claims both actually hold.'], e:'≡: same truth-value both ways.'},
+  {q:'Which English sentence does {S ⊃ (C ∨ G)} say?', key:KY('S','C','G'), o:['If it is Sunday, then the café is open or the game is played.','If it is Sunday then the café is open, or the game is played.','It is Sunday, and the café is open or the game is played.','The café is open or the game is played only if it is Sunday.'], a:0,
+   w:['','That would be (S ⊃ C) ∨ G.','That claims it is Sunday.','That would be (C ∨ G) ⊃ S.'], e:'The main connective is ⊃.'},
+  {q:'Which English sentence does {A ⊃ B} say?', key:KY('A','B'), o:['Ana passes only if Ben passes.','Ana passes if Ben passes.','Ana passes unless Ben passes.','Ben passes only if Ana passes.'], a:0,
+   w:['','That would be B ⊃ A.','That would be A ∨ B.','That would be B ⊃ A.'], e:'“Only if” keeps the order: A ⊃ B.'},
+  {q:'Which English sentence does {(A ∨ B) & ~ (A & B)} say?', key:KY('A','B'), o:['Ana or Ben passes, but not both.','Neither Ana nor Ben passes.','Ana and Ben both pass.','Not both pass.'], a:0,
+   w:['','That would be ~ (A ∨ B).','That would be A & B.','That leaves out that at least one passes.'], e:'Exclusive or.'},
+];
+const ACTS={
+  learn1:{kind:'card', items:DEFS1, name:'Definitions: the connectives of SL', sub:'Flashcards · tap to reveal', ico:'Aa', deck:'Symbolizing in SL'},
+  conn:{kind:'mc', items:CONN, name:'Which connective?', sub:'From English words to symbols', ico:'⊃'},
+  basic:{kind:'mc', items:BASIC, name:'Symbolize it', sub:'and, but, or, if, if and only if', ico:'A&B'},
+  ifs:{kind:'mc', items:IFS, name:'If, only if, unless, provided', sub:'Which part is the antecedent?', ico:'→'},
+  neg:{kind:'mc', items:NEG, name:'Neither, not both', sub:'Where the negation goes', ico:'~'},
+  tf:{kind:'mc', items:TF, name:'Truth-functional or not?', sub:'because, before, believes that', ico:'?'},
+  read:{kind:'mc', items:READ, name:'Read it in English', sub:'From SL back to English', ico:'Ab'},
+};
+const PARTS=[
+  {n:0, title:'Start here: definitions', ids:['learn1'], min:12},
+  {n:1, title:'The five connectives', ids:['conn','basic'], min:14},
+  {n:2, title:'Conditionals in English', ids:['ifs'], min:12},
+  {n:3, title:'Negations', ids:['neg'], min:8},
+  {n:4, title:'Truth-functional or not, and reading SL', ids:['tf','read'], min:19},
+];
+const TEST=[
+  SY('Ben passes but Ana does not.',['A','B'],['B & ~ A','~ (B & A)','B ⊃ ~ A','B ∨ ~ A'],0,['','Counterexample: both fail. This is true; the sentence says Ben passes.','Counterexample: Ben fails. This is true; the sentence is false.','Counterexample: both fail. This is true; the sentence is false.'],'“But” = &.'),
+  SY('The meeting is canceled only if Tom drives.',['M','T'],['M ⊃ T','T ⊃ M','M ≡ T','M ∨ T'],0,['','That is “if Tom drives.” Counterexample: Tom drives, meeting held.','Too strong.','Counterexample: meeting canceled, Tom does not drive. This is true; the sentence is false.'],'Before “only if” is the antecedent.'),
+  SY('The café is open unless it is Sunday.',['C','S'],['C ∨ S','S ⊃ ~ C','C & ~ S','~ C ⊃ ~ S'],0,['','Too strong. Counterexample: Sunday and the café is open anyway. The sentence is true; this is false.','This claims it is not Sunday.','Counterexample: not Sunday, café closed. The sentence is false; this is true.'],'“Unless” = ∨.'),
+  SY('Neither does it rain nor is the game played.',['R','G'],['~ R & ~ G','~ (R & G)','~ R ∨ ~ G','~ R & G'],0,['','Counterexample: rain, no game. This is true; the sentence is false.','Counterexample: rain, no game. This is true; the sentence is false.','This says the game is played.'],'Not R and not G.'),
+  SY('If it is Sunday, the game is played.',['S','G'],['S ⊃ G','G ⊃ S','S & G','S ≡ G'],0,['','Reversed.','This claims it is Sunday.','Too strong.'],'S is the antecedent.'),
+  {tag:'tf', q:'Which word is NOT truth-functional?', o:['because','or','unless','if and only if'], a:0, w:['','∨ is truth-functional.','“Unless” = ∨.','≡ is truth-functional.'], e:'Both parts can be true without one being the reason for the other.'},
+  {tag:'conn', q:'Which connective does “provided that” express?', o:['{⊃}','{&}','{∨}','{~}'], a:0, w:['','It does not claim both.','It is not “or.”','It joins two sentences.'], e:'“P provided that Q” = Q ⊃ P.'},
+  SY('Ana passes or Ben passes, but not both.',['A','B'],['(A ∨ B) & ~ (A & B)','A ∨ B','A ≡ B','~ (A & B)'],0,['','Counterexample: both pass. This is true; the sentence rules that out.','This says both or neither: the opposite.','Counterexample: both fail. This is true; the sentence is false.'],'Exclusive or.'),
+  {tag:'read', q:'Which English sentence does {~ (A & B)} say?', key:KY('A','B'), o:['Not both Ana and Ben pass.','Neither Ana nor Ben passes.','Ana does not pass and Ben passes.','Ana passes and Ben does not.'], a:0, w:['','That would be ~ A & ~ B.','That would be ~ A & B.','That would be A & ~ B.'], e:'At least one does not pass.'},
+  SY('The game is played if and only if it does not rain.',['G','R'],['G ≡ ~ R','G ⊃ ~ R','~ R ⊃ G','G & ~ R'],0,['','One direction only.','One direction only.','This claims it does not rain.'],'Same truth-value both ways.'),
+];
+TEST.forEach((t,i)=>{ if(!t.tag) t.tag = i===4?'basic': i===2||i===1?'ifs': i===3?'neg':'basic'; });
+// ===== More practice =====
+BASIC.push(
+  SY('Tom drives, and the meeting is canceled if it rains.',['T','M','R'],['T & (R ⊃ M)','(T & R) ⊃ M','T ⊃ (R & M)','(T & M) ∨ R'],0,['','Wrong grouping: this makes Tom’s driving part of the condition.','This makes Tom’s driving the condition.','This turns “if” into “or.”'],'Two claims: Tom drives, and (if it rains, the meeting is canceled).'),
+  SY('If it is Sunday, then the café is open or Tom drives.',['S','C','T'],['S ⊃ (C ∨ T)','(S ⊃ C) ∨ T','S & (C ∨ T)','(S ∨ C) ⊃ T'],0,['','Wrong grouping: “or Tom drives” is part of the consequent.','This claims it is Sunday.','Wrong structure.'],'The consequent is the whole “or.”'),
+  SY('The game is played and the café is open, or neither happens.',['G','C'],['(G & C) ∨ (~ G & ~ C)','(G & C) ∨ ~ (G & C)','G ≡ ~ C','(G ∨ C) & ~ (G & C)'],0,['','Always true: it says nothing.','This says exactly one happens: the opposite.','This says exactly one happens.'],'Both or neither. Equivalent to G ≡ C.'),
+);
+IFS.push(
+  SY('Ana passes if Ben does, and only if Ben does.',['A','B'],['A ≡ B','B ⊃ A','A ⊃ B','A & B'],0,['','Only the “if” half.','Only the “only if” half.','This claims both pass.'],'“If and only if,” split in two.'),
+  SY('Tom drives provided that it is not Sunday.',['T','S'],['~ S ⊃ T','T ⊃ ~ S','~ T ⊃ S','T & ~ S'],0,['','Reversed. Counterexample: Tom drives on Sunday. The sentence is fine; this is false.','Counterexample: not Sunday, Tom does not drive. The sentence is false; this is true.','This claims it is not Sunday.'],'“Provided that” introduces the antecedent.'),
+  SY('Unless the café is open, Ana does not pass.',['C','A'],['~ A ∨ C','C ⊃ ~ A','~ A & C','A ∨ ~ C'],0,['','Too strong: it says an open café stops Ana passing.','This claims both.','This says Ana passes or the café is closed.'],'“Unless Q, P” = P ∨ Q, with P = ~ A.'),
+);
+READ.push(
+  {q:'Which English sentence does {G ∨ R} say?', key:KY('G','R'), o:['The game is played unless it rains.','If it rains, the game is not played.','The game is played only if it rains.','The game is played and it rains.'], a:0, w:['','That would be R ⊃ ~ G.','That would be G ⊃ R.','That would be G & R.'], e:'“P unless Q” = P ∨ Q.'},
+  {q:'Which English sentence does {~ A ⊃ ~ B} say?', key:KY('A','B'), o:['If Ana does not pass, Ben does not pass.','Ben passes only if Ana does not.','Neither Ana nor Ben passes.','Ana passes unless Ben passes.'], a:0, w:['','That would be B ⊃ ~ A.','That would be ~ A & ~ B.','That would be A ∨ B.'], e:'~ A is the antecedent. It is equivalent to B ⊃ A: “Ben passes only if Ana does.”'},
+);
+CONN.push(
+  {q:'Which connective does “however” express, as in “Ana passed; however, Ben did not”?', o:['{&}','{∨}','{⊃}','{≡}'], a:0, w:['','It claims both parts.','It is not conditional.','It is not a biconditional.'], e:'“However” = &.'},
+  {q:'Which connective does “just in case” express (in the logical sense)?', o:['{≡}','{⊃}','{&}','{∨}'], a:0, w:['','It goes both ways.','It does not claim both.','It is not “or.”'], e:'“P just in case Q” = P ≡ Q.'},
+);
+
+const PROP_N=['Reflexive','Symmetric','Transitive'];
+const PROP_F=['(∀x)Axx','(∀x)(∀y)(Axy ⊃ Ayx)','(∀x)(∀y)(∀z)[(Axy & Ayz) ⊃ Axz]'];
+const VERBS=[{L:'L', vs:'likes', pp:'liked'}, {L:'T', vs:'trusts', pp:'trusted'}, {L:'A', vs:'admires', pp:'admired'}, {L:'K', vs:'knows', pp:'known'}];
+const RS = (q1,q2,ord,on=0,n2=0,n3=0)=>({on,q1,n2,q2,n3,ord});
+const ORDER=[];
+const PEOPLE=['Ana','Ben','Cy'];
+function evalRel(st,n,Rl){
+  const L=(a,b)=>!!((Rl>>(a*n+b))&1), D=[...Array(n).keys()];
+  const atom=(x,y)=>{ const v=st.ord==='xy'?L(x,y):L(y,x); return st.n3?!v:v; };
+  const inner=x=>{ const r=st.q2==='∀'?D.every(y=>atom(x,y)):D.some(y=>atom(x,y)); return st.n2?!r:r; };
+  const v=st.q1==='∀'?D.every(inner):D.some(inner);
+  return st.on?!v:v;
+}
+function relCounter(a,b){
+  for(let n=1;n<=3;n++){ let best=null;
+    for(let Rl=0;Rl<(1<<(n*n));Rl++){ if(evalRel(a,n,Rl)!==evalRel(b,n,Rl)){ const pc=Rl.toString(2).split('1').length-1; if(!best||pc<best.pc) best={n,R:Rl,pc}; } }
+    if(best) return best; }
+  return null;
+}
+const ordStr = (st,L) => `${st.on?'~':''}(${st.q1||'?'}x)${st.n2?'~':''}(${st.q2||'?'}y)${st.n3?'~':''}${L}${st.ord||'??'}`;
+K.basket=[['UD','things in a fruit basket'],['Ax','x is an apple'],['Px','x is a pear'],['Rx','x is rotten']];
+
+const ALL_IDS=PARTS.flatMap(p=>p.ids);
+const nOf = id => ACTS[id].items.length;
+const doneCount = id => { const m=(progress.sets||{})[id]||{}; return ACTS[id].items.filter((_,k)=>m[k]).length; };
+const firstUndone = id => { const m=(progress.sets||{})[id]||{}; const i=ACTS[id].items.findIndex((_,k)=>!m[k]); return i<0?0:i; };
+
+// ===== App state =====
+let view='home', cur=null;
+const app=document.getElementById('app');
+const VIEWS={};
+function render(){ app.innerHTML=VIEWS[view](); }
+function fresh(id,k,item){ return {id,k:+k||0,item:item||ACTS[id].items[+k||0], pickd:null, opt:null, shown:false, b:{on:0,q1:'',n2:0,q2:'',n3:0,ord:''}, result:null, counted:false, ans:[null,null,null], checked:false}; }
+function go(v,arg,k){ view=v; cur = v==='act' ? fresh(arg,k) : null; if(cur && ACTS[cur.id] && ACTS[cur.id].kind==='card' && doneMap(cur.id)[cur.k]) cur.shown=true; if(v==='done') cur={id:arg}; render(); window.scrollTo(0,0); }
+const backHome = { toString(){ return game ? `<button class="back" data-act="quit-game">‹ Quit test</button>` : `<button class="back" data-go="home">‹ All sections</button>`; } };
+const fb = (ok,title,body='') => `<div class="fb ${ok?'good':'bad'}" role="status"><strong>${title}</strong>${body}</div>`;
+const keyHTML = key => key ? `<div class="key">${key.map(([s,m])=>s==='UD'?`<span>UD: ${esc(m)}</span>`:`<span><b>${esc(s)}</b>: ${esc(m)}</span>`).join('')}</div>` : '';
+function head(){
+  if(game) return gameBar('Test your knowledge');
+  const A=ACTS[cur.id];
+  return `<div class="ex-head"><h2>${esc(A.name)}</h2>${A.kind==='card'?'':`<span class="score">${sc(cur.id)}</span>`}</div><p class="muted exnum">${A.kind==='card'?'Card':'Exercise'} ${cur.k+1} of ${nOf(cur.id)}</p>`;
+}
+const isLast = () => cur.k+1>=nOf(cur.id);
+const nextBtn = (label,ready=true) => `<div class="next">${!game&&cur.k>0?`<button class="btn ghost prev" data-act="prev">‹ Previous</button>`:''}<button class="btn" data-act="next" ${!game&&!ready?'disabled':''}>${game ? (game.answered ? (game.i+1<game.items.length?'Next question':'See my score') : 'Skip') : (isLast()?'Finish':label)}</button></div>`;
+
+// ===== Decorative symbol layer =====
+function symLayer(n, seed){
+  let x=seed; const rnd=()=>((x=(x*16807)%2147483647)/2147483647);
+  const G=['∀','∃','⊃','=','~','&','∨','x','y','f(x)','(∀x)','(∃y)'];
+  let out='';
+  for(let i=0;i<n;i++) out+=`<span style="left:${(rnd()*100).toFixed(1)}%;top:${(rnd()*100).toFixed(1)}%;font-size:${(18+rnd()*46).toFixed(0)}px;--r:${(rnd()*40-20).toFixed(0)}deg">${esc(G[Math.floor(rnd()*G.length)])}</span>`;
+  return `<div class="syms" aria-hidden="true">${out}</div>`;
+}
+
+// ===== Home =====
+VIEWS.home = () => {
+  const t=id=>{
+    const A=ACTS[id], n=nOf(id), d=doneCount(id), all=d===n, st=firstUndone(id);
+    const status = all ? '✓ Done' : d ? `${d} of ${n} done` : 'Start →';
+    const unit = A.kind==='card'?'cards':'exercises';
+    return `<li><button class="topic${all?' is-done':''}" data-go="act" data-arg="${id}" data-k="${st}"><span class="t-ico${!all&&A.ico.length>2?' small':''}" aria-hidden="true">${all?'✓':esc(A.ico)}</span><span>${esc(A.name)}<small>${n} ${unit} · ${esc(A.sub)}</small>${d&&!all?`<span class="tbar" aria-hidden="true"><i style="width:${Math.round(d/n*100)}%"></i></span>`:''}</span><span class="go">${status}</span></button></li>`;
+  };
+  const part=p=>{ const items=p.ids.map(t).join(''), tot=p.ids.length, dn=p.ids.filter(id=>doneCount(id)===nOf(id)).length, label=p.n?`Part ${p.n}`:'Intro';
+    return `<li class="level part-${p.n}"><div class="part-head"><span class="part-badge" aria-hidden="true">${dn===tot?'✓':(p.n||'★')}</span><h2>${p.title}</h2>${dn===tot?`<span class="part-done">${label} done</span>`:`<span class="level-num">≈ ${p.min} min</span>`}</div><ul class="topics">${items}</ul></li>`; };
+  const totN=ALL_IDS.reduce((a,id)=>a+nOf(id),0), totD=ALL_IDS.reduce((a,id)=>a+doneCount(id),0);
+  return `
+  ${cuteBg(0)}
+  <header class="mast">
+    ${symLayer(16, 7)}
+    <p class="kicker">PHIL 270 · Symbolic Logic</p>
+    <h1>Class 2<span class="f" aria-hidden="true">⊃</span></h1>
+    <p class="mast-tag">The five connectives and how to symbolize English: not, and, or, if, only if, unless, if and only if. Everyone gets the same exercises, so we can work through them together.</p>
+    <div class="prog"><div class="prog-row"><span>${totD===totN?'All done! 🎉':'Your progress'}</span><span>${totD} of ${totN}</span></div><div class="prog-bar" role="progressbar" aria-label="Cards and exercises done" aria-valuemin="0" aria-valuemax="${totN}" aria-valuenow="${totD}"><i style="width:${Math.round(totD/totN*100)}%"></i></div></div>
+    <button class="candy-cta" data-go="gameStart"><span class="candy-ico test-ico" aria-hidden="true">✓</span><span><b>Test your knowledge</b><small>10 questions on everything from today. Do it at the end.${progress.best!=null?` Your best so far: ${progress.best} of 10.`:''}</small></span><span class="go-light">Start</span></button>
+  </header>
+  <section class="plan" aria-label="Today’s plan">
+    <h2>Today’s plan · 1 hour 15 minutes</h2>
+    <ol>${PARTS.map(p=>`<li><b>${p.title}</b> · about ${p.min} min</li>`).join('')}<li><b>Test your knowledge</b> · about 10 min</li></ol>
+  </section>
+  <ol class="levels">${PARTS.map(part).join('')}</ol>
+  <p class="reset-row"><button class="reset" data-act="reset">Start over</button></p>`;
+};
+
+// ===== Activity views =====
+function mcBody(it){
+  const e=cur;
+  if(!e.opt) e.opt = it.fixed ? it.o.map((_,i)=>i) : withSeed('opt-'+it.q,()=>shuffle(it.o.map((_,i)=>i)));
+  const L='ABCD';
+  const btns=e.opt.map((oi,pos)=>{ let c='choice'; const after=e.pickd!==null;
+    if(after){ if(oi===it.a) c+=' right'; else if(oi===e.pickd) c+=' wrong'; }
+    let why='';
+    if(after){
+      const mean = (it.m && it.m[oi]) || (it.sl && onlyFormula(it.o[oi]) ? slEnglish(onlyFormula(it.o[oi]), it.sl) : null);
+      if(mean) why+=`<span class="why means">${oi===it.a?'✓':'✗'} Means: ${fmt(mean)}</span>`;
+      if(oi!==it.a && it.w && it.w[oi]) why+=`<span class="why wrongwhy">${mean?'':'✗ '}Why it’s wrong: ${fmt(it.w[oi])}</span>`;
+    }
+    return `<button class="${c}" data-mc="${oi}" ${after?'disabled':''}><b>${L[pos]}</b>${fmt(it.o[oi])}${why}</button>`; }).join('');
+  const ok=e.pickd===it.a;
+  return `<p class="prop">${fmt(it.q).replace(/\n/g,'<br>')}</p>${it.proof?proofHTML(it.proof):''}${keyHTML(it.key)}
+  <section class="step"><div class="choices one">${btns}</div>
+    ${e.pickd!==null?fb(ok, ok?'Correct.':`The answer is ${L[e.opt.indexOf(it.a)]}.`, ' '+fmt(it.e)):''}</section>`;
+}
+function ttBody(it){
+  const e=cur, fs=it.fs||[it.f], trees=fs.map(slParse);
+  const atoms=[...new Set(trees.flatMap(t=>slAtoms(t)))].sort(), n=atoms.length, R=1<<n;
+  const rows=[...Array(R).keys()].map(r=>Object.fromEntries(atoms.map((a,j)=>[a,!((r>>(n-1-j))&1)])));
+  const truth=trees.map(t=>rows.map(v=>slEval(t,v)));
+  if(!e.tv) e.tv={};
+  const TF=b=>b?'T':'F';
+  const head=`<tr>${atoms.map(a=>`<th>${a}</th>`).join('')}<th class="sep"></th>${fs.map((f,c)=>`<th class="fc">${F(f)}${it.labels?`<small>${esc(it.labels[c])}</small>`:''}</th>`).join('')}</tr>`;
+  const body=rows.map((v,r)=>`<tr>${atoms.map(a=>`<td>${TF(v[a])}</td>`).join('')}<td class="sep"></td>${fs.map((f,c)=>{ const k=c+':'+r, val=e.tv[k]; let cls='cell'; if(e.checked){ cls+= val===TF(truth[c][r])?' right':' wrong'; } return `<td><button class="${cls}" data-tv="${k}" ${e.checked?'disabled':''} aria-label="Row ${r+1}, ${esc(f)}">${e.checked&&val!==TF(truth[c][r])?`${val||'?'}→${TF(truth[c][r])}`:(val||'?')}</button></td>`; }).join('')}</tr>`).join('');
+  const ready=fs.every((_,c)=>rows.every((_,r)=>e.tv[c+':'+r]));
+  const rowTxt=v=>atoms.map(a=>`${a} = ${TF(v[a])}`).join(', ');
+  let sum='';
+  if(e.checked){
+    const mode=it.mode||'single', col=truth[0];
+    if(mode==='single') sum = col.every(x=>x)?'True on every row, so it is truth-functionally true.':col.every(x=>!x)?'False on every row, so it is truth-functionally false.':`True on some rows and false on others, so it is truth-functionally indeterminate. For example, it is true when ${rowTxt(rows[col.indexOf(true)])}, and false when ${rowTxt(rows[col.indexOf(false)])}.`;
+    if(mode==='equiv'){ const d=rows.findIndex((_,r)=>truth[0][r]!==truth[1][r]); sum = d<0?'The two columns match on every row, so the sentences are truth-functionally equivalent.':`They differ when ${rowTxt(rows[d])}: the first is ${TF(truth[0][d])} and the second is ${TF(truth[1][d])}. So they are not equivalent.`; }
+    if(mode==='set'){ const g=rows.findIndex((_,r)=>truth.every(c=>c[r])); sum = g>=0?`All of them are true when ${rowTxt(rows[g])}, so the set is truth-functionally consistent.`:'No row makes them all true, so the set is truth-functionally inconsistent.'; }
+    if(mode==='arg'){ const last=truth.length-1, g=rows.findIndex((_,r)=>truth.slice(0,last).every(c=>c[r]) && !truth[last][r]); sum = g<0?'No row makes every premise true and the conclusion false, so the argument is truth-functionally valid.':`When ${rowTxt(rows[g])}, every premise is true and the conclusion is false. So the argument is invalid.`; }
+  }
+  const ok=e.checked && fs.every((_,c)=>rows.every((_,r)=>e.tv[c+':'+r]===TF(truth[c][r])));
+  const wrongRows=[]; if(e.checked) fs.forEach((f,c)=>rows.forEach((v,r)=>{ if(e.tv[c+':'+r]!==TF(truth[c][r])) wrongRows.push(`<li><b>Row ${rowTxt(v)}${fs.length>1?` · ${esc(f)}`:''}:</b> ${esc(slWhy(trees[c],v))}</li>`); }));
+  const whyList = wrongRows.length?`<h3 class="means-h">Why those rows</h3><ul class="means-list">${wrongRows.join('')}</ul>`:'';
+  return `<p class="prop">${fmt(it.q||(fs.length>1?(it.mode==='arg'?'Fill in each column. Is there a row where every premise is T and the conclusion is F?':it.mode==='set'?'Fill in each column. Is there a row where every sentence is T?':'Fill in both columns. Do they ever differ?'):'Fill in the column under the main connective.'))}</p>${keyHTML(it.key)}${it.eng?`<p class="muted">In English: ${esc(it.eng)}</p>`:''}
+  <section class="step"><p class="hint">Tap each box to switch between T and F.</p>
+    <div class="ttwrap"><table class="tt">${head}${body}</table></div>
+    <div class="actions"><button class="btn" data-act="check-tt" ${!ready||e.checked?'disabled':''}>Check</button></div>
+    ${e.checked?fb(ok, ok?'Correct.':'Not quite. The corrections are shown in the table.', ' '+esc(sum)+(it.e?' '+fmt(it.e):'')):''}${whyList}</section>`;
+}
+const BODY={
+  card(it){
+    const A=ACTS[cur.id];
+    if(!cur.shown) return `<div class="fcard hidden-def"><p class="deck">${esc(A.deck)}</p><h3>${esc(it.t)}</h3><p class="muted">What does it mean? Say it in your own words, then reveal.</p><div class="actions"><button class="btn" data-act="reveal">Show the definition</button></div></div>`;
+    return `<div class="fcard"><p class="deck">${esc(A.deck)}</p><h3>${esc(it.t)}</h3><p class="def">${fmt(it.d).replace(/\n/g,'<br>')}</p>${it.x?`<div class="ex">${fmt(it.x)}${it.xs?`<small>${esc(it.xs)}</small>`:''}</div>`:''}</div>`;
+  },
+  mc: mcBody,
+  tt: ttBody,
+  world(it){
+    const e=cur, FR={A:'🍎',P:'🍐'};
+    const fruits=it.b.map(s=>`<span class="fruit" role="img" aria-label="${s[0]==='A'?'apple':'pear'}${s[1]?' (rotten)':''}">${FR[s[0]]}${s[1]?'<span class="worm">🪱</span>':''}</span>`).join('');
+    const btns=[[true,'True'],[false,'False']].map(([v,l])=>{ let c='choice'; if(e.pickd!==null){ if(v===it.ans) c+=' right'; else if(v===e.pickd) c+=' wrong'; } return `<button class="${c}" data-tf="${v}" ${e.pickd!==null?'disabled':''}>${l}</button>`; }).join('');
+    const ok=e.pickd===it.ans;
+    return `<p class="muted">Here is everything in the basket.</p><div class="basket">${fruits}</div><p class="legend">🍎 apple · 🍐 pear · 🪱 rotten</p>
+    ${keyHTML(K.basket.slice(1))}
+    <div class="formula wrap">${esc(it.f)}</div>
+    <section class="step"><h3>Is this sentence true in this basket?</h3><div class="choices">${btns}</div>
+    ${e.pickd!==null?fb(ok, ok?'Correct.':`It’s ${it.ans?'true':'false'}.`, ` In English: “${esc(it.eng)}” ${esc(it.e)}`):''}</section>`;
+  },
+  rel(it){
+    const e=cur;
+    const rows=PROP_N.map((p,i)=>{
+      const yn=[[1,'Yes'],[0,'No']].map(([v,l])=>{ let c='choice'; if(e.checked){ if(v===it.ans[i]) c+=' right'; else if(v===e.ans[i]) c+=' wrong'; } else if(e.ans[i]===v) c+=' picked'; return `<button class="${c}" data-rel="${i}:${v}" aria-pressed="${e.ans[i]===v}" ${e.checked?'disabled':''}>${l}</button>`; }).join('');
+      return `<div class="prop-row"><span><b>${p}?</b><span class="test">${esc(PROP_F[i])}</span>${e.checked?`<span class="why">${e.ans[i]===it.ans[i]?'✓ ':'✗ '}${esc(it.e[i])}</span>`:''}</span><span class="yn">${yn}</span></div>`;
+    }).join('');
+    const ready=e.ans.every(a=>a!==null), ok=e.checked&&e.ans.every((a,i)=>a===it.ans[i]);
+    return `<p class="prop">Axy: ${esc(it.r)}</p><div class="key"><span>UD: ${esc(it.ud)}</span></div>
+    <section class="step"><h3>Which properties does it have?</h3><div class="props">${rows}</div>
+      <div class="actions"><button class="btn" data-act="check-rel" ${!ready||e.checked?'disabled':''}>Check</button></div>
+      ${e.checked?fb(ok, ok?'Correct.':'Not quite.', ok?' All three are right.':' The reason for each property is shown above.'):''}</section>`;
+  },
+  order(it){
+    const e=cur, b=e.b, v=VERBS[it.v], L=v.L;
+    const sel=(name,opts)=>`<select id="ord-${name}" data-o="${name}" aria-label="${name}" ${e.result?.ok?'disabled':''}>${opts.map(([val,l])=>`<option value="${val}" ${String(val)===String(b[name])?'selected':''}>${l}</option>`).join('')}</select>`;
+    const neg=n=>sel(n,[[0,'–'],[1,'~']]);
+    const ready=b.q1&&b.q2&&b.ord;
+    let res='';
+    if(e.result){
+      if(e.result.ok) res=fb(true,'Correct.',' '+esc(it.e(v)));
+      else {
+        const m=e.result.counter, names=PEOPLE.slice(0,m.n);
+        const pairs=[]; for(let a=0;a<m.n;a++) for(let c=0;c<m.n;c++) if((m.R>>(a*m.n+c))&1) pairs.push(`${names[a]} ${v.vs} ${a===c?'themself':names[c]}`);
+        const ud = m.n===1?`just ${names[0]}`:names.slice(0,-1).join(', ')+' and '+names[m.n-1];
+        const rel = pairs.length?`the only facts are: ${pairs.join('; ')}`:`nobody ${v.vs} anybody`;
+        const eng = evalRel(it.st,m.n,m.R);
+        res=fb(false,'Not quite.',` Suppose the UD is ${ud}, and ${rel}. Then the English sentence is ${eng?'true':'false'}, but your formula is ${eng?'false':'true'}. Change the formula and check again.`);
+      }
+    }
+    return `<p class="prop">${esc(it.say(v))}</p>
+    <div class="key"><span>UD: people</span><span><b>${L}xy</b>: x ${v.vs} y</span></div>
+    <section class="step"><h3>Build the formula</h3><p class="hint">With mixed quantifiers, order matters. Decide which comes first and which variable goes in which place.</p>
+      <div class="builder">${neg('on')}<span>(</span>${sel('q1',[['','?'],['∀','∀'],['∃','∃']])}<span>x)</span>${neg('n2')}<span>(</span>${sel('q2',[['','?'],['∀','∀'],['∃','∃']])}<span>y)</span>${neg('n3')}<span>${L}</span>${sel('ord',[['','??'],['xy','xy'],['yx','yx']])}</div>
+      <p class="preview">Your formula: <span class="f">${esc(ordStr(b,L))}</span></p>
+      <div class="actions"><button class="btn" data-act="check-order" ${!ready||e.result?.ok?'disabled':''}>Check</button></div>${res}</section>`;
+  },
+  move(it){
+    const e=cur, done=e.pickd!==null;
+    const opts=[['∀','(∀x)'],['∃','(∃x)'],['none','It can’t be moved']].map(([v,l])=>{ let c='choice'; if(done){ if(v===it.ans) c+=' right'; else if(v===e.pickd) c+=' wrong'; } return `<button class="${c}" data-move="${v}" ${done?'disabled':''}>${v==='none'?l:F(l)}</button>`; }).join('');
+    const means = done && it.say ? `<ul class="means-list">${[['∀','(∀x)'],['∃','(∃x)'],['none','It can’t be moved']].map(([v,l])=>{ const r=it[v]; return `<li class="${v===it.ans?'ok':'no'}"><b>${v===it.ans?'✓':'✗'}</b> ${v==='none'?`<b>${esc(l)}:</b> ${esc(it.none)}`:`${F(r[0])}: ${esc(r[1])}`}</li>`; }).join('')}</ul>` : '';
+    return `${it.key?`<div class="key"><span>${esc(it.key)}</span></div>`:''}<div class="formula">${esc(it.s).replace(/ /g,'&nbsp;')}</div>
+    ${it.say?`<p class="muted">In English: “${esc(it.say)}”</p>`:''}
+    <section class="step"><h3>Extend the quantifier over the whole sentence</h3>
+      <p class="hint">Which quantifier does the equivalent sentence start with?</p>
+      <div class="choices three">${opts}</div>
+      ${done?fb(e.pickd===it.ans, e.pickd===it.ans?'Correct.':(it.ans==='none'?'It can’t be moved.':`It becomes ${F('('+it.ans+'x)')}.`), (it.res?` Equivalent sentence: ${F(it.res)}. `:' ')+esc(it.why)):''}
+      ${means?`<h3 class="means-h">What each choice would say</h3>${means}`:''}
+    </section>`;
+  },
+};
+VIEWS.act = () => {
+  const kind = game ? 'mc' : ACTS[cur.id].kind;
+  const ready = kind!=='card' || cur.shown;
+  return `${backHome}${head()}${BODY[kind](cur.item)}${nextBtn(kind==='card'?'Next card':'Next one', ready)}`;
+};
+VIEWS.done = () => {
+  const A=ACTS[cur.id], n=nOf(cur.id);
+  const pi=PARTS.findIndex(p=>p.ids.includes(cur.id)), p=PARTS[pi], j=p.ids.indexOf(cur.id);
+  const nextId = p.ids[j+1] || (PARTS[pi+1]&&PARTS[pi+1].ids[0]);
+  const nextBtnH = nextId ? `<button class="btn" data-go="act" data-arg="${nextId}" data-k="${firstUndone(nextId)}">Next: ${esc(ACTS[nextId].name)}</button>` : `<button class="btn" data-go="gameStart">On to: Test your knowledge</button>`;
+  return `${backHome}
+  <div class="game-hero"><div class="big-candy" aria-hidden="true">✓</div>
+    <h2>That’s all ${n}</h2>
+    <p>You finished <b>${esc(A.name)}</b>.</p></div>
+  <div class="actions center">${nextBtnH}<button class="btn ghost" data-go="home">Back to all sections</button></div>`;
+};
+
+// ===== Test your knowledge (10 questions at the end) =====
+
+let game=null, lastGame=null;
+function gameRecord(ok){
+  if(!game||game.answered) return;
+  game.answered=true; game.hist[game.i]=ok;
+  if(ok) game.right++;
+}
+function gameBar(title){
+  const g=game, n=g.items.length;
+  const dots=g.items.map((_,k)=>`<i class="${k<g.i||(k===g.i&&g.answered)?(g.hist[k]?'hit':'miss'):k===g.i?'now':''}"></i>`).join('');
+  return `<div class="gbar"><div class="gbar-row"><span>Question ${g.i+1} of ${n}</span><span>${g.right} correct</span></div><div class="dots" aria-hidden="true">${dots}</div></div>
+  <div class="ex-head"><h2>${title}</h2></div>`;
+}
+function startGame(){
+  game={items:TEST.map((_,i)=>i), i:-1, right:0, answered:false, hist:[]};
+  gameNext();
+}
+function gameNext(){
+  if(game.i>=0 && !game.answered) game.hist[game.i]=false;
+  game.i++; game.answered=false;
+  if(game.i>=game.items.length){ finishGame(); return; }
+  view='act'; cur=fresh('test',game.i,TEST[game.items[game.i]]);
+  render(); window.scrollTo(0,0);
+}
+function finishGame(){
+  lastGame=game; game=null;
+  progress.best=Math.max(progress.best??0, lastGame.right); save();
+  view='gameEnd'; cur=null; render(); window.scrollTo(0,0);
+}
+VIEWS.gameStart = () => `${backHome}
+  <div class="game-hero"><div class="big-candy test-big" aria-hidden="true">✓</div>
+    <h2>Test your knowledge</h2>
+    <p>Ten questions on everything from today: the five connectives and how to symbolize English: not, and, or, if, only if, unless, if and only if.</p>
+  </div>
+  <section class="step">
+    <p class="hint">Only your first answer to each question counts. You can skip a question, but a skip counts as a miss. You’ll see an explanation after each answer and your score at the end.</p>
+    <div class="actions"><button class="btn big" data-act="start-game">Start the test</button></div>
+  </section>`;
+VIEWS.gameEnd = () => {
+  const g=lastGame, n=g.items.length, pct=Math.round(g.right/n*100);
+  const rows=g.items.map((ti,k)=>{ const q=TEST[ti]; return `<li class="${g.hist[k]?'ok':'no'}"><span aria-hidden="true">${g.hist[k]?'✓':'✗'}</span> ${fmt(q.q)}${g.hist[k]?'':`<span class="why">Answer: ${fmt(q.o[q.a])}</span>`}</li>`; }).join('');
+  const missed=[...new Set(g.items.filter((_,k)=>!g.hist[k]).map(i=>TEST[i].tag))];
+  const practice = missed.length ? `<section class="step"><h3>Practice these, then try again</h3><ul class="topics">${missed.map(id=>`<li><button class="topic" data-go="act" data-arg="${id}" data-k="0"><span>${esc(ACTS[id].name)}</span><span class="go">Practice</span></button></li>`).join('')}</ul></section>` : '';
+  const msg = g.right===n ? 'Perfect score!' : g.right>=8 ? 'Great work!' : g.right>=5 ? 'Good effort.' : 'Keep practicing.';
+  return `<div class="win${g.right>=8?'':' lose'}" role="status">
+      <p class="eyebrow">Test your knowledge</p>
+      <h1>${msg}</h1>
+      <p class="final">${g.right} of ${n} right · ${pct}%</p>
+    </div>
+    <section class="step"><h3>Your answers</h3><ol class="results">${rows}</ol></section>
+    <div class="actions center"><button class="btn" data-act="replay">Take it again</button><button class="btn ghost" data-go="home">Back to practice</button></div>
+    ${practice}`;
+};
+
+// ===== Events =====
+app.addEventListener('click', ev=>{
+  const t=ev.target;
+  const act=t.closest('[data-act]')?.dataset.act;
+  if(act==='start-game'){ startGame(); return; }
+  if(act==='replay'){ go('gameStart'); return; }
+  if(act==='quit-game'){ game=null; go('home'); return; }
+  if(act==='next' && game){ gameNext(); return; }
+  if(act==='reset'){ if(confirm('Start over? This clears which exercises you have done on this device.')){ for(const k of Object.keys(progress)) delete progress[k]; save(); render(); } return; }
+  const goEl=t.closest('[data-go]'); if(goEl){ go(goEl.dataset.go, goEl.dataset.arg, goEl.dataset.k); return; }
+  if(view!=='act') return;
+  const it=cur.item, d=k=>t.closest(`[data-${k}]`)?.dataset[k];
+  let v;
+  if(act==='reveal'){ cur.shown=true; markDone(cur.id,cur.k); render(); return; }
+  if((v=d('mc'))!==undefined && cur.pickd===null){ cur.pickd=+v; tally(cur.pickd===it.a); render(); return; }
+  if((v=d('tf'))!==undefined && cur.pickd===null){ cur.pickd = v==='true'; tally(cur.pickd===it.ans); render(); return; }
+  if((v=d('move'))!==undefined && cur.pickd===null){ cur.pickd=v; tally(v===it.ans); render(); return; }
+  if((v=d('tv'))!==undefined && !cur.checked){ const x=cur.tv[v]; cur.tv[v]= x==='T'?'F':'T'; render(); return; }
+  if(act==='check-tt' && !cur.checked){ cur.checked=true; const it2=cur.item, fs=it2.fs||[it2.f], tr=fs.map(slParse), at=[...new Set(tr.flatMap(t=>slAtoms(t)))].sort(), n=at.length; let ok=true; for(let r=0;r<(1<<n);r++){ const vv=Object.fromEntries(at.map((a,j)=>[a,!((r>>(n-1-j))&1)])); tr.forEach((t,c)=>{ if(cur.tv[c+':'+r]!==(slEval(t,vv)?'T':'F')) ok=false; }); } tally(ok); render(); return; }
+  if((v=d('rel'))!==undefined && !cur.checked){ const [i,val]=v.split(':').map(Number); cur.ans[i]=val; render(); return; }
+  if(act==='check-rel' && !cur.checked){ cur.checked=true; tally(cur.ans.every((a,i)=>a===it.ans[i])); render(); return; }
+  if(act==='check-order'){
+    const c=relCounter(it.st, cur.b); cur.result={ok:!c, counter:c};
+    if(!cur.counted){ cur.counted=true; tally(!c); }
+    render(); return;
+  }
+  if(act==='prev'){ if(cur.k>0) go('act',cur.id,cur.k-1); return; }
+  if(act==='next'){ if(cur.k+1<nOf(cur.id)) go('act',cur.id,cur.k+1); else go('done',cur.id); return; }
+});
+app.addEventListener('change', ev=>{
+  const t=ev.target;
+  if(view==='act' && t.dataset.o){ const k=t.dataset.o; cur.b[k]=['on','n2','n3'].includes(k)?+t.value:t.value; if(cur.result&&!cur.result.ok) cur.result=null; render(); document.getElementById('ord-'+k)?.focus(); }
+});
+// ===== Class code =====
+const CLASS_CODE='class2';
+const normCode = v => String(v||'').toLowerCase().replace(/\s+/g,'');
+let unlocked=false; try{ unlocked = localStorage.getItem('class2-unlocked')==='yes'; }catch(e){}
+let codeError=false;
+function cuteBg(n=22){
+  let x=29; const rnd=()=>((x=(x*16807)%2147483647)/2147483647);
+  const SY=['∀','∃','⊃','=','~','&','∨'], COL=['var(--candy)','var(--acc2)','var(--p1)','var(--p2)','var(--p4)'];
+  let out='';
+  for(let i=0;i<n;i++){
+    const l=(rnd()*96).toFixed(1), t=(rnd()*94).toFixed(1), r=(rnd()*40-20).toFixed(0), d=(2.6+rnd()*3).toFixed(1);
+    out+=`<span style="left:${l}%;top:${t}%;font-size:${(22+rnd()*30).toFixed(0)}px;color:${COL[Math.floor(rnd()*COL.length)]};opacity:.35;--r:${r}deg;--d:${d}s">${SY[Math.floor(rnd()*SY.length)]}</span>`;
+  }
+  return `<div class="cute-bg" aria-hidden="true">${out}</div>`;
+}
+VIEWS.lock = () => `
+  ${cuteBg()}
+  <div class="lock">
+    <div class="tile" aria-hidden="true">⊃</div>
+    <h1>Class 2</h1>
+    <p class="sub">Symbolizing in SL.</p>
+    <form id="code-form" class="code-form" novalidate>
+      <label for="class-code" class="hint">Enter the class code your teacher gave you</label>
+      <input type="text" id="class-code" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="30" placeholder="• • • • • • •" ${codeError?'aria-invalid="true" aria-describedby="code-err"':''}>
+      ${codeError?`<p class="code-err" id="code-err" role="alert">That code isn’t right. Check with your teacher and try again.</p>`:''}
+      <button class="btn big" type="submit">Enter</button>
+    </form>
+  </div>`;
+app.addEventListener('submit', ev=>{
+  if(ev.target.id!=='code-form') return;
+  ev.preventDefault();
+  if(normCode(document.getElementById('class-code').value)===CLASS_CODE){
+    unlocked=true; codeError=false; try{ localStorage.setItem('class2-unlocked','yes'); }catch(e){}
+    go('home');
+  } else { codeError=true; render(); document.getElementById('class-code')?.focus(); }
+});
+if(!unlocked) view='lock';
+render();
+if(!unlocked) document.getElementById('class-code')?.focus();
+</script>
+</body>
+</html>

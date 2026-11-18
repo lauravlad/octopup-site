@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Class 3</title>
+<!-- Home-screen icon and full-screen mode (iPhone "Add to Home Screen", Android "Install") -->
+<link rel="icon" href="../icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Class 3">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F5FAF6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,400;7..72,600&family=STIX+Two+Text:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Same visual system as Therefore: one narrow column, levels list on home, stepwise exercises. */
+:root{--g1:#1F7A4A;--g2:#2E8B57;--g3:#3BAFA0;--mast-shadow:rgba(31,122,74,.6);--acc2:#3BA776;--acc2-soft:#E2F4EA;
+  --paper:#F5FAF6; --surface:#FFFFFF; --ink:#14301F; --muted:#4F6B5A; --line:#D5E8DA;
+  --accent:#1F7A4A; --accent-ink:#FFFFFF;
+  --good:#1D7550; --good-tint:#E3F3EB; --bad:#B42318; --bad-bg:#FBE9E7;
+  --soft:#EAF5EE;
+  --blob1:#CDEFD8; --blob2:#E2F4C9; --blob3:#CFF0E6; --blob4:#F0F7D4; --lock-line:#CBE6D3; --lock-ring:rgba(76,175,110,.25); --lock-glow:rgba(31,122,74,.45); --lock-field:#F6FCF8;
+  --mast:#1E5A3A; --mast-ink:#FFFFFF; --mast-sym:rgba(255,255,255,.09); --mast-muted:rgba(255,255,255,.78);
+  --candy:#2E8B57; --candy-ink:#FFFFFF; --candy-2:#DDF1E4;
+  --p1:#0D7F73; --p1-soft:#DCF2EE; --p2:#5A7D1A; --p2-soft:#EAF2D6; --p3:#2E8B57; --p3-soft:#DDF1E4; --p4:#1F6B4F; --p4-soft:#DCEDE5;
+  --page-sym:rgba(31,122,74,.07);
+  --serif:'Literata', Georgia, 'Times New Roman', serif;
+  --sans:'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --logic:'STIX Two Text', 'Cambria Math', 'Times New Roman', serif;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1E16; --surface:#172A20; --ink:#E4F2E9; --muted:#9FBFAC; --line:#2C4636;
+    --accent:#6FD39C; --accent-ink:#0F1E16;
+    --good:#5FCB9C; --good-tint:#16352B; --bad:#FF8F84; --bad-bg:#3A1E22;
+    --soft:#1F3529; color-scheme: dark;
+    --blob1:rgba(80,200,130,.18); --blob2:rgba(160,210,90,.16); --blob3:rgba(86,211,195,.14); --blob4:rgba(200,230,120,.10); --lock-line:#2F4A3A; --lock-ring:rgba(80,200,130,.12); --lock-glow:rgba(80,200,130,.45); --lock-field:#142319;
+    --mast:#1F5A3C; --mast-ink:#FFFFFF; --mast-sym:rgba(255,255,255,.08); --mast-muted:rgba(255,255,255,.75);
+    --candy:#5FCB8F; --candy-ink:#0A1A10; --candy-2:#1E3A2A;
+    --p1:#56D3C3; --p1-soft:#14322E; --p2:#B5D46A; --p2-soft:#2B3514; --p3:#6FD39C; --p3-soft:#183A28; --p4:#4FBF95; --p4-soft:#163329;
+    --page-sym:rgba(111,211,156,.07);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1E16; --surface:#172A20; --ink:#E4F2E9; --muted:#9FBFAC; --line:#2C4636;
+  --accent:#6FD39C; --accent-ink:#0F1E16;
+  --good:#5FCB9C; --good-tint:#16352B; --bad:#FF8F84; --bad-bg:#3A1E22;
+  --soft:#1F3529; color-scheme: dark;
+    --blob1:rgba(80,200,130,.18); --blob2:rgba(160,210,90,.16); --blob3:rgba(86,211,195,.14); --blob4:rgba(200,230,120,.10); --lock-line:#2F4A3A; --lock-ring:rgba(80,200,130,.12); --lock-glow:rgba(80,200,130,.45); --lock-field:#142319;
+    --mast:#1F5A3C; --mast-ink:#FFFFFF; --mast-sym:rgba(255,255,255,.08); --mast-muted:rgba(255,255,255,.75);
+    --candy:#5FCB8F; --candy-ink:#0A1A10; --candy-2:#1E3A2A;
+    --p1:#56D3C3; --p1-soft:#14322E; --p2:#B5D46A; --p2-soft:#2B3514; --p3:#6FD39C; --p3-soft:#183A28; --p4:#4FBF95; --p4-soft:#163329;
+    --page-sym:rgba(111,211,156,.07);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+main{max-width:640px;margin:0 auto;padding-block:20px 64px;padding-left:max(18px, env(safe-area-inset-left,0px));padding-right:max(18px, env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.2;margin:0;text-wrap:balance}
+h1{font-size:2.4rem;letter-spacing:-.01em}
+h2{font-size:1.55rem}
+h3{font-size:1.1rem}
+p{margin:.4em 0}
+.muted{color:var(--muted)}
+.f{font-family:var(--logic);white-space:nowrap;font-size:1.06em}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,select:focus-visible,a:focus-visible,label:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+.back{background:none;border:0;padding:6px 0;color:var(--accent);font-weight:700;margin-bottom:10px}
+
+/* Home */
+.hero{display:flex;align-items:center;gap:16px;margin:8px 0 6px}
+.hero svg{width:84px;height:auto;flex:none}
+.tagline{font-size:1.05rem;color:var(--muted);max-width:34ch}
+.levels{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--line)}
+.level{border-bottom:1px solid var(--line);padding:16px 0}
+.level-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.level-num{font-family:var(--serif);color:var(--muted);font-size:.95rem;white-space:nowrap}
+.topics{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-direction:column;gap:8px}
+.topic{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;border:1px solid var(--accent);background:var(--surface);border-radius:12px;padding:12px 14px}
+.topic:hover{background:var(--soft)}
+.topic small{display:block;color:var(--muted);font-size:.88rem}
+.go{color:var(--accent);font-weight:700;white-space:nowrap}
+
+/* Exercise */
+.ex-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
+.score{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.prop{font-family:var(--serif);font-size:1.4rem;line-height:1.35;margin:14px 0 6px}
+.prop mark{background:var(--soft);color:var(--ink);border-bottom:2px solid var(--accent);padding:0 2px}
+.formula{font-family:var(--logic);font-size:1.6rem;line-height:1.6;margin:12px 0 4px;display:flex;flex-wrap:wrap;align-items:baseline;row-gap:4px}
+.formula .sp{width:.3em}
+.tok{border:0;background:transparent;padding:0 2px;border-radius:5px;font-family:var(--logic);font-size:inherit;line-height:inherit}
+.tok.tap{border-bottom:2px dashed var(--muted);margin:0 1px}
+.tok.tap:hover{background:var(--soft)}
+.tok.sel{background:var(--soft);border-bottom:2px solid var(--accent)}
+.tok.right{background:var(--good-tint);border-bottom:2px solid var(--good)}
+.tok.wrong{background:var(--bad-bg);border-bottom:2px solid var(--bad)}
+.key{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.92rem;color:var(--muted);margin:6px 0 0}
+.key b{color:var(--ink);font-family:var(--logic);font-weight:600}
+.step{margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
+.step h3{margin-bottom:4px}
+.step .hint{font-size:.92rem;color:var(--muted)}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.choices.one{grid-template-columns:1fr}
+.choices.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.choice{border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;text-align:left;min-width:0;overflow-wrap:anywhere}
+.choice b{font-family:var(--serif);margin-right:6px}
+.choice.picked{border-color:var(--accent);background:var(--soft)}
+.choice.right{border-color:var(--good);background:var(--good-tint)}
+.choice.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.choice .why{display:block;font-size:.88rem;color:var(--muted);margin-top:4px;font-family:var(--sans)}
+.check{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.check input{margin-top:6px;accent-color:var(--accent);width:18px;height:18px;flex:none}
+.builder{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:12px;font-family:var(--logic);font-size:1.3rem}
+.builder select{font-family:var(--logic);font-size:1.15rem;padding:6px 6px;min-width:0}
+select{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink)}
+.preview{margin-top:10px;font-size:.92rem;color:var(--muted)}
+.preview .f{color:var(--ink);font-size:1.25rem}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btn{border:0;border-radius:10px;padding:11px 18px;font-weight:700;background:var(--accent);color:var(--accent-ink)}
+.btn[disabled]{opacity:.45;cursor:default}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.fb{margin-top:12px;padding:12px 14px;border-radius:10px;font-size:.97rem}
+.fb.good{background:var(--good-tint);color:var(--ink);border-left:4px solid var(--good)}
+.fb.bad{background:var(--bad-bg);color:var(--ink);border-left:4px solid var(--bad)}
+.fb strong{display:block;margin-bottom:2px}
+.fb ul{margin:6px 0 0;padding-left:1.2em}
+.fb li{margin:3px 0}
+.next{margin-top:30px;display:flex;justify-content:flex-end}
+/* Front screens */
+.syms{position:absolute;inset:0;overflow:hidden;pointer-events:none;font-family:var(--logic);user-select:none}
+.syms span{position:absolute;line-height:1;transform:rotate(var(--r))}
+.page-syms{position:fixed;z-index:0;color:var(--page-sym)}
+.lock{position:relative;z-index:1;max-width:400px;margin:9vh auto 0;text-align:center;display:grid;gap:10px;justify-items:center;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:30px 24px 26px;box-shadow:0 18px 50px -24px rgba(20,48,31,.35)}
+.lock .tile{width:76px;height:76px;margin-top:-68px;border-radius:20px;background:var(--mast);color:var(--mast-ink);display:grid;place-items:center;font-family:var(--logic);font-size:34px;box-shadow:0 10px 24px -10px rgba(30,90,58,.6)}
+.lock h1{font-size:2.5rem;margin-top:6px}
+.lock .sub{color:var(--muted);margin:0}
+.lock .code-form{margin-top:10px;text-align:center}
+.t-ico.small{font-size:.95rem}
+.lock input[type=text]{text-align:center;font-size:1.3rem;letter-spacing:.18em;padding:14px 12px;font-family:var(--logic)}
+.lock .chip{display:inline-flex;gap:6px;align-items:center;font-size:.85rem;color:var(--candy);background:var(--candy-2);border-radius:999px;padding:4px 12px;font-weight:700}
+.mast{position:relative;overflow:hidden;background:var(--mast);color:var(--mast-ink);border-radius:24px;padding:30px 24px 24px;margin-top:4px}
+.mast .syms{color:var(--mast-sym)}
+.mast > *:not(.syms){position:relative}
+.kicker{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mast-muted);margin:0;font-weight:700}
+.mast h1{font-size:clamp(2.6rem,9vw,3.6rem);letter-spacing:-.02em;margin-top:6px;color:var(--mast-ink)}
+.mast h1 .f{font-size:.8em;opacity:.55;margin-left:.15em}
+.mast-tag{color:var(--mast-muted);font-size:1.08rem;margin:.3em 0 0;max-width:34ch}
+.mast .candy-cta{margin-top:22px}
+.part-head{display:flex;align-items:center;gap:12px}
+.part-badge{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--pc);color:var(--surface);font-family:var(--serif);font-weight:600;font-size:1rem}
+.part-head h2{font-size:1.3rem}
+.part-head .level-num{margin-left:auto}
+.level{--pc:var(--p4);--pcs:var(--p4-soft)}
+.level.part-1{--pc:var(--p1);--pcs:var(--p1-soft)}
+.level.part-2{--pc:var(--p2);--pcs:var(--p2-soft)}
+.level.part-3{--pc:var(--p3);--pcs:var(--p3-soft)}
+.level.part-4{--pc:var(--p4);--pcs:var(--p4-soft)}
+.level.part-5{--pc:var(--p2);--pcs:var(--p2-soft)}
+.levels .topic{border-color:var(--line);display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;padding:12px 14px 12px 12px;transition:border-color .15s, transform .15s}
+.levels .topic:hover{border-color:var(--pc);background:var(--surface);transform:translateY(-1px)}
+.t-ico{width:44px;height:44px;border-radius:12px;background:var(--pcs);color:var(--pc);display:grid;place-items:center;font-family:var(--logic);font-size:1.25rem;font-weight:600}
+.levels .go{color:var(--pc)}
+@media (prefers-reduced-motion:reduce){ .levels .topic{transition:none} .levels .topic:hover{transform:none} }
+.code-form{display:grid;gap:8px;width:100%;margin-top:8px;text-align:left}
+.code-form .btn{justify-self:stretch}
+.code-err{color:var(--bad);font-size:.95rem;margin:0}
+input[aria-invalid="true"]{border-color:var(--bad)}
+/* Candy Challenge */
+.candy-cta{position:relative;overflow:hidden;display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:var(--candy);color:var(--candy-ink);border:0;border-radius:16px;padding:18px 16px 16px;margin-top:22px;box-shadow:0 10px 24px -12px rgba(0,0,0,.45)}
+.candy-cta::before{content:"";position:absolute;inset:0 0 auto;height:6px;background:repeating-linear-gradient(-45deg,rgba(255,255,255,.85) 0 8px,transparent 8px 16px)}
+.candy-cta:hover{filter:brightness(1.06)}
+.candy-cta .go-light{background:var(--candy-ink);color:var(--candy);border-radius:999px;padding:6px 14px}
+.candy-cta b{font-family:var(--serif);font-size:1.25rem;display:block}
+.candy-cta small{display:block;opacity:.88;font-size:.9rem}
+.candy-ico{font-size:2.2rem;line-height:1}
+.go-light{font-weight:700;white-space:nowrap;margin-left:auto}
+.game-hero{text-align:center;display:grid;gap:6px;justify-items:center;margin-top:6px}
+.game-hero p{max-width:40ch}
+.big-candy{font-size:64px;line-height:1}
+input[type=text]{font:inherit;padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);width:100%;margin-top:8px}
+input[type=text]:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn.big{font-size:1.1rem;padding:14px 24px}
+.gbar{display:grid;gap:6px;margin-bottom:14px}
+.gbar-row{display:flex;justify-content:space-between;font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.dots{display:flex;gap:4px}
+.dots i{flex:1;height:7px;border-radius:4px;background:var(--line)}
+.dots i.hit{background:var(--good)} .dots i.miss{background:var(--bad)} .dots i.now{background:var(--accent)}
+.cheer{color:var(--good);font-weight:700;white-space:nowrap}
+.win{text-align:center;background:var(--surface);border:2px solid var(--accent);border-radius:18px;padding:30px 18px;display:grid;gap:6px;justify-items:center;position:relative;z-index:6;margin-top:10px}
+.win.lose{border-color:var(--line)}
+.win h1{font-size:2.2rem}
+.eyebrow{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0}
+.cheer-big{font-family:var(--serif);font-size:1.4rem;color:var(--good);margin:0}
+.final{font-size:1.25rem;font-weight:700;font-variant-numeric:tabular-nums}
+.stamp{font-size:.9rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;margin-top:6px}
+.actions.center{justify-content:center;margin-top:18px}
+.rain{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:5}
+.rain span{position:absolute;top:-60px;animation-name:fall;animation-timing-function:linear;animation-iteration-count:3}
+@keyframes fall{to{transform:translateY(115vh) rotate(380deg)}}
+/* Win: sparkle explosions */
+.boom{position:fixed;inset:0;pointer-events:none;z-index:6;overflow:hidden}
+.boom i{position:absolute;left:var(--x);top:var(--y);font-style:normal;line-height:1;transform:translate(-50%,-50%) scale(.2);opacity:0;animation:burst var(--t) cubic-bezier(.15,.8,.3,1) var(--w) forwards}
+.boom i.dot{width:var(--s);height:var(--s);border-radius:50%;background:var(--c);box-shadow:0 0 10px var(--c)}
+@keyframes burst{
+  0%{transform:translate(-50%,-50%) scale(.2);opacity:1}
+  70%{opacity:1}
+  100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1) rotate(var(--rot));opacity:0}}
+.boom .flash{position:absolute;left:var(--x);top:var(--y);width:24px;height:24px;border-radius:50%;background:radial-gradient(circle,#fff,rgba(255,215,90,.8) 40%,transparent 70%);transform:translate(-50%,-50%) scale(0);animation:flash .6s ease-out var(--w) forwards}
+@keyframes flash{0%{transform:translate(-50%,-50%) scale(0);opacity:1}100%{transform:translate(-50%,-50%) scale(9);opacity:0}}
+
+.bounce{animation:bounce 1s ease-in-out infinite alternate}
+@keyframes bounce{from{transform:translateY(0) rotate(-6deg)}to{transform:translateY(-12px) rotate(6deg)}}
+@media (prefers-reduced-motion:reduce){ .rain{display:none} .bounce{animation:none} }
+@media (max-width:420px){ h1{font-size:2rem} .prop{font-size:1.25rem} .formula{font-size:1.35rem} .choices{grid-template-columns:1fr} .choices.three{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (prefers-reduced-motion:no-preference){ .fb{animation:pop .18s ease-out} @keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}} }
+.gclock{font-variant-numeric:tabular-nums;font-weight:700}
+.gclock.low{color:var(--bad, #c0392b)}
+.exnum{margin:-.4rem 0 .8rem;font-weight:600}
+
+
+/* Cute home header */
+.mast{background:linear-gradient(135deg,var(--g1) 0%,var(--g2) 55%,var(--g3) 100%);box-shadow:0 20px 44px -24px var(--mast-shadow)}
+.mast .syms{color:rgba(255,255,255,.14)}
+.mast h1 .f{opacity:.7}
+.mast .candy-cta{background:var(--surface);color:var(--ink);box-shadow:0 12px 26px -14px rgba(20,60,40,.55)}
+.mast .candy-cta::before{background:repeating-linear-gradient(-45deg,var(--candy) 0 8px,transparent 8px 16px);opacity:.85}
+.mast .candy-cta small{color:var(--muted);opacity:1}
+.mast .candy-cta b{color:var(--candy)}
+.mast .candy-cta .go-light{background:linear-gradient(90deg,var(--candy),var(--acc2));color:#fff}
+.levels,.mast{position:relative;z-index:1}
+
+/* Progress: what's been done */
+.prog{margin-top:18px;background:rgba(255,255,255,.18);border-radius:14px;padding:10px 14px}
+.prog-row{display:flex;justify-content:space-between;gap:10px;font-weight:700;font-size:.95rem}
+.prog-bar{height:10px;border-radius:999px;background:rgba(255,255,255,.3);margin-top:7px;overflow:hidden}
+.prog-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#FFE27A,#FFFFFF)}
+.tbar{height:6px;border-radius:999px;background:var(--soft);margin-top:7px;overflow:hidden;max-width:220px}
+.tbar i{display:block;height:100%;border-radius:999px;background:var(--pc)}
+.levels .topic.is-done{border-color:var(--good);background:var(--good-tint)}
+.levels .topic.is-done .t-ico{background:var(--good);color:#fff;font-family:var(--sans)}
+.levels .topic.is-done .go{color:var(--good)}
+.part-done{margin-left:auto;font-weight:700;font-size:.85rem;color:#fff;background:var(--good);border-radius:999px;padding:3px 10px;white-space:nowrap}
+.reset-row{text-align:center;margin:26px 0 8px}
+.reset{background:none;border:0;color:var(--muted);text-decoration:underline;font-size:.9rem;padding:6px}
+/* ===== Cute front screen ===== */
+.cute-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:
+  radial-gradient(40vmax 40vmax at 8% 12%, var(--blob1), transparent 60%),
+  radial-gradient(38vmax 38vmax at 92% 18%, var(--blob2), transparent 60%),
+  radial-gradient(44vmax 44vmax at 80% 95%, var(--blob3), transparent 60%),
+  radial-gradient(36vmax 36vmax at 10% 90%, var(--blob4), transparent 60%),
+  var(--paper)}
+.cute-bg span{position:absolute;line-height:1;font-family:var(--logic);font-weight:700;opacity:.85;transform:rotate(var(--r))}
+.cute-bg .em{font-family:system-ui,'Apple Color Emoji','Segoe UI Emoji',sans-serif;opacity:1;filter:drop-shadow(0 4px 6px rgba(30,90,58,.18))}
+@media (prefers-reduced-motion:no-preference){
+  .cute-bg span{animation:bob var(--d) ease-in-out infinite alternate}
+  @keyframes bob{from{transform:translateY(0) rotate(var(--r))}to{transform:translateY(-14px) rotate(calc(var(--r) + 8deg))}}
+  .lock .tile{animation:wiggle 3.2s ease-in-out infinite}
+  @keyframes wiggle{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg) scale(1.04)}}
+}
+.lock{border:2px solid var(--lock-line);border-radius:28px;box-shadow:0 22px 60px -26px var(--lock-glow),0 0 0 8px var(--lock-ring)}
+.lock .tile{background:linear-gradient(135deg,var(--candy),var(--acc2));color:#fff;border-radius:24px;box-shadow:0 12px 26px -10px var(--lock-glow);position:relative}
+.lock .tile::after{content:'✦';position:absolute;top:-8px;right:-10px;font-size:20px;color:#FFC93C;text-shadow:0 1px 0 rgba(0,0,0,.08)}
+.lock h1{background:linear-gradient(90deg,var(--candy),var(--acc2) 55%,var(--p1));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lock h1 .wave{-webkit-text-fill-color:initial;color:initial;margin-left:6px;font-size:.8em}
+.lock input[type=text]{border:2px solid var(--lock-line);border-radius:16px;background:var(--lock-field)}
+.lock input[type=text]:focus{border-color:var(--candy);outline:3px solid var(--lock-ring);outline-offset:0}
+.lock .btn.big{border-radius:16px;background:linear-gradient(90deg,var(--candy),var(--acc2));color:#fff;box-shadow:0 10px 20px -10px var(--lock-glow)}
+.lock .chip{font-size:.9rem;padding:6px 14px;box-shadow:inset 0 0 0 1.5px var(--lock-line)}
+.lock .hello{margin:0;font-weight:700;color:var(--candy);letter-spacing:.02em}
+.op{font-size:1.42em;line-height:1;vertical-align:-.08em;font-weight:600;padding:0 .04em}
+.why.means{color:var(--ink);opacity:.85}
+.means-list{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px}
+.means-list li{background:var(--soft);border-radius:10px;padding:8px 10px;line-height:1.45}
+.means-list li.ok{background:var(--good-tint)}
+.means-h{margin-top:14px}
+.why.means{color:var(--ink);opacity:.88}
+.why.wrongwhy{color:var(--bad);opacity:.95}
+.ttwrap{overflow-x:auto;margin:6px 0 4px}
+table.tt{border-collapse:collapse;font-family:var(--logic);font-size:1.15rem;margin:0 auto}
+table.tt th,table.tt td{padding:4px 8px;text-align:center;border-bottom:1px solid var(--line)}
+table.tt th.fc{font-weight:600;white-space:nowrap}
+table.tt th small{display:block;font-family:var(--sans);font-size:.7rem;color:var(--muted);font-weight:400}
+table.tt .sep{border-left:2px solid var(--ink);padding:0}
+table.tt .cell{min-width:44px;min-height:38px;border-radius:9px;border:1.5px solid var(--line);background:var(--surface);font-family:var(--logic);font-size:1.05rem;font-weight:700;cursor:pointer;color:var(--ink)}
+table.tt .cell.right{background:var(--good-tint);border-color:var(--good)}
+table.tt .cell.wrong{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+table.proof{border-collapse:collapse;font-size:1.12rem;margin:8px 0 12px}
+table.proof td{padding:2px 6px;vertical-align:middle}
+table.proof .ln{color:var(--muted);text-align:right;font-family:var(--sans);font-size:.9rem}
+table.proof .bars i{display:inline-block;width:12px;height:1.6em;border-left:2px solid var(--ink);vertical-align:middle}
+table.proof .asm{border-bottom:2px solid var(--ink);padding-bottom:1px}
+table.proof .ju{color:var(--muted);font-family:var(--sans);font-size:.92rem;padding-left:14px;white-space:nowrap}
+table.proof .gap{color:var(--bad)}
+.next{display:flex;justify-content:space-between;gap:10px}
+.next .prev{margin-right:auto}
+.next .btn:last-child{margin-left:auto}
+table.proof tr.new .bars i:last-child{height:1.25em;margin-top:.35em;vertical-align:bottom}
+</style>
+<style id="theme">:root{--paper:hsl(330 40% 97%);--surface:#FFFFFF;--ink:hsl(330 45% 13%);--muted:hsl(330 15% 37%);--line:hsl(330 32% 87%);--soft:hsl(330 40% 94%);
+--accent:hsl(330 62% 31%);--accent-ink:#FFFFFF;--mast:hsl(330 50% 25%);--mast-ink:#FFFFFF;--candy:hsl(330 52% 37%);--candy-ink:#FFFFFF;--candy-2:hsl(330 50% 92%);
+--acc2:hsl(344 48% 46%);--acc2-soft:hsl(330 52% 93%);--g1:hsl(330 62% 29%);--g2:hsl(342 52% 39%);--g3:hsl(8 50% 44%);--mast-shadow:hsl(330 60% 30% / .55);
+--p1:hsl(10 70% 28%);--p1-soft:hsl(10 55% 92%);--p2:hsl(290 62% 30%);--p2-soft:hsl(290 55% 92%);--p3:hsl(330 55% 34%);--p3-soft:hsl(330 50% 92%);--p4:hsl(50 45% 31%);--p4-soft:hsl(50 45% 92%);
+--blob1:hsl(330 60% 88%);--blob2:hsl(0 55% 90%);--blob3:hsl(300 55% 90%);--blob4:hsl(30 60% 92%);--lock-line:hsl(330 40% 85%);--lock-ring:hsl(330 50% 50% / .22);--lock-glow:hsl(330 60% 35% / .45);--lock-field:hsl(330 50% 98%);--page-sym:hsl(330 60% 30% / .07);}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:hsl(330 35% 9%);--surface:hsl(330 30% 13%);--ink:hsl(330 40% 92%);--muted:hsl(330 18% 68%);--line:hsl(330 25% 23%);--soft:hsl(330 28% 17%);
+--accent:hsl(330 58% 66%);--accent-ink:hsl(330 35% 9%);--mast:hsl(330 45% 24%);--candy:hsl(330 52% 62%);--candy-ink:hsl(330 35% 8%);--candy-2:hsl(330 30% 18%);
+--acc2:hsl(344 48% 58%);--acc2-soft:hsl(330 30% 18%);--g1:hsl(330 50% 25%);--g2:hsl(342 45% 31%);--g3:hsl(8 45% 35%);--mast-shadow:hsl(330 50% 20% / .6);
+--p1:hsl(10 55% 64%);--p1-soft:hsl(10 30% 17%);--p2:hsl(290 55% 64%);--p2-soft:hsl(290 30% 17%);--p3:hsl(330 50% 66%);--p3-soft:hsl(330 30% 17%);--p4:hsl(50 45% 62%);--p4-soft:hsl(50 28% 17%);
+--blob1:hsl(330 60% 50% / .16);--blob2:hsl(0 55% 50% / .14);--blob3:hsl(300 55% 50% / .12);--blob4:hsl(30 60% 50% / .10);--lock-line:hsl(330 25% 26%);--lock-ring:hsl(330 50% 55% / .12);--lock-glow:hsl(330 55% 55% / .45);--lock-field:hsl(330 30% 12%);--page-sym:hsl(330 55% 70% / .07);}}
+:root[data-theme="dark"]{--paper:hsl(330 35% 9%);--surface:hsl(330 30% 13%);--ink:hsl(330 40% 92%);--muted:hsl(330 18% 68%);--line:hsl(330 25% 23%);--soft:hsl(330 28% 17%);
+--accent:hsl(330 58% 66%);--accent-ink:hsl(330 35% 9%);--mast:hsl(330 45% 24%);--candy:hsl(330 52% 62%);--candy-ink:hsl(330 35% 8%);--candy-2:hsl(330 30% 18%);
+--acc2:hsl(344 48% 58%);--acc2-soft:hsl(330 30% 18%);--g1:hsl(330 50% 25%);--g2:hsl(342 45% 31%);--g3:hsl(8 45% 35%);--mast-shadow:hsl(330 50% 20% / .6);
+--p1:hsl(10 55% 64%);--p1-soft:hsl(10 30% 17%);--p2:hsl(290 55% 64%);--p2-soft:hsl(290 30% 17%);--p3:hsl(330 50% 66%);--p3-soft:hsl(330 30% 17%);--p4:hsl(50 45% 62%);--p4-soft:hsl(50 28% 17%);
+--blob1:hsl(330 60% 50% / .16);--blob2:hsl(0 55% 50% / .14);--blob3:hsl(300 55% 50% / .12);--blob4:hsl(30 60% 50% / .10);--lock-line:hsl(330 25% 26%);--lock-ring:hsl(330 50% 55% / .12);--lock-glow:hsl(330 55% 55% / .45);--lock-field:hsl(330 30% 12%);--page-sym:hsl(330 55% 70% / .07);}</style>
+</head>
+<body>
+<style>
+/* Additions for this class */
+.choice .f{white-space:normal;overflow-wrap:anywhere}
+.prop .f{white-space:normal}
+.formula.wrap{font-size:1.35rem;display:block;overflow-wrap:anywhere}
+.plan{position:relative;z-index:1;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.plan h2{font-size:1.15rem}
+.plan ol{margin:8px 0 0;padding-left:1.2em;color:var(--muted);font-size:.95rem}
+.plan li{margin:2px 0}
+.plan b{color:var(--ink)}
+.level.part-0{--pc:var(--acc2);--pcs:var(--acc2-soft)}
+.fcard{margin-top:16px;background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:22px 20px;min-height:200px;display:grid;gap:10px;align-content:start}
+.fcard .deck{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0}
+.fcard h3{font-size:1.6rem;color:var(--accent)}
+.fcard .def{font-size:1.08rem}
+.fcard .ex{font-family:var(--logic);font-size:1.3rem;background:var(--soft);border-radius:12px;padding:10px 14px;overflow-wrap:anywhere}
+.fcard .ex .f{white-space:normal;display:inline-block;margin-right:.6em}
+.fcard .def br{content:"";display:block;margin-top:.55em}
+.fcard .ex small{display:block;font-family:var(--sans);font-size:.88rem;color:var(--muted)}
+.fcard.hidden-def{border-style:dashed;place-items:center;text-align:center}
+.basket{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px;padding:14px;background:var(--soft);border-radius:16px}
+.fruit{position:relative;font-size:2.4rem;line-height:1;width:58px;height:58px;display:grid;place-items:center;background:var(--surface);border-radius:14px;border:1px solid var(--line)}
+.fruit .worm{position:absolute;right:-6px;bottom:-6px;font-size:1.2rem}
+.legend{font-size:.9rem;color:var(--muted)}
+.props{display:grid;gap:10px;margin-top:10px}
+.prop-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface)}
+.prop-row .yn{display:flex;gap:6px}
+.prop-row .choice{padding:8px 14px}
+.prop-row .test{display:block;font-family:var(--logic);font-size:.95rem;color:var(--muted)}
+.mast .candy-cta::before{display:none}
+.results{margin:8px 0 0;padding-left:1.4em;display:grid;gap:8px}
+.results li{font-size:.97rem}
+.results li.ok > span:first-child{color:var(--good);font-weight:700}
+.results li.no > span:first-child{color:var(--bad);font-weight:700}
+.results .why{display:block;color:var(--muted);font-size:.9rem}
+.test-ico{font-family:var(--serif);font-weight:700;color:var(--candy)}
+.test-big{font-family:var(--serif);color:var(--accent)}
+.key{background:var(--soft);border-radius:12px;padding:8px 12px;margin-top:10px}
+</style>
+<main id="app"></main>
+<script>
+// ===== Helpers =====
+// Seeded randomness: every student sees the exact same exercises, in the same order.
+let R=Math.random;
+function seeded(key){ let h=2166136261; for(const c of key){ h^=c.charCodeAt(0); h=Math.imul(h,16777619); } let x=h>>>0; return ()=>{ x=(x+0x6D2B79F5)|0; let t=Math.imul(x^x>>>15,1|x); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function withSeed(key,fn){ const old=R; R=seeded(key); try{ return fn(); } finally{ R=old; } }
+const pick = a => a[Math.floor(R()*a.length)];
+const shuffle = a => { a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(R()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; };
+const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const OPS = h => h.replace(/(&amp;|[⊃≡∨~∀∃])/g,'<span class="op">$1</span>');
+const F = s => `<span class="f">${OPS(esc(s))}</span>`;
+const fmt = t => esc(t).replace(/\\\{/g,'\u0001').replace(/\\\}/g,'\u0002').replace(/\{([^}]*)\}/g,(_,f)=>`<span class="f">${OPS(f)}</span>`).replace(/\u0001/g,'{').replace(/\u0002/g,'}');
+
+// ===== Saved progress (this browser only) =====
+const KEY='phil270-class3-v1';
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY))||{}; }catch(e){ return {}; } }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(progress)); }catch(e){} }
+const progress = load();
+const doneMap = id => (progress.sets||(progress.sets={}))[id]||(progress.sets[id]={});
+function markDone(id,k){ doneMap(id)[k]=1; save(); }
+function tally(ok){
+  if(game){ gameRecord(ok); return; }
+  const p=progress[cur.id]||(progress[cur.id]={done:0,right:0}); p.done++; if(ok) p.right++; markDone(cur.id,cur.k);
+}
+const sc = id => { const p=progress[id]; return p?`${p.right}/${p.done}`:'0/0'; };
+
+// ===== Sentential logic helpers (truth tables, English readings) =====
+function slParse(src){ const s=String(src).replace(/\s+/g,''); let i=0;
+  function un(){ const c=s[i];
+    if(c==='~'){ i++; return {op:'~',a:un()}; }
+    if(c==='('||c==='['||c==='{'){ i++; const e=bin(); i++; return e; }
+    if(/[A-Z]/.test(c||'')){ i++; let sub=''; while(/[0-9]/.test(s[i]||'')) sub+=s[i++]; return {at:c+sub}; }
+    throw new Error('Cannot read '+src); }
+  function bin(){ const l=un(); const c=s[i]; if(c && '&∨⊃≡'.includes(c)){ i++; return {op:c,a:l,b:un()}; } return l; }
+  const t=bin(); if(i!==s.length) throw new Error('Cannot read '+src); return t; }
+function slEval(t,v){ if(t.at) return !!v[t.at]; const a=slEval(t.a,v);
+  if(t.op==='~') return !a; const b=slEval(t.b,v);
+  return t.op==='&'?a&&b : t.op==='∨'?a||b : t.op==='⊃'?(!a||b) : a===b; }
+function slAtoms(t,out=new Set()){ if(t.at) out.add(t.at); else { slAtoms(t.a,out); if(t.b) slAtoms(t.b,out); } return [...out].sort(); }
+function slEnglishT(t,k){
+  if(t.at) return k[t.at]||t.at;
+  if(t.op==='~'){ const a=t.a;
+    if(a.op==='&') return `not both ${slEnglishT(a.a,k)} and ${slEnglishT(a.b,k)}`;
+    if(a.op==='∨') return `neither ${slEnglishT(a.a,k)} nor ${slEnglishT(a.b,k)}`;
+    return `it is not the case that ${slEnglishT(a,k)}`; }
+  const A=slEnglishT(t.a,k), B=slEnglishT(t.b,k), cx=(t.a.op&&t.a.op!=='~')||(t.b.op&&t.b.op!=='~');
+  if(t.op==='&') return cx?`both ${A}, and ${B}`:`${A} and ${B}`;
+  if(t.op==='∨') return `either ${A} or ${B}`;
+  if(t.op==='⊃') return `if ${A}, then ${B}`;
+  return `${A} if and only if ${B}`; }
+function slEnglish(f,k){ try{ const s=slEnglishT(slParse(f),k); return s[0].toUpperCase()+s.slice(1)+'.'; }catch(e){ return null; } }
+const onlyFormula = o => { const m=/^\{([^}]*)\}$/.exec(o.trim()); return m?m[1]:null; };
+function slStr(t,top=true){ if(t.at) return t.at; if(t.op==='~') return '~ '+slStr(t.a,false); const s=slStr(t.a,false)+' '+t.op+' '+slStr(t.b,false); return top?s:'('+s+')'; }
+const SLNAME={'~':'negation','&':'conjunction','∨':'disjunction','⊃':'conditional','≡':'biconditional'};
+function slWhy(t,v){ const TF=b=>b?'T':'F', val=slEval(t,v);
+  if(t.at) return `${t.at} is ${TF(val)}.`;
+  if(t.op==='~') return `${slStr(t.a)} is ${TF(slEval(t.a,v))}, so its negation is ${TF(val)}.`;
+  const a=slEval(t.a,v), b=slEval(t.b,v);
+  const rule = t.op==='&'?(val?'both parts are T':'a conjunction needs both parts T') : t.op==='∨'?(val?'at least one part is T':'both parts are F') : t.op==='⊃'?(val?(a?'the consequent is T':'the antecedent is F'):'T antecedent with F consequent is the only false case') : (val?'both sides match':'the two sides differ');
+  return `${slStr(t.a)} is ${TF(a)} and ${slStr(t.b)} is ${TF(b)}, so the ${SLNAME[t.op]} is ${TF(val)} (${rule}).`; }
+function proofHTML(p){
+  return `<table class="proof">${p.map(([n,d,s,j,as])=>`<tr class="${as&&d>0?'new':''}"><td class="ln">${n}</td><td class="ps"><span class="bars">${'<i></i>'.repeat(d+1)}</span><span class="${as?'asm':''}">${s?F(s):'<b class="gap">?</b>'}</span></td><td class="ju">${esc(j||'')}</td></tr>`).join('')}</table>`;
+}
+// ===== Class 3: complex symbolizations and non-truth-functional connectives =====
+const K={};
+const SLK={P:'the printer works', S:'the scanner works', L:'Lena studies', H:'Lena passes history', F:'Lena feels confident', W:'it is windy', O:'the ferry runs', D:'the dock is open'};
+const KY=(...ls)=>ls.map(l=>[l,SLK[l]]);
+const SY=(q,letters,o,a,w,e,tag)=>({q, key:KY(...letters), sl:SLK, o:o.map(x=>`{${x}}`), a, w, e, tag});
+const DEFS1=[
+  {t:'Paraphrase first', d:'Symbolize in two steps: first reword the English using only the five connectives (it is not the case that, and, or, if… then, if and only if), then turn the paraphrase into symbols.\nWhy: most mistakes happen when jumping straight from English to symbols.', x:'{L ⊃ H}', xs:'“Lena passes history if she studies” → If Lena studies then Lena passes history → L ⊃ H.'},
+  {t:'Atomic sentence', d:'A sentence that cannot reasonably be paraphrased as a truth-functional compound gets a single letter.\nTest: does the truth-value of the whole depend only on the truth-values of its parts? If not, keep it whole.', x:'{B}', xs:'B: Lena believes that the ferry runs. The whole belief is one letter: whether the ferry runs does not settle whether she believes it.'},
+  {t:'Only five connectives', d:'Every paraphrase may use only: it is not the case that, and, or, if… then, if and only if.\nWhy: those are the only words with SL symbols. “Unless,” “but,” “only if,” and “provided that” must be reworded into them first.', x:'{~}  {&}  {∨}  {⊃}  {≡}'},
+  {t:'Main connective', d:'The main connective is the one that governs the whole sentence: the last one applied when you build it up.\nWhy it matters: it decides what kind of sentence it is (a conditional, a conjunction…).\nTest: ask “what is this sentence, at bottom?” “If A, then B and C” is, at bottom, an if-then.', x:'{L ⊃ (H & F)}', xs:'If Lena studies, she passes history and feels confident. Main connective: ⊃.'},
+  {t:'Grouping and ambiguity', d:'English like “p and q or r” can mean p & (q ∨ r) or (p & q) ∨ r, and these say different things.\nWhat to do: use commas, “either,” and “both” in the English to decide the grouping, then mark it with parentheses.', x:'{P & (S ∨ W)}   vs   {(P & S) ∨ W}', xs:'“The printer works, and either the scanner works or it is windy” vs. “Either both the printer and scanner work, or it is windy.”'},
+  {t:'Extended conjunctions and disjunctions', d:'A chain of only “and” (or only “or”) is not ambiguous: any grouping gives the same truth conditions.\nWhat to do: SL still needs parentheses, so pick any grouping.', x:'{(P & S) & W}  =  {P & (S & W)}', xs:'The printer, the scanner, and the… all work: either grouping is fine.'},
+  {t:'Cross-reference', d:'Every part of the paraphrase must be a complete sentence that stands on its own.\nWhat to do: replace pronouns with names (“she” → “Lena”), and use one wording for a claim stated two ways (“Lena will pass” and “Lena passes” → the same letter).\nWhy: two letters for one claim hide the logical connection, and a valid argument can look invalid.', x:'{L ⊃ H}', xs:'“If Lena studies, she will pass history.” → If Lena studies then Lena passes history.'},
+  {t:'Truth-functional use', d:'A connective is used truth-functionally when the truth-value of the whole is fixed by the truth-values of the parts, whatever those values are.\nSL’s five connectives are always truth-functional.', x:'', xs:''},
+  {t:'Non-truth-functional connectives', d:'because, before, after, it is possible that, believes that, knows that, it is necessary that.\nWhy they fail: “Lena passed because she studied” can be false even when both parts are true (maybe the exam was easy).\nSafe policy: symbolize such a sentence with one letter.', x:'{C}', xs:'C: Lena passed because she studied. Wrong: L & H, which drops the “because.”'},
+  {t:'Stronger and weaker', d:'Sentence p is stronger than q (and q is weaker than p) when q follows from p but p does not follow from q.\nExample: “Lena studies and passes” is stronger than “Lena studies.”\nWhy it matters: a truth-functional paraphrase of a non-truth-functional sentence is often weaker: it captures part, but not all, of the meaning.', x:'{L & H}  is stronger than  {L}'},
+  {t:'A weaker truth-functional paraphrase', d:'Sometimes we can capture part of a non-truth-functional sentence. “Lena passed because she studied” at least says she studied and she passed.\nSo L & H is a weaker paraphrase: it follows from the original, but it loses the “because.”\nUse it only when the lost part does not matter for the argument.', x:'{L & H}', xs:'Captures: both happened. Loses: one caused the other.'},
+  {t:'Conditionals that express laws', d:'“If this rod is metal, it expands when heated” suggests a law: any metal rod would expand.\nThe material conditional P ⊃ E only says “not (P and not E).” It is true whenever P is false, which loses the idea of a law.\nWhat to do: usually symbolize with ⊃, but notice what is lost.', x:'{M ⊃ E}', xs:'M: this rod is metal. E: this rod expands when heated. If the rod is wooden, M ⊃ E is automatically true.'},
+];
+DEFS1.forEach(d=>{ if(!d.x) delete d.x; });
+const MAIN=[
+  {q:'What is the main connective of: “If Lena studies, then she passes history and feels confident”?', o:['⊃','&','∨','~'].map(x=>`{${x}}`), a:0, w:['','The “and” is inside the “then” part.','There is no “or.”','There is no negation.'], e:'At bottom it is an if-then: L ⊃ (H & F).'},
+  {q:'What is the main connective of: “Lena studies and passes history, or she feels confident”?', o:['∨','&','⊃','≡'].map(x=>`{${x}}`), a:0, w:['','The comma before “or” makes “or” the main connective.','There is no “if.”','There is no “if and only if.”'], e:'(L & H) ∨ F.'},
+  {q:'What is the main connective of: “It is not the case that both the printer and the scanner work”?', o:['~','&','∨','⊃'].map(x=>`{${x}}`), a:0, w:['','The “and” is inside the negation.','There is no “or.”','There is no “if.”'], e:'~ (P & S).'},
+  {q:'What is the main connective of {(P ∨ S) ⊃ ~ W}?', o:['⊃','∨','~','&'].map(x=>`{${x}}`), a:0, w:['','∨ is inside the antecedent.','~ only covers W.','There is no &.'], e:'The last connective applied when building the sentence.'},
+  {q:'What is the main connective of {~ (O & D) ≡ W}?', o:['≡','~','&','⊃'].map(x=>`{${x}}`), a:0, w:['','~ only covers (O & D).','& is inside the negation.','There is no ⊃.'], e:'Both sides of ≡ are complete sentences.'},
+  SY('The printer works, and either the scanner works or it is windy.',['P','S','W'],['P & (S ∨ W)','(P & S) ∨ W','P ∨ (S & W)','(P ∨ S) & W'],0,['','Wrong grouping. Counterexample: printer broken but windy. This is true; the sentence says the printer works.','This says printer, or (scanner and wind).','This claims it is windy.'],'The comma before “and” and the “either” put ∨ inside.','main'),
+  SY('Either the printer and the scanner both work, or it is windy.',['P','S','W'],['(P & S) ∨ W','P & (S ∨ W)','P ∨ (S & W)','(P ∨ S) & W'],0,['','Wrong grouping. Counterexample: printer broken but windy. The sentence is true; this is false.','This lets the printer alone make it true.','This requires wind.'],'“Either… or” around the whole.','main'),
+];
+const COMPLEX=[
+  SY('If Lena studies, she passes history, but if she does not study, she does not.',['L','H'],['(L ⊃ H) & (~ L ⊃ ~ H)','L ⊃ (H & ~ H)','(L ⊃ H) ∨ (~ L ⊃ ~ H)','L & H'],0,['','This says if she studies, she passes and does not pass: impossible.','“But” is &, not ∨.','This claims she actually studies.'],'Two conditionals joined by “but” (&). It is equivalent to L ≡ H.'),
+  SY('Lena passes history only if she studies and feels confident.',['L','H','F'],['H ⊃ (L & F)','(L & F) ⊃ H','H & (L & F)','(H ⊃ L) & F'],0,['','Reversed. Counterexample: she studies, feels confident, and still fails. The sentence is true; this is false.','This claims she actually passes.','This claims she feels confident no matter what.'],'Before “only if” = antecedent.'),
+  SY('Unless it is windy, the ferry runs and the dock is open.',['W','O','D'],['(O & D) ∨ W','W ⊃ (O & D)','~ W & (O & D)','(O ∨ W) & D'],0,['','Counterexample: no wind, ferry not running. The sentence is false; this is true.','This claims it is not windy.','This claims the dock is open regardless.'],'“P unless Q” = P ∨ Q, with P = (O & D).'),
+  SY('The ferry runs if and only if it is not windy and the dock is open.',['O','W','D'],['O ≡ (~ W & D)','(O ≡ ~ W) & D','O ⊃ (~ W & D)','(~ W & D) ⊃ O'],0,['','This claims the dock is open no matter what.','Only one direction.','Only one direction.'],'“If and only if” is the main connective.'),
+  SY('Neither the printer nor the scanner works, but it is not windy.',['P','S','W'],['(~ P & ~ S) & ~ W','~ (P & S) & ~ W','~ (P ∨ S ∨ W)','(~ P ∨ ~ S) & ~ W'],0,['','“Not both.” Counterexample: printer works, scanner broken, calm. This is true; the sentence is false.','Not a sentence of SL: ∨ ∨ needs parentheses.','Counterexample: printer works, scanner broken, calm. This is true; the sentence is false.'],'Neither… nor = ~ P & ~ S; “but” = &.'),
+  SY('If the ferry runs, then if the dock is open, Lena studies.',['O','D','L'],['O ⊃ (D ⊃ L)','(O ⊃ D) ⊃ L','(O & D) & L','O & (D ⊃ L)'],0,['','Wrong grouping: the antecedent is only “the ferry runs.”','This claims all three happen.','This claims the ferry runs.'],'Nested conditional. Equivalent to (O & D) ⊃ L.'),
+  SY('Lena feels confident just in case she studies, provided the ferry runs.',['F','L','O'],['O ⊃ (F ≡ L)','(O ⊃ F) ≡ L','F ≡ (L & O)','(F ≡ L) ⊃ O'],0,['','Wrong grouping.','This makes the ferry part of the biconditional.','Reversed: the ferry is the condition.'],'“Provided the ferry runs” is the antecedent of the whole.'),
+  SY('Not both the scanner works and it is windy, unless the dock is open.',['S','W','D'],['~ (S & W) ∨ D','~ ((S & W) ∨ D)','(~ S & ~ W) ∨ D','~ (S & W) & D'],0,['','The negation covers too much. Counterexample: dock open and S, W false. The sentence is true; this is false.','“Not both” is not “neither.”','“Unless” is ∨, not &.'],'(not both S and W) unless D.'),
+];
+const XREF=[
+  {q:'“If Lena studies, she will pass history.” Which paraphrase handles the cross-reference?', o:['If Lena studies then Lena passes history','If Lena studies then she passes history','Lena studies and she passes history','If she studies then she passes history'], a:0,
+   w:['','“She” is not a complete sentence on its own: who passes?','“If” became “and.”','Both pronouns are left unresolved.'], e:'Replace the pronoun with the name so each part stands on its own.'},
+  {q:'An argument says “Lena will pass history” in one premise and “Lena passes history” in the conclusion. How many letters should you use?', o:['One letter for both','Two different letters','Three letters','It depends on the tense'], a:0,
+   w:['','Two letters would hide that they are the same claim, and a valid argument could look invalid.','There is only one claim here.','For logic, they make the same claim; use one wording.'], e:'Use one consistent wording for the same claim.'},
+  {q:'“The printer works, and so does the scanner.” Which paraphrase is right?', o:['The printer works and the scanner works','The printer works and so does','The printer and the scanner','The printer works or the scanner works'], a:0,
+   w:['','“So does” is not a complete sentence.','That is not a sentence at all.','“And” became “or.”'], e:'Spell out “so does” as a full sentence.'},
+  {q:'“Lena fails history” should be symbolized, given H: Lena passes history, as…', key:KY('H'), sl:SLK, o:['{~ H}','{F}','{H}','{~ ~ H}'], a:0,
+   w:['','F already means “Lena feels confident.” A new letter would also hide the connection to H.','That says she passes.','That says she passes.'], e:'Use a negation of the positive sentence, not a new letter.'},
+  {q:'Why does it matter to use one letter for one claim?', o:['Otherwise the symbolization can miss logical connections, and a valid argument can look invalid','SL only has 26 letters','Letters must be in alphabetical order','It makes the truth table shorter'], a:0,
+   w:['','There are subscripts, so letters never run out.','Order does not matter.','That is a side effect, not the reason.'], e:'Different letters are treated as independent claims.'},
+  {q:'“Paul, Ellen, and Karen are all taking lessons.” Which is acceptable?', key:[['P','Paul takes lessons'],['E','Ellen takes lessons'],['K','Karen takes lessons']], o:['Either {(P & E) & K} or {P & (E & K)}','Only {(P & E) & K}','Only {P & (E & K)}','{P & E & K} without parentheses'], a:0,
+   w:['','Both groupings say the same thing.','Both groupings say the same thing.','SL needs the parentheses.'], e:'An extended conjunction is not ambiguous; any grouping works.'},
+];
+const NTF=[
+  {q:'Is this sentence truth-functionally compound? “Lena passed because she studied.”', o:['No: symbolize it with one letter','Yes: L & H','Yes: L ⊃ H','Yes: H ⊃ L'], a:0,
+   w:['','Both parts can be true while “because” is false (she studied, but passed because the exam was easy).','“Because” is not “if.”','“Because” is not “if.”'], e:'“Because” is not truth-functional.'},
+  {q:'Is “Lena studied before she felt confident” truth-functional?', o:['No','Yes'], a:0, fixed:true, w:['','Both parts true, but in the other order, makes it false. The truth-values alone do not decide.'], e:'“Before” depends on order, not just truth-values.'},
+  {q:'Is “It is possible that the ferry runs” truth-functional?', o:['No','Yes'], a:0, fixed:true, w:['','A false sentence may still be possible (the ferry does not run, but could). The value of the part does not settle the whole.'], e:'Symbolize it with one letter.'},
+  {q:'Is “The printer works, although the scanner does not” truth-functional?', o:['Yes','No'], a:0, fixed:true, w:['','“Although” works like “and”: it is true exactly when both parts are true.'], e:'P & ~ S.'},
+  {q:'Is “Lena knows that the dock is open” truth-functional?', o:['No','Yes'], a:0, fixed:true, w:['','The dock can be open while Lena does not know it. The truth-value of “the dock is open” does not settle the whole.'], e:'“Knows that” is not truth-functional.'},
+  {q:'Best SL symbolization of “The ferry stopped running because it was windy,” with C for the whole sentence?', key:[['C','the ferry stopped running because it was windy'],['O','the ferry runs'],['W','it is windy']], o:['{C}','{~ O & W}','{W ⊃ ~ O}','{~ O ≡ W}'], a:0,
+   w:['','This loses “because”: it is only a weaker paraphrase.','“Because” is not a conditional.','“Because” is not a biconditional.'], e:'Safe policy: one letter for a non-truth-functional sentence.'},
+  {q:'Which is truth-functional?', o:['Lena studies and feels confident.','Lena believes she studies.','Lena studies after she feels confident.','It is necessary that Lena studies.'], a:0,
+   w:['','Belief is not settled by truth-values.','Order is not settled by truth-values.','Necessity is not settled by truth-values.'], e:'“And” is truth-functional.'},
+  {q:'If both “Lena studied” and “Lena passed” are true, what do we know about “Lena passed after she studied”?', o:['Nothing yet: it could be true or false','It is true','It is false','It is truth-functionally true'], a:0,
+   w:['','Maybe she passed first (an earlier exam).','It could be true.','It is not a truth-functional sentence at all.'], e:'“After” is not truth-functional.'},
+];
+const WEAK=[
+  {q:'Which is stronger: “Lena studies and passes history” or “Lena studies”?', o:['“Lena studies and passes history”','“Lena studies”','They are equally strong','Neither: they are unrelated'], a:0,
+   w:['','“Lena studies” follows from the other, not the other way around.','“Lena studies and passes” does not follow from “Lena studies.”','One follows from the other.'], e:'The conjunction entails the conjunct, but not vice versa.'},
+  {q:'Which is weaker: “The ferry runs” or “The ferry runs or the dock is open”?', o:['“The ferry runs or the dock is open”','“The ferry runs”','They are equally strong','Neither'], a:0,
+   w:['','“The ferry runs” entails the disjunction, so it is the stronger one.','The disjunction does not entail “the ferry runs.”','One follows from the other.'], e:'A disjunction follows from either disjunct.'},
+  {q:'“Lena passed because she studied.” Which truth-functional paraphrase is weaker but captures part of it?', key:KY('L','H'), sl:SLK, o:['{L & H}','{L ⊃ H}','{H ⊃ L}','{L ≡ H}'], a:0,
+   w:['','This does not even say she studied or passed.','This does not say anything happened.','This does not say anything happened.'], e:'“Because” claims both happened (plus a causal link). L & H captures the first part.'},
+  {q:'Sentence p is stronger than q when…', o:['q follows from p, but p does not follow from q','p follows from q','p and q are equivalent','p is true and q is false'], a:0,
+   w:['','That makes q the stronger one.','Then neither is stronger.','Strength is about what follows, not actual truth-values.'], e:'The stronger sentence says more.'},
+  {q:'“If this rod is metal, it expands when heated” is symbolized M ⊃ E. What is lost?', o:['The idea of a law connecting metal and expansion','Nothing at all','The truth-value of M','The order of M and E'], a:0,
+   w:['','M ⊃ E is true whenever the rod is not metal, whatever would happen.','M is still there.','The order is kept.'], e:'The material conditional only rules out “M true and E false.”'},
+  {q:'With L: Lena studies and H: Lena passes history, which is the strongest?', key:KY('L','H'), sl:SLK, o:['{L & H}','{L ∨ H}','{L ⊃ H}','{H ∨ ~ H}'], a:0,
+   w:['','It follows from L & H, but says less.','It follows from L & H, but says less.','This says nothing at all: it is always true.'], e:'L & H entails each of the others.'},
+];
+const ACTS={
+  learn1:{kind:'card', items:DEFS1, name:'Definitions: complex symbolizations', sub:'Flashcards · tap to reveal', ico:'Aa', deck:'Complex symbolizations'},
+  main:{kind:'mc', items:MAIN, name:'Main connective and grouping', sub:'What is the sentence, at bottom?', ico:'( )'},
+  complex:{kind:'mc', items:COMPLEX, name:'Symbolize complex sentences', sub:'Three letters, nested connectives', ico:'A⊃B'},
+  xref:{kind:'mc', items:XREF, name:'Cross-reference and wording', sub:'Pronouns and one claim, one letter', ico:'↔'},
+  ntf:{kind:'mc', items:NTF, name:'Truth-functional or not?', sub:'because, before, after, knows that', ico:'?'},
+  weak:{kind:'mc', items:WEAK, name:'Stronger and weaker', sub:'What a paraphrase keeps and loses', ico:'≥'},
+};
+const PARTS=[
+  {n:0, title:'Start here: definitions', ids:['learn1'], min:12},
+  {n:1, title:'Main connectives and grouping', ids:['main'], min:10},
+  {n:2, title:'Complex symbolizations', ids:['complex','xref'], min:18},
+  {n:3, title:'Non-truth-functional connectives', ids:['ntf','weak'], min:15},
+];
+const TEST=[
+  {tag:'main', q:'What is the main connective of {~ (P ∨ S) ⊃ W}?', o:['⊃','~','∨','≡'].map(x=>`{${x}}`), a:0, w:['','~ only covers (P ∨ S).','∨ is inside the negation.','There is no ≡.'], e:'The last one applied.'},
+  SY('If the dock is open, the ferry runs unless it is windy.',['D','O','W'],['D ⊃ (O ∨ W)','(D ⊃ O) ∨ W','D & (O ∨ W)','(D ∨ W) ⊃ O'],0,['','Wrong grouping.','This claims the dock is open.','Wrong structure.'],'If D, then (O unless W).','complex'),
+  SY('Lena passes history only if she studies.',['H','L'],['H ⊃ L','L ⊃ H','H ≡ L','H & L'],0,['','Reversed.','Too strong.','Claims both happen.'],'Before “only if” = antecedent.','complex'),
+  SY('Neither the printer nor the scanner works.',['P','S'],['~ P & ~ S','~ (P & S)','~ P ∨ ~ S','~ P & S'],0,['','“Not both.”','“Not both.”','Says the scanner works.'],'Not P and not S.','complex'),
+  {tag:'xref', q:'“Lena studies, and she feels confident.” Which paraphrase handles the pronoun?', o:['Lena studies and Lena feels confident','Lena studies and she feels confident','Lena studies or Lena feels confident','She studies and she feels confident'], a:0, w:['','“She” is left in.','“And” became “or.”','Both pronouns are left in.'], e:'Replace pronouns with names.'},
+  {tag:'ntf', q:'Is “Lena passed after she studied” truth-functional?', o:['No','Yes'], a:0, fixed:true, w:['','The truth-values of the parts do not fix the order.'], e:'Use one letter.'},
+  {tag:'ntf', q:'Which connective is truth-functional?', o:['unless','because','believes that','before'], a:0, w:['','Not settled by truth-values.','Not settled by truth-values.','Not settled by truth-values.'], e:'“Unless” = ∨.'},
+  {tag:'weak', q:'Which is stronger: {O & D} or {O}?', o:['{O & D}','{O}','Equally strong','Neither'], a:0, w:['','O follows from O & D, not the other way.','O & D does not follow from O.','One follows from the other.'], e:'The conjunction says more.'},
+  {tag:'main', q:'“The printer works and the scanner works, or it is windy.” Best symbolization?', key:KY('P','S','W'), sl:SLK, o:['{(P & S) ∨ W}','{P & (S ∨ W)}','{(P ∨ S) & W}','{P ∨ (S & W)}'], a:0, w:['','Wrong grouping.','Wrong structure.','Wrong structure.'], e:'The comma before “or” makes ∨ main.'},
+  {tag:'weak', q:'Why symbolize “Lena passed because she studied” with one letter?', o:['“Because” is not truth-functional','“Because” means “and”','Sentences with “because” are always false','SL has a symbol for “because”'], a:0, w:['','L & H would lose the “because.”','They can be true.','It does not.'], e:'The safe policy for non-truth-functional sentences.'},
+];
+// ===== More practice =====
+COMPLEX.push(
+  SY('If the printer works but the scanner does not, Lena studies.',['P','S','L'],['(P & ~ S) ⊃ L','P & (~ S ⊃ L)','(P ⊃ ~ S) ⊃ L','L ⊃ (P & ~ S)'],0,['','Wrong grouping: this claims the printer works.','“But” is &, not ⊃.','Reversed.'],'The whole “P but not S” is the antecedent.'),
+  SY('Either the ferry runs and the dock is open, or neither does.',['O','D'],['(O & D) ∨ (~ O & ~ D)','(O & D) ∨ ~ (O & D)','O ≡ ~ D','(O ∨ D) & ~ (O & D)'],0,['','Always true.','This says exactly one: the opposite.','This says exactly one.'],'Both or neither (equivalent to O ≡ D).'),
+  SY('Lena passes history only if she studies, unless it is windy.',['H','L','W'],['(H ⊃ L) ∨ W','(H ∨ W) ⊃ L','W ⊃ (H ⊃ L)','(H ⊃ L) & ~ W'],0,['','This says that wind alone forces Lena to study. Counterexample: windy and Lena does not study. The sentence is true (it is windy); this is false.','Too strong: “unless” is ∨, not “if.” Counterexample: not windy, Lena passes without studying. This is true; the sentence is false.','This claims it is not windy.'],'(H only if L) unless W.'),
+  SY('It is not windy, and if the dock is open, the ferry runs.',['W','D','O'],['~ W & (D ⊃ O)','~ (W & (D ⊃ O))','(~ W & D) ⊃ O','~ W ⊃ (D ⊃ O)'],0,['','The negation covers too much.','Wrong grouping: “not windy” becomes part of the condition.','“And” became “if.”'],'Two claims joined by &.'),
+);
+MAIN.push(
+  {q:'What is the main connective of {(L & H) ≡ ~ (F ∨ W)}?', o:['≡','&','~','∨'].map(x=>`{${x}}`), a:0, w:['','& is inside the left side.','~ is inside the right side.','∨ is inside the negation.'], e:'Both sides of ≡ are complete sentences.'},
+  {q:'Which is NOT a sentence of SL?', o:['{P & S ∨ W}','{(P & S) ∨ W}','{~ ~ P}','{P ⊃ (S ≡ W)}'], a:0, w:['','Grouping is shown, so it is fine.','Two negations are fine.','Fully grouped.'], e:'P & S ∨ W needs parentheses to show the grouping.'},
+  {q:'What is the main connective of {~ (P ⊃ S) & (W ∨ O)}?', o:['&','~','⊃','∨'].map(x=>`{${x}}`), a:0, w:['','~ only covers (P ⊃ S).','⊃ is inside the negation.','∨ is inside the right conjunct.'], e:'A conjunction of a negation and a disjunction.'},
+);
+NTF.push(
+  {q:'Is “It is necessary that Lena studies” truth-functional?', o:['No','Yes'], a:0, fixed:true, w:['','Lena may study (true) without it being necessary. The truth-value of the part does not settle the whole.'], e:'Use one letter.'},
+  {q:'Is “The printer works, but the scanner does not” truth-functional?', o:['Yes','No'], a:0, fixed:true, w:['','“But” is &: true exactly when both parts are true.'], e:'P & ~ S.'},
+);
+WEAK.push(
+  {q:'Which is weaker: {L ⊃ H} or {H}?', key:KY('L','H'), sl:SLK, o:['{L ⊃ H}','{H}','Equally strong','Neither'], a:0, w:['','H entails L ⊃ H (a true consequent makes the conditional true), not the other way.','L ⊃ H does not entail H.','One follows from the other.'], e:'L ⊃ H follows from H.'},
+);
+PARTS[1].min=12; PARTS[2].min=24; PARTS[3].min=17;
+
+const PROP_N=['Reflexive','Symmetric','Transitive'];
+const PROP_F=['(∀x)Axx','(∀x)(∀y)(Axy ⊃ Ayx)','(∀x)(∀y)(∀z)[(Axy & Ayz) ⊃ Axz]'];
+const VERBS=[{L:'L', vs:'likes', pp:'liked'}, {L:'T', vs:'trusts', pp:'trusted'}, {L:'A', vs:'admires', pp:'admired'}, {L:'K', vs:'knows', pp:'known'}];
+const RS = (q1,q2,ord,on=0,n2=0,n3=0)=>({on,q1,n2,q2,n3,ord});
+const ORDER=[];
+const PEOPLE=['Ana','Ben','Cy'];
+function evalRel(st,n,Rl){
+  const L=(a,b)=>!!((Rl>>(a*n+b))&1), D=[...Array(n).keys()];
+  const atom=(x,y)=>{ const v=st.ord==='xy'?L(x,y):L(y,x); return st.n3?!v:v; };
+  const inner=x=>{ const r=st.q2==='∀'?D.every(y=>atom(x,y)):D.some(y=>atom(x,y)); return st.n2?!r:r; };
+  const v=st.q1==='∀'?D.every(inner):D.some(inner);
+  return st.on?!v:v;
+}
+function relCounter(a,b){
+  for(let n=1;n<=3;n++){ let best=null;
+    for(let Rl=0;Rl<(1<<(n*n));Rl++){ if(evalRel(a,n,Rl)!==evalRel(b,n,Rl)){ const pc=Rl.toString(2).split('1').length-1; if(!best||pc<best.pc) best={n,R:Rl,pc}; } }
+    if(best) return best; }
+  return null;
+}
+const ordStr = (st,L) => `${st.on?'~':''}(${st.q1||'?'}x)${st.n2?'~':''}(${st.q2||'?'}y)${st.n3?'~':''}${L}${st.ord||'??'}`;
+K.basket=[['UD','things in a fruit basket'],['Ax','x is an apple'],['Px','x is a pear'],['Rx','x is rotten']];
+
+const ALL_IDS=PARTS.flatMap(p=>p.ids);
+const nOf = id => ACTS[id].items.length;
+const doneCount = id => { const m=(progress.sets||{})[id]||{}; return ACTS[id].items.filter((_,k)=>m[k]).length; };
+const firstUndone = id => { const m=(progress.sets||{})[id]||{}; const i=ACTS[id].items.findIndex((_,k)=>!m[k]); return i<0?0:i; };
+
+// ===== App state =====
+let view='home', cur=null;
+const app=document.getElementById('app');
+const VIEWS={};
+function render(){ app.innerHTML=VIEWS[view](); }
+function fresh(id,k,item){ return {id,k:+k||0,item:item||ACTS[id].items[+k||0], pickd:null, opt:null, shown:false, b:{on:0,q1:'',n2:0,q2:'',n3:0,ord:''}, result:null, counted:false, ans:[null,null,null], checked:false}; }
+function go(v,arg,k){ view=v; cur = v==='act' ? fresh(arg,k) : null; if(cur && ACTS[cur.id] && ACTS[cur.id].kind==='card' && doneMap(cur.id)[cur.k]) cur.shown=true; if(v==='done') cur={id:arg}; render(); window.scrollTo(0,0); }
+const backHome = { toString(){ return game ? `<button class="back" data-act="quit-game">‹ Quit test</button>` : `<button class="back" data-go="home">‹ All sections</button>`; } };
+const fb = (ok,title,body='') => `<div class="fb ${ok?'good':'bad'}" role="status"><strong>${title}</strong>${body}</div>`;
+const keyHTML = key => key ? `<div class="key">${key.map(([s,m])=>s==='UD'?`<span>UD: ${esc(m)}</span>`:`<span><b>${esc(s)}</b>: ${esc(m)}</span>`).join('')}</div>` : '';
+function head(){
+  if(game) return gameBar('Test your knowledge');
+  const A=ACTS[cur.id];
+  return `<div class="ex-head"><h2>${esc(A.name)}</h2>${A.kind==='card'?'':`<span class="score">${sc(cur.id)}</span>`}</div><p class="muted exnum">${A.kind==='card'?'Card':'Exercise'} ${cur.k+1} of ${nOf(cur.id)}</p>`;
+}
+const isLast = () => cur.k+1>=nOf(cur.id);
+const nextBtn = (label,ready=true) => `<div class="next">${!game&&cur.k>0?`<button class="btn ghost prev" data-act="prev">‹ Previous</button>`:''}<button class="btn" data-act="next" ${!game&&!ready?'disabled':''}>${game ? (game.answered ? (game.i+1<game.items.length?'Next question':'See my score') : 'Skip') : (isLast()?'Finish':label)}</button></div>`;
+
+// ===== Decorative symbol layer =====
+function symLayer(n, seed){
+  let x=seed; const rnd=()=>((x=(x*16807)%2147483647)/2147483647);
+  const G=['∀','∃','⊃','=','~','&','∨','x','y','f(x)','(∀x)','(∃y)'];
+  let out='';
+  for(let i=0;i<n;i++) out+=`<span style="left:${(rnd()*100).toFixed(1)}%;top:${(rnd()*100).toFixed(1)}%;font-size:${(18+rnd()*46).toFixed(0)}px;--r:${(rnd()*40-20).toFixed(0)}deg">${esc(G[Math.floor(rnd()*G.length)])}</span>`;
+  return `<div class="syms" aria-hidden="true">${out}</div>`;
+}
+
+// ===== Home =====
+VIEWS.home = () => {
+  const t=id=>{
+    const A=ACTS[id], n=nOf(id), d=doneCount(id), all=d===n, st=firstUndone(id);
+    const status = all ? '✓ Done' : d ? `${d} of ${n} done` : 'Start →';
+    const unit = A.kind==='card'?'cards':'exercises';
+    return `<li><button class="topic${all?' is-done':''}" data-go="act" data-arg="${id}" data-k="${st}"><span class="t-ico${!all&&A.ico.length>2?' small':''}" aria-hidden="true">${all?'✓':esc(A.ico)}</span><span>${esc(A.name)}<small>${n} ${unit} · ${esc(A.sub)}</small>${d&&!all?`<span class="tbar" aria-hidden="true"><i style="width:${Math.round(d/n*100)}%"></i></span>`:''}</span><span class="go">${status}</span></button></li>`;
+  };
+  const part=p=>{ const items=p.ids.map(t).join(''), tot=p.ids.length, dn=p.ids.filter(id=>doneCount(id)===nOf(id)).length, label=p.n?`Part ${p.n}`:'Intro';
+    return `<li class="level part-${p.n}"><div class="part-head"><span class="part-badge" aria-hidden="true">${dn===tot?'✓':(p.n||'★')}</span><h2>${p.title}</h2>${dn===tot?`<span class="part-done">${label} done</span>`:`<span class="level-num">≈ ${p.min} min</span>`}</div><ul class="topics">${items}</ul></li>`; };
+  const totN=ALL_IDS.reduce((a,id)=>a+nOf(id),0), totD=ALL_IDS.reduce((a,id)=>a+doneCount(id),0);
+  return `
+  ${cuteBg(0)}
+  <header class="mast">
+    ${symLayer(16, 7)}
+    <p class="kicker">PHIL 270 · Symbolic Logic</p>
+    <h1>Class 3<span class="f" aria-hidden="true">( )</span></h1>
+    <p class="mast-tag">Paraphrase first, main connectives, grouping, cross-reference, non-truth-functional connectives, and stronger and weaker paraphrases. Everyone gets the same exercises, so we can work through them together.</p>
+    <div class="prog"><div class="prog-row"><span>${totD===totN?'All done! 🎉':'Your progress'}</span><span>${totD} of ${totN}</span></div><div class="prog-bar" role="progressbar" aria-label="Cards and exercises done" aria-valuemin="0" aria-valuemax="${totN}" aria-valuenow="${totD}"><i style="width:${Math.round(totD/totN*100)}%"></i></div></div>
+    <button class="candy-cta" data-go="gameStart"><span class="candy-ico test-ico" aria-hidden="true">✓</span><span><b>Test your knowledge</b><small>10 questions on everything from today. Do it at the end.${progress.best!=null?` Your best so far: ${progress.best} of 10.`:''}</small></span><span class="go-light">Start</span></button>
+  </header>
+  <section class="plan" aria-label="Today’s plan">
+    <h2>Today’s plan · 1 hour 15 minutes</h2>
+    <ol>${PARTS.map(p=>`<li><b>${p.title}</b> · about ${p.min} min</li>`).join('')}<li><b>Test your knowledge</b> · about 10 min</li></ol>
+  </section>
+  <ol class="levels">${PARTS.map(part).join('')}</ol>
+  <p class="reset-row"><button class="reset" data-act="reset">Start over</button></p>`;
+};
+
+// ===== Activity views =====
+function mcBody(it){
+  const e=cur;
+  if(!e.opt) e.opt = it.fixed ? it.o.map((_,i)=>i) : withSeed('opt-'+it.q,()=>shuffle(it.o.map((_,i)=>i)));
+  const L='ABCD';
+  const btns=e.opt.map((oi,pos)=>{ let c='choice'; const after=e.pickd!==null;
+    if(after){ if(oi===it.a) c+=' right'; else if(oi===e.pickd) c+=' wrong'; }
+    let why='';
+    if(after){
+      const mean = (it.m && it.m[oi]) || (it.sl && onlyFormula(it.o[oi]) ? slEnglish(onlyFormula(it.o[oi]), it.sl) : null);
+      if(mean) why+=`<span class="why means">${oi===it.a?'✓':'✗'} Means: ${fmt(mean)}</span>`;
+      if(oi!==it.a && it.w && it.w[oi]) why+=`<span class="why wrongwhy">${mean?'':'✗ '}Why it’s wrong: ${fmt(it.w[oi])}</span>`;
+    }
+    return `<button class="${c}" data-mc="${oi}" ${after?'disabled':''}><b>${L[pos]}</b>${fmt(it.o[oi])}${why}</button>`; }).join('');
+  const ok=e.pickd===it.a;
+  return `<p class="prop">${fmt(it.q).replace(/\n/g,'<br>')}</p>${it.proof?proofHTML(it.proof):''}${keyHTML(it.key)}
+  <section class="step"><div class="choices one">${btns}</div>
+    ${e.pickd!==null?fb(ok, ok?'Correct.':`The answer is ${L[e.opt.indexOf(it.a)]}.`, ' '+fmt(it.e)):''}</section>`;
+}
+function ttBody(it){
+  const e=cur, fs=it.fs||[it.f], trees=fs.map(slParse);
+  const atoms=[...new Set(trees.flatMap(t=>slAtoms(t)))].sort(), n=atoms.length, R=1<<n;
+  const rows=[...Array(R).keys()].map(r=>Object.fromEntries(atoms.map((a,j)=>[a,!((r>>(n-1-j))&1)])));
+  const truth=trees.map(t=>rows.map(v=>slEval(t,v)));
+  if(!e.tv) e.tv={};
+  const TF=b=>b?'T':'F';
+  const head=`<tr>${atoms.map(a=>`<th>${a}</th>`).join('')}<th class="sep"></th>${fs.map((f,c)=>`<th class="fc">${F(f)}${it.labels?`<small>${esc(it.labels[c])}</small>`:''}</th>`).join('')}</tr>`;
+  const body=rows.map((v,r)=>`<tr>${atoms.map(a=>`<td>${TF(v[a])}</td>`).join('')}<td class="sep"></td>${fs.map((f,c)=>{ const k=c+':'+r, val=e.tv[k]; let cls='cell'; if(e.checked){ cls+= val===TF(truth[c][r])?' right':' wrong'; } return `<td><button class="${cls}" data-tv="${k}" ${e.checked?'disabled':''} aria-label="Row ${r+1}, ${esc(f)}">${e.checked&&val!==TF(truth[c][r])?`${val||'?'}→${TF(truth[c][r])}`:(val||'?')}</button></td>`; }).join('')}</tr>`).join('');
+  const ready=fs.every((_,c)=>rows.every((_,r)=>e.tv[c+':'+r]));
+  const rowTxt=v=>atoms.map(a=>`${a} = ${TF(v[a])}`).join(', ');
+  let sum='';
+  if(e.checked){
+    const mode=it.mode||'single', col=truth[0];
+    if(mode==='single') sum = col.every(x=>x)?'True on every row, so it is truth-functionally true.':col.every(x=>!x)?'False on every row, so it is truth-functionally false.':`True on some rows and false on others, so it is truth-functionally indeterminate. For example, it is true when ${rowTxt(rows[col.indexOf(true)])}, and false when ${rowTxt(rows[col.indexOf(false)])}.`;
+    if(mode==='equiv'){ const d=rows.findIndex((_,r)=>truth[0][r]!==truth[1][r]); sum = d<0?'The two columns match on every row, so the sentences are truth-functionally equivalent.':`They differ when ${rowTxt(rows[d])}: the first is ${TF(truth[0][d])} and the second is ${TF(truth[1][d])}. So they are not equivalent.`; }
+    if(mode==='set'){ const g=rows.findIndex((_,r)=>truth.every(c=>c[r])); sum = g>=0?`All of them are true when ${rowTxt(rows[g])}, so the set is truth-functionally consistent.`:'No row makes them all true, so the set is truth-functionally inconsistent.'; }
+    if(mode==='arg'){ const last=truth.length-1, g=rows.findIndex((_,r)=>truth.slice(0,last).every(c=>c[r]) && !truth[last][r]); sum = g<0?'No row makes every premise true and the conclusion false, so the argument is truth-functionally valid.':`When ${rowTxt(rows[g])}, every premise is true and the conclusion is false. So the argument is invalid.`; }
+  }
+  const ok=e.checked && fs.every((_,c)=>rows.every((_,r)=>e.tv[c+':'+r]===TF(truth[c][r])));
+  const wrongRows=[]; if(e.checked) fs.forEach((f,c)=>rows.forEach((v,r)=>{ if(e.tv[c+':'+r]!==TF(truth[c][r])) wrongRows.push(`<li><b>Row ${rowTxt(v)}${fs.length>1?` · ${esc(f)}`:''}:</b> ${esc(slWhy(trees[c],v))}</li>`); }));
+  const whyList = wrongRows.length?`<h3 class="means-h">Why those rows</h3><ul class="means-list">${wrongRows.join('')}</ul>`:'';
+  return `<p class="prop">${fmt(it.q||(fs.length>1?(it.mode==='arg'?'Fill in each column. Is there a row where every premise is T and the conclusion is F?':it.mode==='set'?'Fill in each column. Is there a row where every sentence is T?':'Fill in both columns. Do they ever differ?'):'Fill in the column under the main connective.'))}</p>${keyHTML(it.key)}${it.eng?`<p class="muted">In English: ${esc(it.eng)}</p>`:''}
+  <section class="step"><p class="hint">Tap each box to switch between T and F.</p>
+    <div class="ttwrap"><table class="tt">${head}${body}</table></div>
+    <div class="actions"><button class="btn" data-act="check-tt" ${!ready||e.checked?'disabled':''}>Check</button></div>
+    ${e.checked?fb(ok, ok?'Correct.':'Not quite. The corrections are shown in the table.', ' '+esc(sum)+(it.e?' '+fmt(it.e):'')):''}${whyList}</section>`;
+}
+const BODY={
+  card(it){
+    const A=ACTS[cur.id];
+    if(!cur.shown) return `<div class="fcard hidden-def"><p class="deck">${esc(A.deck)}</p><h3>${esc(it.t)}</h3><p class="muted">What does it mean? Say it in your own words, then reveal.</p><div class="actions"><button class="btn" data-act="reveal">Show the definition</button></div></div>`;
+    return `<div class="fcard"><p class="deck">${esc(A.deck)}</p><h3>${esc(it.t)}</h3><p class="def">${fmt(it.d).replace(/\n/g,'<br>')}</p>${it.x?`<div class="ex">${fmt(it.x)}${it.xs?`<small>${esc(it.xs)}</small>`:''}</div>`:''}</div>`;
+  },
+  mc: mcBody,
+  tt: ttBody,
+  world(it){
+    const e=cur, FR={A:'🍎',P:'🍐'};
+    const fruits=it.b.map(s=>`<span class="fruit" role="img" aria-label="${s[0]==='A'?'apple':'pear'}${s[1]?' (rotten)':''}">${FR[s[0]]}${s[1]?'<span class="worm">🪱</span>':''}</span>`).join('');
+    const btns=[[true,'True'],[false,'False']].map(([v,l])=>{ let c='choice'; if(e.pickd!==null){ if(v===it.ans) c+=' right'; else if(v===e.pickd) c+=' wrong'; } return `<button class="${c}" data-tf="${v}" ${e.pickd!==null?'disabled':''}>${l}</button>`; }).join('');
+    const ok=e.pickd===it.ans;
+    return `<p class="muted">Here is everything in the basket.</p><div class="basket">${fruits}</div><p class="legend">🍎 apple · 🍐 pear · 🪱 rotten</p>
+    ${keyHTML(K.basket.slice(1))}
+    <div class="formula wrap">${esc(it.f)}</div>
+    <section class="step"><h3>Is this sentence true in this basket?</h3><div class="choices">${btns}</div>
+    ${e.pickd!==null?fb(ok, ok?'Correct.':`It’s ${it.ans?'true':'false'}.`, ` In English: “${esc(it.eng)}” ${esc(it.e)}`):''}</section>`;
+  },
+  rel(it){
+    const e=cur;
+    const rows=PROP_N.map((p,i)=>{
+      const yn=[[1,'Yes'],[0,'No']].map(([v,l])=>{ let c='choice'; if(e.checked){ if(v===it.ans[i]) c+=' right'; else if(v===e.ans[i]) c+=' wrong'; } else if(e.ans[i]===v) c+=' picked'; return `<button class="${c}" data-rel="${i}:${v}" aria-pressed="${e.ans[i]===v}" ${e.checked?'disabled':''}>${l}</button>`; }).join('');
+      return `<div class="prop-row"><span><b>${p}?</b><span class="test">${esc(PROP_F[i])}</span>${e.checked?`<span class="why">${e.ans[i]===it.ans[i]?'✓ ':'✗ '}${esc(it.e[i])}</span>`:''}</span><span class="yn">${yn}</span></div>`;
+    }).join('');
+    const ready=e.ans.every(a=>a!==null), ok=e.checked&&e.ans.every((a,i)=>a===it.ans[i]);
+    return `<p class="prop">Axy: ${esc(it.r)}</p><div class="key"><span>UD: ${esc(it.ud)}</span></div>
+    <section class="step"><h3>Which properties does it have?</h3><div class="props">${rows}</div>
+      <div class="actions"><button class="btn" data-act="check-rel" ${!ready||e.checked?'disabled':''}>Check</button></div>
+      ${e.checked?fb(ok, ok?'Correct.':'Not quite.', ok?' All three are right.':' The reason for each property is shown above.'):''}</section>`;
+  },
+  order(it){
+    const e=cur, b=e.b, v=VERBS[it.v], L=v.L;
+    const sel=(name,opts)=>`<select id="ord-${name}" data-o="${name}" aria-label="${name}" ${e.result?.ok?'disabled':''}>${opts.map(([val,l])=>`<option value="${val}" ${String(val)===String(b[name])?'selected':''}>${l}</option>`).join('')}</select>`;
+    const neg=n=>sel(n,[[0,'–'],[1,'~']]);
+    const ready=b.q1&&b.q2&&b.ord;
+    let res='';
+    if(e.result){
+      if(e.result.ok) res=fb(true,'Correct.',' '+esc(it.e(v)));
+      else {
+        const m=e.result.counter, names=PEOPLE.slice(0,m.n);
+        const pairs=[]; for(let a=0;a<m.n;a++) for(let c=0;c<m.n;c++) if((m.R>>(a*m.n+c))&1) pairs.push(`${names[a]} ${v.vs} ${a===c?'themself':names[c]}`);
+        const ud = m.n===1?`just ${names[0]}`:names.slice(0,-1).join(', ')+' and '+names[m.n-1];
+        const rel = pairs.length?`the only facts are: ${pairs.join('; ')}`:`nobody ${v.vs} anybody`;
+        const eng = evalRel(it.st,m.n,m.R);
+        res=fb(false,'Not quite.',` Suppose the UD is ${ud}, and ${rel}. Then the English sentence is ${eng?'true':'false'}, but your formula is ${eng?'false':'true'}. Change the formula and check again.`);
+      }
+    }
+    return `<p class="prop">${esc(it.say(v))}</p>
+    <div class="key"><span>UD: people</span><span><b>${L}xy</b>: x ${v.vs} y</span></div>
+    <section class="step"><h3>Build the formula</h3><p class="hint">With mixed quantifiers, order matters. Decide which comes first and which variable goes in which place.</p>
+      <div class="builder">${neg('on')}<span>(</span>${sel('q1',[['','?'],['∀','∀'],['∃','∃']])}<span>x)</span>${neg('n2')}<span>(</span>${sel('q2',[['','?'],['∀','∀'],['∃','∃']])}<span>y)</span>${neg('n3')}<span>${L}</span>${sel('ord',[['','??'],['xy','xy'],['yx','yx']])}</div>
+      <p class="preview">Your formula: <span class="f">${esc(ordStr(b,L))}</span></p>
+      <div class="actions"><button class="btn" data-act="check-order" ${!ready||e.result?.ok?'disabled':''}>Check</button></div>${res}</section>`;
+  },
+  move(it){
+    const e=cur, done=e.pickd!==null;
+    const opts=[['∀','(∀x)'],['∃','(∃x)'],['none','It can’t be moved']].map(([v,l])=>{ let c='choice'; if(done){ if(v===it.ans) c+=' right'; else if(v===e.pickd) c+=' wrong'; } return `<button class="${c}" data-move="${v}" ${done?'disabled':''}>${v==='none'?l:F(l)}</button>`; }).join('');
+    const means = done && it.say ? `<ul class="means-list">${[['∀','(∀x)'],['∃','(∃x)'],['none','It can’t be moved']].map(([v,l])=>{ const r=it[v]; return `<li class="${v===it.ans?'ok':'no'}"><b>${v===it.ans?'✓':'✗'}</b> ${v==='none'?`<b>${esc(l)}:</b> ${esc(it.none)}`:`${F(r[0])}: ${esc(r[1])}`}</li>`; }).join('')}</ul>` : '';
+    return `${it.key?`<div class="key"><span>${esc(it.key)}</span></div>`:''}<div class="formula">${esc(it.s).replace(/ /g,'&nbsp;')}</div>
+    ${it.say?`<p class="muted">In English: “${esc(it.say)}”</p>`:''}
+    <section class="step"><h3>Extend the quantifier over the whole sentence</h3>
+      <p class="hint">Which quantifier does the equivalent sentence start with?</p>
+      <div class="choices three">${opts}</div>
+      ${done?fb(e.pickd===it.ans, e.pickd===it.ans?'Correct.':(it.ans==='none'?'It can’t be moved.':`It becomes ${F('('+it.ans+'x)')}.`), (it.res?` Equivalent sentence: ${F(it.res)}. `:' ')+esc(it.why)):''}
+      ${means?`<h3 class="means-h">What each choice would say</h3>${means}`:''}
+    </section>`;
+  },
+};
+VIEWS.act = () => {
+  const kind = game ? 'mc' : ACTS[cur.id].kind;
+  const ready = kind!=='card' || cur.shown;
+  return `${backHome}${head()}${BODY[kind](cur.item)}${nextBtn(kind==='card'?'Next card':'Next one', ready)}`;
+};
+VIEWS.done = () => {
+  const A=ACTS[cur.id], n=nOf(cur.id);
+  const pi=PARTS.findIndex(p=>p.ids.includes(cur.id)), p=PARTS[pi], j=p.ids.indexOf(cur.id);
+  const nextId = p.ids[j+1] || (PARTS[pi+1]&&PARTS[pi+1].ids[0]);
+  const nextBtnH = nextId ? `<button class="btn" data-go="act" data-arg="${nextId}" data-k="${firstUndone(nextId)}">Next: ${esc(ACTS[nextId].name)}</button>` : `<button class="btn" data-go="gameStart">On to: Test your knowledge</button>`;
+  return `${backHome}
+  <div class="game-hero"><div class="big-candy" aria-hidden="true">✓</div>
+    <h2>That’s all ${n}</h2>
+    <p>You finished <b>${esc(A.name)}</b>.</p></div>
+  <div class="actions center">${nextBtnH}<button class="btn ghost" data-go="home">Back to all sections</button></div>`;
+};
+
+// ===== Test your knowledge (10 questions at the end) =====
+
+let game=null, lastGame=null;
+function gameRecord(ok){
+  if(!game||game.answered) return;
+  game.answered=true; game.hist[game.i]=ok;
+  if(ok) game.right++;
+}
+function gameBar(title){
+  const g=game, n=g.items.length;
+  const dots=g.items.map((_,k)=>`<i class="${k<g.i||(k===g.i&&g.answered)?(g.hist[k]?'hit':'miss'):k===g.i?'now':''}"></i>`).join('');
+  return `<div class="gbar"><div class="gbar-row"><span>Question ${g.i+1} of ${n}</span><span>${g.right} correct</span></div><div class="dots" aria-hidden="true">${dots}</div></div>
+  <div class="ex-head"><h2>${title}</h2></div>`;
+}
+function startGame(){
+  game={items:TEST.map((_,i)=>i), i:-1, right:0, answered:false, hist:[]};
+  gameNext();
+}
+function gameNext(){
+  if(game.i>=0 && !game.answered) game.hist[game.i]=false;
+  game.i++; game.answered=false;
+  if(game.i>=game.items.length){ finishGame(); return; }
+  view='act'; cur=fresh('test',game.i,TEST[game.items[game.i]]);
+  render(); window.scrollTo(0,0);
+}
+function finishGame(){
+  lastGame=game; game=null;
+  progress.best=Math.max(progress.best??0, lastGame.right); save();
+  view='gameEnd'; cur=null; render(); window.scrollTo(0,0);
+}
+VIEWS.gameStart = () => `${backHome}
+  <div class="game-hero"><div class="big-candy test-big" aria-hidden="true">✓</div>
+    <h2>Test your knowledge</h2>
+    <p>Ten questions on everything from today: paraphrase first, main connectives, grouping, cross-reference, non-truth-functional connectives, and stronger and weaker paraphrases.</p>
+  </div>
+  <section class="step">
+    <p class="hint">Only your first answer to each question counts. You can skip a question, but a skip counts as a miss. You’ll see an explanation after each answer and your score at the end.</p>
+    <div class="actions"><button class="btn big" data-act="start-game">Start the test</button></div>
+  </section>`;
+VIEWS.gameEnd = () => {
+  const g=lastGame, n=g.items.length, pct=Math.round(g.right/n*100);
+  const rows=g.items.map((ti,k)=>{ const q=TEST[ti]; return `<li class="${g.hist[k]?'ok':'no'}"><span aria-hidden="true">${g.hist[k]?'✓':'✗'}</span> ${fmt(q.q)}${g.hist[k]?'':`<span class="why">Answer: ${fmt(q.o[q.a])}</span>`}</li>`; }).join('');
+  const missed=[...new Set(g.items.filter((_,k)=>!g.hist[k]).map(i=>TEST[i].tag))];
+  const practice = missed.length ? `<section class="step"><h3>Practice these, then try again</h3><ul class="topics">${missed.map(id=>`<li><button class="topic" data-go="act" data-arg="${id}" data-k="0"><span>${esc(ACTS[id].name)}</span><span class="go">Practice</span></button></li>`).join('')}</ul></section>` : '';
+  const msg = g.right===n ? 'Perfect score!' : g.right>=8 ? 'Great work!' : g.right>=5 ? 'Good effort.' : 'Keep practicing.';
+  return `<div class="win${g.right>=8?'':' lose'}" role="status">
+      <p class="eyebrow">Test your knowledge</p>
+      <h1>${msg}</h1>
+      <p class="final">${g.right} of ${n} right · ${pct}%</p>
+    </div>
+    <section class="step"><h3>Your answers</h3><ol class="results">${rows}</ol></section>
+    <div class="actions center"><button class="btn" data-act="replay">Take it again</button><button class="btn ghost" data-go="home">Back to practice</button></div>
+    ${practice}`;
+};
+
+// ===== Events =====
+app.addEventListener('click', ev=>{
+  const t=ev.target;
+  const act=t.closest('[data-act]')?.dataset.act;
+  if(act==='start-game'){ startGame(); return; }
+  if(act==='replay'){ go('gameStart'); return; }
+  if(act==='quit-game'){ game=null; go('home'); return; }
+  if(act==='next' && game){ gameNext(); return; }
+  if(act==='reset'){ if(confirm('Start over? This clears which exercises you have done on this device.')){ for(const k of Object.keys(progress)) delete progress[k]; save(); render(); } return; }
+  const goEl=t.closest('[data-go]'); if(goEl){ go(goEl.dataset.go, goEl.dataset.arg, goEl.dataset.k); return; }
+  if(view!=='act') return;
+  const it=cur.item, d=k=>t.closest(`[data-${k}]`)?.dataset[k];
+  let v;
+  if(act==='reveal'){ cur.shown=true; markDone(cur.id,cur.k); render(); return; }
+  if((v=d('mc'))!==undefined && cur.pickd===null){ cur.pickd=+v; tally(cur.pickd===it.a); render(); return; }
+  if((v=d('tf'))!==undefined && cur.pickd===null){ cur.pickd = v==='true'; tally(cur.pickd===it.ans); render(); return; }
+  if((v=d('move'))!==undefined && cur.pickd===null){ cur.pickd=v; tally(v===it.ans); render(); return; }
+  if((v=d('tv'))!==undefined && !cur.checked){ const x=cur.tv[v]; cur.tv[v]= x==='T'?'F':'T'; render(); return; }
+  if(act==='check-tt' && !cur.checked){ cur.checked=true; const it2=cur.item, fs=it2.fs||[it2.f], tr=fs.map(slParse), at=[...new Set(tr.flatMap(t=>slAtoms(t)))].sort(), n=at.length; let ok=true; for(let r=0;r<(1<<n);r++){ const vv=Object.fromEntries(at.map((a,j)=>[a,!((r>>(n-1-j))&1)])); tr.forEach((t,c)=>{ if(cur.tv[c+':'+r]!==(slEval(t,vv)?'T':'F')) ok=false; }); } tally(ok); render(); return; }
+  if((v=d('rel'))!==undefined && !cur.checked){ const [i,val]=v.split(':').map(Number); cur.ans[i]=val; render(); return; }
+  if(act==='check-rel' && !cur.checked){ cur.checked=true; tally(cur.ans.every((a,i)=>a===it.ans[i])); render(); return; }
+  if(act==='check-order'){
+    const c=relCounter(it.st, cur.b); cur.result={ok:!c, counter:c};
+    if(!cur.counted){ cur.counted=true; tally(!c); }
+    render(); return;
+  }
+  if(act==='prev'){ if(cur.k>0) go('act',cur.id,cur.k-1); return; }
+  if(act==='next'){ if(cur.k+1<nOf(cur.id)) go('act',cur.id,cur.k+1); else go('done',cur.id); return; }
+});
+app.addEventListener('change', ev=>{
+  const t=ev.target;
+  if(view==='act' && t.dataset.o){ const k=t.dataset.o; cur.b[k]=['on','n2','n3'].includes(k)?+t.value:t.value; if(cur.result&&!cur.result.ok) cur.result=null; render(); document.getElementById('ord-'+k)?.focus(); }
+});
+// ===== Class code =====
+const CLASS_CODE='class3';
+const normCode = v => String(v||'').toLowerCase().replace(/\s+/g,'');
+let unlocked=false; try{ unlocked = localStorage.getItem('class3-unlocked')==='yes'; }catch(e){}
+let codeError=false;
+function cuteBg(n=22){
+  let x=29; const rnd=()=>((x=(x*16807)%2147483647)/2147483647);
+  const SY=['∀','∃','⊃','=','~','&','∨'], COL=['var(--candy)','var(--acc2)','var(--p1)','var(--p2)','var(--p4)'];
+  let out='';
+  for(let i=0;i<n;i++){
+    const l=(rnd()*96).toFixed(1), t=(rnd()*94).toFixed(1), r=(rnd()*40-20).toFixed(0), d=(2.6+rnd()*3).toFixed(1);
+    out+=`<span style="left:${l}%;top:${t}%;font-size:${(22+rnd()*30).toFixed(0)}px;color:${COL[Math.floor(rnd()*COL.length)]};opacity:.35;--r:${r}deg;--d:${d}s">${SY[Math.floor(rnd()*SY.length)]}</span>`;
+  }
+  return `<div class="cute-bg" aria-hidden="true">${out}</div>`;
+}
+VIEWS.lock = () => `
+  ${cuteBg()}
+  <div class="lock">
+    <div class="tile" aria-hidden="true">( )</div>
+    <h1>Class 3</h1>
+    <p class="sub">Complex Symbolizations and Non-Truth-Functional Connectives.</p>
+    <form id="code-form" class="code-form" novalidate>
+      <label for="class-code" class="hint">Enter the class code your teacher gave you</label>
+      <input type="text" id="class-code" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="30" placeholder="• • • • • • •" ${codeError?'aria-invalid="true" aria-describedby="code-err"':''}>
+      ${codeError?`<p class="code-err" id="code-err" role="alert">That code isn’t right. Check with your teacher and try again.</p>`:''}
+      <button class="btn big" type="submit">Enter</button>
+    </form>
+  </div>`;
+app.addEventListener('submit', ev=>{
+  if(ev.target.id!=='code-form') return;
+  ev.preventDefault();
+  if(normCode(document.getElementById('class-code').value)===CLASS_CODE){
+    unlocked=true; codeError=false; try{ localStorage.setItem('class3-unlocked','yes'); }catch(e){}
+    go('home');
+  } else { codeError=true; render(); document.getElementById('class-code')?.focus(); }
+});
+if(!unlocked) view='lock';
+render();
+if(!unlocked) document.getElementById('class-code')?.focus();
+</script>
+</body>
+</html>

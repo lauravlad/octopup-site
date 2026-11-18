@@ -1,0 +1,22 @@
+{
+  "name": "Class 4",
+  "short_name": "Class 4",
+  "description": "Truth-value assignments, the five characteristic tables, building full and shortened truth tables, and truth-functional truth, falsity, and indeterminacy.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F5FAF6",
+  "theme_color": "#F5FAF6",
+  "icons": [
+    {
+      "src": "../icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "../icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

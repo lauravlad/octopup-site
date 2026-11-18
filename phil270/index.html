@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PHIL 270 Symbolic Logic</title>
+<meta name="description" content="Practice apps for every class of PHIL 270 Symbolic Logic.">
+<meta name="theme-color" content="#F5FAF6">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,400;7..72,600&family=STIX+Two+Text:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F5FAF6;--surface:#FFFFFF;--ink:#14301F;--muted:#4F6B5A;--line:#D5E8DA;--mast:#1E5A3A;--accent:#1F7A4A;--soft:#EAF5EE;--recap:#5A7D1A;--recap-soft:#EAF2D6;
+  --serif:'Literata',Georgia,serif;--sans:'Atkinson Hyperlegible',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;--logic:'STIX Two Text','Cambria Math','Times New Roman',serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#0F1E16;--surface:#172A20;--ink:#E4F2E9;--muted:#9FBFAC;--line:#2C4636;--mast:#1F5A3C;--accent:#6FD39C;--soft:#1F3529;--recap:#B5D46A;--recap-soft:#2B3514;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0F1E16;--surface:#172A20;--ink:#E4F2E9;--muted:#9FBFAC;--line:#2C4636;--mast:#1F5A3C;--accent:#6FD39C;--soft:#1F3529;--recap:#B5D46A;--recap-soft:#2B3514;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.5}
+.wrap{max-width:760px;margin:0 auto;padding:20px 16px 48px}
+header{background:linear-gradient(135deg,#1F7A4A 0%,#2E8B57 55%,#3BAFA0 100%);color:#fff;border-radius:22px;padding:26px 22px;position:relative;overflow:hidden}
+header .k{margin:0;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85;font-weight:700}
+header h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,6vw,2.6rem);margin:.2em 0 .1em;line-height:1.1}
+header p{margin:.4em 0 0;max-width:46ch;opacity:.92}
+header .sym{position:absolute;right:18px;bottom:-14px;font-family:var(--logic);font-size:6rem;opacity:.13;line-height:1}
+.note{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:18px 0}
+.note b{color:var(--accent)}
+ol{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+a.cls{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;text-decoration:none;color:inherit;transition:transform .12s,border-color .12s}
+a.cls:hover,a.cls:focus-visible{transform:translateY(-1px);border-color:hsl(var(--h) 55% 42%);outline:none}
+.go{color:hsl(var(--h) 55% 36%)}
+@media (prefers-color-scheme: dark){.go{color:hsl(var(--h) 55% 68%)}}
+.n{flex:0 0 46px;height:46px;border-radius:13px;background:linear-gradient(135deg,hsl(var(--h) 62% 30%),hsl(calc(var(--h) + 38) 50% 44%));color:#fff;display:grid;place-items:center;font-family:var(--serif);font-weight:600;font-size:1.25rem}
+a.cls{border-left:5px solid hsl(var(--h) 55% 42%)}
+.t{flex:1;min-width:0}
+.t b{display:block;font-family:var(--serif);font-weight:600;font-size:1.08rem}
+.t small{display:block;color:var(--muted);font-size:.9rem;line-height:1.4;margin-top:2px}
+.go{font-weight:700;white-space:nowrap;font-size:.95rem}
+@media (max-width:480px){.go{display:none}}
+footer{color:var(--muted);font-size:.85rem;text-align:center;margin-top:26px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="k">PHIL 270</p>
+    <h1>Symbolic Logic</h1>
+    <p>One practice app for every class: definitions with examples, exercises that explain every wrong answer, and a short test at the end.</p>
+    <span class="sym" aria-hidden="true">∀∃⊃</span>
+  </header>
+  <div class="note">Each class opens with a <b>class code</b> your teacher gives you. Your progress is saved on your own device.</div>
+  <ol><li><a class="cls" style="--h:210" href="class-01/"><span class="n">1</span><span class="t"><b>Class 1 · Arguments and Logical Concepts</b><small>Sentences and arguments, validity and soundness, logical truth, equivalence, consistency, and entailment.</small></span><span class="go">Open →</span></a></li><li><a class="cls" style="--h:262" href="class-02/"><span class="n">2</span><span class="t"><b>Class 2 · Symbolizing in SL</b><small>The five connectives and how to symbolize English: not, and, or, if, only if, unless, if and only if.</small></span><span class="go">Open →</span></a></li><li><a class="cls" style="--h:330" href="class-03/"><span class="n">3</span><span class="t"><b>Class 3 · Complex Symbolizations and Non-Truth-Functional Connectives</b><small>Paraphrase first, main connectives, grouping, cross-reference, non-truth-functional connectives, and stronger and weaker paraphrases.</small></span><span class="go">Open →</span></a></li><li><a class="cls" style="--h:18" href="class-04/"><span class="n">4</span><span class="t"><b>Class 4 · Truth Tables</b><small>Truth-value assignments, the five characteristic tables, building full and shortened truth tables, and truth-functional truth, falsity, and indeterminacy.</small></span><span class="go">Open →</span></a></li><li><a class="cls" style="--h:36" href="class-05/"><span class="n">5</span><span class="t"><b>Class 5 · Truth-Functional Properties</b><small>Equivalence, consistency, entailment, and validity with truth tables.</small></span><span class="go">Open →</span></a></li><li><a class="cls" style="--h:178" href="class-06/"><span class="n">6</span><span class="t"><b>Class 6 · Derivations in SD</b><small>The eleven rules of SD, assumptions and subderivations, scope, and accessibility.</small></span><span class="go">Open →</span></a></li><li><a class="cls recap" style="--h:232" href="class-07/"><span class="n">7</span><span class="t"><b>Class 7 · Recap: Chapters 1 to 3</b><small>Review for Test 1: logical concepts, symbolizing in SL, and truth tables.</small></span><span class="go">Open →</span></a></li><li><a class="cls" style="--h:92" href="class-08/"><span class="n">8</span><span class="t"><b>Class 8 · Predicate Logic: Terms, Predicates, Quantifiers</b><small>Singular terms, predicates, quantity expressions, and the syntax of PL.</small></span><span class="go">Open →</span></a></li><li><a class="cls recap" style="--h:355" href="class-09/"><span class="n">9</span><span class="t"><b>Class 9 · Recap: Test 2</b><small>Review for Test 2: equivalence with truth tables, checking truth tables, and proofs in SD.</small></span><span class="go">Open →</span></a></li><li><a class="cls" style="--h:196" href="class-10/"><span class="n">10</span><span class="t"><b>Class 10 · Introduction to Symbolization in PL</b><small>Symbolization keys, one quantifier, all/no/some, and two quantifiers with relations.</small></span><span class="go">Open →</span></a></li><li><a class="cls" style="--h:150" href="class-11/"><span class="n">11</span><span class="t"><b>Class 11 · Symbolization Fine-Tuned</b><small>Things that may not exist, choosing predicates, quantifier order, moving quantifiers, and paraphrasing.</small></span><span class="go">Open →</span></a></li><li><a class="cls" style="--h:286" href="class-12/"><span class="n">12</span><span class="t"><b>Class 12 · Identity, Descriptions, and Functions</b><small>Identity and counting, except and only, definite descriptions, relations, and functions.</small></span><span class="go">Open →</span></a></li><li><a class="cls recap" style="--h:48" href="class-13/"><span class="n">13</span><span class="t"><b>Class 13 · Recap: Fine-Tuned Symbolization and Identity</b><small>Mixed review of fine-tuned symbolization, identity, definite descriptions, relations, and functions.</small></span><span class="go">Open →</span></a></li></ol>
+  <footer>PHIL 270 · Symbolic Logic</footer>
+</div>
+</body>
+</html>
