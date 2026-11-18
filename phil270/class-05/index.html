@@ -544,7 +544,10 @@ const app=document.getElementById('app');
 const VIEWS={};
 function render(){ app.innerHTML=VIEWS[view](); }
 function fresh(id,k,item){ return {id,k:+k||0,item:item||ACTS[id].items[+k||0], pickd:null, opt:null, shown:false, b:{on:0,q1:'',n2:0,q2:'',n3:0,ord:''}, result:null, counted:false, ans:[null,null,null], checked:false}; }
-function go(v,arg,k){ view=v; cur = v==='act' ? fresh(arg,k) : null; if(cur && ACTS[cur.id] && ACTS[cur.id].kind==='card' && doneMap(cur.id)[cur.k]) cur.shown=true; if(v==='done') cur={id:arg}; render(); window.scrollTo(0,0); }
+function go(v,arg,k,pop){ view=v; cur = v==='act' ? fresh(arg,k) : null; if(cur && ACTS[cur.id] && ACTS[cur.id].kind==='card' && doneMap(cur.id)[cur.k]) cur.shown=true; if(v==='done') cur={id:arg}; render(); window.scrollTo(0,0); if(!pop){ try{ history.pushState({v,arg:arg??null,k:k??null},''); }catch(e){} } }
+// One step back: the phone or browser Back button returns to the previous screen inside the app
+window.addEventListener('popstate', e=>{ const st=e.state; if(!unlocked) return; game=null; if(!st || st.v==='lock' || st.v==='gameEnd' || !VIEWS[st.v]) { go('home',null,null,true); return; } go(st.v, st.arg??undefined, st.k??undefined, true); });
+const prevOf = id => { const i=ALL_IDS.indexOf(id); return i>0 ? ALL_IDS[i-1] : null; };
 const backHome = { toString(){ return game ? `<button class="back" data-act="quit-game">‹ Quit test</button>` : `<button class="back" data-go="home">‹ All sections</button>`; } };
 const fb = (ok,title,body='') => `<div class="fb ${ok?'good':'bad'}" role="status"><strong>${title}</strong>${body}</div>`;
 const keyHTML = key => key ? `<div class="key">${key.map(([s,m])=>s==='UD'?`<span>UD: ${esc(m)}</span>`:`<span><b>${esc(s)}</b>: ${esc(m)}</span>`).join('')}</div>` : '';
@@ -554,7 +557,7 @@ function head(){
   return `<div class="ex-head"><h2>${esc(A.name)}</h2>${A.kind==='card'?'':`<span class="score">${sc(cur.id)}</span>`}</div><p class="muted exnum">${A.kind==='card'?'Card':'Exercise'} ${cur.k+1} of ${nOf(cur.id)}</p>`;
 }
 const isLast = () => cur.k+1>=nOf(cur.id);
-const nextBtn = (label,ready=true) => `<div class="next">${!game&&cur.k>0?`<button class="btn ghost prev" data-act="prev">‹ Previous</button>`:''}<button class="btn" data-act="next" ${!game&&!ready?'disabled':''}>${game ? (game.answered ? (game.i+1<game.items.length?'Next question':'See my score') : 'Skip') : (isLast()?'Finish':label)}</button></div>`;
+const nextBtn = (label,ready=true) => `<div class="next">${!game&&(cur.k>0||prevOf(cur.id))?`<button class="btn ghost prev" data-act="prev">‹ Previous</button>`:''}<button class="btn" data-act="next" ${!game&&!ready?'disabled':''}>${game ? (game.answered ? (game.i+1<game.items.length?'Next question':'See my score') : 'Skip') : (isLast()?'Finish':label)}</button></div>`;
 
 // ===== Decorative symbol layer =====
 function symLayer(n, seed){
@@ -724,7 +727,7 @@ VIEWS.done = () => {
   <div class="game-hero"><div class="big-candy" aria-hidden="true">✓</div>
     <h2>That’s all ${n}</h2>
     <p>You finished <b>${esc(A.name)}</b>.</p></div>
-  <div class="actions center">${nextBtnH}<button class="btn ghost" data-go="home">Back to all sections</button></div>`;
+  <div class="actions center"><button class="btn ghost" data-go="act" data-arg="${cur.id}" data-k="${n-1}">‹ Back</button>${nextBtnH}<button class="btn ghost" data-go="home">Back to all sections</button></div>`;
 };
 
 // ===== Test your knowledge (10 questions at the end) =====
@@ -742,6 +745,7 @@ function gameBar(title){
   <div class="ex-head"><h2>${title}</h2></div>`;
 }
 function startGame(){
+  try{ history.pushState({v:'gameStart'},''); }catch(e){}
   game={items:TEST.map((_,i)=>i), i:-1, right:0, answered:false, hist:[]};
   gameNext();
 }
@@ -808,7 +812,7 @@ app.addEventListener('click', ev=>{
     if(!cur.counted){ cur.counted=true; tally(!c); }
     render(); return;
   }
-  if(act==='prev'){ if(cur.k>0) go('act',cur.id,cur.k-1); return; }
+  if(act==='prev'){ if(cur.k>0) go('act',cur.id,cur.k-1); else { const p=prevOf(cur.id); if(p) go('act',p,nOf(p)-1); } return; }
   if(act==='next'){ if(cur.k+1<nOf(cur.id)) go('act',cur.id,cur.k+1); else go('done',cur.id); return; }
 });
 app.addEventListener('change', ev=>{
@@ -852,6 +856,7 @@ app.addEventListener('submit', ev=>{
   } else { codeError=true; render(); document.getElementById('class-code')?.focus(); }
 });
 if(!unlocked) view='lock';
+try{ history.replaceState({v: unlocked?'home':'lock'},''); }catch(e){}
 render();
 if(!unlocked) document.getElementById('class-code')?.focus();
 </script>
