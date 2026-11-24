@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Fake News Detector">
+  <rect width="120" height="120" rx="26" fill="#1F2A44"/>
+  <rect x="22" y="26" width="58" height="68" rx="6" fill="#F7F3EC"/>
+  <rect x="30" y="36" width="42" height="7" rx="2" fill="#1F2A44"/>
+  <rect x="30" y="50" width="42" height="4" rx="2" fill="#8A93A6"/>
+  <rect x="30" y="59" width="36" height="4" rx="2" fill="#C0565B"/>
+  <rect x="30" y="68" width="40" height="4" rx="2" fill="#8A93A6"/>
+  <rect x="30" y="77" width="28" height="4" rx="2" fill="#8A93A6"/>
+  <circle cx="80" cy="76" r="15" fill="none" stroke="#C0565B" stroke-width="7"/>
+  <path d="M91 87 L102 98" stroke="#C0565B" stroke-width="8" stroke-linecap="round"/>
+  <text x="80" y="82" text-anchor="middle" font-family="Georgia, serif" font-size="17" font-weight="700" fill="#F7F3EC">?</text>
+</svg>
