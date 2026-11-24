@@ -2,279 +2,468 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Octopup Studio</title>
 <meta name="description" content="Octopup Studio is an independent software studio building thoughtful apps for learning, swapping, and organizing time.">
 <link rel="icon" href="mark.svg" type="image/svg+xml">
-<meta name="theme-color" content="#F7F6F2">
+<meta name="theme-color" content="#F6F5FB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0D1222" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script>
+  /* Hide animated elements only when motion will actually run; a safety timer reveals them if the library never loads. */
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('motion');
+    setTimeout(function(){ if (!window.__motionStarted) document.documentElement.classList.remove('motion'); }, 2500);
+  }
+</script>
 <style>
+/* Palette logic: navy + coral come from the logo. Coral's complement is blue, so the split-complementary pair (teal, violet)
+   frames it, and marigold sits analogous to coral for warmth. Neutrals lean slightly violet so they belong to the same family.
+   Each area of work owns one color: Learning = teal, Swapping = violet, Organizing = marigold, Websites = coral. */
 :root{
-  --paper:#F7F6F2; --surface:#FFFFFF; --ink:#1C2B4A; --muted:#5A6377; --line:#E3E0D8; --soft:#EFEDE6;
-  --accent:#C8553D; --accent-d:#A8432E;
-  --serif:'Source Serif 4', Georgia, 'Times New Roman', serif;
-  --sans:'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --paper:#F6F5FB; --surface:#FFFFFF; --ink:#17203B; --ink-2:#4B5371; --line:#E2E0EE;
+  --coral:#E4572E; --coral-d:#B03A17; --coral-t:#FCE8E1;
+  --tide:#17988A; --tide-d:#0B6B60; --tide-t:#DCF2EE;
+  --sun:#F2AA2E; --sun-d:#8A5800; --sun-t:#FDF0D6;
+  --violet:#7A6CDB; --violet-d:#4E40B0; --violet-t:#ECE9FC;
+  --band:#17203B; --on-band:#F6F5FB; --on-band-2:#B9BED3; --band-card:#222C4C;
+  --ok:#1F9D63; --blend:multiply;
+  --f-display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --f-body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --radius:22px;
+  color-scheme:light;
 }
+@media (prefers-color-scheme: dark){ :root{
+  --paper:#0D1222; --surface:#151C31; --ink:#EEF0F9; --ink-2:#A5ACC6; --line:#262F4C;
+  --coral:#FF7650; --coral-d:#FF9A7C; --coral-t:#2F1B1C;
+  --tide:#33C4B2; --tide-d:#6ADCCD; --tide-t:#0F2C2D;
+  --sun:#FFBE4D; --sun-d:#FFD27F; --sun-t:#2C2415;
+  --violet:#A094FF; --violet-d:#BEB5FF; --violet-t:#1F1D3D;
+  --band:#161F3A; --on-band:#EEF0F9; --on-band-2:#A5ACC6; --band-card:#1E2949;
+  --ok:#47D08E; --blend:screen; color-scheme:dark;
+}}
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
-a{color:var(--ink)}
-img,svg{display:block;max-width:100%}
-.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
-h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0;letter-spacing:-.01em}
-.eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%}
+h1,h2,h3{font-family:var(--f-display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.02em}
+p{margin:0}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--coral-d);display:inline-flex;align-items:center;gap:.6em}
+.eyebrow::before{content:"";width:22px;height:2px;background:currentColor;border-radius:2px}
+
+/* Scroll progress: the four area colors in order */
+.progress{position:fixed;left:0;right:0;top:0;height:3px;z-index:70;transform-origin:0 50%;transform:scaleX(0);
+  background:linear-gradient(90deg,var(--tide),var(--violet),var(--sun),var(--coral))}
 
 /* Header */
-header.top{position:sticky;top:0;z-index:10;background:rgba(247,246,242,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:var(--serif);font-weight:600;font-size:1.2rem;white-space:nowrap}
-.brand img{width:34px;height:34px}
-.nav nav{display:flex;gap:28px}
-.nav nav a{text-decoration:none;color:var(--muted);font-weight:500;font-size:.95rem}
-.nav nav a:hover{color:var(--ink)}
+.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s;padding-top:env(safe-area-inset-top,0px)}
+.top.scrolled{border-bottom-color:var(--line);box-shadow:0 10px 30px -24px rgba(23,32,59,.5)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--f-display);font-weight:700;font-size:1.12rem;letter-spacing:-.01em;white-space:nowrap}
+.brand svg{width:34px;height:34px;color:var(--ink);transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.brand:hover svg{transform:rotate(-12deg) scale(1.08)}
+.nav{display:flex;gap:4px;flex-wrap:wrap}
+.nav a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--ink-2);padding:8px 14px;border-radius:999px;transition:background .2s,color .2s}
+.nav a:hover{background:var(--surface);color:var(--ink)}
+@media (max-width:640px){.nav a:not(.nav-cta){display:none}}
+.nav a.nav-cta{background:var(--ink);color:var(--paper)}
+.nav a.nav-cta:hover{background:var(--coral);color:#fff}
 
 /* Hero */
-.hero{padding:88px 0 76px;border-bottom:1px solid var(--line)}
-.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:48px;align-items:center}
-.hero h1{font-size:clamp(2.4rem,5vw,3.6rem);margin-top:14px;max-width:16ch}
-.hero p.lead{font-size:1.15rem;color:var(--muted);max-width:44ch;margin:20px 0 32px}
-.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.98rem;text-decoration:none;border-radius:8px;padding:12px 20px;border:1px solid transparent;transition:background .15s, border-color .15s}
-.btn.primary{background:var(--ink);color:#fff}
-.btn.primary:hover{background:#2A3C63}
-.btn.ghost{color:var(--ink);border-color:var(--line);background:var(--surface)}
-.btn.ghost:hover{border-color:var(--ink)}
-.btn-row{display:flex;flex-wrap:wrap;gap:12px}
-.emblem{justify-self:center;width:min(260px,60vw);aspect-ratio:1;border-radius:50%;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center}
-.emblem img{width:62%}
+.hero .wrap{display:grid;grid-template-columns:1.08fr .92fr;gap:48px;align-items:center;padding-block:72px 88px}
+@media (max-width:880px){.hero .wrap{grid-template-columns:1fr;padding-block:44px 64px;gap:36px}}
+.hero h1{font-size:clamp(2.6rem,6vw,4.6rem);font-weight:800;margin-top:20px}
+.hl{padding:0 .08em;border-radius:.18em;box-decoration-break:clone;-webkit-box-decoration-break:clone;background-repeat:no-repeat;background-position:0 100%;background-size:100% 42%}
+.hl-learn{background-image:linear-gradient(color-mix(in srgb,var(--tide) 38%,transparent),color-mix(in srgb,var(--tide) 38%,transparent))}
+.hl-share{background-image:linear-gradient(color-mix(in srgb,var(--violet) 38%,transparent),color-mix(in srgb,var(--violet) 38%,transparent))}
+.hl-life{background-image:linear-gradient(color-mix(in srgb,var(--sun) 48%,transparent),color-mix(in srgb,var(--sun) 48%,transparent))}
+.lede{font-size:1.15rem;color:var(--ink-2);max-width:34em;margin-top:22px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:.5em;font-weight:600;text-decoration:none;padding:14px 24px;border-radius:999px;border:2px solid transparent;transition:transform .2s,background .2s,box-shadow .2s,color .2s;font-size:1rem;font-family:var(--f-body);cursor:pointer}
+.btn-primary{background:var(--coral);color:#fff;box-shadow:0 8px 24px -10px var(--coral)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px var(--coral)}
+.btn-primary span{transition:transform .2s}
+.btn-primary:hover span{transform:translateY(3px)}
+.btn-ghost{border-color:var(--ink);color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+
+.venn{position:relative;width:100%;max-width:440px;aspect-ratio:1;margin-inline:auto}
+.venn .c{position:absolute;width:60%;height:60%;border-radius:50%;mix-blend-mode:var(--blend);opacity:.82}
+.venn .c1{left:0;top:0;background:var(--tide)}
+.venn .c2{right:0;top:0;background:var(--violet)}
+.venn .c3{left:0;bottom:0;background:var(--sun)}
+.venn .c4{right:0;bottom:0;background:var(--coral)}
+.venn .spread{position:absolute;inset:0;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.venn:hover .s1{transform:translate(-4%,-4%)}.venn:hover .s2{transform:translate(4%,-4%)}
+.venn:hover .s3{transform:translate(-4%,4%)}.venn:hover .s4{transform:translate(4%,4%)}
+.venn .core{position:absolute;inset:31%;background:var(--surface);border-radius:50%;display:grid;place-items:center;box-shadow:0 20px 50px -20px rgba(23,32,59,.45);z-index:2}
+.venn .core svg{width:72%;height:72%;color:var(--ink)}
+.venn .lbl{position:absolute;z-index:3;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500;color:#fff;background:rgba(23,32,59,.35);padding:4px 10px;border-radius:999px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.venn .l1{left:9%;top:16%}.venn .l2{right:9%;top:16%}.venn .l3{left:9%;bottom:16%}.venn .l4{right:9%;bottom:16%}
 
 /* Sections */
-section{padding:76px 0}
-.sec-head{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;margin-bottom:36px;align-items:end}
-.sec-head h2{font-size:clamp(1.8rem,3.6vw,2.4rem);margin-top:8px}
-.sec-head p{margin:0;color:var(--muted)}
+section{scroll-margin-top:80px}
+.sec{padding-block:96px}
+@media (max-width:640px){.sec{padding-block:64px}}
+.sec-head{display:grid;gap:14px;max-width:44rem;margin-bottom:48px}
+.sec-head h2{font-size:clamp(2.1rem,4.4vw,3.2rem);font-weight:800}
+.sec-head p{color:var(--ink-2);font-size:1.1rem}
 
-/* Apps */
-.apps-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:12px}
-.card-top{display:flex;gap:16px;align-items:center}
-.card-top img,.card-top .ico{width:56px;height:56px;border-radius:13px;flex:none}
-.card h3{font-size:1.35rem}
-.status{display:inline-block;font-size:.76rem;font-weight:600;letter-spacing:.02em;color:var(--muted);margin-top:2px}
-.status.soon{color:var(--accent)}
-.card p{margin:0;color:var(--muted)}
-.card .meta{font-size:.88rem;border-top:1px solid var(--line);padding-top:12px;margin-top:4px}
-.card .link{margin-top:auto;align-self:flex-start;font-weight:600;font-size:.95rem;text-decoration:none;color:var(--ink);border-bottom:1.5px solid var(--accent);padding-bottom:1px}
-.card .link:hover{color:var(--accent-d)}
-.card .link.off{border-bottom-color:var(--line);color:var(--muted)}
+/* Areas */
+.cat{--c:var(--tide);--cd:var(--tide-d);--ct:var(--tide-t)}
+.cat-share{--c:var(--violet);--cd:var(--violet-d);--ct:var(--violet-t)}
+.cat-life{--c:var(--sun);--cd:var(--sun-d);--ct:var(--sun-t)}
+.cat-web{--c:var(--coral);--cd:var(--coral-d);--ct:var(--coral-t)}
+.cat-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.cat-head h3{font-size:1.5rem;font-weight:700;display:flex;align-items:center;gap:10px}
+.cat-head h3::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:0 0 0 5px var(--ct)}
+.cat-head p{color:var(--ink-2)}
+.areas{display:grid;gap:56px}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+@media (max-width:980px){.grid-3{grid-template-columns:1fr}}
+@media (max-width:720px){.grid-2{grid-template-columns:1fr}}
+.grid-3 .cat{display:flex;flex-direction:column}
+.grid-3 .cat .card{flex:1}
 
-.group{margin-top:40px}
-.group:first-of-type{margin-top:0}
-.group-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:18px}
-.group-head h3{font-size:1.25rem}
-.group-head p{margin:0;color:var(--muted);font-size:.95rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;gap:14px;min-width:0;position:relative;overflow:hidden;transition:border-color .25s,box-shadow .25s,translate .25s}
+.card::after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:var(--ct);right:-70px;top:-70px;z-index:0;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.card > *{position:relative;z-index:1}
+.card:hover{translate:0 -4px;border-color:var(--c);box-shadow:0 18px 40px -24px var(--c)}
+.card:hover::after{transform:scale(1.35)}
+.card-top{display:flex;align-items:center;gap:14px}
+.icon{width:56px;height:56px;border-radius:14px;flex:none;display:block;transition:transform .4s cubic-bezier(.3,1.6,.5,1)}
+.card:hover .icon{transform:rotate(-6deg) scale(1.06)}
+.icon-tile{background:var(--c);color:#fff;display:grid;place-items:center}
+.cat-life .icon-tile{color:#2B1D00}
+.icon-tile svg{width:28px;height:28px}
+.card h3{font-size:1.28rem;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;font-size:.8rem}
+.tag{font-weight:600;color:var(--cd);background:var(--ct);padding:3px 10px;border-radius:999px}
+.status{display:inline-flex;align-items:center;gap:6px;color:var(--ink-2);font-weight:500}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.status.early::before{background:var(--sun)}
+.status.planned::before{background:transparent;border:2px solid var(--ink-2);width:6px;height:6px}
+.status.wip::before{background:var(--coral)}
+.card .desc{color:var(--ink-2)}
+.fine{font-size:.88rem;color:var(--ink-2);padding-top:12px;border-top:1px dashed var(--line);margin-top:auto}
+.go{font-weight:700;color:var(--cd);text-decoration:none;display:inline-flex;align-items:center;gap:.4em;align-self:flex-start}
+.go span{transition:transform .2s}
+.go:hover span{transform:translateX(4px)}
+.go.muted{color:var(--ink-2);font-weight:600;cursor:default}
 
-/* Approach */
-section.approach{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
-.principles .num{font-family:var(--serif);font-size:1rem;color:var(--accent);font-weight:600}
-.principles h3{font-size:1.2rem;margin:8px 0 8px}
-.principles p{margin:0;color:var(--muted);font-size:.98rem}
+/* Approach band */
+.band{background:var(--band);color:var(--on-band);position:relative;overflow:hidden}
+.band .glow{position:absolute;border-radius:50%;pointer-events:none}
+.band .g1{width:520px;height:520px;background:radial-gradient(circle,color-mix(in srgb,var(--violet) 45%,transparent),transparent 70%);right:-160px;top:-200px}
+.band .g2{width:460px;height:460px;background:radial-gradient(circle,color-mix(in srgb,var(--tide) 35%,transparent),transparent 70%);left:-160px;bottom:-220px}
+.band .wrap{position:relative;z-index:1}
+.band .sec-head p{color:var(--on-band-2)}
+.band .eyebrow{color:var(--sun)}
+.principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:880px){.principles{grid-template-columns:1fr}}
+.pr{background:var(--band-card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:30px;display:grid;gap:12px;align-content:start}
+.sym{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-size:1.6rem;font-weight:500;color:#17203B}
+.pr:nth-child(1) .sym{background:var(--tide)}
+.pr:nth-child(2) .sym{background:var(--sun)}
+.pr:nth-child(3) .sym{background:var(--coral);color:#fff}
+.pr h3{font-size:1.35rem;font-weight:700;margin-top:8px}
+.pr p{color:var(--on-band-2)}
+.pr .read{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--on-band-2);opacity:.75}
 
-/* About & contact */
-.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:40px}
-.about-grid h2{font-size:clamp(1.8rem,3.6vw,2.4rem);margin-top:8px}
-.about-grid p{color:var(--muted);margin:0 0 14px}
-.contact{border-top:1px solid var(--line)}
-.contact-row{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
-.contact-row h2{font-size:clamp(1.6rem,3.2vw,2.1rem)}
-.contact-row p{margin:6px 0 0;color:var(--muted)}
+/* About */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+@media (max-width:880px){.about-grid{grid-template-columns:1fr;gap:36px}}
+.about-text{display:grid;gap:18px;max-width:36rem}
+.about-text h2{font-size:clamp(2.1rem,4.4vw,3.2rem);font-weight:800}
+.about-text p{color:var(--ink-2);font-size:1.08rem}
+.about-text strong{color:var(--ink)}
+.anatomy{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:20px;max-width:520px;width:100%;justify-self:center}
+.anatomy svg{width:100%;height:auto;display:block}
+.anatomy .note{font-family:var(--f-mono);font-size:12px}
+.legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.legend span{font-size:.85rem;font-weight:600;padding:5px 12px;border-radius:999px}
+.lg-1{background:var(--violet-t);color:var(--violet-d)}
+.lg-2{background:var(--coral-t);color:var(--coral-d)}
 
-footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);font-size:.88rem}
-footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+/* Contact */
+.contact{padding-block:0 96px}
+.cta-card{background:var(--coral);color:#fff;border-radius:32px;padding:clamp(32px,6vw,64px);display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center;position:relative;overflow:hidden}
+.cta-card .blob{position:absolute;border-radius:50%;mix-blend-mode:soft-light;pointer-events:none}
+.cta-card .b1{width:340px;height:340px;background:var(--sun);opacity:.55;right:-90px;bottom:-140px}
+.cta-card .b2{width:220px;height:220px;background:var(--violet);opacity:.5;right:150px;top:-120px}
+.cta-card > div{position:relative;z-index:1;min-width:0}
+@media (max-width:820px){.cta-card{grid-template-columns:1fr}}
+.cta-card .eyebrow{color:#fff}
+.cta-card h2{font-size:clamp(2rem,4.4vw,3.1rem);font-weight:800;margin-top:12px}
+.cta-card p{margin-top:12px;font-size:1.08rem;opacity:.92;max-width:30em}
+.mailbox{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:20px;display:grid;gap:12px}
+.mailbox .addr{font-family:var(--f-display);font-weight:700;font-size:clamp(1.15rem,2.4vw,1.5rem);overflow-wrap:anywhere;color:#fff;text-decoration:none}
+.mailbox .row{display:flex;gap:10px;flex-wrap:wrap}
+.btn-white{background:#fff;color:#17203B}
+.btn-white:hover{transform:translateY(-2px)}
+.btn-line{border-color:rgba(255,255,255,.7);color:#fff;background:transparent}
+.btn-line:hover{background:rgba(255,255,255,.15)}
 
-@media (max-width:820px){
-  .hero{padding:56px 0 52px}
-  .hero-grid,.sec-head,.about-grid{grid-template-columns:1fr;gap:24px}
-  .emblem{display:none}
-  .apps-list,.principles{grid-template-columns:1fr}
-  section{padding:56px 0}
-}
-@media (max-width:480px){
-  .nav nav{gap:16px}
-  .nav nav a{font-size:.9rem}
-  .nav nav a.opt{display:none}
-}
+footer{border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:28px 40px;color:var(--ink-2);font-size:.9rem}
+.swatches{display:flex;gap:6px}
+.swatches i{width:14px;height:14px;border-radius:50%;display:block}
+
+/* Motion: starting states, applied only while the Motion script is expected to run */
+.motion [data-rise], .motion [data-reveal], .motion .venn .c, .motion .venn .core, .motion .venn .lbl{opacity:0}
+.motion .hl{background-size:0% 42%}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mark" viewBox="0 0 120 120">
+      <g fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="60" cy="38" r="23"/>
+        <path d="M60 61 L60 70"/>
+        <path d="M60 74 C52 78 42 80 36 87"/><path d="M60 74 C68 78 78 80 84 87"/>
+        <path d="M36 91 C30 98 24 100 22 108 C21 112 26 113 27 109"/>
+        <path d="M36 91 C40 98 46 101 46 108 C46 112 42 113 41 110"/>
+        <path d="M84 91 C80 98 74 101 74 108 C74 112 78 113 79 110"/>
+        <path d="M84 91 C90 98 96 100 98 108 C99 112 94 113 93 109"/>
+      </g>
+      <path d="M42 21 C27 21 21 44 28 55 C34 62 43 55 43 44 Z" fill="currentColor"/>
+      <path d="M78 21 C93 21 99 44 92 55 C86 62 77 55 77 44 Z" fill="currentColor"/>
+      <circle cx="51.5" cy="35" r="3.5" fill="currentColor"/>
+      <circle cx="68.5" cy="35" r="3.5" fill="currentColor"/>
+      <circle cx="60" cy="46" r="3.5" fill="var(--coral)"/>
+      <circle cx="60" cy="73" r="5.2" fill="var(--coral)"/>
+      <circle cx="36" cy="89" r="5.2" fill="var(--coral)"/>
+      <circle cx="84" cy="89" r="5.2" fill="var(--coral)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="progress" aria-hidden="true"></div>
+
 <header class="top">
-  <div class="wrap nav">
-    <a class="brand" href="#top"><img src="mark.svg" alt="">Octopup Studio</a>
-    <nav aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top"><svg aria-hidden="true"><use href="#mark"/></svg>Octopup Studio</a>
+    <nav class="nav" aria-label="Main">
       <a href="#apps">Apps</a>
-      <a href="#approach" class="opt">Approach</a>
-      <a href="#about" class="opt">About</a>
-      <a href="#contact">Contact</a>
+      <a href="#approach">Approach</a>
+      <a href="#about">About</a>
+      <a class="nav-cta" href="#contact">Contact</a>
     </nav>
   </div>
 </header>
 
 <main id="top">
   <section class="hero">
-    <div class="wrap hero-grid">
+    <div class="wrap">
       <div>
-        <p class="eyebrow">Independent software studio</p>
-        <h1>Thoughtful apps for learning, sharing, and everyday life.</h1>
-        <p class="lead">Octopup Studio designs and builds focused, well-crafted software: logic practice tools, a swapping community, household organizers, and websites for the people we work with.</p>
-        <div class="btn-row">
-          <a class="btn primary" href="#apps">View our apps</a>
-          <a class="btn ghost" href="#contact">Get in touch</a>
+        <span class="eyebrow" data-rise>Independent software studio</span>
+        <h1 data-rise>Thoughtful apps for <span class="hl hl-learn">learning</span>, <span class="hl hl-share">sharing</span>, and <span class="hl hl-life">everyday life</span>.</h1>
+        <p class="lede" data-rise>Octopup Studio designs and builds focused, well-crafted software: logic practice tools, a swapping community, household organizers, and websites for the people we work with.</p>
+        <div class="ctas" data-rise>
+          <a class="btn btn-primary" href="#apps">View our apps <span aria-hidden="true">↓</span></a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
         </div>
       </div>
-      <div class="emblem" aria-hidden="true"><img src="mark.svg" alt=""></div>
+      <div class="venn" role="img" aria-label="Four overlapping circles for learning, swapping, organizing and websites, with the Octopup emblem at the center">
+        <div class="spread s1"><div class="c c1"></div></div>
+        <div class="spread s2"><div class="c c2"></div></div>
+        <div class="spread s3"><div class="c c3"></div></div>
+        <div class="spread s4"><div class="c c4"></div></div>
+        <span class="lbl l1">Learn</span><span class="lbl l2">Swap</span><span class="lbl l3">Organize</span><span class="lbl l4">Build</span>
+        <div class="core"><svg aria-hidden="true"><use href="#mark"/></svg></div>
+      </div>
     </div>
   </section>
 
-  <section id="apps">
+  <section class="sec" id="apps" style="padding-top:24px">
     <div class="wrap">
-      <div class="sec-head">
-        <div><p class="eyebrow">Our work</p><h2>Apps &amp; websites</h2></div>
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow">Our work</span>
+        <h2>Apps &amp; websites</h2>
         <p>Our work spans four areas: learning, swapping, organizing time, and websites for people.</p>
       </div>
-      <div class="group">
-        <div class="group-head"><h3>Learning</h3><p>Practice tools for logic and data.</p></div>
-        <div class="apps-list">
-        <article class="card">
-          <div class="card-top">
-            <img src="https://lauravlad.github.io/Therefore/icons/icon.svg" alt="" width="56" height="56">
-            <div><h3>Therefore</h3><span class="status">Logic practice · Available</span></div>
+
+      <div class="areas">
+        <div class="cat cat-learn">
+          <div class="cat-head" data-reveal><h3>Learning</h3><p>Practice tools for logic and data.</p></div>
+          <div class="grid-2" data-stagger>
+            <article class="card" data-reveal>
+              <div class="card-top">
+                <img class="icon" src="https://lauravlad.github.io/Therefore/icons/icon.svg" alt="" width="56" height="56">
+                <div><h3>Therefore</h3><div class="meta"><span class="tag">Logic practice</span><span class="status">Available</span></div></div>
+              </div>
+              <p class="desc">Symbolic logic practice, one step at a time, with feedback on every answer.</p>
+              <p class="fine">Free. Works in any browser. No account needed.</p>
+              <a class="go" href="https://lauravlad.github.io/Therefore/">Open Therefore <span aria-hidden="true">→</span></a>
+            </article>
+            <article class="card" data-reveal>
+              <div class="card-top">
+                <img class="icon" src="https://pokethedata.com/icons/icon.svg" alt="" width="56" height="56">
+                <div><h3>Understanding Data with Python</h3><div class="meta"><span class="tag">Data practice</span><span class="status">Available</span></div></div>
+              </div>
+              <p class="desc">Learn to work with data by doing: Python, tables, statistics, and four prediction models built by hand, then how to read results honestly. Short lessons with real code that runs on your own device.</p>
+              <p class="fine">Free. Works in any browser. No account needed.</p>
+              <a class="go" href="https://pokethedata.com/">Open Understanding Data with Python <span aria-hidden="true">→</span></a>
+            </article>
+            <article class="card" data-reveal>
+              <div class="card-top">
+                <img class="icon" src="phil270/icons/icon.svg" alt="" width="56" height="56">
+                <div><h3>Symbolic Logic Classes</h3><div class="meta"><span class="tag">Course practice</span><span class="status">Available</span></div></div>
+              </div>
+              <p class="desc">A practice app for every class of the course, from arguments and truth tables to derivations, predicate logic, identity, and interpretations. Every wrong answer is explained with an example.</p>
+              <p class="fine">Free. Works in any browser. Each class opens with a code from the instructor.</p>
+              <a class="go" href="phil270/">Open the classes <span aria-hidden="true">→</span></a>
+            </article>
+            <article class="card" data-reveal>
+              <div class="card-top">
+                <img class="icon" src="icons/fake-news.svg" alt="" width="56" height="56">
+                <div><h3>Fake News Detector</h3><div class="meta"><span class="tag">Machine learning</span><span class="status">Available</span></div></div>
+              </div>
+              <p class="desc">Paste a news article and a Naive Bayes model, trained on the ISOT Fake News Dataset, estimates whether it reads like fake or real news and shows which words drove the decision. It is honest about its limits: it judges writing style, not facts.</p>
+              <p class="fine">Free. Works in any browser. No account needed.</p>
+              <a class="go" href="https://lauravlad-fake-news-detector.streamlit.app/">Open Fake News Detector <span aria-hidden="true">→</span></a>
+            </article>
           </div>
-          <p>Symbolic logic practice, one step at a time, with feedback on every answer.</p>
-          <p class="meta">Free. Works in any browser. No account needed.</p>
-          <a class="link" href="https://lauravlad.github.io/Therefore/">Open Therefore →</a>
-        </article>
-        <article class="card">
-          <div class="card-top">
-            <img src="https://pokethedata.com/icons/icon.svg" alt="" width="56" height="56" style="border-radius:13px">
-            <div><h3>Understanding Data with Python</h3><span class="status">Data practice · Available</span></div>
-          </div>
-          <p>Learn to work with data by doing: Python, tables, statistics, and four prediction models built by hand, then how to read results honestly. Short lessons with real code that runs on your own device.</p>
-          <p class="meta">Free. Works in any browser. No account needed.</p>
-          <a class="link" href="https://pokethedata.com/">Open Understanding Data with Python →</a>
-        </article>
-        <article class="card">
-          <div class="card-top">
-            <img src="phil270/icons/icon.svg" alt="" width="56" height="56">
-            <div><h3>Symbolic Logic Classes</h3><span class="status">Course practice · Available</span></div>
-          </div>
-          <p>A practice app for every class of the course, from arguments and truth tables to derivations, predicate logic, identity, and interpretations. Every wrong answer is explained with an example.</p>
-          <p class="meta">Free. Works in any browser. Each class opens with a code from the instructor.</p>
-          <a class="link" href="phil270/">Open the classes →</a>
-        </article>
-        <article class="card">
-          <div class="card-top">
-            <img src="icons/fake-news.svg" alt="" width="56" height="56">
-            <div><h3>Fake News Detector</h3><span class="status">Machine learning · Available</span></div>
-          </div>
-          <p>Paste a news article and a Naive Bayes model, trained on the ISOT Fake News Dataset, estimates whether it reads like fake or real news and shows which words drove the decision. It is honest about its limits: it judges writing style, not facts.</p>
-          <p class="meta">Free. Works in any browser. No account needed.</p>
-          <a class="link" href="https://lauravlad-fake-news-detector.streamlit.app/">Open Fake News Detector →</a>
-        </article>
         </div>
-      </div>
-      <div class="group">
-        <div class="group-head"><h3>Swapping</h3><p>A community for exchanging what you love, without money.</p></div>
-        <div class="apps-list">
-        <article class="card">
-          <div class="card-top">
-            <img src="https://swapfume.com/icons/icon.svg" alt="" width="56" height="56" style="border-radius:13px">
-            <div><h3>Swapfume</h3><span class="status">Community platform · Early access</span></div>
+
+        <div class="grid-3" data-stagger>
+          <div class="cat cat-share" data-reveal>
+            <div class="cat-head"><h3>Swapping</h3><p>Exchange what you love, without money.</p></div>
+            <article class="card">
+              <div class="card-top">
+                <img class="icon" src="https://swapfume.com/icons/icon.svg" alt="" width="56" height="56">
+                <div><h3>Swapfume</h3><div class="meta"><span class="tag">Community</span><span class="status early">Early access</span></div></div>
+              </div>
+              <p class="desc">A community for exchanging perfume samples, decants and full bottles, with have and want lists, matching, perfume reviews, and member reviews. No money changes hands.</p>
+              <p class="fine">Free. Open to members 18+ in the United States. iPhone app coming soon.</p>
+              <a class="go" href="https://swapfume.com/">Open Swapfume <span aria-hidden="true">→</span></a>
+            </article>
           </div>
-          <p>A community for exchanging perfume samples, decants and full bottles, with have and want lists, matching, perfume reviews, and member reviews. No money changes hands.</p>
-          <p class="meta">Free. Open to members 18+ in the United States. iPhone app coming soon.</p>
-          <a class="link" href="https://swapfume.com/">Open Swapfume →</a>
-        </article>
-        </div>
-      </div>
-      <div class="group">
-        <div class="group-head"><h3>Organizing time</h3><p>Tools that help households plan and share the work.</p></div>
-        <div class="apps-list">
-        <article class="card">
-          <div class="card-top">
-            <svg class="ico" viewBox="0 0 56 56" aria-hidden="true">
-              <rect width="56" height="56" rx="13" fill="#2F6B5E"/>
-              <rect x="13" y="14" width="30" height="30" rx="6" fill="#F4F1E8"/>
-              <rect x="13" y="14" width="30" height="8" rx="4" fill="#E2D9C4"/>
-              <path d="M18 30 l3 3 l5 -6" fill="none" stroke="#2F6B5E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M29 30 h9 M29 38 h9" stroke="#9AA59E" stroke-width="2.4" stroke-linecap="round"/>
-              <circle cx="21.5" cy="38" r="2.6" fill="none" stroke="#9AA59E" stroke-width="2"/>
-            </svg>
-            <div><h3>Family Chores</h3><span class="status soon">Organizer · Planned</span></div>
+          <div class="cat cat-life" data-reveal>
+            <div class="cat-head"><h3>Organizing time</h3><p>Help households share the work.</p></div>
+            <article class="card">
+              <div class="card-top">
+                <div class="icon icon-tile" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14.5l5 5L22 8"/></svg></div>
+                <div><h3>Family Chores</h3><div class="meta"><span class="tag">Organizer</span><span class="status planned">Planned</span></div></div>
+              </div>
+              <p class="desc">A shared chore organizer for families: assign tasks, set routines, and see who has done what this week.</p>
+              <p class="fine">In planning.</p>
+              <span class="go muted">Coming soon</span>
+            </article>
           </div>
-          <p>A shared chore organizer for families: assign tasks, set routines, and see who has done what this week.</p>
-          <p class="meta">In planning.</p>
-          <span class="link off">Coming soon</span>
-        </article>
-        </div>
-      </div>
-      <div class="group">
-        <div class="group-head"><h3>Websites</h3><p>Custom websites for people and small businesses.</p></div>
-        <div class="apps-list">
-        <article class="card">
-          <div class="card-top">
-            <svg class="ico" viewBox="0 0 56 56" aria-hidden="true">
-              <rect width="56" height="56" rx="13" fill="#3B4A7A"/>
-              <rect x="11" y="15" width="34" height="26" rx="4" fill="#F4F1E8"/>
-              <rect x="11" y="15" width="34" height="6" rx="3" fill="#D9D3C2"/>
-              <circle cx="15.5" cy="18" r="1.3" fill="#3B4A7A"/><circle cx="19.5" cy="18" r="1.3" fill="#3B4A7A"/>
-              <rect x="15" y="25" width="14" height="3" rx="1.5" fill="#3B4A7A"/>
-              <rect x="15" y="31" width="22" height="2.4" rx="1.2" fill="#A9AFC4"/>
-              <rect x="15" y="35.5" width="18" height="2.4" rx="1.2" fill="#A9AFC4"/>
-            </svg>
-            <div><h3>Personal websites</h3><span class="status soon">Websites · First project in progress</span></div>
+          <div class="cat cat-web" data-reveal>
+            <div class="cat-head"><h3>Websites</h3><p>For people and small businesses.</p></div>
+            <article class="card">
+              <div class="card-top">
+                <div class="icon icon-tile" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="5" width="22" height="18" rx="3"/><path d="M3 10.5h22"/><circle cx="7" cy="7.8" r=".6" fill="currentColor"/><circle cx="10" cy="7.8" r=".6" fill="currentColor"/></svg></div>
+                <div><h3>Personal websites</h3><div class="meta"><span class="tag">Websites</span><span class="status wip">First project in progress</span></div></div>
+              </div>
+              <p class="desc">Clean, fast websites for individuals and small businesses: a home for your work, your story, and how to reach you. Designed to look good on every phone.</p>
+              <p class="fine">Interested in a website? Get in touch.</p>
+              <a class="go" href="#contact">Contact us <span aria-hidden="true">→</span></a>
+            </article>
           </div>
-          <p>Clean, fast websites for individuals and small businesses: a home for your work, your story, and how to reach you. Designed to look good on every phone.</p>
-          <p class="meta">Interested in a website? Get in touch.</p>
-          <a class="link" href="#contact">Contact us →</a>
-        </article>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="approach" id="approach">
+  <section class="sec band" id="approach">
+    <div class="glow g1" aria-hidden="true"></div>
+    <div class="glow g2" aria-hidden="true"></div>
     <div class="wrap">
-      <div class="sec-head">
-        <div><p class="eyebrow">How we work</p><h2>Approach</h2></div>
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow">How we work</span>
+        <h2>Approach</h2>
         <p>A few principles guide every app we make.</p>
       </div>
-      <div class="principles">
-        <div><span class="num">01</span><h3>Learning by doing</h3><p>Practice is broken into clear steps, with immediate feedback that explains each answer.</p></div>
-        <div><span class="num">02</span><h3>Built for real use</h3><p>Our tools are shaped by the classroom and the communities that use them, not by trends.</p></div>
-        <div><span class="num">03</span><h3>Respect for privacy</h3><p>We collect only what an app needs. Our logic apps need no account and keep progress on your own device.</p></div>
+      <div class="principles" data-stagger>
+        <div class="pr" data-reveal>
+          <div class="sym" aria-hidden="true">→</div>
+          <span class="read">practice → understanding</span>
+          <h3>Learning by doing</h3>
+          <p>Practice is broken into clear steps, with immediate feedback that explains each answer.</p>
+        </div>
+        <div class="pr" data-reveal>
+          <div class="sym" aria-hidden="true">∀</div>
+          <span class="read">for every user</span>
+          <h3>Built for real use</h3>
+          <p>Our tools are shaped by the classroom and the communities that use them, not by trends.</p>
+        </div>
+        <div class="pr" data-reveal>
+          <div class="sym" aria-hidden="true">¬</div>
+          <span class="read">nothing we don’t need</span>
+          <h3>Respect for privacy</h3>
+          <p>We collect only what an app needs. Our logic apps need no account and keep progress on your own device.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="about">
+  <section class="sec" id="about">
     <div class="wrap about-grid">
-      <div><p class="eyebrow">The studio</p><h2>About</h2></div>
-      <div>
+      <div class="about-text" data-reveal>
+        <span class="eyebrow">The studio</span>
+        <h2>About</h2>
         <p>Octopup Studio was founded by a philosophy instructor who builds the practice tools used in their own logic courses. What began as classroom software has grown into a small studio with a broader aim: useful, carefully made apps for learning and community.</p>
-        <p>The name comes from our emblem, a puppy with octopus arms: approachable, curious, and able to handle many things at once. Look closely and it is also a piece of logic. Its arms branch like a decision tree, its face is the “because” sign ∵, and the first three branching points form the “therefore” sign ∴.</p>
+        <p>The name comes from our emblem, <strong>a puppy with octopus arms</strong>: approachable, curious, and able to handle many things at once. Look closely and it is also a piece of logic. Its arms branch like a decision tree, its face is the “because” sign <strong>∵</strong>, and the first three branching points form the “therefore” sign <strong>∴</strong>.</p>
+        <div class="legend"><span class="lg-1">∵ because: the face</span><span class="lg-2">∴ therefore: the branches</span></div>
       </div>
+      <figure class="anatomy" data-reveal>
+        <svg viewBox="0 0 400 340" role="img" aria-label="The Octopup emblem with its face marked as the because sign and its first three branch points marked as the therefore sign">
+          <g transform="translate(110 50) scale(1.5)" style="color:var(--ink)"><use href="#mark" width="120" height="120"/></g>
+          <g class="callout">
+            <path d="M179 97 L221 97 L200 127 Z" fill="var(--violet)" opacity=".22" stroke="var(--violet)" stroke-width="1.5" stroke-linejoin="round"/>
+            <path class="lead-line" d="M216 104 L300 70" stroke="var(--violet)" stroke-width="2" fill="none"/>
+            <circle cx="300" cy="70" r="4" fill="var(--violet)"/>
+            <text x="308" y="66" class="note" fill="var(--violet-d)">∵ because</text>
+            <text x="308" y="84" class="note" fill="var(--ink-2)">eyes + nose</text>
+          </g>
+          <g class="callout">
+            <path d="M200 150 L156 189 L244 189 Z" fill="var(--coral)" opacity=".18" stroke="var(--coral)" stroke-width="1.5" stroke-linejoin="round"/>
+            <path class="lead-line" d="M150 196 L80 246" stroke="var(--coral)" stroke-width="2" fill="none"/>
+            <circle cx="80" cy="246" r="4" fill="var(--coral)"/>
+            <text x="20" y="270" class="note" fill="var(--coral-d)">∴ therefore</text>
+            <text x="20" y="288" class="note" fill="var(--ink-2)">first three branch points</text>
+          </g>
+          <g class="callout">
+            <path class="lead-line" d="M262 220 L330 280" stroke="var(--tide)" stroke-width="2" fill="none"/>
+            <circle cx="330" cy="280" r="4" fill="var(--tide)"/>
+            <text x="262" y="306" class="note" fill="var(--tide-d)">1 → 2 → 4</text>
+            <text x="262" y="324" class="note" fill="var(--ink-2)">decision tree</text>
+          </g>
+        </svg>
+      </figure>
     </div>
   </section>
 
   <section class="contact" id="contact">
-    <div class="wrap contact-row">
-      <div>
-        <h2>Contact</h2>
-        <p>For questions, support, website projects, or partnerships, write to us.</p>
+    <div class="wrap">
+      <div class="cta-card" data-reveal>
+        <span class="blob b1" aria-hidden="true"></span>
+        <span class="blob b2" aria-hidden="true"></span>
+        <div>
+          <span class="eyebrow">Contact</span>
+          <h2>Let’s make something useful.</h2>
+          <p>For questions, support, website projects, or partnerships, write to us.</p>
+        </div>
+        <div class="mailbox">
+          <a class="addr" href="mailto:hello@octopupstudio.com" id="addr">hello@octopupstudio.com</a>
+          <div class="row">
+            <button class="btn btn-white" type="button" id="copy">Copy address</button>
+            <a class="btn btn-line" href="mailto:hello@octopupstudio.com">Write an email</a>
+          </div>
+        </div>
       </div>
-      <a class="btn primary" href="mailto:hello@octopupstudio.com">hello@octopupstudio.com</a>
     </div>
   </section>
 </main>
@@ -282,8 +471,103 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <footer>
   <div class="wrap">
     <span>© 2026 Octopup Studio</span>
-    <span>octopupstudio.com</span>
+    <span class="swatches" aria-hidden="true"><i style="background:var(--tide)"></i><i style="background:var(--violet)"></i><i style="background:var(--sun)"></i><i style="background:var(--coral)"></i></span>
   </div>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/motion@11.11.17/dist/motion.js"></script>
+<script>
+/* Copy the email address */
+document.getElementById('copy').addEventListener('click', function(){
+  var b = this, a = document.getElementById('addr');
+  function done(t){ b.textContent = t; setTimeout(function(){ b.textContent = 'Copy address'; }, 1800); }
+  function selectIt(){ var r = document.createRange(); r.selectNodeContents(a); var s = getSelection(); s.removeAllRanges(); s.addRange(r); done('Press ⌘C / Ctrl+C'); }
+  if (navigator.clipboard) navigator.clipboard.writeText(a.textContent).then(function(){ done('Copied'); }, selectIt); else selectIt();
+});
+
+/* Header border once the page scrolls */
+var siteHeader = document.querySelector('.top');
+function onScroll(){ siteHeader.classList.toggle('scrolled', scrollY > 8); }
+addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+/* Animations (Motion: motion.dev) */
+(function(){
+  var root = document.documentElement;
+  if (!root.classList.contains('motion') || !window.Motion) { root.classList.remove('motion'); return; }
+  var M = window.Motion, animate = M.animate, inView = M.inView, stagger = M.stagger, scroll = M.scroll;
+  var ease = [0.22, 1, 0.36, 1];
+  var spring = { type: 'spring', stiffness: 180, damping: 16 };
+
+  /* Set every hidden element's start state in JS, then drop the CSS gate */
+  document.querySelectorAll('[data-rise],[data-reveal]').forEach(function(el){ el.style.opacity = 0; el.style.transform = 'translateY(28px)'; });
+  document.querySelectorAll('.venn .c').forEach(function(el){ el.style.opacity = 0; el.style.transform = 'scale(.4)'; });
+  var core = document.querySelector('.venn .core'); core.style.opacity = 0; core.style.transform = 'scale(.6) rotate(-20deg)';
+  document.querySelectorAll('.venn .lbl').forEach(function(el){ el.style.opacity = 0; });
+  document.querySelectorAll('.hl').forEach(function(el){ el.style.backgroundSize = '0% 42%'; });
+  root.classList.remove('motion');
+  window.__motionStarted = true;
+
+  /* 1. Hero entrance: text rises in, highlights sweep under the three words */
+  animate('[data-rise]', { opacity: [0, 1], transform: ['translateY(28px)', 'translateY(0px)'] }, { duration: .8, delay: stagger(.1), ease: ease });
+  animate('.hl', { backgroundSize: ['0% 42%', '100% 42%'] }, { duration: .6, delay: stagger(.18, { startDelay: .55 }), ease: ease });
+
+  /* 2. Venn circles bloom one by one, then the emblem pops into the middle */
+  animate('.venn .c', { opacity: [0, .82], transform: ['scale(.4)', 'scale(1)'] }, { delay: stagger(.12, { startDelay: .2 }), type: 'spring', stiffness: 120, damping: 14 });
+  animate(core, { opacity: [0, 1], transform: ['scale(.6) rotate(-20deg)', 'scale(1) rotate(0deg)'] }, Object.assign({ delay: .75 }, spring));
+  animate('.venn .lbl', { opacity: [0, 1], transform: ['translateY(8px)', 'translateY(0px)'] }, { duration: .5, delay: stagger(.08, { startDelay: 1 }) });
+
+  /* 3. Ambient: each circle drifts slowly on its own loop; the emblem bobs */
+  var drift = [[6, 4], [-5, 6], [5, -6], [-6, -4]];
+  document.querySelectorAll('.venn .c').forEach(function(el, i){
+    setTimeout(function(){
+      animate(el, { translate: ['0px 0px', drift[i][0] + 'px ' + drift[i][1] + 'px'] }, { duration: 4 + i * .7, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' });
+    }, 1400);
+  });
+  setTimeout(function(){
+    animate('.venn .core svg', { transform: ['translateY(0px) rotate(0deg)', 'translateY(-5px) rotate(-3deg)'] }, { duration: 2.2, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' });
+  }, 1600);
+
+  /* 4. Scroll reveals: single blocks rise; grids stagger their children */
+  var staggered = new Set();
+  document.querySelectorAll('[data-stagger]').forEach(function(group){
+    var kids = group.querySelectorAll(':scope > [data-reveal]');
+    kids.forEach(function(k){ staggered.add(k); });
+    inView(group, function(){
+      animate(kids, { opacity: [0, 1], transform: ['translateY(28px)', 'translateY(0px)'] }, { duration: .7, delay: stagger(.09), ease: ease });
+    }, { amount: .15 });
+  });
+  document.querySelectorAll('main [data-reveal]').forEach(function(el){
+    if (staggered.has(el) || el.hasAttribute('data-rise')) return;
+    inView(el, function(){
+      animate(el, { opacity: [0, 1], transform: ['translateY(28px)', 'translateY(0px)'] }, { duration: .8, ease: ease });
+      if (el.classList.contains('anatomy')) drawCallouts();
+    }, { amount: .2 });
+  });
+
+  /* Principle symbols spin in when the band arrives */
+  inView('.principles', function(){
+    animate('.sym', { transform: ['scale(0) rotate(-90deg)', 'scale(1) rotate(0deg)'] }, { delay: stagger(.12, { startDelay: .2 }), type: 'spring', stiffness: 200, damping: 12 });
+  }, { amount: .3 });
+
+  /* About: the callout lines draw out from the emblem */
+  var lines = document.querySelectorAll('.lead-line');
+  /* Motion animates SVG attributes, so the start state is set as attributes (inline styles would override them) */
+  lines.forEach(function(p){ var L = p.getTotalLength(); p.setAttribute('stroke-dasharray', L); p.setAttribute('stroke-dashoffset', L); });
+  document.querySelectorAll('.callout text').forEach(function(t){ t.setAttribute('opacity', 0); });
+  function drawCallouts(){
+    animate(lines, { strokeDashoffset: 0 }, { duration: .7, delay: stagger(.25, { startDelay: .5 }), ease: ease });
+    animate('.callout text', { opacity: [0, 1] }, { duration: .4, delay: stagger(.12, { startDelay: .9 }) });
+  }
+
+  /* 5. Scroll-linked: four-color progress bar, drifting glows and blobs */
+  scroll(animate('.progress', { transform: ['scaleX(0)', 'scaleX(1)'] }, { ease: 'linear' }));
+  var band = document.querySelector('.band');
+  scroll(animate('.band .g1', { transform: ['translate(0px,-60px)', 'translate(-80px,80px)'] }, { ease: 'linear' }), { target: band, offset: ['start end', 'end start'] });
+  scroll(animate('.band .g2', { transform: ['translate(0px,60px)', 'translate(90px,-80px)'] }, { ease: 'linear' }), { target: band, offset: ['start end', 'end start'] });
+  var cta = document.querySelector('.cta-card');
+  scroll(animate('.cta-card .b1', { transform: ['translate(0px,60px) scale(.9)', 'translate(-40px,-20px) scale(1.1)'] }, { ease: 'linear' }), { target: cta, offset: ['start end', 'end start'] });
+  scroll(animate('.cta-card .b2', { transform: ['translate(40px,-30px)', 'translate(-40px,40px)'] }, { ease: 'linear' }), { target: cta, offset: ['start end', 'end start'] });
+})();
+</script>
 </body>
 </html>
