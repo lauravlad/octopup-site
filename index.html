@@ -161,6 +161,20 @@ section{scroll-margin-top:80px}
 .go:hover span{transform:translateX(4px)}
 .go.muted{color:var(--ink-2);font-weight:600;cursor:default}
 
+/* Window cards: a screenshot (or an artwork tile, for apps without one yet) in a small browser frame */
+.card.has-shot{padding:14px 14px 24px}
+.card.has-shot::after{display:none}
+.card.has-shot > :not(.shot){margin-inline:12px}
+.shot{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--surface);margin-bottom:6px}
+.shot .bar{display:flex;gap:5px;padding:8px 10px;background:color-mix(in srgb,var(--c) 14%,var(--surface));border-bottom:1px solid var(--line)}
+.shot .bar i{width:7px;height:7px;border-radius:50%;background:color-mix(in srgb,var(--c) 55%,var(--line))}
+.shot img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.card:hover .shot img{transform:scale(1.03)}
+.shot.art{display:grid;place-items:center;aspect-ratio:16/11.3;background:radial-gradient(circle at 30% 20%,var(--ct),transparent 60%),color-mix(in srgb,var(--c) 10%,var(--surface))}
+.shot.art .icon{width:88px;height:88px;border-radius:24px}
+.shot.art .icon-tile svg{width:44px;height:44px}
+@media (prefers-reduced-motion: reduce){.card:hover .shot img{transform:none}}
+
 /* Approach band */
 .band{background:var(--band);color:var(--on-band);position:relative;overflow:hidden}
 .band .glow{position:absolute;border-radius:50%;pointer-events:none}
@@ -298,7 +312,8 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
         <div class="cat cat-learn">
           <div class="cat-head" data-reveal><h3>Learning</h3><p>Practice tools for logic and data.</p></div>
           <div class="grid-2" data-stagger>
-            <article class="card" data-reveal>
+            <article class="card has-shot" data-reveal>
+              <div class="shot"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="shots/therefore.jpg" alt="Therefore's lesson list: intro to logic, sentential logic and predicate logic" width="800" height="499" loading="lazy" decoding="async"></div>
               <div class="card-top">
                 <img class="icon" src="https://lauravlad.github.io/Therefore/icons/icon.svg" alt="" width="56" height="56">
                 <div><h3>Therefore</h3><div class="meta"><span class="tag">Logic practice</span><span class="status">Available</span></div></div>
@@ -307,7 +322,8 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
               <p class="fine">Free. Works in any browser. No account needed.</p>
               <a class="go" href="https://lauravlad.github.io/Therefore/">Open Therefore <span aria-hidden="true">→</span></a>
             </article>
-            <article class="card" data-reveal>
+            <article class="card has-shot" data-reveal>
+              <div class="shot"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="shots/data.jpg" alt="Understanding Data with Python's course page, starting with a Python warm-up" width="800" height="499" loading="lazy" decoding="async"></div>
               <div class="card-top">
                 <img class="icon" src="https://pokethedata.com/icons/icon.svg" alt="" width="56" height="56">
                 <div><h3>Understanding Data with Python</h3><div class="meta"><span class="tag">Data practice</span><span class="status">Available</span></div></div>
@@ -316,7 +332,8 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
               <p class="fine">Free. Works in any browser. No account needed.</p>
               <a class="go" href="https://pokethedata.com/">Open Understanding Data with Python <span aria-hidden="true">→</span></a>
             </article>
-            <article class="card" data-reveal>
+            <article class="card has-shot" data-reveal>
+              <div class="shot"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="shots/classes.jpg" alt="Symbolic Logic Classes: a numbered list of classes, each with an Open link" width="800" height="499" loading="lazy" decoding="async"></div>
               <div class="card-top">
                 <img class="icon" src="phil270/icons/icon.svg" alt="" width="56" height="56">
                 <div><h3>Symbolic Logic Classes</h3><div class="meta"><span class="tag">Course practice</span><span class="status">Available</span></div></div>
@@ -325,7 +342,8 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
               <p class="fine">Free. Works in any browser. Each class opens with a code from the instructor.</p>
               <a class="go" href="phil270/">Open the classes <span aria-hidden="true">→</span></a>
             </article>
-            <article class="card" data-reveal>
+            <article class="card has-shot" data-reveal>
+              <div class="shot"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="shots/fake-news.jpg" alt="Fake News Detector: a box to paste an article and a Check article button" width="752" height="470" loading="lazy" decoding="async"></div>
               <div class="card-top">
                 <img class="icon" src="icons/fake-news.svg" alt="" width="56" height="56">
                 <div><h3>Fake News Detector</h3><div class="meta"><span class="tag">Machine learning</span><span class="status">Available</span></div></div>
@@ -340,19 +358,21 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
         <div class="grid-3" data-stagger>
           <div class="cat cat-share" data-reveal>
             <div class="cat-head"><h3>Swapping</h3><p>Exchange what you love, without money.</p></div>
-            <article class="card">
+            <article class="card has-shot">
+              <div class="shot"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="shots/swapfume.jpg" alt="Swapfume's welcome page: Swap the scents you love, with a sign-in form" width="800" height="499" loading="lazy" decoding="async"></div>
               <div class="card-top">
                 <img class="icon" src="https://swapfume.com/icons/icon.svg" alt="" width="56" height="56">
                 <div><h3>Swapfume</h3><div class="meta"><span class="tag">Community</span><span class="status early">Early access</span></div></div>
               </div>
               <p class="desc">A community for exchanging perfume samples, decants and full bottles, with have and want lists, matching, perfume reviews, and member reviews. No money changes hands.</p>
-              <p class="fine">Free. Open to members 18+ in the United States. iPhone app coming soon.</p>
+              <p class="fine">Free. Open to members 18+ in the United States, Canada and Romania. On the web and the App Store.</p>
               <a class="go" href="https://swapfume.com/">Open Swapfume <span aria-hidden="true">→</span></a>
             </article>
           </div>
           <div class="cat cat-life" data-reveal>
             <div class="cat-head"><h3>Organizing time</h3><p>Help households share the work.</p></div>
-            <article class="card">
+            <article class="card has-shot">
+              <div class="shot art" aria-hidden="true"><div class="icon icon-tile" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14.5l5 5L22 8"/></svg></div></div>
               <div class="card-top">
                 <div class="icon icon-tile" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14.5l5 5L22 8"/></svg></div>
                 <div><h3>Family Chores</h3><div class="meta"><span class="tag">Organizer</span><span class="status planned">Planned</span></div></div>
@@ -364,7 +384,8 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1
           </div>
           <div class="cat cat-web" data-reveal>
             <div class="cat-head"><h3>Websites</h3><p>For people and small businesses.</p></div>
-            <article class="card">
+            <article class="card has-shot">
+              <div class="shot art" aria-hidden="true"><div class="icon icon-tile" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="5" width="22" height="18" rx="3"/><path d="M3 10.5h22"/><circle cx="7" cy="7.8" r=".6" fill="currentColor"/><circle cx="10" cy="7.8" r=".6" fill="currentColor"/></svg></div></div>
               <div class="card-top">
                 <div class="icon icon-tile" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="5" width="22" height="18" rx="3"/><path d="M3 10.5h22"/><circle cx="7" cy="7.8" r=".6" fill="currentColor"/><circle cx="10" cy="7.8" r=".6" fill="currentColor"/></svg></div>
                 <div><h3>Personal websites</h3><div class="meta"><span class="tag">Websites</span><span class="status wip">First project in progress</span></div></div>
