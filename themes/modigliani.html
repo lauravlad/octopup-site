@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<!-- THEME: modigliani · copied to /index.html by scripts/rotate-theme.sh. Edit content here, in all three themes. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Octopup Studio | Independent app and website studio</title>
+<meta name="description" content="Octopup Studio is an independent software studio building thoughtful apps for learning, swapping, and organizing time, including Therefore, Understanding Data with Python and Swapfume, plus websites for people and small businesses.">
+<link rel="canonical" href="https://octopupstudio.com/">
+<link rel="icon" href="/mark.svg" type="image/svg+xml">
+<meta name="theme-color" content="#F3E9DA">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Octopup Studio"><meta property="og:title" content="Octopup Studio">
+<meta property="og:description" content="Thoughtful apps for learning, sharing, and everyday life."><meta property="og:url" content="https://octopupstudio.com/"><meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"Organization","@id":"https://octopupstudio.com/#org","name":"Octopup Studio","alternateName":"Octopupstudio","url":"https://octopupstudio.com/","logo":"https://octopupstudio.com/logo.svg","email":"hello@octopupstudio.com","description":"An independent software studio building thoughtful apps for learning, swapping, and organizing time, plus websites for people and small businesses."},
+ {"@type":"WebSite","name":"Octopup Studio","alternateName":"Octopupstudio","url":"https://octopupstudio.com/","publisher":{"@id":"https://octopupstudio.com/#org"}}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* MODIGLIANI WEEK
+   Color theory: warm–cool contrast. Warm earths (ochre, sienna, rose) against muted teal grounds,
+   the near-complement of orange. Low saturation keeps it calm; warm figures advance, cool grounds recede.
+   Color blocks are translucent so the dandelion behind the page shows through.
+   Shape: everything is stretched vertically: arches, tall serif type, long strokes. */
+:root{
+  --bone:#F3E9DA; --umber:#3A2A22; --muted:#5E4E43; --line:#E2D3BE;
+  --teal:rgba(46,74,82,.86); --teal-solid:#2E4A52; --teal-d:rgba(31,52,57,.9);
+  --ochre:#C98F4A; --sienna:#A4522F; --sienna-a:rgba(164,82,47,.88); --rose:#D9A08A;
+  --card:rgba(255,255,255,.62);
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+  /* dandelion */
+  --dl-style:modigliani; --dl-stroke:rgba(164,82,47,.5); --dl-seed:rgba(122,74,50,.7); --dl-glow:rgba(217,160,138,.18);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bone)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+[id]{scroll-margin-top:20px}
+body{margin:0;background:transparent;color:var(--umber);font:17px/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1;margin:0;letter-spacing:-.01em}
+a{color:inherit} :focus-visible{outline:2px solid var(--sienna);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:12px;top:-60px;z-index:20;background:var(--umber);color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none}.skip:focus{top:12px}
+.eyebrow{font-size:.76rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--sienna)}
+.btn{display:inline-flex;padding:14px 26px;border-radius:999px;font-weight:600;text-decoration:none}
+.btn.warm{background:var(--ochre);color:var(--umber)} .btn.line{border:1px solid #9FB4B6;color:var(--bone)} .btn.bone{background:var(--bone);color:var(--sienna)}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+
+/* Hero */
+.hero{background:var(--teal);color:var(--bone);border-radius:0 0 48px 48px}
+header{display:flex;justify-content:space-between;align-items:center;height:76px}
+.brand{display:flex;gap:10px;align-items:center;font-family:var(--serif);font-size:1.45rem;font-weight:600;text-decoration:none}
+.brand i{width:34px;height:34px;border-radius:50% 50% 8px 8px;background:var(--bone);display:grid;place-items:center}.brand img{width:26px}
+nav{display:flex;gap:24px} nav a{text-decoration:none;color:#E4DCCF;font-size:.95rem;padding:10px 0}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:end;padding-top:36px}
+.hero-copy{padding-bottom:88px}
+.hero h1{font-size:clamp(3rem,7.6vw,6.2rem);line-height:.92;margin:18px 0 24px}
+.hero h1 em{color:var(--rose)}
+.hero p{color:#E4DCCF;font-size:1.12rem;max-width:42ch;margin:0 0 30px}
+.portrait{justify-self:center;width:min(320px,70vw);aspect-ratio:1/1.9;border-radius:999px 999px 0 0;border:2px solid rgba(201,143,74,.45);overflow:hidden}
+.portrait svg{width:100%;height:100%;display:block}
+
+/* Sections */
+section{padding:96px 0}
+.head{text-align:center;margin-bottom:52px}.head h2{font-size:clamp(2.4rem,5vw,3.8rem);margin-top:12px}.head p{color:var(--muted);max-width:52ch;margin:14px auto 0}
+.area{margin-top:56px}.area:first-of-type{margin-top:0}
+.area-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:26px}
+.area-head h3{font-size:2rem}.area-head p{margin:0;color:var(--muted)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px}
+.arch{background:var(--card);border:1px solid var(--line);border-radius:999px 999px 22px 22px;padding:58px 24px 26px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;text-decoration:none;transform-origin:bottom}
+.face{width:96px;height:128px;border-radius:50% 50% 44% 44%/60% 60% 40% 40%;display:grid;place-items:center;margin-bottom:8px;background:rgba(241,220,192,.75)}
+.face svg{width:66px;height:66px}
+.arch h4{font-family:var(--serif);font-weight:500;font-size:2rem;line-height:1;margin:0}
+.arch p{margin:0;color:var(--muted);font-size:.95rem}
+.arch .st{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sienna)}
+.arch .fine{font-size:.82rem}
+.frame{width:100%;border-radius:120px 120px 8px 8px;overflow:hidden;border:6px solid rgba(201,143,74,.35);margin:6px 0}
+.frame img{display:block;width:100%;height:auto;aspect-ratio:8/5;object-fit:cover}
+.arch .go{margin-top:auto;padding-top:8px;font-weight:600;border-bottom:1.5px solid var(--ochre)}
+.arch .go.off{border-color:var(--line);color:var(--muted)}
+
+/* Websites offer */
+.web{background:var(--sienna-a);color:var(--bone);border-radius:50% 50% 28px 28px/180px 180px 28px 28px;padding:150px 64px 64px;display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.web .eyebrow{color:#F6D3BE}.web h2{font-size:clamp(2.4rem,5vw,3.6rem);margin:12px 0 18px}.web p{color:#F6E3D7}
+.web ul{list-style:none;margin:0;padding:0;align-self:end}
+.web li{padding:16px 0;border-top:1px solid rgba(246,211,190,.45);font-family:var(--serif);font-size:1.45rem}
+
+/* Process */
+.proc{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.proc div{border-left:2px solid var(--ochre);padding-left:20px;min-height:220px;display:flex;flex-direction:column;justify-content:flex-end;transform-origin:bottom}
+.proc b{font-family:var(--serif);font-size:4rem;font-weight:500;color:var(--sienna);line-height:1}
+.proc h3{font-size:1.8rem;margin:6px 0}.proc p{margin:0;color:var(--muted);font-size:.95rem}
+
+/* Approach */
+.approach{background:var(--teal);color:var(--bone)}
+.approach .head p{color:#DCD4C6}.approach .eyebrow{color:var(--rose)}
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.pr{border:1px solid rgba(217,160,138,.4);border-radius:999px 999px 20px 20px;padding:70px 26px 30px;text-align:center;transform-origin:bottom}
+.pr .sym{font-family:var(--serif);font-size:4rem;line-height:1;color:var(--ochre)}
+.pr .read{display:block;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);margin:8px 0 14px}
+.pr h3{font-size:1.9rem;margin-bottom:8px}.pr p{margin:0;color:#DCD4C6}
+
+/* About */
+.about{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+.about h2{font-size:clamp(2.4rem,5vw,3.6rem);margin:12px 0 18px}.about p{color:var(--muted)}
+.legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.legend span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.9rem}
+.legend b{color:var(--sienna);font-family:var(--serif);font-size:1.2rem}
+.mini{justify-self:center;width:min(260px,60vw);aspect-ratio:1/1.5;border-radius:999px 999px 18px 18px;background:rgba(46,74,82,.8);overflow:hidden}
+
+.contact{background:var(--teal-d);color:var(--bone);text-align:center}
+.contact h2{font-size:clamp(2.6rem,6vw,4.4rem);margin:12px auto 30px;max-width:14ch}
+footer{background:var(--teal-d);color:#B9C6C7;text-align:center;padding:0 24px 32px;font-size:.88rem}
+footer a{color:#E4DCCF}
+@media (max-width:860px){
+  .hero-grid,.web,.about{grid-template-columns:1fr}.portrait{width:200px}.hero-copy{padding-bottom:0}.hero{padding-bottom:0}
+  .proc{grid-template-columns:1fr 1fr}.principles{grid-template-columns:1fr}
+  .web{padding:110px 24px 40px;border-radius:50% 50% 24px 24px/90px 90px 24px 24px}
+  nav a.opt{display:none} section{padding:64px 0}
+}
+.m [data-r]{opacity:0}
+</style>
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('m');setTimeout(function(){if(!window.__m)document.documentElement.classList.remove('m')},2500)}</script>
+</head>
+<body>
+<a class="skip" href="#top">Skip to content</a>
+<main id="top">
+<div class="hero"><div class="wrap">
+  <header>
+    <a class="brand" href="#top"><i><img src="/mark.svg" alt=""></i>Octopup Studio</a>
+    <nav aria-label="Main"><a href="#apps">Apps</a><a class="opt" href="#websites">Websites</a><a class="opt" href="#approach">Approach</a><a class="opt" href="#about">About</a><a href="#contact">Contact</a></nav>
+  </header>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow" style="color:var(--rose)" data-r>Independent software studio</p>
+      <h1 data-r>Thoughtful apps, made <em>by hand</em>.</h1>
+      <p data-r>Octopup Studio designs and builds focused, well-crafted software: logic and data practice tools, a swapping community, household organizers, and websites for the people we work with.</p>
+      <div class="btns" data-r><a class="btn warm" href="#apps">View our apps</a><a class="btn line" href="#websites">Need a website?</a></div>
+    </div>
+    <div class="portrait" data-r>
+      <svg viewBox="0 0 200 380" role="img" aria-label="A still life: a dandelion in a tall vase, painted in warm earth colors">
+        <rect width="200" height="380" fill="#3D5C63"/>
+        <path d="M0 330 Q100 310 200 330 V380 H0Z" fill="#A4522F" opacity=".9"/>
+        <ellipse cx="100" cy="96" rx="58" ry="74" fill="#D9A08A" opacity=".12"/>
+        <g class="sway">
+          <!-- long, slender stem with one leaf -->
+          <path d="M100 226 C96 190 106 150 100 112" fill="none" stroke="#7A8F5E" stroke-width="3" stroke-linecap="round"/>
+          <path d="M101 190 C116 176 128 178 134 170 C126 186 114 190 101 192Z" fill="#7A8F5E"/>
+          <!-- tall seed head -->
+          <g fill="none" stroke="#F3E9DA" stroke-width="1" stroke-linecap="round" opacity=".9">
+            <path d="M100 92 L126.5 92.0"/>
+            <path d="M126.5 92.0 l5.1 -3.1"/>
+            <path d="M126.5 92.0 l5.5 0.0"/>
+            <path d="M126.5 92.0 l5.1 3.1"/>
+            <path d="M100 92 L126.1 99.7"/>
+            <path d="M126.1 99.7 l5.4 -1.6"/>
+            <path d="M126.1 99.7 l5.4 1.6"/>
+            <path d="M126.1 99.7 l4.7 4.6"/>
+            <path d="M100 92 L124.9 107.1"/>
+            <path d="M124.9 107.1 l5.5 -0.0"/>
+            <path d="M124.9 107.1 l5.1 3.1"/>
+            <path d="M124.9 107.1 l4.2 5.9"/>
+            <path d="M100 92 L123.0 114.1"/>
+            <path d="M123.0 114.1 l5.4 1.6"/>
+            <path d="M123.0 114.1 l4.7 4.5"/>
+            <path d="M123.0 114.1 l3.5 7.0"/>
+            <path d="M100 92 L120.3 120.4"/>
+            <path d="M120.3 120.4 l5.1 3.1"/>
+            <path d="M120.3 120.4 l4.2 5.8"/>
+            <path d="M120.3 120.4 l2.7 7.9"/>
+            <path d="M100 92 L117.0 125.9"/>
+            <path d="M117.0 125.9 l4.7 4.5"/>
+            <path d="M117.0 125.9 l3.5 7.0"/>
+            <path d="M117.0 125.9 l1.9 8.6"/>
+            <path d="M100 92 L113.3 130.3"/>
+            <path d="M113.3 130.3 l4.2 5.8"/>
+            <path d="M113.3 130.3 l2.7 7.9"/>
+            <path d="M113.3 130.3 l0.9 9.0"/>
+            <path d="M100 92 L109.1 133.5"/>
+            <path d="M109.1 133.5 l3.5 7.0"/>
+            <path d="M109.1 133.5 l1.9 8.6"/>
+            <path d="M109.1 133.5 l-0.0 9.1"/>
+            <path d="M100 92 L104.6 135.5"/>
+            <path d="M104.6 135.5 l2.7 7.9"/>
+            <path d="M104.6 135.5 l0.9 9.0"/>
+            <path d="M104.6 135.5 l-1.0 9.0"/>
+            <path d="M100 92 L100.0 136.2"/>
+            <path d="M100.0 136.2 l1.9 8.5"/>
+            <path d="M100.0 136.2 l0.0 9.1"/>
+            <path d="M100.0 136.2 l-1.9 8.5"/>
+            <path d="M100 92 L95.4 135.5"/>
+            <path d="M95.4 135.5 l1.0 9.0"/>
+            <path d="M95.4 135.5 l-0.9 9.0"/>
+            <path d="M95.4 135.5 l-2.7 7.9"/>
+            <path d="M100 92 L90.9 133.5"/>
+            <path d="M90.9 133.5 l0.0 9.1"/>
+            <path d="M90.9 133.5 l-1.9 8.6"/>
+            <path d="M90.9 133.5 l-3.5 7.0"/>
+            <path d="M100 92 L86.7 130.3"/>
+            <path d="M86.7 130.3 l-0.9 9.0"/>
+            <path d="M86.7 130.3 l-2.7 7.9"/>
+            <path d="M86.7 130.3 l-4.2 5.8"/>
+            <path d="M100 92 L83.0 125.9"/>
+            <path d="M83.0 125.9 l-1.9 8.6"/>
+            <path d="M83.0 125.9 l-3.5 7.0"/>
+            <path d="M83.0 125.9 l-4.7 4.5"/>
+            <path d="M100 92 L79.7 120.4"/>
+            <path d="M79.7 120.4 l-2.7 7.9"/>
+            <path d="M79.7 120.4 l-4.2 5.8"/>
+            <path d="M79.7 120.4 l-5.1 3.1"/>
+            <path d="M100 92 L77.0 114.1"/>
+            <path d="M77.0 114.1 l-3.5 7.0"/>
+            <path d="M77.0 114.1 l-4.7 4.5"/>
+            <path d="M77.0 114.1 l-5.4 1.6"/>
+            <path d="M100 92 L75.1 107.1"/>
+            <path d="M75.1 107.1 l-4.2 5.9"/>
+            <path d="M75.1 107.1 l-5.1 3.1"/>
+            <path d="M75.1 107.1 l-5.5 -0.0"/>
+            <path d="M100 92 L73.9 99.7"/>
+            <path d="M73.9 99.7 l-4.7 4.6"/>
+            <path d="M73.9 99.7 l-5.4 1.6"/>
+            <path d="M73.9 99.7 l-5.4 -1.6"/>
+            <path d="M100 92 L73.5 92.0"/>
+            <path d="M73.5 92.0 l-5.1 3.1"/>
+            <path d="M73.5 92.0 l-5.5 0.0"/>
+            <path d="M73.5 92.0 l-5.1 -3.1"/>
+            <path d="M100 92 L73.9 84.3"/>
+            <path d="M73.9 84.3 l-5.4 1.6"/>
+            <path d="M73.9 84.3 l-5.4 -1.6"/>
+            <path d="M73.9 84.3 l-4.7 -4.6"/>
+            <path d="M100 92 L75.1 76.9"/>
+            <path d="M75.1 76.9 l-5.5 0.0"/>
+            <path d="M75.1 76.9 l-5.1 -3.1"/>
+            <path d="M75.1 76.9 l-4.2 -5.9"/>
+            <path d="M100 92 L77.0 69.9"/>
+            <path d="M77.0 69.9 l-5.4 -1.6"/>
+            <path d="M77.0 69.9 l-4.7 -4.6"/>
+            <path d="M77.0 69.9 l-3.5 -7.0"/>
+            <path d="M100 92 L79.7 63.6"/>
+            <path d="M79.7 63.6 l-5.1 -3.1"/>
+            <path d="M79.7 63.6 l-4.2 -5.8"/>
+            <path d="M79.7 63.6 l-2.7 -7.9"/>
+            <path d="M100 92 L83.0 58.1"/>
+            <path d="M83.0 58.1 l-4.7 -4.5"/>
+            <path d="M83.0 58.1 l-3.5 -7.0"/>
+            <path d="M83.0 58.1 l-1.9 -8.6"/>
+            <path d="M100 92 L86.7 53.7"/>
+            <path d="M86.7 53.7 l-4.2 -5.8"/>
+            <path d="M86.7 53.7 l-2.7 -7.9"/>
+            <path d="M86.7 53.7 l-0.9 -9.0"/>
+            <path d="M100 92 L90.9 50.5"/>
+            <path d="M90.9 50.5 l-3.5 -7.0"/>
+            <path d="M90.9 50.5 l-1.9 -8.6"/>
+            <path d="M90.9 50.5 l0.0 -9.1"/>
+            <path d="M100 92 L95.4 48.5"/>
+            <path d="M95.4 48.5 l-2.7 -7.9"/>
+            <path d="M95.4 48.5 l-0.9 -9.0"/>
+            <path d="M95.4 48.5 l1.0 -9.0"/>
+            <path d="M100 92 L100.0 47.8"/>
+            <path d="M100.0 47.8 l-1.9 -8.5"/>
+            <path d="M100.0 47.8 l-0.0 -9.1"/>
+            <path d="M100.0 47.8 l1.9 -8.5"/>
+            <path d="M100 92 L104.6 48.5"/>
+            <path d="M104.6 48.5 l-1.0 -9.0"/>
+            <path d="M104.6 48.5 l0.9 -9.0"/>
+            <path d="M104.6 48.5 l2.7 -7.9"/>
+            <path d="M100 92 L109.1 50.5"/>
+            <path d="M109.1 50.5 l-0.0 -9.1"/>
+            <path d="M109.1 50.5 l1.9 -8.6"/>
+            <path d="M109.1 50.5 l3.5 -7.0"/>
+            <path d="M100 92 L113.3 53.7"/>
+            <path d="M113.3 53.7 l0.9 -9.0"/>
+            <path d="M113.3 53.7 l2.7 -7.9"/>
+            <path d="M113.3 53.7 l4.2 -5.8"/>
+            <path d="M100 92 L117.0 58.1"/>
+            <path d="M117.0 58.1 l1.9 -8.6"/>
+            <path d="M117.0 58.1 l3.5 -7.0"/>
+            <path d="M117.0 58.1 l4.7 -4.5"/>
+            <path d="M100 92 L120.3 63.6"/>
+            <path d="M120.3 63.6 l2.7 -7.9"/>
+            <path d="M120.3 63.6 l4.2 -5.8"/>
+            <path d="M120.3 63.6 l5.1 -3.1"/>
+            <path d="M100 92 L123.0 69.9"/>
+            <path d="M123.0 69.9 l3.5 -7.0"/>
+            <path d="M123.0 69.9 l4.7 -4.6"/>
+            <path d="M123.0 69.9 l5.4 -1.6"/>
+            <path d="M100 92 L124.9 76.9"/>
+            <path d="M124.9 76.9 l4.2 -5.9"/>
+            <path d="M124.9 76.9 l5.1 -3.1"/>
+            <path d="M124.9 76.9 l5.5 0.0"/>
+            <path d="M100 92 L126.1 84.3"/>
+            <path d="M126.1 84.3 l4.7 -4.6"/>
+            <path d="M126.1 84.3 l5.4 -1.6"/>
+            <path d="M126.1 84.3 l5.4 1.6"/>
+          </g>
+          <ellipse cx="100" cy="92" rx="6" ry="9" fill="#C98F4A"/>
+        </g>
+        <!-- two seeds drifting away -->
+        <g class="drift d1" fill="none" stroke="#F3E9DA" stroke-width="1" stroke-linecap="round"><path d="M42 70 L42 54 M42 54 l-6 -6 M42 54 l0 -8 M42 54 l6 -6"/><ellipse cx="42" cy="72" rx="1.4" ry="3" fill="#C98F4A" stroke="none"/></g>
+        <g class="drift d2" fill="none" stroke="#F3E9DA" stroke-width="1" stroke-linecap="round"><path d="M58 30 L58 18 M58 18 l-5 -5 M58 18 l0 -7 M58 18 l5 -5"/><ellipse cx="58" cy="32" rx="1.2" ry="2.6" fill="#C98F4A" stroke="none"/></g>
+        <!-- tall Modigliani vase: long neck, narrow shoulders -->
+        <path d="M84 352 C66 330 68 290 86 268 C93 258 94 244 93 226 L107 226 C106 244 107 258 114 268 C132 290 134 330 116 352Z" fill="#C98F4A" stroke="#3A2A22" stroke-width="1.5"/>
+        <ellipse cx="100" cy="226" rx="8" ry="2.6" fill="#A4522F" stroke="#3A2A22" stroke-width="1.2"/>
+        <path d="M88 300 C88 284 92 276 96 270" fill="none" stroke="#EFC6A4" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+        <path d="M74 318 Q100 326 126 318" fill="none" stroke="#A4522F" stroke-width="2"/>
+      </svg>
+    </div>
+  </div>
+</div></div>
+
+<section id="apps"><div class="wrap">
+  <div class="head" data-r><p class="eyebrow">Our work</p><h2>A gallery of small apps</h2><p>Our work spans four areas: learning, swapping, organizing time, and websites for people.</p></div>
+
+  <div class="area">
+    <div class="area-head" data-r><h3>Learning</h3><p>Practice tools for logic and data.</p></div>
+    <div class="gallery">
+      <a class="arch" href="https://lauravlad.github.io/Therefore/" data-r>
+        <div class="face"><svg viewBox="0 0 60 60" role="img" aria-label="Therefore icon"><rect width="60" height="60" rx="16" fill="#2E4A52"/><path d="M30 8 C18 8 16 22 16 30 V54 H44 V30 C44 22 42 8 30 8Z" fill="#E2B28F" stroke="#3A2A22" stroke-width="1.5"/><circle cx="30" cy="24" r="4" fill="#A4522F"/><circle cx="22.5" cy="38" r="4" fill="#A4522F"/><circle cx="37.5" cy="38" r="4" fill="#A4522F"/></svg></div>
+        <span class="st">Logic practice · Available</span><h4>Therefore</h4>
+        <p>Symbolic logic practice, one step at a time, with feedback on every answer.</p>
+        <div class="frame"><img src="/shots/therefore.jpg" alt="Therefore's lesson list: intro to logic, sentential logic and predicate logic" width="800" height="499" loading="lazy" decoding="async"></div>
+        <p class="fine">Free. Works in any browser. No account needed.</p><span class="go">Open Therefore →</span></a>
+      <a class="arch" href="https://pokethedata.com/" data-r>
+        <div class="face"><svg viewBox="0 0 60 60" role="img" aria-label="Understanding Data with Python icon"><rect width="60" height="60" rx="16" fill="#3D5C63"/><rect x="13" y="26" width="9" height="26" rx="4.5" fill="#D9A08A" stroke="#3A2A22" stroke-width="1.3"/><rect x="25.5" y="10" width="9" height="42" rx="4.5" fill="#C98F4A" stroke="#3A2A22" stroke-width="1.3"/><rect x="38" y="18" width="9" height="34" rx="4.5" fill="#A4522F" stroke="#3A2A22" stroke-width="1.3"/></svg></div>
+        <span class="st">Data practice · Available</span><h4>Understanding Data with Python</h4>
+        <p>Learn to work with data by doing: Python, tables, statistics, and four prediction models built by hand, then how to read results honestly.</p>
+        <div class="frame"><img src="/shots/data.jpg" alt="Understanding Data with Python's course page, starting with a Python warm-up" width="800" height="499" loading="lazy" decoding="async"></div>
+        <p class="fine">Free. Works in any browser. No account needed.</p><span class="go">Open Understanding Data →</span></a>
+      <a class="arch" href="/phil270/" data-r>
+        <div class="face"><svg viewBox="0 0 60 60" role="img" aria-label="Symbolic Logic Classes icon"><rect width="60" height="60" rx="16" fill="#5E7A6E"/><path d="M30 14 C24 10 16 10 12 12 V52 C16 50 24 50 30 54Z" fill="#F3E9DA" stroke="#3A2A22" stroke-width="1.4"/><path d="M30 14 C36 10 44 10 48 12 V52 C44 50 36 50 30 54Z" fill="#EFC6A4" stroke="#3A2A22" stroke-width="1.4"/><text x="21" y="39" font-family="Georgia,serif" font-size="14" fill="#A4522F" text-anchor="middle">∀</text><text x="39" y="39" font-family="Georgia,serif" font-size="14" fill="#A4522F" text-anchor="middle">∴</text></svg></div>
+        <span class="st">Course practice · Available</span><h4>Symbolic Logic Classes</h4>
+        <p>A practice app for every class of the course, from truth tables to derivations, predicate logic, identity, and interpretations. Every wrong answer is explained.</p>
+        <div class="frame"><img src="/shots/classes.jpg" alt="Symbolic Logic Classes: a numbered list of classes, each with an Open link" width="800" height="499" loading="lazy" decoding="async"></div>
+        <p class="fine">Free. Each class opens with a code from the instructor.</p><span class="go">Open the classes →</span></a>
+      <a class="arch" href="https://lauravlad-fake-news-detector.streamlit.app/" data-r>
+        <div class="face"><svg viewBox="0 0 60 60" role="img" aria-label="Fake News Detector icon"><rect width="60" height="60" rx="16" fill="#2E4A52"/><rect x="16" y="8" width="24" height="44" rx="12" fill="#F3E9DA" stroke="#3A2A22" stroke-width="1.4"/><path d="M21 20 h14 M21 26 h14 M21 32 h9" stroke="#C98F4A" stroke-width="2" stroke-linecap="round"/><circle cx="38" cy="40" r="8" fill="none" stroke="#A4522F" stroke-width="2.6"/><path d="M44 46 l6 6" stroke="#A4522F" stroke-width="3" stroke-linecap="round"/></svg></div>
+        <span class="st">Machine learning · Available</span><h4>Fake News Detector</h4>
+        <p>Paste a news article and a Naive Bayes model estimates whether it reads like fake or real news, and shows which words drove the decision. It judges writing style, not facts.</p>
+        <div class="frame"><img src="/shots/fake-news.jpg" alt="Fake News Detector: a box to paste an article and a Check article button" width="752" height="470" loading="lazy" decoding="async"></div>
+        <p class="fine">Free. Works in any browser. No account needed.</p><span class="go">Open Fake News Detector →</span></a>
+    </div>
+  </div>
+
+  <div class="area">
+    <div class="area-head" data-r><h3>Swapping, time &amp; websites</h3><p>Exchange what you love, share the housework, and a home for your work.</p></div>
+    <div class="gallery">
+      <a class="arch" href="https://swapfume.com/" data-r>
+        <div class="face"><svg viewBox="0 0 60 60" role="img" aria-label="Swapfume icon"><rect width="60" height="60" rx="16" fill="#3D5C63"/><rect x="26" y="6" width="8" height="7" rx="2" fill="#3A2A22"/><path d="M27 13 H33 V22 C40 25 42 32 42 40 V50 C42 53 40 55 37 55 H23 C20 55 18 53 18 50 V40 C18 32 20 25 27 22Z" fill="#D9A08A" stroke="#3A2A22" stroke-width="1.5"/><path d="M22 40 h16" stroke="#A4522F" stroke-width="2" stroke-linecap="round"/><path d="M24 46 q6 4 12 0" fill="none" stroke="#A4522F" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <span class="st">Community · Early access</span><h4>Swapfume</h4>
+        <p>A community for exchanging perfume samples, decants and full bottles, with have and want lists, matching, and reviews. No money changes hands.</p>
+        <div class="frame"><img src="/shots/swapfume.jpg" alt="Swapfume's welcome page: Swap the scents you love, with a sign-in form" width="800" height="499" loading="lazy" decoding="async"></div>
+        <p class="fine">Free. Members 18+ in the United States, Canada and Romania. On the web and the App Store.</p><span class="go">Open Swapfume →</span></a>
+      <div class="arch" data-r>
+        <div class="face"><svg viewBox="0 0 60 60" role="img" aria-label="Family Chores icon"><rect width="60" height="60" rx="16" fill="#5E7A6E"/><rect x="19" y="6" width="22" height="49" rx="11" fill="#F3E9DA" stroke="#3A2A22" stroke-width="1.5"/><path d="M24 20 l3 3 l6 -7" fill="none" stroke="#A4522F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 32 l3 3 l6 -7" fill="none" stroke="#A4522F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 45 h10" stroke="#C98F4A" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+        <span class="st">Organizer · Planned</span><h4>Family Chores</h4>
+        <p>A shared chore organizer for families: assign tasks, set routines, and see who has done what this week.</p>
+        <p class="fine">In planning.</p><span class="go off">Coming soon</span></div>
+      <a class="arch" href="#websites" data-r>
+        <div class="face"><svg viewBox="0 0 60 60" role="img" aria-label="Personal websites icon"><rect width="60" height="60" rx="16" fill="#A4522F"/><path d="M30 8 C19 8 15 18 15 28 V52 H45 V28 C45 18 41 8 30 8Z" fill="#F3E9DA" stroke="#3A2A22" stroke-width="1.4"/><path d="M15 28 H45" stroke="#3A2A22" stroke-width="1.2"/><circle cx="21" cy="23" r="1.6" fill="#A4522F"/><circle cx="26" cy="23" r="1.6" fill="#C98F4A"/><path d="M21 36 h18 M21 42 h12" stroke="#C98F4A" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+        <span class="st">Websites · First project in progress</span><h4>Personal websites</h4>
+        <p>Clean, fast websites for individuals and small businesses: a home for your work, your story, and how to reach you.</p>
+        <p class="fine">Interested in a website? Get in touch.</p><span class="go">See what's included →</span></a>
+    </div>
+  </div>
+</div></section>
+
+<section id="websites" style="padding-top:0"><div class="wrap"><div class="web">
+  <div data-r><p class="eyebrow">Websites</p><h2>A portrait of your work, online.</h2><p>Clean, fast websites for people and small businesses: your work, your story, and how to reach you. Designed to look good on every phone.</p><a class="btn bone" href="mailto:hello@octopupstudio.com?subject=Website%20quote">Ask for a quote</a></div>
+  <ul data-r><li>Designed for you, not a template</li><li>Beautiful on every phone</li><li>Your own domain, easy to find</li><li>Simple to update yourself</li></ul>
+</div></div></section>
+
+<section id="process" style="padding-top:0"><div class="wrap">
+  <div class="head" data-r><p class="eyebrow">How a website project works</p><h2>Four sittings</h2></div>
+  <div class="proc">
+    <div data-r><b>i</b><h3>Talk</h3><p>A short call about what you need.</p></div>
+    <div data-r><b>ii</b><h3>Design</h3><p>A draft to try on your own phone.</p></div>
+    <div data-r><b>iii</b><h3>Build</h3><p>The real site, fast and accessible.</p></div>
+    <div data-r><b>iv</b><h3>Launch</h3><p>Live on your domain, and yours to update.</p></div>
+  </div>
+</div></section>
+
+<section id="approach" class="approach"><div class="wrap">
+  <div class="head" data-r><p class="eyebrow">How we work</p><h2>Approach</h2><p>A few principles guide every app we make.</p></div>
+  <div class="principles">
+    <div class="pr" data-r><div class="sym" aria-hidden="true">→</div><span class="read">practice → understanding</span><h3>Learning by doing</h3><p>Practice is broken into clear steps, with immediate feedback that explains each answer.</p></div>
+    <div class="pr" data-r><div class="sym" aria-hidden="true">∀</div><span class="read">for every user</span><h3>Built for real use</h3><p>Our tools are shaped by the classroom and the communities that use them, not by trends.</p></div>
+    <div class="pr" data-r><div class="sym" aria-hidden="true">¬</div><span class="read">nothing we don’t need</span><h3>Respect for privacy</h3><p>We collect only what an app needs. Our logic apps need no account and keep progress on your own device.</p></div>
+  </div>
+</div></section>
+
+<section id="about"><div class="wrap about">
+  <div data-r>
+    <p class="eyebrow">The studio</p><h2>About</h2>
+    <p>Octopup Studio was founded by a philosophy instructor who builds the practice tools used in their own logic courses. What began as classroom software has grown into a small studio with a broader aim: useful, carefully made apps for learning and community.</p>
+    <p>The name comes from our emblem, <strong>a puppy with octopus arms</strong>: approachable, curious, and able to handle many things at once. Look closely and it is also a piece of logic. Its arms branch like a decision tree, its face is the “because” sign <strong>∵</strong>, and the first three branching points form the “therefore” sign <strong>∴</strong>.</p>
+    <div class="legend"><span><b>∵</b> because: the face</span><span><b>∴</b> therefore: the branches</span></div>
+  </div>
+  <div class="mini" data-r><svg viewBox="0 0 120 180" aria-hidden="true"><g transform="translate(0 30)"><g fill="none" stroke="#F3E9DA" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="60" cy="38" r="23"/><path d="M60 61 L60 70"/><path d="M60 74 C52 78 42 80 36 87"/><path d="M60 74 C68 78 78 80 84 87"/><path d="M36 91 C30 98 24 100 22 108 C21 112 26 113 27 109"/><path d="M36 91 C40 98 46 101 46 108 C46 112 42 113 41 110"/><path d="M84 91 C80 98 74 101 74 108 C74 112 78 113 79 110"/><path d="M84 91 C90 98 96 100 98 108 C99 112 94 113 93 109"/></g><path d="M42 21 C27 21 21 44 28 55 C34 62 43 55 43 44 Z" fill="#F3E9DA"/><path d="M78 21 C93 21 99 44 92 55 C86 62 77 55 77 44 Z" fill="#F3E9DA"/><circle cx="51.5" cy="35" r="3.5" fill="#F3E9DA"/><circle cx="68.5" cy="35" r="3.5" fill="#F3E9DA"/><circle cx="60" cy="46" r="3.5" fill="#D9A08A"/><circle cx="60" cy="73" r="5.2" fill="#C98F4A"/><circle cx="36" cy="89" r="5.2" fill="#C98F4A"/><circle cx="84" cy="89" r="5.2" fill="#C98F4A"/></g></svg></div>
+</div></section>
+
+<section id="contact" class="contact"><div class="wrap" data-r>
+  <p class="eyebrow" style="color:var(--rose)">Contact</p><h2>Let’s make something useful.</h2>
+  <p style="color:#DCD4C6;margin:-10px 0 28px">For questions, support, website projects, or partnerships, write to us.</p>
+  <a class="btn warm" href="mailto:hello@octopupstudio.com">hello@octopupstudio.com</a>
+</div></section>
+</main>
+<footer>© 2026 Octopup Studio · <a href="https://octopupstudio.com/">octopupstudio.com</a></footer>
+
+<script src="/assets/dandelion.js" defer></script>
+<script type="module">
+import { animate, inView } from "https://cdn.jsdelivr.net/npm/motion@11.18.2/+esm";
+if (document.documentElement.classList.contains('m')) {
+  window.__m = true;
+  const ease = [0.16, 1, 0.3, 1];
+  // Things grow tall from the bottom, slowly, like a figure being drawn upward
+  inView('[data-r]', (e) => { const el = e instanceof Element ? e : e.target;
+    animate(el, { opacity: [0, 1], scaleY: [0.88, 1], y: [30, 0] }, { duration: 1.3, ease }); }, { margin: '0px 0px -10% 0px' });
+  const sway = document.querySelector('.sway'); sway.style.transformOrigin = '100px 226px'; sway.style.transformBox = 'view-box';
+  animate(sway, { rotate: [-1.5, 1.5, -1.5] }, { duration: 9, repeat: Infinity, ease: 'easeInOut' });
+  animate('.drift.d1', { x: [0, -30, -60], y: [0, -20, -50], opacity: [0, 1, 0] }, { duration: 11, repeat: Infinity, ease: 'easeInOut' });
+  animate('.drift.d2', { x: [0, -24, -48], y: [0, -14, -36], opacity: [0, 1, 0] }, { duration: 13, delay: 4, repeat: Infinity, ease: 'easeInOut' });
+  document.querySelectorAll('.arch').forEach(a => {
+    a.addEventListener('pointerenter', () => animate(a, { y: -8, rotate: -0.6 }, { duration: 0.8, ease }));
+    a.addEventListener('pointerleave', () => animate(a, { y: 0, rotate: 0 }, { duration: 0.8, ease }));
+  });
+}
+</script>
+</body>
+</html>

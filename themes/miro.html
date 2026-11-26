@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<!-- THEME: miro · copied to /index.html by scripts/rotate-theme.sh. Edit content here, in all three themes. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Octopup Studio | Independent app and website studio</title>
+<meta name="description" content="Octopup Studio is an independent software studio building thoughtful apps for learning, swapping, and organizing time, including Therefore, Understanding Data with Python and Swapfume, plus websites for people and small businesses.">
+<link rel="canonical" href="https://octopupstudio.com/">
+<link rel="icon" href="/mark.svg" type="image/svg+xml">
+<meta name="theme-color" content="#F6F1E4">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Octopup Studio"><meta property="og:title" content="Octopup Studio">
+<meta property="og:description" content="Thoughtful apps for learning, sharing, and everyday life."><meta property="og:url" content="https://octopupstudio.com/"><meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"Organization","@id":"https://octopupstudio.com/#org","name":"Octopup Studio","alternateName":"Octopupstudio","url":"https://octopupstudio.com/","logo":"https://octopupstudio.com/logo.svg","email":"hello@octopupstudio.com","description":"An independent software studio building thoughtful apps for learning, swapping, and organizing time, plus websites for people and small businesses."},
+ {"@type":"WebSite","name":"Octopup Studio","alternateName":"Octopupstudio","url":"https://octopupstudio.com/","publisher":{"@id":"https://octopupstudio.com/#org"}}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,600,100,1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* MIRÓ WEEK
+   Color theory: the primary triad (red, yellow, blue) plus green, flat and saturated, with black and
+   white for maximum value contrast. Figure–ground proportion does the work: a big calm cream field with
+   small bright "islands" of color, joined by doodled black lines.
+   Color blocks are translucent so the dandelion behind the page shows through. */
+:root{
+  --ground:#F6F1E4; --ink:#141414; --muted:#454545;
+  --red:#D7261E; --yellow:#F5C518; --blue:#1F4FA8; --green:#2E8B57;
+  --card:rgba(255,255,255,.66); --yellow-a:rgba(245,197,24,.84); --ink-a:rgba(20,20,20,.9);
+  --display:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+  /* dandelion */
+  --dl-style:miro; --dl-opacity:.5; --dl-stroke:rgba(20,20,20,.55); --dl-seed:#141414; --dl-ground:#F6F1E4;
+  --dl-colors:#D7261E,#F5C518,#1F4FA8,#2E8B57;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--ground)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+[id]{scroll-margin-top:20px}
+body{margin:0;background:transparent;color:var(--ink);font:17px/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px;position:relative}
+h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.02;margin:0;font-variation-settings:"SOFT" 100,"WONK" 1}
+a{color:inherit} :focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
+.skip{position:absolute;left:12px;top:-60px;z-index:20;background:var(--ink);color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none}.skip:focus{top:12px}
+.eyebrow{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+header{display:flex;justify-content:space-between;align-items:center;height:78px}
+.brand{display:flex;gap:10px;align-items:center;font-family:var(--display);font-weight:600;font-size:1.35rem;text-decoration:none}
+.brand img{width:36px}
+nav{display:flex;gap:4px} nav a{text-decoration:none;font-weight:500;padding:10px 12px;border-radius:999px}
+nav a:hover{background:var(--yellow)}
+.btn{display:inline-flex;padding:14px 26px;border-radius:999px;font-weight:600;text-decoration:none;border:2.5px solid var(--ink);background:var(--card)}
+.btn.k{background:var(--ink);color:var(--ground)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;position:relative;z-index:2}
+
+/* Hero */
+.hero{position:relative;padding:60px 0 110px;min-height:620px}
+.hero h1{font-size:clamp(3rem,7vw,5.4rem);max-width:9ch;margin:16px 0 22px;position:relative;z-index:2}
+.hero h1 .r{color:var(--red)}.hero h1 .b{color:var(--blue)}
+.hero p{font-size:1.15rem;color:var(--muted);max-width:40ch;margin:0 0 30px;position:relative;z-index:2}
+.creature{position:absolute;right:-30px;top:30px;width:min(500px,50%);z-index:1;overflow:visible}
+
+/* Apps */
+section{padding:90px 0}
+.head{margin-bottom:40px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.head h2{font-size:clamp(2.4rem,5vw,3.8rem)}.head p{flex-basis:100%;margin:0;color:var(--muted)}
+.area{margin-top:56px}.area-head{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;margin-bottom:22px}
+.area-head h3{font-size:2rem}.area-head p{margin:0;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:26px}
+.card{background:var(--card);border:2.5px solid var(--ink);border-radius:38px 52px 34px 58px/48px 36px 56px 40px;padding:26px 24px;display:flex;flex-direction:column;gap:10px;text-decoration:none}
+.card:nth-child(3n+2){border-radius:56px 34px 52px 38px/38px 54px 36px 50px}
+.card:nth-child(3n){border-radius:44px 58px 36px 50px/56px 40px 52px 36px}
+.card svg.ic{width:80px;height:80px}
+.card h4{font-size:1.8rem}.card p{margin:0;color:var(--muted);font-size:.96rem}
+.card .st{font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.card .fine{font-size:.84rem}
+.shot{border:2.5px solid var(--ink);border-radius:26px 18px 30px 16px;overflow:hidden;margin:4px 0}
+.shot img{display:block;width:100%;height:auto;aspect-ratio:8/5;object-fit:cover}
+.card .go{margin-top:auto;padding-top:6px;font-weight:600;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.card .go.off{text-decoration:none;color:var(--muted)}
+
+/* Websites */
+.web{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.blob{background:var(--yellow-a);border-radius:58% 42% 46% 54%/52% 58% 42% 48%;padding:110px 84px 100px;border:2.5px solid var(--ink)}
+.blob h2{font-size:clamp(2.2rem,4.6vw,3.4rem);margin:10px 0 16px}.blob p{margin:0 0 22px}
+.list{list-style:none;padding:0;margin:0;display:grid;gap:18px}
+.list li{display:flex;gap:16px;align-items:center;font-size:1.12rem;font-weight:500}
+.list svg{flex:none;width:34px;height:34px}
+
+/* Process */
+.journey{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.wiggle{position:absolute;left:0;right:0;top:34px;width:100%;height:40px;z-index:0}
+.stop{position:relative;z-index:1}
+.stop .n{width:70px;height:70px;border:2.5px solid var(--ink);display:grid;place-items:center;font-family:var(--display);font-size:1.8rem;font-weight:600;margin-bottom:16px}
+.stop:nth-child(2) .n{background:var(--red);color:#fff;border-radius:50%}
+.stop:nth-child(3) .n{background:var(--yellow);border-radius:62% 38% 54% 46%/48% 60% 40% 52%}
+.stop:nth-child(4) .n{background:var(--blue);color:#fff;border-radius:50% 50% 50% 50%/62% 62% 38% 38%}
+.stop:nth-child(5) .n{background:var(--green);color:#fff;border-radius:40% 60% 46% 54%/58% 44% 56% 42%}
+.stop h3{font-size:1.6rem;margin-bottom:6px}.stop p{margin:0;color:var(--muted)}
+
+/* Approach */
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.pr{background:var(--card);border:2.5px solid var(--ink);border-radius:46% 54% 42% 58%/30% 34% 66% 70%;padding:48px 34px 56px;text-align:center}
+.pr .sym{width:74px;height:74px;margin:0 auto 12px;display:grid;place-items:center;font-family:var(--display);font-size:2.4rem;color:#fff;border:2.5px solid var(--ink)}
+.pr:nth-child(1) .sym{background:var(--red);border-radius:50%}
+.pr:nth-child(2) .sym{background:var(--blue);border-radius:58% 42% 50% 50%/46% 54% 46% 54%}
+.pr:nth-child(3) .sym{background:var(--green);border-radius:42% 58% 46% 54%/56% 44% 56% 44%}
+.pr .read{display:block;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.pr h3{font-size:1.7rem;margin-bottom:8px}.pr p{margin:0;color:var(--muted)}
+
+/* About */
+.about{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
+.about h2{font-size:clamp(2.4rem,5vw,3.6rem);margin:10px 0 16px}.about p{color:var(--muted)}
+.legend{display:flex;gap:12px;flex-wrap:wrap}
+.legend span{background:var(--card);border:2px solid var(--ink);border-radius:999px;padding:6px 14px;font-size:.92rem}
+.legend b{color:var(--red)}
+
+.contact{text-align:center}
+.contact .card-c{background:var(--ink-a);color:var(--ground);border-radius:60px 40px 70px 44px/50px 66px 40px 60px;padding:64px 24px}
+.contact h2{font-size:clamp(2.4rem,6vw,4.2rem);max-width:13ch;margin:12px auto 16px}
+.contact p{color:#D9D4C6;margin:0 0 26px}
+.contact .btn{background:var(--yellow);border-color:var(--yellow);color:var(--ink)}
+footer{text-align:center;padding:10px 0 44px;color:var(--muted);font-size:.88rem}
+@media (max-width:860px){
+  .creature{position:relative;width:100%;right:auto;top:auto;max-width:420px;display:block;margin:0 auto 10px}
+  .hero{padding:20px 0 60px;min-height:0;display:flex;flex-direction:column}.creature{order:-1}
+  .web,.about,.principles{grid-template-columns:1fr}.blob{padding:56px 32px}
+  .journey{grid-template-columns:1fr 1fr}.wiggle{display:none}
+  nav a.opt{display:none} section{padding:60px 0}
+}
+.m [data-r]{opacity:0}
+</style>
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('m');setTimeout(function(){if(!window.__m)document.documentElement.classList.remove('m')},2500)}</script>
+</head>
+<body>
+<a class="skip" href="#top">Skip to content</a>
+<main id="top">
+<div class="wrap">
+<header>
+  <a class="brand" href="#top"><img src="/mark.svg" alt="">Octopup Studio</a>
+  <nav aria-label="Main"><a href="#apps">Apps</a><a class="opt" href="#websites">Websites</a><a class="opt" href="#approach">Approach</a><a class="opt" href="#about">About</a><a href="#contact">Contact</a></nav>
+</header>
+<div class="hero">
+  <svg class="creature" viewBox="0 0 560 520" role="img" aria-label="The Octopup drawn as a playful creature with a star and a crescent moon">
+    <g class="star" transform="translate(470 70)"><g stroke="#141414" stroke-width="5" stroke-linecap="round"><path d="M-34 0 H34"/><path d="M0 -34 V34"/><path d="M-24 -24 L24 24"/><path d="M-24 24 L24 -24"/></g></g>
+    <path class="moon" d="M90 60 a46 46 0 1 0 40 76 a36 36 0 1 1 -40 -76z" fill="#141414"/>
+    <circle class="sun" cx="96" cy="380" r="30" fill="#D7261E"/>
+    <g class="body">
+      <path d="M186 116 C150 116 132 170 150 214" fill="#141414"/><path d="M374 116 C410 116 428 170 410 214" fill="#141414"/>
+      <ellipse cx="280" cy="180" rx="118" ry="104" fill="#F6F1E4" stroke="#141414" stroke-width="5"/>
+      <circle cx="238" cy="166" r="22" fill="#F5C518" stroke="#141414" stroke-width="5"/><circle cx="238" cy="166" r="7" fill="#141414"/>
+      <circle cx="322" cy="166" r="16" fill="#D7261E"/>
+      <path d="M262 220 q18 14 36 0" fill="none" stroke="#141414" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="280" cy="196" r="7" fill="#1F4FA8"/>
+    </g>
+    <g class="arms" fill="none" stroke="#141414" stroke-width="5" stroke-linecap="round">
+      <path d="M232 276 C210 320 180 330 170 380 C164 410 190 420 196 396"/><path d="M262 284 C258 340 236 380 250 430 C258 456 282 446 270 428"/>
+      <path d="M298 284 C306 340 332 370 318 430 C312 456 336 462 340 440"/><path d="M328 276 C360 310 390 320 400 370 C406 402 382 410 378 390"/>
+    </g>
+    <circle cx="170" cy="380" r="10" fill="#1F4FA8"/><circle cx="270" cy="428" r="10" fill="#2E8B57"/><circle cx="340" cy="440" r="10" fill="#D7261E"/><circle cx="378" cy="390" r="10" fill="#F5C518" stroke="#141414" stroke-width="3"/>
+    <path class="doodle" d="M440 300 C470 270 500 330 530 300 S560 250 520 230" fill="none" stroke="#141414" stroke-width="3" stroke-linecap="round"/>
+    <circle class="ring" cx="470" cy="440" r="26" fill="none" stroke="#1F4FA8" stroke-width="8"/>
+  </svg>
+  <p class="eyebrow" data-r style="position:relative;z-index:2">Independent software studio</p>
+  <h1 data-r>Small apps with <span class="r">big</span> <span class="b">curiosity</span>.</h1>
+  <p data-r>Octopup Studio designs and builds focused, well-crafted software: logic and data practice tools, a swapping community, household organizers, and websites for the people we work with.</p>
+  <div class="btns" data-r><a class="btn k" href="#apps">View our apps</a><a class="btn" href="#websites">Need a website?</a></div>
+</div>
+</div>
+
+<section id="apps"><div class="wrap">
+  <div class="head" data-r><h2>Our little worlds</h2><svg width="56" height="56" viewBox="-34 -34 68 68" aria-hidden="true"><g stroke="#D7261E" stroke-width="5" stroke-linecap="round"><path d="M-26 0 H26"/><path d="M0 -26 V26"/><path d="M-18 -18 L18 18"/><path d="M-18 18 L18 -18"/></g></svg><p>Our work spans four areas: learning, swapping, organizing time, and websites for people.</p></div>
+
+  <div class="area">
+    <div class="area-head" data-r><h3>Learning</h3><p>Practice tools for logic and data.</p></div>
+    <div class="cards">
+      <a class="card" href="https://lauravlad.github.io/Therefore/" data-r>
+        <svg class="ic" viewBox="0 0 84 84" role="img" aria-label="Therefore icon"><path d="M10 40 C6 14 30 4 50 8 C74 12 82 34 76 54 C70 76 44 82 26 74 C12 68 12 56 10 40Z" fill="#1F4FA8" stroke="#141414" stroke-width="2.5"/><circle cx="42" cy="34" r="8" fill="#F5C518" stroke="#141414" stroke-width="2.5"/><circle cx="30" cy="54" r="8" fill="#D7261E" stroke="#141414" stroke-width="2.5"/><circle cx="54" cy="54" r="8" fill="#F6F1E4" stroke="#141414" stroke-width="2.5"/><g stroke="#141414" stroke-width="2.5" stroke-linecap="round" transform="translate(66 16)"><path d="M-8 0 H8"/><path d="M0 -8 V8"/><path d="M-5.5 -5.5 L5.5 5.5"/><path d="M-5.5 5.5 L5.5 -5.5"/></g></svg>
+        <span class="st" style="color:var(--blue)">Logic practice · Available</span><h4>Therefore</h4>
+        <p>Symbolic logic practice, one step at a time, with feedback on every answer.</p>
+        <div class="shot"><img src="/shots/therefore.jpg" alt="Therefore's lesson list: intro to logic, sentential logic and predicate logic" width="800" height="499" loading="lazy" decoding="async"></div>
+        <p class="fine">Free. Works in any browser. No account needed.</p><span class="go">Open Therefore →</span></a>
+      <a class="card" href="https://pokethedata.com/" data-r>
+        <svg class="ic" viewBox="0 0 84 84" role="img" aria-label="Understanding Data with Python icon"><path d="M8 44 C6 20 26 8 46 8 C68 8 80 26 76 48 C72 72 50 80 30 76 C14 72 9 60 8 44Z" fill="#F6F1E4" stroke="#141414" stroke-width="2.5"/><path d="M16 62 C26 56 30 42 40 46 S54 26 66 22" fill="none" stroke="#141414" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="62" r="6" fill="#2E8B57" stroke="#141414" stroke-width="2"/><circle cx="40" cy="46" r="6" fill="#F5C518" stroke="#141414" stroke-width="2"/><circle cx="66" cy="22" r="6" fill="#D7261E" stroke="#141414" stroke-width="2"/><path d="M58 60 a9 9 0 1 0 8 12 a7 7 0 1 1 -8 -12z" fill="#1F4FA8"/></svg>
+        <span class="st" style="color:var(--green)">Data practice · Available</span><h4>Understanding Data with Python</h4>
+        <p>Learn to work with data by doing: Python, tables, statistics, and four prediction models built by hand, then how to read results honestly.</p>
+        <div class="shot"><img src="/shots/data.jpg" alt="Understanding Data with Python's course page, starting with a Python warm-up" width="800" height="499" loading="lazy" decoding="async"></div>
+        <p class="fine">Free. Works in any browser. No account needed.</p><span class="go">Open Understanding Data →</span></a>
+      <a class="card" href="/phil270/" data-r>
+        <svg class="ic" viewBox="0 0 84 84" role="img" aria-label="Symbolic Logic Classes icon"><path d="M12 30 C10 14 28 8 44 10 C66 12 78 24 74 44 C70 66 56 78 36 76 C16 74 14 50 12 30Z" fill="#D7261E" stroke="#141414" stroke-width="2.5"/><text x="40" y="54" font-family="Georgia,serif" font-size="32" font-weight="700" fill="#F6F1E4" text-anchor="middle">∀</text><circle cx="64" cy="20" r="7" fill="#F5C518" stroke="#141414" stroke-width="2"/><path d="M14 70 C24 62 30 76 40 68" fill="none" stroke="#141414" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <span class="st" style="color:var(--red)">Course practice · Available</span><h4>Symbolic Logic Classes</h4>
+        <p>A practice app for every class of the course, from truth tables to derivations, predicate logic, identity, and interpretations. Every wrong answer is explained.</p>
+        <div class="shot"><img src="/shots/classes.jpg" alt="Symbolic Logic Classes: a numbered list of classes, each with an Open link" width="800" height="499" loading="lazy" decoding="async"></div>
+        <p class="fine">Free. Each class opens with a code from the instructor.</p><span class="go">Open the classes →</span></a>
+      <a class="card" href="https://lauravlad-fake-news-detector.streamlit.app/" data-r>
+        <svg class="ic" viewBox="0 0 84 84" role="img" aria-label="Fake News Detector icon"><path d="M14 16 C30 10 48 14 62 12 C66 30 64 50 66 70 C48 74 30 70 16 72 C12 54 16 34 14 16Z" fill="#F6F1E4" stroke="#141414" stroke-width="2.5"/><path d="M22 28 C30 24 40 32 50 26 M22 40 C30 36 38 44 48 38" fill="none" stroke="#141414" stroke-width="2.2" stroke-linecap="round"/><circle cx="50" cy="54" r="12" fill="#F5C518" fill-opacity=".7" stroke="#141414" stroke-width="3"/><path d="M59 63 L72 76" stroke="#141414" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="54" r="4" fill="#D7261E"/></svg>
+        <span class="st" style="color:var(--blue)">Machine learning · Available</span><h4>Fake News Detector</h4>
+        <p>Paste a news article and a Naive Bayes model estimates whether it reads like fake or real news, and shows which words drove the decision. It judges writing style, not facts.</p>
+        <div class="shot"><img src="/shots/fake-news.jpg" alt="Fake News Detector: a box to paste an article and a Check article button" width="752" height="470" loading="lazy" decoding="async"></div>
+        <p class="fine">Free. Works in any browser. No account needed.</p><span class="go">Open Fake News Detector →</span></a>
+    </div>
+  </div>
+
+  <div class="area">
+    <div class="area-head" data-r><h3>Swapping, time &amp; websites</h3><p>Exchange what you love, share the housework, and a home for your work.</p></div>
+    <div class="cards">
+      <a class="card" href="https://swapfume.com/" data-r>
+        <svg class="ic" viewBox="0 0 84 84" role="img" aria-label="Swapfume icon"><path d="M28 30 C20 40 18 60 26 72 C32 80 52 80 58 72 C66 60 64 40 56 30 Z" fill="#F6F1E4" stroke="#141414" stroke-width="2.5"/><rect x="34" y="16" width="16" height="14" rx="5" fill="#D7261E" stroke="#141414" stroke-width="2.5"/><path d="M42 16 C42 8 52 6 54 12" fill="none" stroke="#141414" stroke-width="2.5" stroke-linecap="round"/><path d="M30 56 C36 46 48 66 54 56" fill="none" stroke="#141414" stroke-width="2.5" stroke-linecap="round"/><circle cx="30" cy="56" r="6" fill="#F5C518" stroke="#141414" stroke-width="2"/><circle cx="54" cy="56" r="6" fill="#1F4FA8" stroke="#141414" stroke-width="2"/><circle cx="72" cy="26" r="9" fill="#141414"/><circle cx="76" cy="23" r="8" fill="#F6F1E4"/></svg>
+        <span class="st" style="color:var(--red)">Community · Early access</span><h4>Swapfume</h4>
+        <p>A community for exchanging perfume samples, decants and full bottles, with have and want lists, matching, and reviews. No money changes hands.</p>
+        <div class="shot"><img src="/shots/swapfume.jpg" alt="Swapfume's welcome page: Swap the scents you love, with a sign-in form" width="800" height="499" loading="lazy" decoding="async"></div>
+        <p class="fine">Free. Members 18+ in the United States, Canada and Romania. On the web and the App Store.</p><span class="go">Open Swapfume →</span></a>
+      <div class="card" data-r>
+        <svg class="ic" viewBox="0 0 84 84" role="img" aria-label="Family Chores icon"><circle cx="64" cy="20" r="12" fill="#F5C518" stroke="#141414" stroke-width="2.5"/><g fill="none" stroke="#141414" stroke-width="2.5" stroke-linecap="round"><path d="M18 10 C14 30 22 50 16 76"/><path d="M42 10 C38 30 46 50 40 76"/><path d="M17 28 H43"/><path d="M18 48 H44"/><path d="M16 66 H41"/></g><path d="M22 40 l6 6 l12 -14" fill="none" stroke="#2E8B57" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="62" cy="60" r="9" fill="#D7261E" stroke="#141414" stroke-width="2.5"/></svg>
+        <span class="st" style="color:var(--green)">Organizer · Planned</span><h4>Family Chores</h4>
+        <p>A shared chore organizer for families: assign tasks, set routines, and see who has done what this week.</p>
+        <p class="fine">In planning.</p><span class="go off">Coming soon</span></div>
+      <a class="card" href="#websites" data-r>
+        <svg class="ic" viewBox="0 0 84 84" role="img" aria-label="Personal websites icon"><path d="M10 18 C30 12 52 16 74 14 C76 34 72 54 74 72 C52 76 30 72 12 74 C8 54 12 36 10 18Z" fill="#F6F1E4" stroke="#141414" stroke-width="2.5"/><path d="M11 30 C32 26 52 32 73 28" fill="none" stroke="#141414" stroke-width="2.5"/><circle cx="20" cy="23" r="3" fill="#D7261E"/><circle cx="29" cy="23" r="3" fill="#F5C518"/><circle cx="38" cy="23" r="3" fill="#1F4FA8"/><circle cx="54" cy="52" r="11" fill="#D7261E" stroke="#141414" stroke-width="2.5"/><path d="M20 46 C26 42 30 50 36 46 M20 58 C26 54 30 62 36 58" fill="none" stroke="#141414" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <span class="st" style="color:var(--blue)">Websites · First project in progress</span><h4>Personal websites</h4>
+        <p>Clean, fast websites for individuals and small businesses: a home for your work, your story, and how to reach you.</p>
+        <p class="fine">Interested in a website? Get in touch.</p><span class="go">See what's included →</span></a>
+    </div>
+  </div>
+</div></section>
+
+<section id="websites" style="padding-top:20px"><div class="wrap web">
+  <div class="blob" data-r><p class="eyebrow">Websites</p><h2>A cheerful little home for your work.</h2><p>Clean, fast websites for people and small businesses: your work, your story, and how to reach you. Designed to look good on every phone.</p><a class="btn k" href="mailto:hello@octopupstudio.com?subject=Website%20quote">Ask for a quote</a></div>
+  <ul class="list" data-r>
+    <li><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="13" fill="#D7261E" stroke="#141414" stroke-width="2.5"/></svg>Designed for you, not a template</li>
+    <li><svg viewBox="-17 -17 34 34" aria-hidden="true"><g stroke="#141414" stroke-width="3" stroke-linecap="round"><path d="M-13 0 H13"/><path d="M0 -13 V13"/><path d="M-9 -9 L9 9"/><path d="M-9 9 L9 -9"/></g></svg>Bright on every phone</li>
+    <li><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="15" cy="17" r="13" fill="#1F4FA8"/><circle cx="21" cy="13" r="11" fill="#F6F1E4"/></svg>Your own domain, easy to find</li>
+    <li><svg viewBox="0 0 34 34" aria-hidden="true"><path d="M4 18 C8 6 26 4 30 14 C34 26 18 32 10 28 C4 25 3 22 4 18Z" fill="#2E8B57" stroke="#141414" stroke-width="2.5"/></svg>Simple to update yourself</li>
+  </ul>
+</div></section>
+
+<section id="process"><div class="wrap">
+  <div class="head" data-r><h2>How a website project works</h2></div>
+  <div class="journey">
+    <svg class="wiggle" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 C60 0 120 40 180 20 S300 0 360 20 S480 40 540 20 S660 0 720 20 S840 40 900 20 S980 10 1000 20" fill="none" stroke="#141414" stroke-width="2.5"/></svg>
+    <div class="stop" data-r><div class="n">1</div><h3>Talk</h3><p>A short call about what you need.</p></div>
+    <div class="stop" data-r><div class="n">2</div><h3>Design</h3><p>A draft to try on your own phone.</p></div>
+    <div class="stop" data-r><div class="n">3</div><h3>Build</h3><p>The real site, fast and accessible.</p></div>
+    <div class="stop" data-r><div class="n">4</div><h3>Launch</h3><p>Live on your domain, yours to update.</p></div>
+  </div>
+</div></section>
+
+<section id="approach"><div class="wrap">
+  <div class="head" data-r><h2>Approach</h2><p>A few principles guide every app we make.</p></div>
+  <div class="principles">
+    <div class="pr" data-r><div class="sym" aria-hidden="true">→</div><span class="read">practice → understanding</span><h3>Learning by doing</h3><p>Practice is broken into clear steps, with immediate feedback that explains each answer.</p></div>
+    <div class="pr" data-r><div class="sym" aria-hidden="true">∀</div><span class="read">for every user</span><h3>Built for real use</h3><p>Our tools are shaped by the classroom and the communities that use them, not by trends.</p></div>
+    <div class="pr" data-r><div class="sym" aria-hidden="true">¬</div><span class="read">nothing we don’t need</span><h3>Respect for privacy</h3><p>We collect only what an app needs. Our logic apps need no account and keep progress on your own device.</p></div>
+  </div>
+</div></section>
+
+<section id="about"><div class="wrap about">
+  <div data-r>
+    <p class="eyebrow">The studio</p><h2>About</h2>
+    <p>Octopup Studio was founded by a philosophy instructor who builds the practice tools used in their own logic courses. What began as classroom software has grown into a small studio with a broader aim: useful, carefully made apps for learning and community.</p>
+    <p>The name comes from our emblem, <strong>a puppy with octopus arms</strong>: approachable, curious, and able to handle many things at once. Look closely and it is also a piece of logic. Its arms branch like a decision tree, its face is the “because” sign <strong>∵</strong>, and the first three branching points form the “therefore” sign <strong>∴</strong>.</p>
+    <div class="legend"><span><b>∵</b> because: the face</span><span><b>∴</b> therefore: the branches</span></div>
+  </div>
+  <svg data-r viewBox="0 0 120 120" style="width:min(260px,60vw);justify-self:center" aria-hidden="true"><g fill="none" stroke="#141414" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="60" cy="38" r="23" fill="#F6F1E4"/><path d="M60 61 L60 70"/><path d="M60 74 C52 78 42 80 36 87"/><path d="M60 74 C68 78 78 80 84 87"/><path d="M36 91 C30 98 24 100 22 108 C21 112 26 113 27 109"/><path d="M36 91 C40 98 46 101 46 108 C46 112 42 113 41 110"/><path d="M84 91 C80 98 74 101 74 108 C74 112 78 113 79 110"/><path d="M84 91 C90 98 96 100 98 108 C99 112 94 113 93 109"/></g><path d="M42 21 C27 21 21 44 28 55 C34 62 43 55 43 44 Z" fill="#141414"/><path d="M78 21 C93 21 99 44 92 55 C86 62 77 55 77 44 Z" fill="#141414"/><circle cx="51.5" cy="35" r="3.5" fill="#1F4FA8"/><circle cx="68.5" cy="35" r="3.5" fill="#2E8B57"/><circle cx="60" cy="46" r="3.5" fill="#D7261E"/><circle cx="60" cy="73" r="5.2" fill="#D7261E"/><circle cx="36" cy="89" r="5.2" fill="#F5C518" stroke="#141414" stroke-width="1.5"/><circle cx="84" cy="89" r="5.2" fill="#1F4FA8"/></svg>
+</div></section>
+
+<section id="contact" class="contact"><div class="wrap"><div class="card-c" data-r>
+  <p class="eyebrow" style="color:var(--yellow)">Contact</p><h2>Let’s make something useful.</h2>
+  <p>For questions, support, website projects, or partnerships, write to us.</p>
+  <a class="btn" href="mailto:hello@octopupstudio.com">hello@octopupstudio.com</a>
+</div></div></section>
+</main>
+<footer>© 2026 Octopup Studio · octopupstudio.com</footer>
+
+<script src="/assets/dandelion.js" defer></script>
+<script type="module">
+import { animate, inView } from "https://cdn.jsdelivr.net/npm/motion@11.18.2/+esm";
+if (document.documentElement.classList.contains('m')) {
+  window.__m = true;
+  const box = (sel) => document.querySelectorAll(sel).forEach(el => { el.style.transformBox = 'fill-box'; el.style.transformOrigin = 'center'; });
+  box('.creature .star, .creature .moon, .creature .sun, .creature .ring, .creature .body');
+  // A gentle, wobbly float: nothing moves in a straight line, like shapes drifting in water
+  animate('.creature .body', { y: [0, -10, 0], rotate: [-1.5, 1.5, -1.5] }, { duration: 6, repeat: Infinity, ease: 'easeInOut' });
+  animate('.creature .star', { rotate: [0, 360] }, { duration: 24, repeat: Infinity, ease: 'linear' });
+  animate('.creature .moon', { y: [0, 12, 0], rotate: [0, -10, 0] }, { duration: 8, repeat: Infinity, ease: 'easeInOut' });
+  animate('.creature .sun', { x: [0, 14, 0], y: [0, -8, 0] }, { duration: 7, repeat: Infinity, ease: 'easeInOut' });
+  animate('.creature .ring', { scale: [1, 1.15, 1] }, { duration: 5, repeat: Infinity, ease: 'easeInOut' });
+  document.querySelectorAll('.creature .arms path, .creature .doodle, .wiggle path').forEach((p, i) => { const L = p.getTotalLength(); p.style.strokeDasharray = L;
+    p.animate([{ strokeDashoffset: L }, { strokeDashoffset: 0 }], { duration: 1200, delay: 300 + i * 160, easing: 'ease-out', fill: 'both' }); });
+  const arms = document.querySelector('.creature .arms'); arms.style.transformBox = 'fill-box'; arms.style.transformOrigin = '50% 0';
+  animate(arms, { skewX: [-3, 3, -3] }, { duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1.5 });
+  inView('[data-r]', (e) => { const el = e instanceof Element ? e : e.target; animate(el, { opacity: [0, 1], y: [40, 0], rotate: [-2, 0] }, { type: 'spring', stiffness: 180, damping: 13 }); }, { margin: '0px 0px -10% 0px' });
+  document.querySelectorAll('.card').forEach(c => {
+    c.addEventListener('pointerenter', () => animate(c, { rotate: [0, -1.5, 1, 0], y: -6 }, { duration: 0.6 }));
+    c.addEventListener('pointerleave', () => animate(c, { y: 0 }, { type: 'spring', stiffness: 300, damping: 15 }));
+  });
+  document.querySelector('.blob').animate([
+    { borderRadius: '58% 42% 46% 54%/52% 58% 42% 48%' }, { borderRadius: '44% 56% 58% 42%/46% 42% 58% 54%' }, { borderRadius: '58% 42% 46% 54%/52% 58% 42% 48%' }
+  ], { duration: 9000, iterations: Infinity, easing: 'ease-in-out' });
+}
+</script>
+</body>
+</html>

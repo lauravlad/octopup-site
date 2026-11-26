@@ -1,0 +1,52 @@
+# Every Friday morning, swap the homepage to the next art theme
+# (Modigliani -> Miró -> Kandinsky -> ...) and publish it.
+# Run it by hand from the Actions tab ("Run workflow") to switch now or force a theme.
+name: Weekly art theme
+
+on:
+  schedule:
+    - cron: "0 15 * * 5"   # Fridays 15:00 UTC = 7:00 PST / 8:00 PDT
+  workflow_dispatch:
+    inputs:
+      theme:
+        description: "Force a theme: modigliani, miro or kandinsky (leave blank for this week's)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency: weekly-theme
+
+jobs:
+  rotate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Put this week's theme in place
+        id: rotate
+        env:
+          FORCE_THEME: ${{ inputs.theme }}
+        run: echo "theme=$(scripts/rotate-theme.sh "$FORCE_THEME")" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push
+        id: push
+        run: |
+          if git diff --quiet; then
+            echo "Homepage already shows ${{ steps.rotate.outputs.theme }}; nothing to publish."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Weekly theme: ${{ steps.rotate.outputs.theme }}"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Ask GitHub Pages to rebuild
+        if: steps.push.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Pages will rebuild from the push."

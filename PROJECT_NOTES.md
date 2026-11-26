@@ -23,6 +23,23 @@ Octopup Studio is the studio behind Laura's apps and websites. This repository i
 | Organizing time | **Family Chores**: shared household chore organizer | Planned | none yet |
 | Websites | Personal websites for people and small businesses | First project in progress | Contact |
 
+## Weekly art themes
+
+Since 2026-11-27 the homepage rotates every Friday morning between three art-inspired designs:
+**Modigliani → Miró → Kandinsky → repeat** (Modigliani first, on 2026-11-27).
+
+| Piece | Where |
+|---|---|
+| The three designs | `themes/modigliani.html`, `themes/miro.html`, `themes/kandinsky.html` |
+| Background dandelion (drawn in each theme's style, seeds drift across the page) | `assets/dandelion.js`, set per theme with `--dl-*` CSS variables |
+| The switch | `scripts/rotate-theme.sh` copies this week's theme over `index.html` |
+| The schedule | `.github/workflows/weekly-theme.yml`, Fridays 15:00 UTC (7:00 PST / 8:00 PDT); commits and pushes as github-actions[bot] |
+
+- **Edit content in all three `themes/*.html` files**, not in `index.html`: the next Friday overwrites `index.html`.
+- Switch now or force a theme: GitHub → Actions → *Weekly art theme* → *Run workflow* (optionally type a theme name). Locally: `scripts/rotate-theme.sh miro`.
+- Change the order or the start week: `THEMES` and `ANCHOR` at the top of `scripts/rotate-theme.sh`.
+- Stop the rotation: disable the workflow in the Actions tab. The design before the rotation is in git history (commit `9d17b07`).
+
 ## Family Chores
 
 Planned only: *"A shared chore organizer for families: assign tasks, set routines, and see who has done what this week."* As of 2026-11-07 there is no code, repository or domain for it. When it starts, the Swapfume setup is a good template: a static site, Supabase for accounts, GitHub Pages and a custom domain, and Capacitor for the phone app.
