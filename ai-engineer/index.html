@@ -231,7 +231,7 @@ function shuffle(a, rnd=Math.random){ a=a.slice(); for(let i=a.length-1;i>0;i--)
 const STEPS=[
 {n:1, title:'Programming Basics', quote:'Every AI product is just code that calls a model.', weeks:'2–3 weeks', ico:'py',
  topics:[
-  {t:'Python', d:'A readable, general-purpose language. Almost every AI library (NumPy, pandas, PyTorch, the Claude and OpenAI SDKs) is Python-first, so it is the language of AI engineering.', x:'name = "Laura"\nprint(f"Hello, {name}")', w:'You will read and write Python every day; fluency here makes every later step faster.'},
+  {t:'Python', d:'A readable, general-purpose language. Almost every AI library (NumPy, pandas, PyTorch, the Claude and OpenAI SDKs) is Python-first, so it is the language of AI engineering.', x:'name = "Ada"\nprint(f"Hello, {name}")', w:'You will read and write Python every day; fluency here makes every later step faster.'},
   {t:'Data Types and Loops', d:'The basic kinds of values (int, float, str, bool, list, dict, tuple, set) and the ways to repeat work: `for` loops over items, `while` loops until a condition is false.', x:'scores = {"real": 0.91, "fake": 0.09}\nfor label, p in scores.items():\n    print(label, round(p, 2))', w:'Model inputs and API responses are lists and dicts; you loop over them constantly.'},
   {t:'Functions and Classes', d:'A function packages steps behind a name and parameters. A class bundles data (attributes) with the functions that act on it (methods), so you can create many objects of the same kind.', x:'def clean(text: str) -> str:\n    return text.lower().strip()\n\nclass Detector:\n    def __init__(self, model):\n        self.model = model', w:'Clean, reusable functions are what turn a notebook into a product.'},
   {t:'Git and GitHub', d:'Git records snapshots (commits) of your code so you can see history, undo, and work on branches. GitHub hosts Git repositories online for backup, sharing, and pull requests.', x:'git add app.py\ngit commit -m "Add predict endpoint"\ngit push', w:'Every team ships through Git; your GitHub is also your portfolio.'},
@@ -253,7 +253,7 @@ const STEPS=[
   {q:'What is a class in Python?', o:['A blueprint that bundles data with the methods that use it','A loop that repeats a fixed number of times','A file of installed packages','A type of database table'], a:0, e:'A class defines attributes and methods; each object you create from it is an instance.'},
  ],
  build:{title:'Turn the detector into clean Python', tasks:[
-  {t:'Get the starter project: clone github.com/lauravlad/fake-news-detector and install it in a virtual environment', s:'It has a trained Naive Bayes model and a notebook. You can also use any text classifier of your own.'},
+  {t:'Get a starter model: train a quick Naive Bayes classifier on the ISOT fake news dataset with scikit-learn, in a virtual environment', s:'A notebook with a few lines is enough (Step 3 explains how it works). You can also use any text classifier you already have.'},
   {t:'Move the notebook’s prediction code into a `predict(text)` function in a .py file', s:'Input: a string. Output: a dict like {"label": "fake", "probability": 0.87}.'},
   {t:'Wrap the model in a `Detector` class with `load()` and `predict()` methods', s:'Load the .joblib file once in load(), not on every prediction.'},
   {t:'Write a small command-line script that reads a headline from the terminal and prints the verdict', s:'Run it with: python predict_cli.py "Your headline here"'},
