@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Engineer Class</title>
+<meta name="description" content="A free 7-step self-study course for becoming an AI engineer, from Python basics to shipping AI products: flashcards, quizzes, hands-on projects and a final test. By Octopup Studio.">
+<link rel="icon" href="/icons/ai-engineer.svg" type="image/svg+xml">
+<link rel="canonical" href="https://octopupstudio.com/ai-engineer/">
+<meta name="apple-mobile-web-app-title" content="AI Engineer">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#FBF7EE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,400;7..72,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Same visual system as the PHIL 270 class apps: one narrow column, parts list on home, stepwise exercises. */
+:root{
+  --paper:#FBF7EE; --surface:#FFFFFF; --ink:#211C14; --muted:#6A604F; --line:#EAE1CD;
+  --accent:#9A5B00; --accent-ink:#FFFFFF;
+  --good:#1D7550; --good-tint:#E3F3EB; --bad:#B42318; --bad-bg:#FBE9E7;
+  --soft:#FBF0D9;
+  --blob1:#FBE7B5; --blob2:#F6DCC8; --blob3:#DDEBDD; --blob4:#F3EBC4;
+  --candy:#B86E00; --candy-ink:#FFFFFF; --candy-2:#FBEBC8;
+  --p1:#A86200; --p1-soft:#FCEFD6; --p2:#0D7F73; --p2-soft:#DCF2EE; --p3:#4A55B8; --p3-soft:#E6E8FA;
+  --p4:#B0306A; --p4-soft:#FBE4EE; --p5:#2E7D3A; --p5-soft:#E1F2E3; --p6:#7A43B6; --p6-soft:#EFE6FA; --p7:#1F6390; --p7-soft:#E0EEF8;
+  --code-bg:#F5EEDF;
+  --serif:'Literata', Georgia, 'Times New Roman', serif;
+  --sans:'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#17140F; --surface:#221E17; --ink:#F3ECDF; --muted:#BFB29B; --line:#3A3326;
+    --accent:#F5B947; --accent-ink:#1A1408;
+    --good:#5FCB9C; --good-tint:#16352B; --bad:#FF8F84; --bad-bg:#3A1E22;
+    --soft:#33291A; color-scheme: dark;
+    --blob1:rgba(245,185,71,.14); --blob2:rgba(230,140,90,.10); --blob3:rgba(90,200,150,.08); --blob4:rgba(220,200,90,.08);
+    --candy:#F5B947; --candy-ink:#1A1408; --candy-2:#3A2E17;
+    --p1:#F5B947; --p1-soft:#3A2E17; --p2:#56D3C3; --p2-soft:#14322E; --p3:#9CA6F5; --p3-soft:#262A47; --p4:#F58FB8; --p4-soft:#3E1F2D;
+    --p5:#7FD68B; --p5-soft:#1B3520; --p6:#C49CF5; --p6-soft:#2F2342; --p7:#7EC1F0; --p7-soft:#16303F;
+    --code-bg:#2C261C;
+  }
+}
+:root[data-theme="dark"]{
+    --paper:#17140F; --surface:#221E17; --ink:#F3ECDF; --muted:#BFB29B; --line:#3A3326;
+    --accent:#F5B947; --accent-ink:#1A1408;
+    --good:#5FCB9C; --good-tint:#16352B; --bad:#FF8F84; --bad-bg:#3A1E22;
+    --soft:#33291A; color-scheme: dark;
+    --blob1:rgba(245,185,71,.14); --blob2:rgba(230,140,90,.10); --blob3:rgba(90,200,150,.08); --blob4:rgba(220,200,90,.08);
+    --candy:#F5B947; --candy-ink:#1A1408; --candy-2:#3A2E17;
+    --p1:#F5B947; --p1-soft:#3A2E17; --p2:#56D3C3; --p2-soft:#14322E; --p3:#9CA6F5; --p3-soft:#262A47; --p4:#F58FB8; --p4-soft:#3E1F2D;
+    --p5:#7FD68B; --p5-soft:#1B3520; --p6:#C49CF5; --p6-soft:#2F2342; --p7:#7EC1F0; --p7-soft:#16303F;
+    --code-bg:#2C261C;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+main{position:relative;max-width:640px;margin:0 auto;padding-block:20px 64px;padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px))}
+main > *{position:relative;z-index:1}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.2;margin:0;text-wrap:balance}
+h1{font-size:2.4rem;letter-spacing:-.01em}
+h2{font-size:1.55rem}
+h3{font-size:1.1rem}
+p{margin:.4em 0}
+a{color:var(--accent)}
+.muted{color:var(--muted)}
+code{font-family:var(--mono);font-size:.86em;background:var(--code-bg);border-radius:5px;padding:1px 5px;overflow-wrap:anywhere}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,label:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+.back{background:none;border:0;padding:6px 0;color:var(--accent);font-weight:700;margin-bottom:10px}
+
+/* Background */
+.cute-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:
+  radial-gradient(40vmax 40vmax at 8% 12%, var(--blob1), transparent 60%),
+  radial-gradient(38vmax 38vmax at 92% 18%, var(--blob2), transparent 60%),
+  radial-gradient(44vmax 44vmax at 80% 95%, var(--blob3), transparent 60%),
+  radial-gradient(36vmax 36vmax at 10% 90%, var(--blob4), transparent 60%),
+  var(--paper)}
+.cute-bg span{position:absolute;line-height:1;font-family:var(--mono);font-weight:600;transform:rotate(var(--r))}
+@media (prefers-reduced-motion:no-preference){
+  .cute-bg span{animation:bob var(--d) ease-in-out infinite alternate}
+  @keyframes bob{from{transform:translateY(0) rotate(var(--r))}to{transform:translateY(-14px) rotate(calc(var(--r) + 8deg))}}
+}
+
+/* Masthead */
+.syms{position:absolute;inset:0;overflow:hidden;pointer-events:none;font-family:var(--mono);user-select:none;color:rgba(255,255,255,.10)}
+.syms span{position:absolute;line-height:1;transform:rotate(var(--r))}
+.mast{position:relative;overflow:hidden;color:#fff;border-radius:24px;padding:30px 24px 24px;margin-top:4px;
+  background:linear-gradient(135deg,#1E1A14 0%,#3A2C17 55%,#7A4A0C 100%);box-shadow:0 20px 44px -24px rgba(60,40,10,.6)}
+.mast > *:not(.syms){position:relative}
+.kicker{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.78);margin:0;font-weight:700}
+.mast h1{font-size:clamp(2.4rem,9vw,3.4rem);letter-spacing:-.02em;margin-top:6px;color:#fff}
+.mast h1 .glyph{font-family:var(--mono);font-size:.62em;color:#F5C542;margin-left:.2em;vertical-align:.12em}
+.mast-tag{color:rgba(255,255,255,.82);font-size:1.06rem;margin:.3em 0 0;max-width:36ch}
+.prog{margin-top:18px;background:rgba(255,255,255,.12);border-radius:14px;padding:10px 14px}
+.prog-row{display:flex;justify-content:space-between;gap:10px;font-weight:700;font-size:.95rem}
+.prog-bar{height:10px;border-radius:999px;background:rgba(255,255,255,.22);margin-top:7px;overflow:hidden}
+.prog-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#F5C542,#FFF3C4)}
+
+.candy-cta{position:relative;overflow:hidden;display:flex;gap:14px;align-items:center;width:100%;text-align:left;border:0;border-radius:16px;padding:18px 16px 16px;margin-top:22px;
+  background:var(--surface);color:var(--ink);box-shadow:0 12px 26px -14px rgba(40,25,5,.55)}
+.candy-cta::before{content:"";position:absolute;inset:0 0 auto;height:6px;background:repeating-linear-gradient(-45deg,#F5C542 0 8px,transparent 8px 16px)}
+.candy-cta:hover{filter:brightness(1.04)}
+.candy-cta b{font-family:var(--serif);font-size:1.2rem;display:block;color:var(--candy)}
+.candy-cta small{display:block;color:var(--muted);font-size:.9rem}
+.candy-ico{font-size:2rem;line-height:1;font-family:var(--serif);font-weight:700;color:var(--candy)}
+.go-light{font-weight:700;white-space:nowrap;margin-left:auto;border-radius:999px;padding:6px 14px;background:var(--candy);color:var(--candy-ink)}
+
+/* Plan */
+.plan{margin-top:24px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 18px 10px}
+.plan h2{font-size:1.25rem}
+.plan ol{margin:10px 0 6px;padding-left:1.3em}
+.plan li{margin:4px 0}
+.plan .muted{font-size:.92rem}
+
+/* Parts */
+.levels{list-style:none;margin:26px 0 0;padding:0}
+.level{--pc:var(--p1);--pcs:var(--p1-soft);background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px}
+.level.part-2{--pc:var(--p2);--pcs:var(--p2-soft)} .level.part-3{--pc:var(--p3);--pcs:var(--p3-soft)}
+.level.part-4{--pc:var(--p4);--pcs:var(--p4-soft)} .level.part-5{--pc:var(--p5);--pcs:var(--p5-soft)}
+.level.part-6{--pc:var(--p6);--pcs:var(--p6-soft)} .level.part-7{--pc:var(--p7);--pcs:var(--p7-soft)}
+.part-head{display:flex;align-items:center;gap:12px}
+.part-badge{width:38px;height:38px;flex:none;border-radius:11px;display:grid;place-items:center;background:var(--pc);color:var(--surface);font-family:var(--serif);font-weight:600;font-size:1.05rem}
+.part-badge small{display:block;font-size:.5rem;letter-spacing:.1em;font-family:var(--sans);font-weight:700;line-height:1;margin-bottom:-6px}
+.part-head h2{font-size:1.3rem}
+.level-num{margin-left:auto;font-family:var(--serif);color:var(--muted);font-size:.92rem;white-space:nowrap}
+.part-done{margin-left:auto;font-weight:700;font-size:.85rem;color:#fff;background:var(--good);border-radius:999px;padding:3px 10px;white-space:nowrap}
+.part-quote{color:var(--muted);font-family:var(--serif);font-style:italic;margin:8px 0 0}
+.topics{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-direction:column;gap:8px}
+.topic{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;width:100%;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 14px 12px 12px;transition:border-color .15s, transform .15s}
+.topic:hover{border-color:var(--pc);transform:translateY(-1px)}
+.topic small{display:block;color:var(--muted);font-size:.88rem}
+.t-ico{width:44px;height:44px;border-radius:12px;background:var(--pcs);color:var(--pc);display:grid;place-items:center;font-family:var(--mono);font-size:1rem;font-weight:600}
+.go{color:var(--pc);font-weight:700;white-space:nowrap}
+.tbar{height:6px;border-radius:999px;background:var(--soft);margin-top:7px;overflow:hidden;max-width:220px}
+.tbar i{display:block;height:100%;border-radius:999px;background:var(--pc)}
+.topic.is-done{border-color:var(--good);background:var(--good-tint)}
+.topic.is-done .t-ico{background:var(--good);color:#fff;font-family:var(--sans)}
+.topic.is-done .go{color:var(--good)}
+@media (prefers-reduced-motion:reduce){ .topic{transition:none} .topic:hover{transform:none} }
+.reset-row{text-align:center;margin:26px 0 8px}
+.reset{background:none;border:0;color:var(--muted);text-decoration:underline;font-size:.9rem;padding:6px}
+
+/* Exercise */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 18px}
+.ex-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
+.score{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.exnum{margin:-.2rem 0 .8rem;font-weight:600}
+.prop{font-family:var(--serif);font-size:1.3rem;line-height:1.4;margin:14px 0 6px}
+.step{margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
+.choices{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
+.choice{border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;text-align:left;min-width:0;overflow-wrap:anywhere}
+.choice b{font-family:var(--serif);margin-right:8px}
+.choice:not([disabled]):hover{border-color:var(--accent);background:var(--soft)}
+.choice.right{border-color:var(--good);background:var(--good-tint)}
+.choice.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.btn{border:0;border-radius:10px;padding:11px 18px;font-weight:700;background:var(--accent);color:var(--accent-ink)}
+.btn[disabled]{opacity:.45;cursor:default}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.btn.big{font-size:1.1rem;padding:14px 24px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.actions.center{justify-content:center;margin-top:18px}
+.fb{margin-top:12px;padding:12px 14px;border-radius:10px;font-size:.97rem}
+.fb.good{background:var(--good-tint);border-left:4px solid var(--good)}
+.fb.bad{background:var(--bad-bg);border-left:4px solid var(--bad)}
+.fb strong{display:block;margin-bottom:2px}
+.next{margin-top:26px;display:flex;justify-content:flex-end;gap:10px}
+@media (prefers-reduced-motion:no-preference){ .fb{animation:pop .18s ease-out} @keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}} }
+
+/* Flashcards */
+.fcard .deck{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0}
+.fcard h3{font-size:1.7rem;margin:8px 0 6px}
+.fcard .def{font-size:1.08rem}
+.fcard .ex{margin-top:14px;background:var(--code-bg);border-radius:10px;padding:10px 12px;font-family:var(--mono);font-size:.88rem;white-space:pre-wrap;overflow-wrap:anywhere}
+.fcard .why{margin-top:12px;padding-left:12px;border-left:3px solid var(--accent);color:var(--muted)}
+.fcard .why b{color:var(--ink)}
+
+/* Build */
+.tasks{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px}
+.task{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px}
+.task:hover{border-color:var(--accent)}
+.task .box{flex:none;width:22px;height:22px;border-radius:6px;border:2px solid var(--muted);display:grid;place-items:center;font-size:.8rem;margin-top:2px;color:#fff}
+.task.on{border-color:var(--good);background:var(--good-tint)}
+.task.on .box{background:var(--good);border-color:var(--good)}
+.task small{display:block;color:var(--muted);font-size:.88rem;margin-top:2px}
+.res{margin-top:22px}
+.res h3{margin-bottom:6px}
+.res ul{margin:0;padding-left:1.2em}
+.res li{margin:4px 0}
+
+/* Test */
+.gbar{display:grid;gap:6px;margin-bottom:14px}
+.gbar-row{display:flex;justify-content:space-between;font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.dots{display:flex;gap:4px}
+.dots i{flex:1;height:7px;border-radius:4px;background:var(--line)}
+.dots i.hit{background:var(--good)} .dots i.miss{background:var(--bad)} .dots i.now{background:var(--accent)}
+.tag{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.game-hero{text-align:center;display:grid;gap:8px;justify-items:center;margin-top:6px}
+.game-hero p{max-width:40ch}
+.big-ico{font-size:64px;line-height:1}
+.win{text-align:center;background:var(--surface);border:2px solid var(--accent);border-radius:18px;padding:30px 18px;display:grid;gap:6px;justify-items:center;position:relative;z-index:6;margin-top:10px}
+.win.lose{border-color:var(--line)}
+.win h1{font-size:2.1rem}
+.eyebrow{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0}
+.final{font-size:1.25rem;font-weight:700;font-variant-numeric:tabular-nums}
+.results{list-style:none;padding:0;margin:18px 0 0;text-align:left;display:grid;gap:6px;width:100%}
+.results li{background:var(--soft);border-radius:10px;padding:8px 10px;font-size:.94rem}
+.results li.ok{background:var(--good-tint)}
+.results .why{display:block;color:var(--muted);font-size:.88rem}
+.rain{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:5}
+.rain span{position:absolute;top:-60px;animation:fall linear 3}
+@keyframes fall{to{transform:translateY(115vh) rotate(380deg)}}
+@media (prefers-reduced-motion:reduce){ .rain{display:none} }
+@media (max-width:420px){ h1{font-size:2rem} .prop{font-size:1.18rem} .fcard h3{font-size:1.45rem} .panel{padding:16px 14px} .mast{padding:24px 18px 20px} }
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+// ===== Helpers =====
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = s => esc(s).replace(/`([^`]+)`/g,'<code>$1</code>');
+function seeded(key){ let h=2166136261; for(const c of key){ h^=c.charCodeAt(0); h=Math.imul(h,16777619); } let x=h>>>0; return ()=>{ x=(x+0x6D2B79F5)|0; let t=Math.imul(x^x>>>15,1|x); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function shuffle(a, rnd=Math.random){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(rnd()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+// ===== Course content =====
+// Each step: 10 topics (flashcards), a quiz, and a hands-on build that grows the Fake News Detector.
+const STEPS=[
+{n:1, title:'Programming Basics', quote:'Every AI product is just code that calls a model.', weeks:'2–3 weeks', ico:'py',
+ topics:[
+  {t:'Python', d:'A readable, general-purpose language. Almost every AI library (NumPy, pandas, PyTorch, the Claude and OpenAI SDKs) is Python-first, so it is the language of AI engineering.', x:'name = "Laura"\nprint(f"Hello, {name}")', w:'You will read and write Python every day; fluency here makes every later step faster.'},
+  {t:'Data Types and Loops', d:'The basic kinds of values (int, float, str, bool, list, dict, tuple, set) and the ways to repeat work: `for` loops over items, `while` loops until a condition is false.', x:'scores = {"real": 0.91, "fake": 0.09}\nfor label, p in scores.items():\n    print(label, round(p, 2))', w:'Model inputs and API responses are lists and dicts; you loop over them constantly.'},
+  {t:'Functions and Classes', d:'A function packages steps behind a name and parameters. A class bundles data (attributes) with the functions that act on it (methods), so you can create many objects of the same kind.', x:'def clean(text: str) -> str:\n    return text.lower().strip()\n\nclass Detector:\n    def __init__(self, model):\n        self.model = model', w:'Clean, reusable functions are what turn a notebook into a product.'},
+  {t:'Git and GitHub', d:'Git records snapshots (commits) of your code so you can see history, undo, and work on branches. GitHub hosts Git repositories online for backup, sharing, and pull requests.', x:'git add app.py\ngit commit -m "Add predict endpoint"\ngit push', w:'Every team ships through Git; your GitHub is also your portfolio.'},
+  {t:'Terminal and Linux', d:'The terminal is a text interface to the computer. Linux is the operating system almost every server runs, so commands like `ls`, `cd`, `cat`, `grep`, and `chmod` are essential.', x:'cd projects/fake-news\nls -la\ngrep -r "predict" src/', w:'Deployment servers and Docker containers have no mouse, only a shell.'},
+  {t:'HTTP and REST', d:'HTTP is how clients and servers talk: a request has a method (GET, POST, PUT, DELETE), a URL, headers, and an optional body; the response has a status code (200 OK, 404 Not Found, 500 Server Error). REST is a style of designing URLs around resources.', x:'GET  /articles/42        → 200 OK\nPOST /predict  {"text": …} → 200 OK', w:'Every model API you call, and every API you build, speaks HTTP.'},
+  {t:'APIs and JSON', d:'An API is a contract that lets one program use another. Web APIs usually send and receive JSON, a text format of objects (`{}`), arrays (`[]`), strings, numbers, booleans, and null.', x:'import requests\nr = requests.get(url, timeout=10)\ndata = r.json()  # dict', w:'LLM providers, vector databases, and your own app all exchange JSON.'},
+  {t:'SQL', d:'The language for querying relational databases: SELECT columns FROM a table, filter with WHERE, combine tables with JOIN, summarize with GROUP BY.', x:'SELECT label, COUNT(*)\nFROM articles\nWHERE year = 2026\nGROUP BY label;', w:'Real data lives in databases; you will log predictions and users there.'},
+  {t:'Virtual Environments', d:'An isolated folder of Python packages for one project, so versions do not clash between projects. Created with `python -m venv .venv` (or tools like uv), with dependencies listed in requirements.txt.', x:'python -m venv .venv\nsource .venv/bin/activate\npip install -r requirements.txt', w:'"Works on my machine" bugs usually come from mismatched package versions.'},
+  {t:'Async Python', d:'`async`/`await` lets one program wait on many slow I/O tasks (API calls, database reads) at the same time instead of one after another. It does not make CPU-heavy code faster.', x:'import asyncio\nasync def main():\n    results = await asyncio.gather(*(ask(q) for q in qs))\nasyncio.run(main())', w:'LLM calls take seconds; async lets you run many in parallel and keeps servers responsive.'},
+ ],
+ quiz:[
+  {q:'Which Python type is best for mapping a label to its probability, like real → 0.91?', o:['dict','list','tuple','str'], a:0, e:'A dict stores key → value pairs, so you can look up a probability by its label.'},
+  {q:'An API answers your request with status code 404. What happened?', o:['The resource you asked for was not found','The request worked','The server crashed','You sent too many requests'], a:0, e:'404 means Not Found. 200 is success, 500 is a server error, and 429 is too many requests.'},
+  {q:'Which HTTP method normally sends text to a /predict endpoint to get a result back?', o:['POST','GET','DELETE','HEAD'], a:0, e:'POST sends a body (your text) to the server. GET is for reading a resource without a body.'},
+  {q:'Why give each project its own virtual environment?', o:['So package versions for one project don’t break another','So Python runs faster','So Git can track the packages','So the code runs on a GPU'], a:0, e:'A virtual environment isolates packages, so each project keeps the exact versions it needs.'},
+  {q:'You need to call an LLM API for 200 headlines. What does async Python help with?', o:['Waiting on many API calls at the same time','Making the math in each call faster','Reducing the cost per token','Avoiding the need for an API key'], a:0, e:'Async overlaps waiting time on I/O. It doesn’t speed up computation or change prices.'},
+  {q:'Which SQL clause counts articles per label?', o:['GROUP BY label','ORDER BY label','WHERE label','JOIN label'], a:0, e:'GROUP BY collapses rows into one row per label, so COUNT(*) counts each group.'},
+  {q:'What does `git commit` do?', o:['Saves a snapshot of staged changes in local history','Uploads code to GitHub','Downloads the latest code','Deletes old branches'], a:0, e:'A commit is a local snapshot. `git push` is what uploads commits to GitHub.'},
+  {q:'What is a class in Python?', o:['A blueprint that bundles data with the methods that use it','A loop that repeats a fixed number of times','A file of installed packages','A type of database table'], a:0, e:'A class defines attributes and methods; each object you create from it is an instance.'},
+ ],
+ build:{title:'Turn the detector into clean Python', tasks:[
+  {t:'Get the starter project: clone github.com/lauravlad/fake-news-detector and install it in a virtual environment', s:'It has a trained Naive Bayes model and a notebook. You can also use any text classifier of your own.'},
+  {t:'Move the notebook’s prediction code into a `predict(text)` function in a .py file', s:'Input: a string. Output: a dict like {"label": "fake", "probability": 0.87}.'},
+  {t:'Wrap the model in a `Detector` class with `load()` and `predict()` methods', s:'Load the .joblib file once in load(), not on every prediction.'},
+  {t:'Write a small command-line script that reads a headline from the terminal and prints the verdict', s:'Run it with: python predict_cli.py "Your headline here"'},
+  {t:'Save 20 test predictions into a SQLite table, then query them with SQL', s:'Use Python’s built-in sqlite3 module; count predictions by label with GROUP BY.'},
+  {t:'Commit each step to Git with a clear message and push to GitHub', s:'Small commits, one idea each.'},
+ ]},
+ res:[['Official Python tutorial','https://docs.python.org/3/tutorial/'],['Pro Git book (free)','https://git-scm.com/book/en/v2'],['SQLBolt: interactive SQL lessons','https://sqlbolt.com/']]
+},
+{n:2, title:'Maths and Data', quote:'Models are just numbers. Maths shows what they do with them.', weeks:'2–3 weeks', ico:'Σx',
+ topics:[
+  {t:'Linear Algebra', d:'The maths of vectors and matrices and the operations on them (addition, dot products, matrix multiplication). Neural networks are mostly long chains of matrix multiplications.', x:'y = W · x + b', w:'When people say a model has “7 billion parameters”, those are numbers inside matrices.'},
+  {t:'Vectors and Matrices', d:'A vector is an ordered list of numbers (a point or direction in space). A matrix is a grid of numbers; multiplying a vector by a matrix transforms it. The dot product of two vectors measures how aligned they are.', x:'a = [1, 2]; b = [3, 4]\na · b = 1·3 + 2·4 = 11', w:'Text embeddings are vectors; similarity search is dot products.'},
+  {t:'Calculus Basics', d:'Derivatives measure how much an output changes when an input changes a little. The gradient is the vector of all partial derivatives, pointing in the direction of steepest increase.', x:'f(x) = x²   →   f′(x) = 2x', w:'Training a model means following gradients downhill to lower the error.'},
+  {t:'Probability', d:'A number from 0 to 1 for how likely something is. Key ideas: conditional probability P(A|B), independence, and Bayes’ rule, which updates a belief after seeing evidence.', x:'P(fake | "SHOCKING") =\n  P("SHOCKING" | fake) · P(fake) / P("SHOCKING")', w:'Your Naive Bayes model is Bayes’ rule; LLMs output probabilities for the next token.'},
+  {t:'Statistics', d:'Describing and drawing conclusions from data: mean, median, variance and standard deviation, distributions, sampling, correlation, and how sure you can be about a result.', x:'mean = Σx / n\nstd  = √(Σ(x − mean)² / n)', w:'You need it to tell whether model A is really better than model B or just lucky.'},
+  {t:'NumPy', d:'The core Python library for fast arrays and maths. Operations run over whole arrays at once (vectorization) instead of Python loops.', x:'import numpy as np\nv = np.array([1, 2, 3])\nprint(v * 2, v @ v)  # [2 4 6] 14', w:'Almost every ML library uses NumPy arrays under the hood.'},
+  {t:'Pandas', d:'A library for tables (DataFrames): load CSVs, filter rows, select columns, group, join, and summarize.', x:'df = pd.read_csv("news.csv")\ndf.groupby("label")["text"].count()', w:'Most of an AI project starts with exploring and fixing data in pandas.'},
+  {t:'Data Cleaning', d:'Fixing data before modelling: missing values, duplicates, wrong types, inconsistent text, outliers, and leaks (clues that give away the answer).', x:'df = df.drop_duplicates("text")\ndf["text"] = df["text"].str.lower()', w:'In the ISOT news dataset, real articles start with a “(Reuters)” tag, so a model can cheat by spotting it. Cleaning removes clues like that.'},
+  {t:'Data Visualization', d:'Charts that reveal patterns: histograms for distributions, bar charts for categories, scatter plots for relationships, line charts over time. Common tools: matplotlib, seaborn, plotly.', x:'df["length"].hist(bins=30)\nplt.title("Article length")', w:'A chart often shows a data problem faster than any statistic.'},
+  {t:'Jupyter Notebooks', d:'Interactive documents mixing code cells, output, charts, and notes. Great for exploring; move finished code into .py files for products.', x:'jupyter lab', w:'The standard workspace for experiments and sharing analysis.'},
+ ],
+ quiz:[
+  {q:'What does the dot product of two text-embedding vectors tell you?', o:['How similar their directions (meanings) are','How long each text is','How many words they share exactly','Which one is fake'], a:0, e:'Embeddings that point the same way have a high dot product, which means similar meaning.'},
+  {q:'What does a gradient tell a model during training?', o:['Which way to change each weight to increase the error (so you step the opposite way)','The final accuracy','How many layers to use','Which data to delete'], a:0, e:'The gradient points uphill in error. Gradient descent steps the other way, downhill.'},
+  {q:'Which rule updates a belief after seeing evidence and powers Naive Bayes?', o:['Bayes’ rule','The chain rule of calculus','The central limit theorem','The dot product'], a:0, e:'Bayes’ rule: P(class | words) ∝ P(words | class) · P(class).'},
+  {q:'Why use NumPy array operations instead of Python for-loops on numbers?', o:['They run much faster because the work is vectorized in compiled code','They use less disk space','They are required by Git','They make the result more accurate'], a:0, e:'Vectorized operations run in optimized C code over the whole array at once.'},
+  {q:'Which pandas line keeps one copy of each repeated article text?', o:['df.drop_duplicates("text")','df.dropna()','df.groupby("text")','df.sort_values("text")'], a:0, e:'drop_duplicates removes repeated rows; dropna removes missing values.'},
+  {q:'A column called “source” perfectly predicts the label. What’s the problem?', o:['Data leakage: the model learns a shortcut, not the content','Too little data','Wrong chart type','The column needs to be normalized'], a:0, e:'A leak gives away the answer, so test scores look great but the model fails on new data.'},
+  {q:'Which chart best shows the distribution of article lengths?', o:['Histogram','Pie chart','Line chart over time','Single number card'], a:0, e:'A histogram bins values to show the shape of a distribution.'},
+  {q:'The median is often better than the mean when…', o:['the data has big outliers','all values are equal','the data is categorical','you have exactly two values'], a:0, e:'A few huge values pull the mean, while the median stays in the middle.'},
+ ],
+ build:{title:'Explore the news data like a data scientist', tasks:[
+  {t:'Load the ISOT fake news dataset into pandas and report rows, columns, missing values, and the label balance', s:'df.shape, df.isna().sum(), df["label"].value_counts(normalize=True)'},
+  {t:'Plot a histogram of article length for real vs. fake', s:'Are fake articles shorter or longer? Write one sentence about it.'},
+  {t:'Find and remove duplicates and any text that leaks the source', s:'Write it as a reusable clean_data(df) function you can run on any new data.'},
+  {t:'Use NumPy to compute the cosine similarity between two word-count vectors by hand', s:'cos = a·b / (|a||b|). Check it against sklearn’s cosine_similarity.'},
+  {t:'Write up three findings in a markdown cell with one chart each', s:'This is what you would show a stakeholder.'},
+ ]},
+ res:[['NumPy for absolute beginners','https://numpy.org/doc/stable/user/absolute_beginners.html'],['pandas getting-started tutorials','https://pandas.pydata.org/docs/getting_started/intro_tutorials/'],['3Blue1Brown: Essence of linear algebra','https://www.3blue1brown.com/topics/linear-algebra']]
+},
+{n:3, title:'Machine Learning', quote:'LLMs are machine learning. This is how they learn and why they fail.', weeks:'3–4 weeks', ico:'ML',
+ topics:[
+  {t:'Supervised Learning', d:'Learning from labelled examples (input → correct answer) so the model can predict labels for new inputs.', x:'("Pope endorses candidate!", fake)\n("Fed raises rates 0.25%", real)', w:'Your fake news detector is supervised learning.'},
+  {t:'Unsupervised Learning', d:'Finding structure in data without labels: clustering similar items, reducing dimensions, spotting anomalies.', x:'KMeans(n_clusters=5).fit(embeddings)', w:'Useful for grouping topics or exploring data before you have labels.'},
+  {t:'Regression', d:'Supervised learning that predicts a number (price, temperature, minutes). Linear regression fits a line; many models can do regression.', x:'predict house price → $612,000', w:'Not every problem is a category; many business questions are “how much?”.'},
+  {t:'Classification', d:'Supervised learning that predicts a category (fake/real, spam/not spam). Models usually output a probability per class, then apply a threshold.', x:'P(fake) = 0.87  →  label = fake', w:'Classification is the most common ML task in products.'},
+  {t:'Loss Functions', d:'A number measuring how wrong the model is on an example. Training tries to make it small. Mean squared error for regression; cross-entropy (log loss) for classification.', x:'cross-entropy = −log(P(correct class))', w:'Choosing the loss decides what “good” means to the model.'},
+  {t:'Gradient Descent', d:'The training algorithm: compute the loss, compute the gradient, nudge every weight a small step (the learning rate) downhill, repeat.', x:'w = w − learning_rate · ∂loss/∂w', w:'Every neural network, including LLMs, is trained this way.'},
+  {t:'Overfitting', d:'When a model memorizes the training data (including noise) and does worse on new data. Signs: training score far above validation score. Fixes: more data, simpler model, regularization, early stopping.', x:'train acc 99%   test acc 71%  → overfit', w:'The main reason models that look great in a notebook fail in the real world.'},
+  {t:'Neural Networks', d:'Layers of simple units: each layer multiplies inputs by weights, adds a bias, and applies a non-linear activation (like ReLU). Stacking layers lets them learn complex patterns.', x:'x → Linear → ReLU → Linear → softmax', w:'Transformers (the core of LLMs) are a type of neural network.'},
+  {t:'PyTorch', d:'The most widely used deep-learning library. Tensors (GPU-ready arrays), automatic gradients (autograd), and building blocks in `torch.nn`.', x:'loss.backward()\noptimizer.step()\noptimizer.zero_grad()', w:'Most research and open models are built in PyTorch.'},
+  {t:'Model Evaluation', d:'Measuring performance on data the model never saw: train/validation/test splits, cross-validation, and metrics like accuracy, precision, recall, F1, and the confusion matrix.', x:'precision = TP / (TP + FP)\nrecall    = TP / (TP + FN)', w:'Without honest evaluation you can’t know if a change helped.'},
+ ],
+ quiz:[
+  {q:'Predicting tomorrow’s temperature in °F is…', o:['Regression','Classification','Clustering','Tokenization'], a:0, e:'The output is a number, so it’s regression.'},
+  {q:'Grouping 10,000 unlabelled articles into topics is…', o:['Unsupervised learning','Supervised learning','Regression','Reinforcement learning'], a:0, e:'No labels are given, so the model finds the structure on its own.'},
+  {q:'Training accuracy is 99% but test accuracy is 70%. What is most likely happening?', o:['Overfitting','Underfitting','A perfect model','Data is too clean'], a:0, e:'A big gap between train and test means the model memorized the training data.'},
+  {q:'In gradient descent, what does the learning rate control?', o:['How big each step is when updating the weights','How many layers the network has','How much data is used','The number of classes'], a:0, e:'Too big and training jumps around; too small and it crawls.'},
+  {q:'Your detector flags 100 articles as fake and 90 really are fake. What is 90%?', o:['Precision','Recall','Accuracy','Loss'], a:0, e:'Precision = true positives / everything predicted positive = 90/100.'},
+  {q:'Out of 200 real fake-news articles, the model catches 150. What is 75%?', o:['Recall','Precision','F1','Specificity'], a:0, e:'Recall = true positives / all actual positives = 150/200.'},
+  {q:'What does `loss.backward()` do in PyTorch?', o:['Computes the gradient of the loss for every weight','Updates the weights','Loads the dataset','Saves the model'], a:0, e:'backward() computes the gradients; optimizer.step() is what updates the weights.'},
+  {q:'Why must the test set stay untouched until the end?', o:['So the final score honestly reflects new, unseen data','So training is faster','Because it has no labels','So the model can memorize it'], a:0, e:'If you tune on the test set, its score becomes optimistic and no longer means anything.'},
+ ],
+ build:{title:'Make the classifier honest and compare a neural net', tasks:[
+  {t:'Split the data into train, validation, and test sets with a fixed random seed', s:'For example 70/15/15, stratified by label.'},
+  {t:'Print a confusion matrix plus precision, recall, and F1 for your Naive Bayes model', s:'sklearn.metrics.classification_report'},
+  {t:'Use 5-fold cross-validation to compare Naive Bayes with logistic regression', s:'Report mean ± standard deviation for each.'},
+  {t:'Train a tiny 2-layer neural network in PyTorch on TF-IDF features', s:'Write the training loop yourself: forward, loss, backward, step.'},
+  {t:'Plot training vs. validation loss per epoch and point out where overfitting starts', s:'Then try early stopping.'},
+ ]},
+ res:[['scikit-learn tutorials','https://scikit-learn.org/stable/tutorial/index.html'],['PyTorch: Learn the basics','https://pytorch.org/tutorials/beginner/basics/intro.html'],['3Blue1Brown: Neural networks','https://www.3blue1brown.com/topics/neural-networks']]
+},
+{n:4, title:'How LLMs Work', quote:'You can’t build well on something you don’t understand.', weeks:'2–3 weeks', ico:'LLM',
+ topics:[
+  {t:'Tokens and Tokenizers', d:'LLMs read and write tokens: chunks of text (often parts of words). A tokenizer splits text into tokens and maps each to an ID. Pricing, limits, and speed are all counted in tokens.', x:'"unbelievable" → ["un", "believ", "able"]', w:'Costs, context limits, and odd spelling mistakes all come from tokens.'},
+  {t:'Embeddings', d:'A list of numbers (a vector) that represents the meaning of a token or a whole text. Similar meanings end up close together in this space.', x:'"king" ≈ [0.21, −0.73, …, 0.05]  (hundreds of numbers)', w:'Embeddings are the foundation of semantic search and RAG.'},
+  {t:'Attention', d:'The mechanism that lets each token look at every other token and decide how much each one matters for understanding it (queries, keys, values).', x:'"The bank by the river" → “bank” attends to “river”', w:'Attention is why LLMs handle context and long-range meaning.'},
+  {t:'Transformers', d:'The neural network architecture behind LLMs: stacked layers of attention plus feed-forward networks. LLMs are trained to predict the next token, one at a time.', x:'tokens → [attention → feed-forward] × N → next-token probabilities', w:'Every modern LLM (Claude, GPT, Llama) is a transformer.'},
+  {t:'Context Window', d:'The maximum number of tokens the model can consider at once: your instructions, the conversation, documents, and its own reply. Anything outside it is not seen.', x:'system prompt + chat history + documents + answer ≤ limit', w:'Decides how much you can stuff in, and why RAG picks only relevant chunks.'},
+  {t:'Temperature and Sampling', d:'The model outputs a probability for every possible next token. Temperature reshapes those probabilities: low means focused and repeatable, high means more varied and creative. Top-p/top-k limit the choices.', x:'temperature 0.0 → consistent labels\ntemperature 1.0 → creative writing', w:'Use low temperature for classification and extraction, higher for brainstorming.'},
+  {t:'Prompt Engineering', d:'Writing instructions that get reliable results: clear role and task, context, examples (few-shot), the output format you want, and letting the model reason before answering.', x:'You are a fact-checker. Read the article in <article> tags.\nReply with JSON: {"label": "real"|"fake", "reason": "…"}', w:'The cheapest, fastest way to improve an LLM app.'},
+  {t:'Structured Outputs', d:'Making the model return data in a fixed format (usually JSON matching a schema) so your code can parse it reliably, using JSON mode, tool schemas, or validation with Pydantic.', x:'class Verdict(BaseModel):\n    label: Literal["real", "fake"]\n    confidence: float', w:'Products need data, not paragraphs; structured outputs connect LLMs to code.'},
+  {t:'OpenAI and Claude APIs', d:'HTTP APIs (with Python SDKs) where you send a model name, messages, and settings like max tokens, and get the reply plus token usage back. Keep the API key in an environment variable, never in code.', x:'client = anthropic.Anthropic()\nmsg = client.messages.create(model=…, max_tokens=500,\n    messages=[{"role": "user", "content": text}])', w:'This is the main way AI engineers use LLMs in products.'},
+  {t:'Fine Tuning with LoRA', d:'Fine-tuning continues training a model on your own examples. LoRA (Low-Rank Adaptation) trains a few small extra matrices instead of all the weights, making it much cheaper.', x:'base model (frozen) + small LoRA adapter (trained)', w:'Try prompting and RAG first; fine-tune when you need a consistent style or format at scale.'},
+ ],
+ quiz:[
+  {q:'API pricing and context limits for LLMs are counted in…', o:['Tokens','Characters','Words','Sentences'], a:0, e:'Everything is measured in tokens, the chunks the tokenizer splits text into.'},
+  {q:'You want the same label every time for the same article. Which temperature?', o:['Low, around 0','High, around 1.5','It doesn’t matter','Random each call'], a:0, e:'Low temperature makes the model pick the most likely tokens, so answers are consistent.'},
+  {q:'What does attention let a transformer do?', o:['Let each token weigh how relevant every other token is','Store the training data','Count the tokens','Translate text to SQL'], a:0, e:'Attention scores decide how much each token draws on every other token.'},
+  {q:'What is an LLM trained to do at its core?', o:['Predict the next token','Look up answers in a database','Copy text from Google','Classify images'], a:0, e:'Pre-training teaches next-token prediction over huge amounts of text.'},
+  {q:'Your 300-page PDF doesn’t fit in the context window. What’s the usual fix?', o:['Retrieve only the relevant chunks (RAG)','Raise the temperature','Use a smaller tokenizer','Ask the question twice'], a:0, e:'RAG selects the parts that matter so they fit in the window.'},
+  {q:'Why use structured outputs (a JSON schema)?', o:['So your code can parse the reply reliably','So the model writes longer answers','To make answers more creative','To lower the context window'], a:0, e:'A fixed schema means your program gets fields like label and confidence, not free text.'},
+  {q:'Where should your API key live?', o:['In an environment variable or secret manager','Hard-coded in app.py','In the GitHub README','In the prompt'], a:0, e:'Keys in code end up on GitHub. Load them from the environment instead.'},
+  {q:'What makes LoRA cheaper than full fine-tuning?', o:['It trains small adapter matrices and keeps the base model frozen','It skips the training data','It runs at temperature 0','It uses a smaller tokenizer'], a:0, e:'Only the small low-rank adapters are trained, so far fewer parameters change.'},
+ ],
+ build:{title:'Add an LLM judge next to your Naive Bayes model', tasks:[
+  {t:'Count the tokens in 5 articles and estimate the cost to classify the full test set', s:'Use the provider’s token counting; tokens × price per million.'},
+  {t:'Call an LLM API to classify a headline as real or fake, with the key in an environment variable', s:'Start with one call that works, then a loop.'},
+  {t:'Ask for structured JSON output {label, confidence, reason} and validate it with Pydantic', s:'Handle the case where parsing fails.'},
+  {t:'Compare the LLM with Naive Bayes on the same 100 test articles', s:'Accuracy, cost, and time per article, in one small table.'},
+  {t:'Try three prompt versions (plain, with role and rules, few-shot) and record which wins', s:'Change one thing at a time.'},
+ ]},
+ res:[['The Illustrated Transformer','https://jalammar.github.io/illustrated-transformer/'],['Claude developer docs','https://docs.anthropic.com/'],['Hugging Face PEFT (LoRA) docs','https://huggingface.co/docs/peft']]
+},
+{n:5, title:'RAG', quote:'Models don’t know your data. RAG gives them the right facts.', weeks:'2–3 weeks', ico:'RAG',
+ topics:[
+  {t:'Embedding Models', d:'Models that turn text into embedding vectors for search (for example sentence-transformers or a provider’s embeddings API). Use the same model for documents and queries.', x:'vec = embed("Is the moon landing fake?")  # 768 numbers', w:'The quality of retrieval starts with the embedding model.'},
+  {t:'Vector Databases', d:'Databases that store embeddings and quickly find the nearest ones to a query vector (Chroma, pgvector, Qdrant, Pinecone, FAISS).', x:'collection.query(query_texts=["moon landing"], n_results=5)', w:'They make similarity search fast across millions of chunks.'},
+  {t:'Chunking', d:'Splitting documents into smaller passages before embedding, by size, sentence, or section, often with some overlap so ideas aren’t cut in half.', x:'chunk_size=800 tokens, overlap=100', w:'Chunks too big dilute meaning; too small lose context. It’s a key tuning knob.'},
+  {t:'Semantic Search', d:'Finding text by meaning rather than exact words: embed the query, then return the chunks whose vectors are closest.', x:'"vaccine microchip" finds "claims that shots contain tracking devices"', w:'It finds relevant facts even when the wording differs.'},
+  {t:'Hybrid Search', d:'Combining keyword search (like BM25, great for names, codes, exact terms) with semantic search, then merging the results.', x:'final = merge(bm25_results, vector_results)', w:'Catches exact matches that pure semantic search misses.'},
+  {t:'Reranking', d:'A second, more accurate model (a cross-encoder) re-scores the top results from search and puts the truly most relevant first.', x:'top 50 from search → reranker → best 5 to the LLM', w:'A cheap way to noticeably improve answer quality.'},
+  {t:'Retrieval Pipelines', d:'The full flow: load documents → clean → chunk → embed → store; then at question time: embed query → search → rerank → build prompt → generate an answer with citations.', x:'ingest(docs) … answer = generate(question, retrieve(question))', w:'Thinking in pipelines makes each stage testable and swappable.'},
+  {t:'Metadata Filtering', d:'Storing fields like date, source, or author with each chunk and filtering on them during search.', x:'where={"source": "Reuters", "year": {"$gte": 2024}}', w:'Keeps answers current and limited to trusted sources.'},
+  {t:'RAG Evaluation', d:'Measuring retrieval (did we fetch the right chunks? recall@k) and generation (is the answer faithful to the sources and relevant to the question?), using a test set of questions.', x:'recall@5 = 0.82   faithfulness = 0.93', w:'Without evals you can’t tell whether a chunking or prompt change helped.'},
+  {t:'Chat with your PDFs', d:'The classic RAG app: extract text from PDFs, chunk and index it, then answer questions with citations to page numbers.', x:'Q: What does the report say about 2026 revenue?\nA: … (p. 14)', w:'A portfolio project that shows the whole pipeline end to end.'},
+ ],
+ quiz:[
+  {q:'What does RAG add to an LLM?', o:['Relevant facts retrieved from your own documents at question time','More parameters','A higher temperature','A bigger tokenizer'], a:0, e:'Retrieval-Augmented Generation puts relevant retrieved passages into the prompt.'},
+  {q:'A user searches for the exact product code “XR-7741”. Which search is most reliable?', o:['Keyword (or hybrid) search','Pure semantic search','No search','Temperature sampling'], a:0, e:'Exact codes and names are where keyword search shines; hybrid search gets both.'},
+  {q:'Why overlap chunks a little?', o:['So an idea split at a boundary still appears whole in one chunk','To save storage','To make search slower','Because embeddings require it'], a:0, e:'Overlap reduces the chance that key sentences get cut in half.'},
+  {q:'What does a reranker do?', o:['Re-scores the top search results to put the most relevant first','Splits documents into chunks','Stores the vectors','Generates the final answer'], a:0, e:'A cross-encoder reranker looks at the query and each chunk together, so it judges relevance more precisely.'},
+  {q:'You only want fact-checks from 2025 or later. What do you use?', o:['Metadata filtering','A bigger chunk size','A higher temperature','Fine-tuning'], a:0, e:'Store the date with each chunk and filter on it at search time.'},
+  {q:'The answer sounds right but the claim isn’t in any retrieved chunk. Which RAG metric catches this?', o:['Faithfulness (groundedness)','Recall@k','Token count','Latency'], a:0, e:'Faithfulness checks that every claim in the answer is supported by the sources.'},
+  {q:'Must you embed queries and documents with the same embedding model?', o:['Yes, otherwise their vectors aren’t comparable','No, any model works','Only for PDFs','Only in hybrid search'], a:0, e:'Different models produce different vector spaces, so distances between them are meaningless.'},
+  {q:'Which step happens at ingest time, before any user question?', o:['Chunking and embedding the documents','Reranking','Generating the answer','Embedding the query'], a:0, e:'Documents are chunked, embedded, and stored ahead of time; the rest happens per question.'},
+ ],
+ build:{title:'Fact-check claims against a library of sources', tasks:[
+  {t:'Collect 50–100 fact-check articles or trusted news pages as text files with source and date', s:'Keep the URL and date as metadata.'},
+  {t:'Chunk, embed, and store them in a local vector database (Chroma is easy to start with)', s:'Try chunk sizes of 300 and 800 tokens.'},
+  {t:'Given a headline, retrieve the top 5 chunks and have the LLM answer with citations', s:'“Supported / contradicted / not enough evidence”, plus which source.'},
+  {t:'Add hybrid search or a reranker and compare the results on 20 test claims', s:'Note which one fetched the right source more often.'},
+  {t:'Build a 20-question eval set and measure recall@5 and faithfulness', s:'Save it so you can re-run it after every change.'},
+ ]},
+ res:[['Sentence Transformers docs','https://www.sbert.net/'],['Chroma vector database','https://www.trychroma.com/'],['Hugging Face Open-Source AI Cookbook','https://huggingface.co/learn/cookbook/index']]
+},
+{n:6, title:'AI Agents', quote:'Agents don’t just answer. They take actions to finish a task.', weeks:'2–3 weeks', ico:'↻',
+ topics:[
+  {t:'Tool Calling', d:'You describe tools (name, description, JSON schema of inputs) to the model. Instead of only text, it can reply with a request to call a tool; your code runs it and sends back the result.', x:'tools=[{"name": "search_news", "input_schema": {…}}]\n→ model: call search_news(query="moon landing")', w:'Tools are how a model reads live data and acts in the world.'},
+  {t:'MCP Servers', d:'The Model Context Protocol is an open standard for connecting AI apps to tools and data. An MCP server exposes tools and resources once, and any MCP-compatible client can use them.', x:'MCP client (an AI app) ⇄ MCP server (GitHub, a database, your API)', w:'Build a tool once and plug it into many AI apps.'},
+  {t:'Agent Loop', d:'The core cycle: the model thinks, calls a tool, sees the result, and repeats until the task is done or a stop limit is hit.', x:'while not done:\n    reply = llm(messages, tools)\n    if reply.tool_call: messages += run(reply.tool_call)\n    else: done = True', w:'Every agent framework is a version of this loop.'},
+  {t:'Planning and Reasoning', d:'Getting the model to break a goal into steps, think before acting, and revise the plan when results come in.', x:'Plan: 1) search the claim 2) read 3 sources 3) compare 4) verdict', w:'Better plans mean fewer wasted tool calls and better answers.'},
+  {t:'Memory', d:'Short-term memory is the conversation in the context window. Long-term memory saves facts or summaries outside the model (files, a database, a vector store) and loads them when needed.', x:'save_memory("user prefers sources from AP and Reuters")', w:'Lets agents work across long tasks and remember users between sessions.'},
+  {t:'Multi Agent Systems', d:'Several agents with separate roles (for example a researcher, a writer, a reviewer) or an orchestrator that hands sub-tasks to helpers and combines their results.', x:'orchestrator → [researcher A, researcher B] → reviewer', w:'Helps with big, parallel tasks, but adds cost and complexity, so use it only when needed.'},
+  {t:'LangGraph', d:'A framework for building agents as graphs: nodes are steps (LLM calls, tools), edges decide what runs next, and state is passed along and can be saved.', x:'graph.add_node("search", search)\ngraph.add_edge("search", "judge")', w:'Gives you control and visibility over complex agent workflows.'},
+  {t:'Agent SDKs', d:'Libraries from model providers and others (like the Claude Agent SDK or OpenAI Agents SDK) that handle the agent loop, tools, and context for you.', x:'agent = Agent(tools=[search, read_url], instructions="…")', w:'Less boilerplate; you focus on the tools and instructions.'},
+  {t:'Human in the Loop', d:'Pausing the agent for a person to approve, edit, or reject important actions (sending, paying, deleting, publishing) before they happen.', x:'Agent: "Ready to publish this verdict. Approve? (y/n)"', w:'Keeps people in control of risky or irreversible steps.'},
+  {t:'Error Handling', d:'Agents meet failing tools, timeouts, bad JSON, and loops. Handle them with retries and backoff, clear error messages back to the model, step limits, and fallbacks.', x:'for attempt in range(3):\n    try: return call_tool()\n    except Timeout: sleep(2 ** attempt)', w:'The difference between a demo agent and one you can trust.'},
+ ],
+ quiz:[
+  {q:'In tool calling, who actually runs the tool?', o:['Your code, after the model asks for it','The model, inside its weights','The user, by hand','The tokenizer'], a:0, e:'The model only requests a tool call; your program executes it and returns the result.'},
+  {q:'What problem does MCP solve?', o:['A standard way to connect AI apps to tools and data, built once and reused','Making models smaller','Training models faster','Encrypting API keys'], a:0, e:'MCP is an open protocol so one server works with many compatible clients.'},
+  {q:'What should always stop an agent loop besides “task done”?', o:['A maximum number of steps (or a budget)','A higher temperature','A bigger context window','A reranker'], a:0, e:'A step or cost limit prevents endless loops.'},
+  {q:'An agent is about to email 500 people. What should it do?', o:['Pause for a human to approve','Send right away','Raise the temperature','Split into 500 agents'], a:0, e:'Irreversible actions that affect others need human-in-the-loop approval.'},
+  {q:'Where does long-term agent memory usually live?', o:['Outside the model, in files or a database','Inside the model weights','In the temperature setting','In the tokenizer'], a:0, e:'Memories are saved externally and loaded into context when relevant.'},
+  {q:'A tool times out. What is a good first response?', o:['Retry with backoff, then report a clear error to the model','Crash the app','Return an empty success','Ignore it and invent a result'], a:0, e:'Retries with backoff handle temporary failures; a clear error lets the model adapt.'},
+  {q:'In LangGraph, what are nodes and edges?', o:['Nodes are steps; edges decide what runs next','Nodes are tokens; edges are embeddings','Nodes are users; edges are permissions','Nodes are GPUs; edges are cables'], a:0, e:'You define steps as nodes and connect them with (possibly conditional) edges.'},
+  {q:'When is a multi-agent system worth it?', o:['For big tasks that split into parallel parts','For every simple question','When you want lower cost','When there are no tools'], a:0, e:'Multiple agents add cost and complexity; they pay off on large, divisible tasks.'},
+ ],
+ build:{title:'Build a claim-checking agent', tasks:[
+  {t:'Write two tools: `search_sources(query)` (your RAG search) and `read_url(url)`', s:'Give each a clear description and an input schema.'},
+  {t:'Write the agent loop yourself (no framework) with a 6-step limit', s:'Print each tool call so you can watch it think.'},
+  {t:'Have it return a verdict with sources, then ask for your approval before saving it', s:'Human in the loop: y/n in the terminal.'},
+  {t:'Add retries and a clear error message when a tool fails', s:'Test it by making read_url fail on purpose.'},
+  {t:'Rebuild the same agent in LangGraph or an agent SDK and compare the code', s:'What did the framework do for you? What did you lose?'},
+ ]},
+ res:[['Model Context Protocol','https://modelcontextprotocol.io/'],['LangGraph docs','https://langchain-ai.github.io/langgraph/'],['Anthropic: Building effective agents','https://www.anthropic.com/engineering/building-effective-agents']]
+},
+{n:7, title:'Ship to Production', quote:'A demo is easy. A reliable product is the real job.', weeks:'2–3 weeks', ico:'🚀',
+ topics:[
+  {t:'FastAPI', d:'A fast Python web framework for building APIs. You write typed functions; it validates inputs with Pydantic and generates interactive docs at /docs.', x:'@app.post("/predict")\ndef predict(req: Article) -> Verdict:\n    return detector.predict(req.text)', w:'The standard way to put a Python model behind an HTTP API.'},
+  {t:'Docker', d:'Packages your app with its exact Python version and dependencies into an image that runs the same everywhere as a container. Described in a Dockerfile.', x:'FROM python:3.12-slim\nCOPY . /app\nRUN pip install -r /app/requirements.txt\nCMD ["uvicorn", "app.main:app", "--host", "0.0.0.0"]', w:'Ends “works on my machine”; it’s how most cloud platforms run code.'},
+  {t:'Cloud Deploy', d:'Running your container on a cloud service (Render, Railway, Fly.io, Google Cloud Run, AWS, Azure) with a public URL, secrets stored as environment variables, and automatic restarts.', x:'git push → build image → deploy → https://your-app.example.com', w:'A real URL that others can use is what makes it a product.'},
+  {t:'Evals', d:'Automated tests for AI behaviour: a fixed set of inputs with expected results or grading rules (exact match, code checks, or an LLM judge), run on every change.', x:'eval_set.jsonl → run → 92% pass (was 88%)', w:'The only way to change prompts or models without breaking things you can’t see.'},
+  {t:'Guardrails', d:'Checks around the model: validate inputs (length, prompt injection, personal data) and outputs (schema, safety, allowed values) and block or fix what fails.', x:'if len(text) > 20_000: reject\nif verdict.label not in {"real", "fake"}: retry', w:'Protects users, your costs, and your reputation.'},
+  {t:'Caching', d:'Saving results so repeated work isn’t paid for twice: cache full responses for identical requests, and use provider prompt caching for long, repeated prompt prefixes.', x:'key = hash(text)\nif key in cache: return cache[key]', w:'Cuts cost and latency, often dramatically.'},
+  {t:'Streaming', d:'Sending the model’s answer token by token as it’s generated (server-sent events) instead of waiting for the full reply.', x:'for chunk in stream: print(chunk, end="", flush=True)', w:'Users see text in under a second, so the app feels fast.'},
+  {t:'Cost Tracking', d:'Recording input and output tokens, model, and price for every call, per user and feature, with alerts and budgets.', x:'cost = in_tok · $in/1M + out_tok · $out/1M', w:'LLM bills grow fast; you can’t optimize what you don’t measure.'},
+  {t:'Latency Tuning', d:'Making responses faster: smaller or faster models where possible, shorter prompts, parallel calls, caching, streaming, and limiting max tokens.', x:'p50 = 1.2 s   p95 = 3.8 s   → target p95 < 2 s', w:'Speed is a feature; slow apps lose users.'},
+  {t:'Observability', d:'Seeing what your app does in production: logs, metrics (latency, errors, cost), and traces of each request including prompts, tool calls, and outputs.', x:'trace: /predict → retrieve (120 ms) → llm (900 ms) → 200 OK', w:'When something breaks at 2 a.m., traces tell you where and why.'},
+ ],
+ quiz:[
+  {q:'What does FastAPI generate automatically at /docs?', o:['Interactive API documentation','A Dockerfile','A trained model','A database'], a:0, e:'FastAPI builds interactive docs from your typed endpoints.'},
+  {q:'What problem does Docker mainly solve?', o:['The app runs the same everywhere, with the same dependencies','Makes models more accurate','Lowers token prices','Writes your tests'], a:0, e:'An image bundles the runtime and dependencies, so it behaves the same on any machine.'},
+  {q:'You changed the prompt. How do you know nothing got worse?', o:['Re-run your eval set and compare scores','Try one example by hand','Ask the model if it’s better','Deploy and wait for complaints'], a:0, e:'Evals give a repeatable before-and-after comparison.'},
+  {q:'Many users submit the exact same viral headline. What saves the most money?', o:['Caching the result for identical inputs','Streaming','A bigger model','Higher temperature'], a:0, e:'Identical inputs can reuse the stored answer instead of calling the model again.'},
+  {q:'Answers take 6 seconds and users think the app is frozen. Quickest win?', o:['Stream tokens as they’re generated','Raise max tokens','Add more agents','Remove caching'], a:0, e:'Streaming shows the first words almost immediately.'},
+  {q:'Which is an output guardrail?', o:['Checking the reply matches the schema and allowed labels','Limiting input length','Choosing a cloud provider','Writing a Dockerfile'], a:0, e:'Output guardrails validate what the model returns before your users or code see it.'},
+  {q:'What does a trace show that a single log line doesn’t?', o:['Every step of one request with its timing','The model’s weights','Your monthly bill only','The source code'], a:0, e:'Traces connect all the steps (retrieval, LLM call, tools) of one request.'},
+  {q:'Where should secrets like API keys go in a cloud deploy?', o:['The platform’s environment variables or secret manager','Inside the Docker image','In the README','In the URL'], a:0, e:'Secrets are injected at runtime, never baked into images or code.'},
+ ],
+ build:{title:'Ship the Fake News Detector as a real API', tasks:[
+  {t:'Wrap the detector in FastAPI with POST /predict and GET /health', s:'Request and response models in Pydantic; try it at /docs.'},
+  {t:'Write a Dockerfile, build the image, and run it locally', s:'docker build -t fake-news . && docker run -p 8000:8000 fake-news'},
+  {t:'Deploy the container to a cloud service with the API key as a secret', s:'Render, Railway, Fly.io, or Cloud Run all have free or cheap tiers.'},
+  {t:'Add an eval script with 50 labelled headlines that runs before every deploy', s:'Fail the deploy if accuracy drops.'},
+  {t:'Add caching, input length limits, and logs of latency, tokens, and cost per request', s:'Then look at p50 and p95 latency after 100 requests.'},
+  {t:'Point your Streamlit app at the deployed API and share the link', s:'That’s a portfolio-ready, end-to-end AI product.'},
+ ]},
+ res:[['FastAPI tutorial','https://fastapi.tiangolo.com/tutorial/'],['Docker: Get started','https://docs.docker.com/get-started/'],['OpenTelemetry docs (observability)','https://opentelemetry.io/docs/']]
+},
+];
+
+// ===== Activities =====
+const ACTS={};
+for(const s of STEPS){
+  ACTS['l'+s.n]={kind:'card', step:s, items:s.topics, name:`The 10 ideas`, sub:'Flashcards · say it, then reveal', ico:'Aa'};
+  ACTS['q'+s.n]={kind:'mc', step:s, items:s.quiz, name:`Check yourself`, sub:'Multiple choice with explanations', ico:'?'};
+  ACTS['b'+s.n]={kind:'build', step:s, items:s.build.tasks, name:`Build it: ${s.build.title}`, sub:'Hands-on: grow a fake news detector', ico:'</>'};
+}
+const ORDER_IDS=STEPS.flatMap(s=>['l'+s.n,'q'+s.n,'b'+s.n]);
+
+// ===== Progress =====
+const KEY='ai-engineer-class-v1';
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY))||{}; }catch(e){ return {}; } }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(progress)); }catch(e){} }
+let progress=load(); progress.sets=progress.sets||{};
+const doneMap = id => (progress.sets[id]=progress.sets[id]||{});
+const nOf = id => ACTS[id].items.length;
+const doneCount = id => { const m=progress.sets[id]||{}; return ACTS[id].items.filter((_,k)=>m[k]).length; };
+const firstUndone = id => { const m=progress.sets[id]||{}; const i=ACTS[id].items.findIndex((_,k)=>!m[k]); return i<0?0:i; };
+const sc = id => { const r=(progress.right||{})[id]||0; return `${r} correct`; };
+
+// ===== App state =====
+let view='home', cur=null, game=null, askReset=false;
+const app=document.getElementById('app');
+const VIEWS={};
+function render(){ app.innerHTML=VIEWS[view](); }
+function go(v,arg,k){ view=v; cur = v==='act' ? {id:arg, k:+k||0, shown:false, pick:null, opt:null} : (v==='done'?{id:arg}:null); render(); window.scrollTo(0,0); }
+const fb = (ok,title,body='') => `<div class="fb ${ok?'good':'bad'}" role="status"><strong>${title}</strong>${body}</div>`;
+
+function cuteBg(n=20){
+  let x=29; const rnd=()=>((x=(x*16807)%2147483647)/2147483647);
+  const SY=['{ }','=>','( )','[ ]','</>','∑','∇','λ','#','·'], COL=['var(--p1)','var(--p2)','var(--p3)','var(--p4)','var(--p6)'];
+  let out='';
+  for(let i=0;i<n;i++){
+    const l=(rnd()*96).toFixed(1), t=(rnd()*94).toFixed(1), r=(rnd()*40-20).toFixed(0), d=(2.6+rnd()*3).toFixed(1);
+    out+=`<span style="left:${l}%;top:${t}%;font-size:${(18+rnd()*26).toFixed(0)}px;color:${COL[Math.floor(rnd()*COL.length)]};opacity:.22;--r:${r}deg;--d:${d}s">${esc(SY[Math.floor(rnd()*SY.length)])}</span>`;
+  }
+  return `<div class="cute-bg" aria-hidden="true">${out}</div>`;
+}
+function symLayer(n, seed){
+  let x=seed; const rnd=()=>((x=(x*16807)%2147483647)/2147483647);
+  const G=['{ }','=>','def','import','async','∇','λ','[ ]','</>','POST','ŷ','∑'];
+  let out='';
+  for(let i=0;i<n;i++) out+=`<span style="left:${(rnd()*100).toFixed(1)}%;top:${(rnd()*100).toFixed(1)}%;font-size:${(16+rnd()*34).toFixed(0)}px;--r:${(rnd()*40-20).toFixed(0)}deg">${esc(G[Math.floor(rnd()*G.length)])}</span>`;
+  return `<div class="syms" aria-hidden="true">${out}</div>`;
+}
+
+// ===== Home =====
+VIEWS.home = () => {
+  const t=id=>{
+    const A=ACTS[id], n=nOf(id), d=doneCount(id), all=d===n, st=firstUndone(id);
+    const status = all ? '✓ Done' : d ? `${d} of ${n}` : 'Start →';
+    const unit = A.kind==='card'?'cards':A.kind==='mc'?'questions':'tasks';
+    return `<li><button class="topic${all?' is-done':''}" data-go="act" data-arg="${id}" data-k="${st}"><span class="t-ico" aria-hidden="true">${all?'✓':esc(A.ico)}</span><span>${esc(A.name)}<small>${n} ${unit} · ${esc(A.sub)}</small>${d&&!all?`<span class="tbar"><i style="width:${Math.round(d/n*100)}%"></i></span>`:''}</span><span class="go">${status}</span></button></li>`;
+  };
+  const part=s=>{ const ids=['l'+s.n,'q'+s.n,'b'+s.n], dn=ids.filter(id=>doneCount(id)===nOf(id)).length;
+    return `<li class="level part-${s.n}"><div class="part-head"><span class="part-badge" aria-hidden="true">${dn===3?'✓':`<span><small>STEP</small>${s.n}</span>`}</span><h2>${esc(s.title)}</h2>${dn===3?`<span class="part-done">Step ${s.n} done</span>`:`<span class="level-num">${esc(s.weeks)}</span>`}</div><p class="part-quote">${esc(s.quote)}</p><ul class="topics">${ids.map(t).join('')}</ul></li>`; };
+  const totN=ORDER_IDS.reduce((a,id)=>a+nOf(id),0), totD=ORDER_IDS.reduce((a,id)=>a+doneCount(id),0);
+  const nextId=ORDER_IDS.find(id=>doneCount(id)<nOf(id));
+  return `
+  ${cuteBg()}
+  <header class="mast">
+    ${symLayer(16, 11)}
+    <p class="kicker">Self-study · AI engineering</p>
+    <h1>AI Engineer<span class="glyph" aria-hidden="true">{ }</span></h1>
+    <p class="mast-tag">From your first Python function to a shipped AI product, in 7 steps. Learn the ideas, check yourself, then build each step into one real project: a fake news detector.</p>
+    <div class="prog"><div class="prog-row"><span>${totD===totN?'All done! 🎉':'Your progress'}</span><span>${totD} of ${totN}</span></div><div class="prog-bar" role="progressbar" aria-label="Cards, questions and tasks done" aria-valuemin="0" aria-valuemax="${totN}" aria-valuenow="${totD}"><i style="width:${totN?Math.round(totD/totN*100):0}%"></i></div></div>
+    ${nextId?`<button class="candy-cta" data-go="act" data-arg="${nextId}" data-k="${firstUndone(nextId)}"><span class="candy-ico" aria-hidden="true">${ACTS[nextId].step.n}</span><span><b>Continue: ${esc(ACTS[nextId].step.title)}</b><small>${esc(ACTS[nextId].name)}</small></span><span class="go-light">Go →</span></button>`:''}
+    <button class="candy-cta" data-go="gameStart"><span class="candy-ico" aria-hidden="true">✓</span><span><b>Test your knowledge</b><small>10 random questions from all 7 steps.${progress.best!=null?` Your best so far: ${progress.best}/10.`:''}</small></span><span class="go-light">Start</span></button>
+  </header>
+  <section class="plan" aria-label="The plan">
+    <h2>The plan · about 4 months</h2>
+    <ol>${STEPS.map(s=>`<li><b>${esc(s.title)}</b> · ${esc(s.weeks)}</li>`).join('')}</ol>
+    <p class="muted">Each step: read the 10 flashcards, answer the questions, then do the build tasks. Your progress saves on this device.</p>
+  </section>
+  <ol class="levels">${STEPS.map(part).join('')}</ol>
+  <p class="reset-row">${askReset?`Clear all your progress? <button class="reset" data-act="reset-yes">Yes, start over</button> <button class="reset" data-act="reset-no">Cancel</button>`:`<button class="reset" data-act="reset">Start over</button>`}</p>`;
+};
+
+// ===== Activity views =====
+function mcBody(it, keyStr, state){
+  if(!state.opt) state.opt = shuffle(it.o.map((_,i)=>i), seeded('opt-'+keyStr));
+  const L='ABCD', after=state.pick!==null;
+  const btns=state.opt.map((oi,pos)=>{ let c='choice';
+    if(after){ if(oi===it.a) c+=' right'; else if(oi===state.pick) c+=' wrong'; }
+    return `<button class="${c}" data-mc="${oi}" ${after?'disabled':''}><b>${L[pos]}</b>${fmt(it.o[oi])}</button>`; }).join('');
+  const ok=state.pick===it.a;
+  return `<p class="prop">${fmt(it.q)}</p>
+  <div class="choices">${btns}</div>
+  ${after?fb(ok, ok?'Correct.':`The answer is ${L[state.opt.indexOf(it.a)]}.`, ' '+fmt(it.e)):''}`;
+}
+const BODY={
+  card(it,A){
+    if(!cur.shown) return `<div class="fcard"><p class="deck">Step ${A.step.n} · ${esc(A.step.title)}</p><h3>${esc(it.t)}</h3><p class="muted">What is it, and why would an AI engineer care? Say it in your own words, then reveal.</p><div class="actions"><button class="btn" data-act="reveal">Show the answer</button></div></div>`;
+    return `<div class="fcard"><p class="deck">Step ${A.step.n} · ${esc(A.step.title)}</p><h3>${esc(it.t)}</h3><p class="def">${fmt(it.d)}</p>${it.x?`<div class="ex">${esc(it.x)}</div>`:''}<p class="why"><b>Why it matters:</b> ${fmt(it.w)}</p></div>`;
+  },
+  mc(it,A){ return mcBody(it, A.step.n+'-'+cur.k, cur); },
+  build(_,A){
+    const m=doneMap(cur.id);
+    const tasks=A.items.map((t,k)=>`<li><button class="task${m[k]?' on':''}" data-task="${k}" aria-pressed="${!!m[k]}"><span class="box" aria-hidden="true">${m[k]?'✓':''}</span><span>${fmt(t.t)}<small>${fmt(t.s)}</small></span></button></li>`).join('');
+    return `<p class="muted">Work through these in your own editor. Tick each one when it runs.</p><ul class="tasks">${tasks}</ul>
+    <section class="res"><h3>Good free resources</h3><ul>${A.step.res.map(([l,u])=>`<li><a href="${esc(u)}" target="_blank" rel="noopener">${esc(l)}</a></li>`).join('')}</ul></section>`;
+  },
+};
+VIEWS.act = () => {
+  const A=ACTS[cur.id], it=A.items[cur.k];
+  const last=cur.k+1>=nOf(cur.id);
+  let head, next;
+  if(A.kind==='build'){
+    head=`<div class="ex-head"><h2>${esc(A.name)}</h2><span class="score">${doneCount(cur.id)} of ${nOf(cur.id)}</span></div><p class="muted exnum">Step ${A.step.n} · ${esc(A.step.title)}</p>`;
+    next=`<div class="next"><button class="btn" data-act="finish-build">${doneCount(cur.id)===nOf(cur.id)?'Finish step':'Back to all steps'}</button></div>`;
+  } else {
+    head=`<div class="ex-head"><h2>${esc(A.step.title)}: ${esc(A.name)}</h2>${A.kind==='mc'?`<span class="score">${sc(cur.id)}</span>`:''}</div><p class="muted exnum">${A.kind==='card'?'Card':'Question'} ${cur.k+1} of ${nOf(cur.id)}</p>`;
+    const ready = A.kind==='card' ? cur.shown : cur.pick!==null;
+    next=`<div class="next">${cur.k>0?`<button class="btn ghost" data-act="prev">‹ Back</button>`:''}<button class="btn" data-act="next" ${ready?'':'disabled'}>${last?'Finish':'Next'}</button></div>`;
+  }
+  return `${cuteBg()}<button class="back" data-go="home">‹ All steps</button><div class="panel">${head}${BODY[A.kind](it,A)}${next}</div>`;
+};
+VIEWS.done = () => {
+  const A=ACTS[cur.id], i=ORDER_IDS.indexOf(cur.id), nx=ORDER_IDS[i+1];
+  const msg = A.kind==='card' ? 'Flashcards done' : A.kind==='mc' ? 'Questions done' : `Step ${A.step.n} built`;
+  const extra = A.kind==='mc' ? `<p class="final">${(progress.right||{})[cur.id]||0} of ${nOf(cur.id)} correct</p>` : '';
+  return `${cuteBg()}<div class="win"><p class="eyebrow">Step ${A.step.n} · ${esc(A.step.title)}</p><div class="big-ico" aria-hidden="true">${A.kind==='build'?'🚀':'🎉'}</div><h1>${msg}</h1>${extra}
+   <div class="actions center">${nx?`<button class="btn big" data-go="act" data-arg="${nx}" data-k="${firstUndone(nx)}">Next: ${esc(ACTS[nx].kind==='card'?ACTS[nx].step.title+' cards':ACTS[nx].name)}</button>`:''}<button class="btn ghost" data-go="home">All steps</button></div></div>`;
+};
+
+// ===== Test your knowledge =====
+const POOL=STEPS.flatMap(s=>s.quiz.map((q,i)=>({...q, step:s, key:'g'+s.n+'-'+i})));
+VIEWS.gameStart = () => `${cuteBg()}<button class="back" data-go="home">‹ All steps</button>
+  <div class="panel game-hero"><div class="big-ico" aria-hidden="true">🧠</div><h2>Test your knowledge</h2>
+  <p class="muted">10 random questions from all 7 steps. Score 8 or more to celebrate. Take it again any time for a new mix.</p>
+  ${progress.best!=null?`<p><b>Your best: ${progress.best}/10</b></p>`:''}
+  <div class="actions center"><button class="btn big" data-act="start-game">Start the test</button></div></div>`;
+function gameBar(){
+  const dots=game.items.map((_,i)=>`<i class="${game.res[i]===true?'hit':game.res[i]===false?'miss':i===game.i?'now':''}"></i>`).join('');
+  return `<div class="gbar"><div class="gbar-row"><span>Question ${game.i+1} of ${game.items.length}</span><span>${game.res.filter(Boolean).length} correct</span></div><div class="dots">${dots}</div></div>`;
+}
+VIEWS.game = () => {
+  const it=game.items[game.i], st=game.state;
+  const done=st.pick!==null;
+  return `${cuteBg()}<button class="back" data-act="quit-game">‹ Quit test</button><div class="panel">${gameBar()}<span class="tag">Step ${it.step.n} · ${esc(it.step.title)}</span>${mcBody(it, it.key, st)}
+  <div class="next"><button class="btn" data-act="game-next">${done?(game.i+1<game.items.length?'Next question':'See my score'):'Skip'}</button></div></div>`;
+};
+VIEWS.gameEnd = () => {
+  const right=game.res.filter(Boolean).length, win=right>=8;
+  const rain = win ? `<div class="rain" aria-hidden="true">${Array.from({length:28},(_,i)=>`<span style="left:${(i*37)%100}%;font-size:${22+(i*7)%22}px;animation-duration:${2.4+(i%5)*.5}s;animation-delay:${(i%7)*.25}s">${['🎉','✨','🚀','🧠','⭐'][i%5]}</span>`).join('')}</div>` : '';
+  const list=game.items.map((it,i)=>`<li class="${game.res[i]?'ok':''}">${game.res[i]?'✓':'✗'} ${fmt(it.q)}<span class="why">${fmt(it.o[it.a])}. ${fmt(it.e)}</span></li>`).join('');
+  return `${rain}${cuteBg()}<div class="win${win?'':' lose'}"><p class="eyebrow">Test your knowledge</p><div class="big-ico" aria-hidden="true">${win?'🏆':'💪'}</div><h1>${win?'Great work!':'Keep going'}</h1><p class="final">${right} of 10 correct</p>
+  <p class="muted">${win?'You know this material.':'Review the steps you missed, then try a new mix.'} Best so far: ${progress.best}/10.</p>
+  <div class="actions center"><button class="btn big" data-act="start-game">New test</button><button class="btn ghost" data-go="home">All steps</button></div>
+  <ul class="results">${list}</ul></div>`;
+};
+
+// ===== Events =====
+app.addEventListener('click', ev=>{
+  const b=ev.target.closest('button'); if(!b) return;
+  const d=b.dataset;
+  if(d.go){ go(d.go, d.arg, d.k); return; }
+  if(d.mc!==undefined){
+    const oi=+d.mc;
+    if(view==='game'){ if(game.state.pick!==null) return; game.state.pick=oi; game.res[game.i]=(oi===game.items[game.i].a); render(); return; }
+    if(cur.pick!==null) return;
+    cur.pick=oi; const ok=oi===ACTS[cur.id].items[cur.k].a;
+    const prevOk=(progress.qok=progress.qok||{})[cur.id+'-'+cur.k];
+    progress.qok[cur.id+'-'+cur.k]=ok;
+    progress.right=progress.right||{};
+    progress.right[cur.id]=Object.entries(progress.qok).filter(([k,v])=>v&&k.startsWith(cur.id+'-')).length;
+    doneMap(cur.id)[cur.k]=1; save(); render(); return;
+  }
+  if(d.task!==undefined){ const m=doneMap(cur.id), k=+d.task; if(m[k]) delete m[k]; else m[k]=1; save(); render(); return; }
+  switch(d.act){
+    case 'reveal': cur.shown=true; doneMap(cur.id)[cur.k]=1; save(); render(); break;
+    case 'next': if(cur.k+1>=nOf(cur.id)) go('done',cur.id); else go('act',cur.id,cur.k+1); break;
+    case 'prev': go('act',cur.id,cur.k-1); break;
+    case 'finish-build': if(doneCount(cur.id)===nOf(cur.id)) go('done',cur.id); else go('home'); break;
+    case 'start-game': game={items:shuffle(POOL).slice(0,10), i:0, res:[], state:{pick:null,opt:null}}; view='game'; render(); window.scrollTo(0,0); break;
+    case 'game-next':
+      if(game.state.pick===null) game.res[game.i]=false;
+      if(game.i+1<game.items.length){ game.i++; game.state={pick:null,opt:null}; render(); window.scrollTo(0,0); }
+      else { const r=game.res.filter(Boolean).length; progress.best=Math.max(progress.best??0, r); save(); view='gameEnd'; render(); window.scrollTo(0,0); }
+      break;
+    case 'quit-game': game=null; go('home'); break;
+    case 'reset': askReset=true; render(); break;
+    case 'reset-no': askReset=false; render(); break;
+    case 'reset-yes': askReset=false; progress={sets:{}}; save(); go('home'); break;
+  }
+});
+render();
+</script>
+</body>
+</html>

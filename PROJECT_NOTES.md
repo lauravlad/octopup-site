@@ -19,6 +19,7 @@ Octopup Studio is the studio behind Laura's apps and websites. This repository i
 |---|---|---|---|
 | Learning | **Therefore**: logic practice | Available | https://lauravlad.github.io/Therefore/ (repo `lauravlad/Therefore`) |
 | Learning | **Understanding Data with Python**: data practice (Python, pandas, statistics, models, interpreting data) | Available | https://pokethedata.com (repo `lauravlad/understanding-data-with-python`; domain at Namecheap) |
+| Learning | **AI Engineer Class**: 7-step self-study course (Python → maths → ML → LLMs → RAG → agents → shipping) with flashcards, quizzes and build tasks on the Fake News Detector | Available | https://octopupstudio.com/ai-engineer/ (lives in this repo at `ai-engineer/index.html`; source copy on Laura's Desktop in `AI Engineer Class/`) |
 | Swapping | **Swapfume**: perfume swap community | Early access | https://swapfume.com (repo `lauravlad/swapfume`, see its `PROJECT_NOTES.md`) |
 | Organizing time | **Family Chores**: shared household chore organizer | Planned | none yet |
 | Websites | Personal websites for people and small businesses | First project in progress | Contact |
